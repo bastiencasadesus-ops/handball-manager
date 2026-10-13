@@ -209,3 +209,12 @@
 /* ---------- Bilan ---------- */
 .bilan-tete { color: #fff; padding: 16px; text-align: center; }
 .bilan-ligne .nt { min-width: 36px; text-align: center; }
+
+/* ---------- iPhone (appli sur l'écran d'accueil) : aucun fond blanc, même sous la barre d'accueil ---------- */
+html { background: #050F2A; }
+html, body { height: auto; min-height: 100%; }
+body { min-height: 100vh; min-height: 100dvh; background: #050F2A; }
+/* « background-attachment: fixed » est mal géré par Safari sur iPhone : le dégradé est posé sur un calque fixe */
+body::before { content: ""; position: fixed; inset: -2px; z-index: -1; pointer-events: none;
+               background: radial-gradient(ellipse at 25% 15%, #16397F 0%, #0A2358 45%, #050F2A 100%); }
+.plein, .voile { padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px)); }
