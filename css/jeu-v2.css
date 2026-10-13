@@ -218,3 +218,6 @@ body { min-height: 100vh; min-height: 100dvh; background: #050F2A; }
 body::before { content: ""; position: fixed; inset: -2px; z-index: -1; pointer-events: none;
                background: radial-gradient(ellipse at 25% 15%, #16397F 0%, #0A2358 45%, #050F2A 100%); }
 .plein, .voile { padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px)); }
+
+/* ---------- Bandeau du club : il défile avec la page (fixé en haut, il cachait le texte et bloquait les touchers) ---------- */
+.bandeau { position: relative; top: auto; z-index: 1; }
