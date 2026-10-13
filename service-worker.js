@@ -2,8 +2,9 @@
 // offline support. See https://aka.ms/blazor-offline-considerations
 
 self.importScripts('./service-worker-assets.js');
-self.addEventListener('install', event => event.waitUntil(onInstall(event)));
-self.addEventListener('activate', event => event.waitUntil(onActivate(event)));
+// Une nouvelle version remplace l'ancienne tout de suite (pas d'attente que l'appli soit fermée partout)
+self.addEventListener('install', event => { self.skipWaiting(); event.waitUntil(onInstall(event)); });
+self.addEventListener('activate', event => event.waitUntil(onActivate(event).then(() => self.clients.claim())));
 self.addEventListener('fetch', event => event.respondWith(onFetch(event)));
 
 const cacheNamePrefix = 'offline-cache-';
@@ -23,7 +24,7 @@ async function onInstall(event) {
     const assetsRequests = self.assetsManifest.assets
         .filter(asset => offlineAssetsInclude.some(pattern => pattern.test(asset.url)))
         .filter(asset => !offlineAssetsExclude.some(pattern => pattern.test(asset.url)))
-        .map(asset => new Request(asset.url, { integrity: asset.hash, cache: 'no-cache' }));
+        .map(asset => new Request(asset.url, { integrity: asset.hash, cache: 'reload' }));   // jamais l'ancien fichier du cache du navigateur
     await caches.open(cacheName).then(cache => cache.addAll(assetsRequests));
 }
 
@@ -53,4 +54,4 @@ async function onFetch(event) {
 
     return cachedResponse || fetch(event.request);
 }
-/* Manifest version: glQRCHxK */
+/* Manifest version: MfqvVTnq */
