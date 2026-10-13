@@ -221,3 +221,8 @@ body::before { content: ""; position: fixed; inset: -2px; z-index: -1; pointer-e
 
 /* ---------- Bandeau du club : il défile avec la page (fixé en haut, il cachait le texte et bloquait les touchers) ---------- */
 .bandeau { position: relative; top: auto; z-index: 1; }
+
+/* ---------- iPhone : chaque toucher compte (pas de zoom au double toucher, pas de délai, pas de menu « copier ») ---------- */
+html { touch-action: manipulation; -webkit-text-size-adjust: 100%; }
+button, .seance-en-cours, .carte-svg, .fanion { touch-action: manipulation; -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+.seance-en-cours:active { transform: scale(.985); }
