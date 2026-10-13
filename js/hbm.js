@@ -1,6 +1,6 @@
 // Petits services du navigateur pour Handball Manager : sauvegarde locale et sons de match.
 window.hbm = (function () {
-    let audio = null;
+    let audio = null, volume = 0.8, maitre = null;
 
     function contexte() {
         if (!audio) {
@@ -9,6 +9,8 @@ window.hbm = (function () {
             audio = new C();
         }
         if (audio.state === "suspended") audio.resume();
+        if (!maitre) { maitre = audio.createGain(); maitre.connect(audio.destination); }
+        maitre.gain.value = volume;
         return audio;
     }
 
@@ -24,7 +26,7 @@ window.hbm = (function () {
         gain.gain.linearRampToValueAtTime(0.18, t + 0.02);
         gain.gain.setValueAtTime(0.18, t + duree - 0.06);
         gain.gain.linearRampToValueAtTime(0, t + duree);
-        osc.connect(gain); gain.connect(a.destination);
+        osc.connect(gain); gain.connect(maitre);
         osc.start(t); vib.start(t); osc.stop(t + duree); vib.stop(t + duree);
     }
 
@@ -40,7 +42,7 @@ window.hbm = (function () {
         gain.gain.setValueAtTime(0, t);
         gain.gain.linearRampToValueAtTime(volume, t + montee);
         gain.gain.exponentialRampToValueAtTime(0.001, t + duree);
-        source.connect(filtre); filtre.connect(gain); gain.connect(a.destination);
+        source.connect(filtre); filtre.connect(gain); gain.connect(maitre);
         source.start(t);
     }
 
@@ -56,10 +58,19 @@ window.hbm = (function () {
             gain.gain.linearRampToValueAtTime(v, t + 0.03);
             gain.gain.setValueAtTime(v, t + 0.6);
             gain.gain.linearRampToValueAtTime(0, t + 0.75);
-            osc.connect(gain); gain.connect(a.destination);
+            osc.connect(gain); gain.connect(maitre);
             osc.start(t); osc.stop(t + 0.8);
         });
         foule(1.8, 0.35, 0.25);
+    }
+
+    // Interface : un « tic » bref au toucher d'une carte, un « clac » à deux notes au clic
+    function note(f1, f2, duree, v) {
+        const a = contexte(); if (!a) return;
+        const t = a.currentTime, osc = a.createOscillator(), gain = a.createGain();
+        osc.type = "sine"; osc.frequency.setValueAtTime(f1, t); osc.frequency.linearRampToValueAtTime(f2, t + duree);
+        gain.gain.setValueAtTime(v, t); gain.gain.exponentialRampToValueAtTime(0.001, t + duree);
+        osc.connect(gain); gain.connect(maitre); osc.start(t); osc.stop(t + duree);
     }
 
     return {
@@ -67,12 +78,15 @@ window.hbm = (function () {
         ecrire: (cle, valeur) => { try { localStorage.setItem(cle, valeur); } catch (e) { } },
         // iPhone : le son ne démarre qu'après un geste de l'utilisateur
         debloquerSon: () => { contexte(); },
-        son: nom => {
+        son: (nom, v) => {
             try {
+                if (typeof v === "number") volume = v;
                 if (nom === "sifflet") sifflet(0.35);
                 else if (nom === "siffletlong") sifflet(0.9);
                 else if (nom === "but") corne();
                 else if (nom === "arret") foule(0.6, 0.25, 0.1);
+                else if (nom === "clic") { note(880, 880, 0.05, 0.2); setTimeout(() => note(1320, 1320, 0.08, 0.2), 45); }
+                else if (nom === "survol") note(1500, 2400, 0.045, 0.12);
             } catch (e) { }
         }
     };

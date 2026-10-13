@@ -1,0 +1,3276 @@
+{
+  "Date": "2026-10-13T12:01:41.1029784+02:00",
+  "Joueurs": {
+    "Honneur R\u00E9gionale Masculine": [
+      {
+        "Prenom": "Jeremy",
+        "Nom": "Puyraud",
+        "Club": "HBC IZONNAIS",
+        "Matchs": 2,
+        "Buts": 2,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Alexandre",
+        "Nom": "Mouillaud",
+        "Club": "ASPOM BEGLES HB 3",
+        "Matchs": 4,
+        "Buts": 11,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Julien",
+        "Nom": "Kergall",
+        "Club": "CARBON BLANC HB",
+        "Matchs": 3,
+        "Buts": 11,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Thibaut",
+        "Nom": "Mace",
+        "Club": "MERIGNAC GIRONDE HANDBALL",
+        "Matchs": 3,
+        "Buts": 37,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Baptiste",
+        "Nom": "Buton",
+        "Club": "GOND PONTOUVRE HB 2",
+        "Matchs": 2,
+        "Buts": 4,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Romain",
+        "Nom": "Citrain",
+        "Club": "MERIGNAC GIRONDE HANDBALL",
+        "Matchs": 1,
+        "Buts": 2,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Victor",
+        "Nom": "Maurac",
+        "Club": "PE2M HB",
+        "Matchs": 4,
+        "Buts": 4,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Nicolas",
+        "Nom": "Bonville",
+        "Club": "ENTENTE GRAND PERIGUEUX HANDBALL (HNR M)",
+        "Matchs": 3,
+        "Buts": 0,
+        "Arrets": 11
+      },
+      {
+        "Prenom": "Pierrick",
+        "Nom": "Cosson",
+        "Club": "CLUB ATHLETIQUE BRIVE CORREZE HANDBALL",
+        "Matchs": 2,
+        "Buts": 0,
+        "Arrets": 18
+      },
+      {
+        "Prenom": "Benjamin",
+        "Nom": "Bernard",
+        "Club": "MERIGNAC GIRONDE HANDBALL",
+        "Matchs": 2,
+        "Buts": 3,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Kevin",
+        "Nom": "Grande",
+        "Club": "ENTENTE ROYAN ST-GEORGES HB",
+        "Matchs": 1,
+        "Buts": 1,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Steven",
+        "Nom": "Lauvernier",
+        "Club": "ENTENTE ROYAN ST-GEORGES HB",
+        "Matchs": 3,
+        "Buts": 5,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Lionel",
+        "Nom": "Romiguiere",
+        "Club": "ENTENTE ROYAN ST-GEORGES HB",
+        "Matchs": 2,
+        "Buts": 0,
+        "Arrets": 15
+      },
+      {
+        "Prenom": "Arnaud",
+        "Nom": "Mourier",
+        "Club": "VILLEBOIS",
+        "Matchs": 4,
+        "Buts": 0,
+        "Arrets": 24
+      },
+      {
+        "Prenom": "Mathieu",
+        "Nom": "Fauconnet",
+        "Club": "VILLEBOIS",
+        "Matchs": 4,
+        "Buts": 24,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Anthony",
+        "Nom": "Pauliac",
+        "Club": "GOND PONTOUVRE HB 2",
+        "Matchs": 4,
+        "Buts": 9,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Arthur",
+        "Nom": "Verdon",
+        "Club": "GOND PONTOUVRE HB 2",
+        "Matchs": 3,
+        "Buts": 0,
+        "Arrets": 14
+      },
+      {
+        "Prenom": "Sylvain",
+        "Nom": "Massonnaud",
+        "Club": "ENTENTE GRAND PERIGUEUX HANDBALL (HNR M)",
+        "Matchs": 2,
+        "Buts": 0,
+        "Arrets": 11
+      },
+      {
+        "Prenom": "Malou",
+        "Nom": "Musset",
+        "Club": "GOND PONTOUVRE HB 2",
+        "Matchs": 3,
+        "Buts": 4,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Simon",
+        "Nom": "Forgit",
+        "Club": "ATLANTIQUE SEUDRE HANDBALL",
+        "Matchs": 1,
+        "Buts": 1,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Yohan",
+        "Nom": "Duranthon",
+        "Club": "VILLEBOIS",
+        "Matchs": 4,
+        "Buts": 11,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Noel",
+        "Nom": "Doret",
+        "Club": "ATLANTIQUE SEUDRE HANDBALL",
+        "Matchs": 4,
+        "Buts": 0,
+        "Arrets": 24
+      },
+      {
+        "Prenom": "Benoit",
+        "Nom": "Bin",
+        "Club": "ATLANTIQUE SEUDRE HANDBALL",
+        "Matchs": 2,
+        "Buts": 0,
+        "Arrets": 25
+      },
+      {
+        "Prenom": "Dimitri",
+        "Nom": "Bataillon",
+        "Club": "ENTENTE ROYAN ST-GEORGES HB",
+        "Matchs": 3,
+        "Buts": 16,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Dylan",
+        "Nom": "Duban",
+        "Club": "ENTENTE ROYAN ST-GEORGES HB",
+        "Matchs": 3,
+        "Buts": 14,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Felix",
+        "Nom": "Aigoin",
+        "Club": "ATLANTIQUE SEUDRE HANDBALL",
+        "Matchs": 3,
+        "Buts": 14,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Geoffrey",
+        "Nom": "Courtin",
+        "Club": "CARBON BLANC HB",
+        "Matchs": 3,
+        "Buts": 8,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Hugo",
+        "Nom": "Demars",
+        "Club": "CARBON BLANC HB",
+        "Matchs": 3,
+        "Buts": 16,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Remy",
+        "Nom": "Joachim",
+        "Club": "PE2M HB",
+        "Matchs": 2,
+        "Buts": 2,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Quentin",
+        "Nom": "Bordron",
+        "Club": "VILLEBOIS",
+        "Matchs": 3,
+        "Buts": 12,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Freddy",
+        "Nom": "Hermak",
+        "Club": "MERIGNAC GIRONDE HANDBALL",
+        "Matchs": 2,
+        "Buts": 7,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Herve",
+        "Nom": "Viger",
+        "Club": "CLUB ATHLETIQUE BRIVE CORREZE HANDBALL",
+        "Matchs": 3,
+        "Buts": 10,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Sasha",
+        "Nom": "Bosman",
+        "Club": "GOND PONTOUVRE HB 2",
+        "Matchs": 1,
+        "Buts": 6,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Valentin",
+        "Nom": "Hairon",
+        "Club": "ENTENTE ROYAN ST-GEORGES HB",
+        "Matchs": 2,
+        "Buts": 7,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Esteban",
+        "Nom": "Compiegne",
+        "Club": "PE2M HB",
+        "Matchs": 1,
+        "Buts": 3,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Rudy",
+        "Nom": "Toffolon",
+        "Club": "ATLANTIQUE SEUDRE HANDBALL",
+        "Matchs": 2,
+        "Buts": 6,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Emile",
+        "Nom": "Rojat",
+        "Club": "PE2M HB",
+        "Matchs": 4,
+        "Buts": 26,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Moussa",
+        "Nom": "Soudani",
+        "Club": "ENTENTE GRAND PERIGUEUX HANDBALL (HNR M)",
+        "Matchs": 2,
+        "Buts": 13,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Cyrille",
+        "Nom": "Magnon",
+        "Club": "CLUB ATHLETIQUE BRIVE CORREZE HANDBALL",
+        "Matchs": 3,
+        "Buts": 14,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Theo",
+        "Nom": "Parrot",
+        "Club": "HBC IZONNAIS",
+        "Matchs": 2,
+        "Buts": 11,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Theo",
+        "Nom": "Bregaud",
+        "Club": "HBC IZONNAIS",
+        "Matchs": 4,
+        "Buts": 13,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Xavier-Luis",
+        "Nom": "Espinoza",
+        "Club": "HBC IZONNAIS",
+        "Matchs": 4,
+        "Buts": 19,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Alexis",
+        "Nom": "Leger",
+        "Club": "VILLEBOIS",
+        "Matchs": 4,
+        "Buts": 1,
+        "Arrets": 42
+      },
+      {
+        "Prenom": "Baptiste",
+        "Nom": "Raclot",
+        "Club": "GOND PONTOUVRE HB 2",
+        "Matchs": 2,
+        "Buts": 16,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Kilian",
+        "Nom": "Bertrand",
+        "Club": "ENTENTE ROYAN ST-GEORGES HB",
+        "Matchs": 3,
+        "Buts": 25,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Evan",
+        "Nom": "Renard",
+        "Club": "MERIGNAC GIRONDE HANDBALL",
+        "Matchs": 3,
+        "Buts": 6,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Elouann",
+        "Nom": "Marceaux",
+        "Club": "ASPOM BEGLES HB 3",
+        "Matchs": 3,
+        "Buts": 10,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Paul",
+        "Nom": "Laguillaumie Fernandes",
+        "Club": "CLUB ATHLETIQUE BRIVE CORREZE HANDBALL",
+        "Matchs": 1,
+        "Buts": 2,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Tristan",
+        "Nom": "Berthomieu",
+        "Club": "HBC IZONNAIS",
+        "Matchs": 4,
+        "Buts": 9,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Solien",
+        "Nom": "Kridallah",
+        "Club": "MERIGNAC GIRONDE HANDBALL",
+        "Matchs": 1,
+        "Buts": 6,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Moncef",
+        "Nom": "Verhaeghe",
+        "Club": "CARBON BLANC HB",
+        "Matchs": 3,
+        "Buts": 12,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Pablo",
+        "Nom": "Guardia Ros",
+        "Club": "PE2M HB",
+        "Matchs": 2,
+        "Buts": 1,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Mathis",
+        "Nom": "Delage",
+        "Club": "GOND PONTOUVRE HB 2",
+        "Matchs": 1,
+        "Buts": 4,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Fabien",
+        "Nom": "Trebuchet",
+        "Club": "MERIGNAC GIRONDE HANDBALL",
+        "Matchs": 3,
+        "Buts": 6,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Quentin",
+        "Nom": "Guilbaud",
+        "Club": "VILLEBOIS",
+        "Matchs": 2,
+        "Buts": 2,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Yoann",
+        "Nom": "Nivet",
+        "Club": "ENTENTE GRAND PERIGUEUX HANDBALL (HNR M)",
+        "Matchs": 4,
+        "Buts": 21,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Brieuc",
+        "Nom": "Queran",
+        "Club": "MERIGNAC GIRONDE HANDBALL",
+        "Matchs": 3,
+        "Buts": 3,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Malo",
+        "Nom": "Pelletier",
+        "Club": "ASPOM BEGLES HB 3",
+        "Matchs": 4,
+        "Buts": 6,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Alexandre",
+        "Nom": "Dabin",
+        "Club": "ENTENTE ROYAN ST-GEORGES HB",
+        "Matchs": 3,
+        "Buts": 6,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Theo",
+        "Nom": "Limerat",
+        "Club": "VILLEBOIS",
+        "Matchs": 3,
+        "Buts": 8,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Samuel",
+        "Nom": "Berland",
+        "Club": "CARBON BLANC HB",
+        "Matchs": 3,
+        "Buts": 8,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Mateo",
+        "Nom": "De Lestapis",
+        "Club": "PE2M HB",
+        "Matchs": 2,
+        "Buts": 0,
+        "Arrets": 21
+      },
+      {
+        "Prenom": "Guillaume",
+        "Nom": "Depit",
+        "Club": "VILLEBOIS",
+        "Matchs": 1,
+        "Buts": 0,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Evann",
+        "Nom": "Laparre",
+        "Club": "MERIGNAC GIRONDE HANDBALL",
+        "Matchs": 3,
+        "Buts": 15,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Jules",
+        "Nom": "Signarbieux",
+        "Club": "CLUB ATHLETIQUE BRIVE CORREZE HANDBALL",
+        "Matchs": 3,
+        "Buts": 22,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Bastien",
+        "Nom": "Casadesus",
+        "Club": "HBC IZONNAIS",
+        "Matchs": 3,
+        "Buts": 0,
+        "Arrets": 41
+      },
+      {
+        "Prenom": "Armand",
+        "Nom": "Martin",
+        "Club": "ATLANTIQUE SEUDRE HANDBALL",
+        "Matchs": 2,
+        "Buts": 2,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Joshua",
+        "Nom": "Joachim",
+        "Club": "PE2M HB",
+        "Matchs": 2,
+        "Buts": 0,
+        "Arrets": 22
+      },
+      {
+        "Prenom": "Hugo",
+        "Nom": "Durand",
+        "Club": "VILLEBOIS",
+        "Matchs": 4,
+        "Buts": 16,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Dorian",
+        "Nom": "Granjoux",
+        "Club": "CLUB ATHLETIQUE BRIVE CORREZE HANDBALL",
+        "Matchs": 3,
+        "Buts": 19,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Loic",
+        "Nom": "Tomaz Mendes",
+        "Club": "ATLANTIQUE SEUDRE HANDBALL",
+        "Matchs": 4,
+        "Buts": 4,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Tommy",
+        "Nom": "Enjuanes",
+        "Club": "ENTENTE ROYAN ST-GEORGES HB",
+        "Matchs": 1,
+        "Buts": 3,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Jaffar",
+        "Nom": "Mohamed",
+        "Club": "MERIGNAC GIRONDE HANDBALL",
+        "Matchs": 1,
+        "Buts": 3,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Maxime",
+        "Nom": "Mandrau",
+        "Club": "ENTENTE ROYAN ST-GEORGES HB",
+        "Matchs": 2,
+        "Buts": 0,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Christophe",
+        "Nom": "Roche",
+        "Club": "PE2M HB",
+        "Matchs": 4,
+        "Buts": 21,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Thomas",
+        "Nom": "Esteves",
+        "Club": "MERIGNAC GIRONDE HANDBALL",
+        "Matchs": 1,
+        "Buts": 0,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Mateo",
+        "Nom": "Arens",
+        "Club": "ATLANTIQUE SEUDRE HANDBALL",
+        "Matchs": 4,
+        "Buts": 5,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Mateo",
+        "Nom": "Lafon",
+        "Club": "ENTENTE GRAND PERIGUEUX HANDBALL (HNR M)",
+        "Matchs": 2,
+        "Buts": 2,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Julian",
+        "Nom": "Cabanes",
+        "Club": "HBC IZONNAIS",
+        "Matchs": 4,
+        "Buts": 11,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Faid-Mehdi",
+        "Nom": "Mroimana",
+        "Club": "ASPOM BEGLES HB 3",
+        "Matchs": 2,
+        "Buts": 11,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Kylian",
+        "Nom": "Litou",
+        "Club": "ENTENTE GRAND PERIGUEUX HANDBALL (HNR M)",
+        "Matchs": 2,
+        "Buts": 3,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Elouan",
+        "Nom": "Gibouin",
+        "Club": "ASPOM BEGLES HB 3",
+        "Matchs": 1,
+        "Buts": 8,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Jean",
+        "Nom": "Matet",
+        "Club": "ATLANTIQUE SEUDRE HANDBALL",
+        "Matchs": 2,
+        "Buts": 5,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Morgan",
+        "Nom": "Rigaudy",
+        "Club": "ENTENTE ROYAN ST-GEORGES HB",
+        "Matchs": 1,
+        "Buts": 1,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Mathias",
+        "Nom": "Palenzuela",
+        "Club": "MERIGNAC GIRONDE HANDBALL",
+        "Matchs": 3,
+        "Buts": 0,
+        "Arrets": 15
+      },
+      {
+        "Prenom": "Romain",
+        "Nom": "Garot",
+        "Club": "HBC IZONNAIS",
+        "Matchs": 4,
+        "Buts": 12,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Antoine",
+        "Nom": "Derian",
+        "Club": "MERIGNAC GIRONDE HANDBALL",
+        "Matchs": 3,
+        "Buts": 0,
+        "Arrets": 17
+      },
+      {
+        "Prenom": "Lohan",
+        "Nom": "Grand-Moursel",
+        "Club": "GOND PONTOUVRE HB 2",
+        "Matchs": 3,
+        "Buts": 6,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Samuel",
+        "Nom": "Obrecht",
+        "Club": "PE2M HB",
+        "Matchs": 3,
+        "Buts": 7,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Helie",
+        "Nom": "Lucas",
+        "Club": "MERIGNAC GIRONDE HANDBALL",
+        "Matchs": 2,
+        "Buts": 6,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Nolan",
+        "Nom": "Gispalou",
+        "Club": "ENTENTE GRAND PERIGUEUX HANDBALL (HNR M)",
+        "Matchs": 4,
+        "Buts": 21,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Axel",
+        "Nom": "Follain",
+        "Club": "PE2M HB",
+        "Matchs": 4,
+        "Buts": 16,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Antonin",
+        "Nom": "Tinarage",
+        "Club": "ASPOM BEGLES HB 3",
+        "Matchs": 3,
+        "Buts": 22,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Nathan",
+        "Nom": "Chaminade",
+        "Club": "ENTENTE GRAND PERIGUEUX HANDBALL (HNR M)",
+        "Matchs": 2,
+        "Buts": 2,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Pierre-Louis",
+        "Nom": "Delattre",
+        "Club": "CLUB ATHLETIQUE BRIVE CORREZE HANDBALL",
+        "Matchs": 2,
+        "Buts": 1,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Jules",
+        "Nom": "Raymond",
+        "Club": "GOND PONTOUVRE HB 2",
+        "Matchs": 1,
+        "Buts": 5,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Axel",
+        "Nom": "Cherif",
+        "Club": "VILLEBOIS",
+        "Matchs": 3,
+        "Buts": 4,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Lucas",
+        "Nom": "Mamer",
+        "Club": "VILLEBOIS",
+        "Matchs": 4,
+        "Buts": 23,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Clement",
+        "Nom": "Duval",
+        "Club": "ENTENTE ROYAN ST-GEORGES HB",
+        "Matchs": 3,
+        "Buts": 0,
+        "Arrets": 15
+      },
+      {
+        "Prenom": "Leny",
+        "Nom": "Gasteuil",
+        "Club": "PE2M HB",
+        "Matchs": 4,
+        "Buts": 16,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Louka",
+        "Nom": "Choppin",
+        "Club": "ASPOM BEGLES HB 3",
+        "Matchs": 1,
+        "Buts": 10,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Victor",
+        "Nom": "Jessel",
+        "Club": "MERIGNAC GIRONDE HANDBALL",
+        "Matchs": 2,
+        "Buts": 7,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Matheo",
+        "Nom": "Gerard",
+        "Club": "CLUB ATHLETIQUE BRIVE CORREZE HANDBALL",
+        "Matchs": 2,
+        "Buts": 6,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Aymerick",
+        "Nom": "Gras",
+        "Club": "ASPOM BEGLES HB 3",
+        "Matchs": 2,
+        "Buts": 10,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Ilan",
+        "Nom": "Semail",
+        "Club": "HBC IZONNAIS",
+        "Matchs": 4,
+        "Buts": 24,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Renato",
+        "Nom": "Dimchev",
+        "Club": "MERIGNAC GIRONDE HANDBALL",
+        "Matchs": 1,
+        "Buts": 1,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Paul",
+        "Nom": "Boutellier",
+        "Club": "ASPOM BEGLES HB 3",
+        "Matchs": 3,
+        "Buts": 13,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Mathys",
+        "Nom": "Perey",
+        "Club": "HBC IZONNAIS",
+        "Matchs": 2,
+        "Buts": 14,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Clement",
+        "Nom": "Mondoux",
+        "Club": "ENTENTE GRAND PERIGUEUX HANDBALL (HNR M)",
+        "Matchs": 2,
+        "Buts": 3,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Damien",
+        "Nom": "Touze",
+        "Club": "ENTENTE GRAND PERIGUEUX HANDBALL (HNR M)",
+        "Matchs": 4,
+        "Buts": 8,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Milan",
+        "Nom": "Lavigne",
+        "Club": "PE2M HB",
+        "Matchs": 2,
+        "Buts": 1,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Hugo",
+        "Nom": "Jacq",
+        "Club": "ASPOM BEGLES HB 3",
+        "Matchs": 2,
+        "Buts": 6,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Eliott",
+        "Nom": "Renard",
+        "Club": "ATLANTIQUE SEUDRE HANDBALL",
+        "Matchs": 4,
+        "Buts": 20,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Adam",
+        "Nom": "Ducourneau",
+        "Club": "PE2M HB",
+        "Matchs": 4,
+        "Buts": 8,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Nael",
+        "Nom": "Galan",
+        "Club": "CARBON BLANC HB",
+        "Matchs": 3,
+        "Buts": 5,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Christophe",
+        "Nom": "Le Bleis",
+        "Club": "CARBON BLANC HB",
+        "Matchs": 3,
+        "Buts": 0,
+        "Arrets": 33
+      },
+      {
+        "Prenom": "Baptiste",
+        "Nom": "Signarbieux",
+        "Club": "CLUB ATHLETIQUE BRIVE CORREZE HANDBALL",
+        "Matchs": 3,
+        "Buts": 5,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Raphael",
+        "Nom": "Stefanidis",
+        "Club": "ASPOM BEGLES HB 3",
+        "Matchs": 3,
+        "Buts": 15,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Lilian",
+        "Nom": "Turcant",
+        "Club": "ASPOM BEGLES HB 3",
+        "Matchs": 1,
+        "Buts": 3,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Baptiste",
+        "Nom": "Torriani",
+        "Club": "GOND PONTOUVRE HB 2",
+        "Matchs": 2,
+        "Buts": 13,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Franck",
+        "Nom": "Bellard",
+        "Club": "VILLEBOIS",
+        "Matchs": 4,
+        "Buts": 7,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Raphael",
+        "Nom": "Hellebois-Cadereau",
+        "Club": "ASPOM BEGLES HB 3",
+        "Matchs": 4,
+        "Buts": 0,
+        "Arrets": 82
+      },
+      {
+        "Prenom": "Tom",
+        "Nom": "Mas",
+        "Club": "ENTENTE GRAND PERIGUEUX HANDBALL (HNR M)",
+        "Matchs": 2,
+        "Buts": 17,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Mathis",
+        "Nom": "Clavier",
+        "Club": "GOND PONTOUVRE HB 2",
+        "Matchs": 1,
+        "Buts": 7,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Maxence",
+        "Nom": "Froidefond",
+        "Club": "ENTENTE GRAND PERIGUEUX HANDBALL (HNR M)",
+        "Matchs": 1,
+        "Buts": 3,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Mert",
+        "Nom": "Mokukcu",
+        "Club": "HBC IZONNAIS",
+        "Matchs": 1,
+        "Buts": 1,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Noa",
+        "Nom": "Rondao",
+        "Club": "CLUB ATHLETIQUE BRIVE CORREZE HANDBALL",
+        "Matchs": 1,
+        "Buts": 6,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Theo",
+        "Nom": "Marzat",
+        "Club": "GOND PONTOUVRE HB 2",
+        "Matchs": 4,
+        "Buts": 15,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Antoine",
+        "Nom": "Mamer",
+        "Club": "GOND PONTOUVRE HB 2",
+        "Matchs": 2,
+        "Buts": 0,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Tom",
+        "Nom": "Bourriague",
+        "Club": "CARBON BLANC HB",
+        "Matchs": 3,
+        "Buts": 6,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Lucas",
+        "Nom": "Laugere",
+        "Club": "ASPOM BEGLES HB 3",
+        "Matchs": 2,
+        "Buts": 2,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Basile",
+        "Nom": "Delmas",
+        "Club": "PE2M HB",
+        "Matchs": 1,
+        "Buts": 5,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Camille",
+        "Nom": "Demarqc",
+        "Club": "ASPOM BEGLES HB 3",
+        "Matchs": 2,
+        "Buts": 3,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Adrien",
+        "Nom": "Fevrier",
+        "Club": "HBC IZONNAIS",
+        "Matchs": 2,
+        "Buts": 1,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Raphael",
+        "Nom": "Rocco",
+        "Club": "PE2M HB",
+        "Matchs": 4,
+        "Buts": 36,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Maho",
+        "Nom": "Gabard",
+        "Club": "ENTENTE ROYAN ST-GEORGES HB",
+        "Matchs": 2,
+        "Buts": 3,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Sacha",
+        "Nom": "Bregeon",
+        "Club": "GOND PONTOUVRE HB 2",
+        "Matchs": 1,
+        "Buts": 0,
+        "Arrets": 3
+      },
+      {
+        "Prenom": "Benjamin",
+        "Nom": "Nadaud",
+        "Club": "VILLEBOIS",
+        "Matchs": 2,
+        "Buts": 5,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Noa",
+        "Nom": "Descombes",
+        "Club": "HBC IZONNAIS",
+        "Matchs": 3,
+        "Buts": 3,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Pierre",
+        "Nom": "Grenet",
+        "Club": "CARBON BLANC HB",
+        "Matchs": 3,
+        "Buts": 15,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Axel",
+        "Nom": "Bernard",
+        "Club": "HBC IZONNAIS",
+        "Matchs": 3,
+        "Buts": 12,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Hadrien",
+        "Nom": "Gardere",
+        "Club": "ASPOM BEGLES HB 3",
+        "Matchs": 4,
+        "Buts": 0,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Jules",
+        "Nom": "Gil",
+        "Club": "ASPOM BEGLES HB 3",
+        "Matchs": 3,
+        "Buts": 13,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Andoni",
+        "Nom": "Zabaleta",
+        "Club": "CARBON BLANC HB",
+        "Matchs": 3,
+        "Buts": 3,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Quentin",
+        "Nom": "Janicot",
+        "Club": "CLUB ATHLETIQUE BRIVE CORREZE HANDBALL",
+        "Matchs": 3,
+        "Buts": 10,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Renzo",
+        "Nom": "Campos-Scozzaro",
+        "Club": "ENTENTE ROYAN ST-GEORGES HB",
+        "Matchs": 2,
+        "Buts": 4,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Ermis",
+        "Nom": "Gueneau",
+        "Club": "ENTENTE GRAND PERIGUEUX HANDBALL (HNR M)",
+        "Matchs": 1,
+        "Buts": 2,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Noah",
+        "Nom": "Bocquet",
+        "Club": "GOND PONTOUVRE HB 2",
+        "Matchs": 1,
+        "Buts": 0,
+        "Arrets": 7
+      },
+      {
+        "Prenom": "Baptiste",
+        "Nom": "Denard-Bons",
+        "Club": "ATLANTIQUE SEUDRE HANDBALL",
+        "Matchs": 3,
+        "Buts": 24,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Aaron",
+        "Nom": "Martin",
+        "Club": "ENTENTE ROYAN ST-GEORGES HB",
+        "Matchs": 3,
+        "Buts": 1,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Louis",
+        "Nom": "Peydecastaing",
+        "Club": "CLUB ATHLETIQUE BRIVE CORREZE HANDBALL",
+        "Matchs": 3,
+        "Buts": 13,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "El-Fayiz",
+        "Nom": "Madi",
+        "Club": "ENTENTE GRAND PERIGUEUX HANDBALL (HNR M)",
+        "Matchs": 2,
+        "Buts": 3,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Louis",
+        "Nom": "Durand",
+        "Club": "ENTENTE GRAND PERIGUEUX HANDBALL (HNR M)",
+        "Matchs": 3,
+        "Buts": 8,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Ricardo",
+        "Nom": "Alvoco Mendes Pereira",
+        "Club": "ENTENTE GRAND PERIGUEUX HANDBALL (HNR M)",
+        "Matchs": 3,
+        "Buts": 0,
+        "Arrets": 21
+      },
+      {
+        "Prenom": "Matteo",
+        "Nom": "Minoue",
+        "Club": "HBC IZONNAIS",
+        "Matchs": 1,
+        "Buts": 0,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Marzaq",
+        "Nom": "Amroune",
+        "Club": "GOND PONTOUVRE HB 2",
+        "Matchs": 2,
+        "Buts": 1,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Pierre",
+        "Nom": "Renou",
+        "Club": "ENTENTE GRAND PERIGUEUX HANDBALL (HNR M)",
+        "Matchs": 1,
+        "Buts": 3,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Herve",
+        "Nom": "Cornu",
+        "Club": "VILLEBOIS",
+        "Matchs": 4,
+        "Buts": 3,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Keryan",
+        "Nom": "Madi",
+        "Club": "ENTENTE GRAND PERIGUEUX HANDBALL (HNR M)",
+        "Matchs": 3,
+        "Buts": 2,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Elias",
+        "Nom": "Balzer",
+        "Club": "GOND PONTOUVRE HB 2",
+        "Matchs": 4,
+        "Buts": 3,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Corentyn",
+        "Nom": "Arnoult",
+        "Club": "ATLANTIQUE SEUDRE HANDBALL",
+        "Matchs": 3,
+        "Buts": 9,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Hugo",
+        "Nom": "Robin",
+        "Club": "ATLANTIQUE SEUDRE HANDBALL",
+        "Matchs": 1,
+        "Buts": 0,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Maxime",
+        "Nom": "Vignaud",
+        "Club": "VILLEBOIS",
+        "Matchs": 1,
+        "Buts": 5,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Guillaume",
+        "Nom": "Samenayre",
+        "Club": "PE2M HB",
+        "Matchs": 3,
+        "Buts": 0,
+        "Arrets": 21
+      },
+      {
+        "Prenom": "Thais",
+        "Nom": "Rousselot",
+        "Club": "ATLANTIQUE SEUDRE HANDBALL",
+        "Matchs": 4,
+        "Buts": 25,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Vladyslav",
+        "Nom": "Ternavskyi",
+        "Club": "ENTENTE GRAND PERIGUEUX HANDBALL (HNR M)",
+        "Matchs": 1,
+        "Buts": 1,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Taua",
+        "Nom": "Simiao-Lurton",
+        "Club": "GOND PONTOUVRE HB 2",
+        "Matchs": 3,
+        "Buts": 0,
+        "Arrets": 12
+      },
+      {
+        "Prenom": "Jean-Philippe",
+        "Nom": "Duchesne",
+        "Club": "HBC IZONNAIS",
+        "Matchs": 3,
+        "Buts": 0,
+        "Arrets": 11
+      },
+      {
+        "Prenom": "Alexandre",
+        "Nom": "Bassette",
+        "Club": "ASPOM BEGLES HB 3",
+        "Matchs": 2,
+        "Buts": 4,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Ezzedine",
+        "Nom": "Rezgani",
+        "Club": "PE2M HB",
+        "Matchs": 2,
+        "Buts": 1,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Zyan",
+        "Nom": "Vialeix-Tabaraud",
+        "Club": "CLUB ATHLETIQUE BRIVE CORREZE HANDBALL",
+        "Matchs": 3,
+        "Buts": 0,
+        "Arrets": 40
+      },
+      {
+        "Prenom": "Maxime",
+        "Nom": "Clavier",
+        "Club": "GOND PONTOUVRE HB 2",
+        "Matchs": 4,
+        "Buts": 12,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Vanilio",
+        "Nom": "Awemba",
+        "Club": "ENTENTE GRAND PERIGUEUX HANDBALL (HNR M)",
+        "Matchs": 4,
+        "Buts": 3,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Baptiste",
+        "Nom": "Cornardeau",
+        "Club": "CARBON BLANC HB",
+        "Matchs": 3,
+        "Buts": 9,
+        "Arrets": 0
+      }
+    ],
+    "Excellence R\u00E9gionale Masculine": [
+      {
+        "Prenom": "Lilian",
+        "Nom": "Podevins",
+        "Club": "EYSINES HANDBALL CLUB",
+        "Matchs": 2,
+        "Buts": 8,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Adrian",
+        "Nom": "Cuq",
+        "Club": "LORMONT HB HAUTS DE GARONNE 2",
+        "Matchs": 3,
+        "Buts": 0,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Riantsoa",
+        "Nom": "Ramandiamanana",
+        "Club": "GIRONDINS DE BORDEAUX BASTIDE HBC 2",
+        "Matchs": 4,
+        "Buts": 0,
+        "Arrets": 14
+      },
+      {
+        "Prenom": "Guillaume",
+        "Nom": "Lacombe",
+        "Club": "SA GAZINET CESTAS",
+        "Matchs": 3,
+        "Buts": 2,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Matthias",
+        "Nom": "Boucherie",
+        "Club": "VILLENAVE HBC",
+        "Matchs": 1,
+        "Buts": 2,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Thomas",
+        "Nom": "Piovan",
+        "Club": "HANDBALL BRAX",
+        "Matchs": 4,
+        "Buts": 0,
+        "Arrets": 22
+      },
+      {
+        "Prenom": "Mathis",
+        "Nom": "Ompraret",
+        "Club": "GIRONDINS DE BORDEAUX BASTIDE HBC 2",
+        "Matchs": 3,
+        "Buts": 7,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Julien",
+        "Nom": "Menjot",
+        "Club": "PAU NOUSTY SPORTS 2",
+        "Matchs": 1,
+        "Buts": 5,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Philippe",
+        "Nom": "Ondars",
+        "Club": "IRISARTARRAK HB 2",
+        "Matchs": 1,
+        "Buts": 6,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Cedric",
+        "Nom": "Irigoyen",
+        "Club": "LASSEUBE HANDBALL",
+        "Matchs": 4,
+        "Buts": 0,
+        "Arrets": 55
+      },
+      {
+        "Prenom": "Thomas",
+        "Nom": "Bigot",
+        "Club": "LASSEUBE HANDBALL",
+        "Matchs": 3,
+        "Buts": 2,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Gregoire",
+        "Nom": "Turcius",
+        "Club": "ORTHEZ HANDBALL 2",
+        "Matchs": 4,
+        "Buts": 9,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Thomas",
+        "Nom": "Pires",
+        "Club": "BUROS HB",
+        "Matchs": 1,
+        "Buts": 2,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Fabien",
+        "Nom": "Muller",
+        "Club": "EYSINES HANDBALL CLUB",
+        "Matchs": 2,
+        "Buts": 2,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Baptiste",
+        "Nom": "Boutruche",
+        "Club": "HANDBALL BRAX",
+        "Matchs": 1,
+        "Buts": 3,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Mathieu",
+        "Nom": "Oxarango",
+        "Club": "IRISARTARRAK HB 2",
+        "Matchs": 1,
+        "Buts": 0,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Luca",
+        "Nom": "De Almeida",
+        "Club": "BUROS HB",
+        "Matchs": 4,
+        "Buts": 3,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Antoine",
+        "Nom": "Flao",
+        "Club": "GIRONDINS DE BORDEAUX BASTIDE HBC 2",
+        "Matchs": 4,
+        "Buts": 18,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Hugo",
+        "Nom": "Bernier",
+        "Club": "LORMONT HB HAUTS DE GARONNE 2",
+        "Matchs": 2,
+        "Buts": 10,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Yann",
+        "Nom": "Fernandez",
+        "Club": "SA GAZINET CESTAS",
+        "Matchs": 4,
+        "Buts": 12,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Mehdi",
+        "Nom": "Zouaoui",
+        "Club": "GIRONDINS DE BORDEAUX BASTIDE HBC 2",
+        "Matchs": 1,
+        "Buts": 1,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Arthur",
+        "Nom": "Lapassouse",
+        "Club": "LASSEUBE HANDBALL",
+        "Matchs": 4,
+        "Buts": 10,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Baptiste",
+        "Nom": "Gasteuil",
+        "Club": "EYSINES HANDBALL CLUB",
+        "Matchs": 4,
+        "Buts": 0,
+        "Arrets": 33
+      },
+      {
+        "Prenom": "Benjamin",
+        "Nom": "Lascabes",
+        "Club": "ORTHEZ HANDBALL 2",
+        "Matchs": 2,
+        "Buts": 6,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Jean",
+        "Nom": "Solaberrieta",
+        "Club": "AS URRUNARRAK",
+        "Matchs": 4,
+        "Buts": 22,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Elian",
+        "Nom": "Dupouy",
+        "Club": "BUROS HB",
+        "Matchs": 4,
+        "Buts": 11,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Tristan",
+        "Nom": "Ompraret",
+        "Club": "HANDBALL BRAX",
+        "Matchs": 4,
+        "Buts": 11,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Axel",
+        "Nom": "Turani-I-Belloto",
+        "Club": "EYSINES HANDBALL CLUB",
+        "Matchs": 4,
+        "Buts": 15,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Thomas",
+        "Nom": "Perchat",
+        "Club": "SA GAZINET CESTAS",
+        "Matchs": 2,
+        "Buts": 3,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "David",
+        "Nom": "Ouret",
+        "Club": "IRISARTARRAK HB 2",
+        "Matchs": 3,
+        "Buts": 3,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Vincent",
+        "Nom": "Trille",
+        "Club": "LORMONT HB HAUTS DE GARONNE 2",
+        "Matchs": 3,
+        "Buts": 3,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Nathan",
+        "Nom": "Sombardier",
+        "Club": "SA GAZINET CESTAS",
+        "Matchs": 4,
+        "Buts": 14,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Alphonse",
+        "Nom": "Mutombo",
+        "Club": "GIRONDINS DE BORDEAUX BASTIDE HBC 2",
+        "Matchs": 1,
+        "Buts": 2,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Noe",
+        "Nom": "Laffitte",
+        "Club": "BUROS HB",
+        "Matchs": 3,
+        "Buts": 19,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Georges",
+        "Nom": "Gaillard",
+        "Club": "LORMONT HB HAUTS DE GARONNE 2",
+        "Matchs": 1,
+        "Buts": 1,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Sofiane",
+        "Nom": "Soilihi",
+        "Club": "EYSINES HANDBALL CLUB",
+        "Matchs": 2,
+        "Buts": 0,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Leo",
+        "Nom": "Martin",
+        "Club": "GIRONDINS DE BORDEAUX BASTIDE HBC 2",
+        "Matchs": 2,
+        "Buts": 0,
+        "Arrets": 31
+      },
+      {
+        "Prenom": "Killian",
+        "Nom": "Labbe",
+        "Club": "LORMONT HB HAUTS DE GARONNE 2",
+        "Matchs": 2,
+        "Buts": 1,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Nolann",
+        "Nom": "Frangne",
+        "Club": "LORMONT HB HAUTS DE GARONNE 2",
+        "Matchs": 1,
+        "Buts": 9,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Thomas",
+        "Nom": "Richard",
+        "Club": "GIRONDINS DE BORDEAUX BASTIDE HBC 2",
+        "Matchs": 3,
+        "Buts": 6,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Cyril",
+        "Nom": "Bayona",
+        "Club": "LASSEUBE HANDBALL",
+        "Matchs": 3,
+        "Buts": 9,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Xabi",
+        "Nom": "Carricart",
+        "Club": "IRISARTARRAK HB 2",
+        "Matchs": 4,
+        "Buts": 10,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Jon",
+        "Nom": "Miquelajauregui",
+        "Club": "AS URRUNARRAK",
+        "Matchs": 4,
+        "Buts": 9,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Jarod",
+        "Nom": "Sombardier",
+        "Club": "SA GAZINET CESTAS",
+        "Matchs": 1,
+        "Buts": 2,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Louis",
+        "Nom": "Duclos",
+        "Club": "SA GAZINET CESTAS",
+        "Matchs": 2,
+        "Buts": 5,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Theo",
+        "Nom": "Berthommier",
+        "Club": "GIRONDINS DE BORDEAUX BASTIDE HBC 2",
+        "Matchs": 2,
+        "Buts": 1,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Florian",
+        "Nom": "Mendiburu",
+        "Club": "IRISARTARRAK HB 2",
+        "Matchs": 4,
+        "Buts": 9,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Mathis",
+        "Nom": "Simoni",
+        "Club": "PAU NOUSTY SPORTS 2",
+        "Matchs": 3,
+        "Buts": 20,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Victor",
+        "Nom": "Lailhacar",
+        "Club": "LASSEUBE HANDBALL",
+        "Matchs": 4,
+        "Buts": 25,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Mathias",
+        "Nom": "Petit",
+        "Club": "GIRONDINS DE BORDEAUX BASTIDE HBC 2",
+        "Matchs": 2,
+        "Buts": 1,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Mathis",
+        "Nom": "Laffitte",
+        "Club": "BUROS HB",
+        "Matchs": 3,
+        "Buts": 9,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Clement",
+        "Nom": "Bouroumeau",
+        "Club": "SA GAZINET CESTAS",
+        "Matchs": 4,
+        "Buts": 0,
+        "Arrets": 38
+      },
+      {
+        "Prenom": "Louis",
+        "Nom": "Carillo",
+        "Club": "VILLENAVE HBC",
+        "Matchs": 4,
+        "Buts": 7,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Gaspard",
+        "Nom": "Laprun",
+        "Club": "LASSEUBE HANDBALL",
+        "Matchs": 4,
+        "Buts": 0,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Nolan",
+        "Nom": "Casteran",
+        "Club": "LASSEUBE HANDBALL",
+        "Matchs": 4,
+        "Buts": 8,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Samuel",
+        "Nom": "Porte",
+        "Club": "VILLENAVE HBC",
+        "Matchs": 1,
+        "Buts": 0,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Mateo",
+        "Nom": "Lasserre",
+        "Club": "VILLENAVE HBC",
+        "Matchs": 4,
+        "Buts": 39,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Bastien",
+        "Nom": "Troietto",
+        "Club": "HANDBALL BRAX",
+        "Matchs": 4,
+        "Buts": 15,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Theo",
+        "Nom": "Adam",
+        "Club": "VILLENAVE HBC",
+        "Matchs": 3,
+        "Buts": 3,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Landry",
+        "Nom": "Lesert",
+        "Club": "ORTHEZ HANDBALL 2",
+        "Matchs": 3,
+        "Buts": 16,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Noa",
+        "Nom": "Marais",
+        "Club": "SA GAZINET CESTAS",
+        "Matchs": 1,
+        "Buts": 0,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Paul",
+        "Nom": "Majeste",
+        "Club": "LASSEUBE HANDBALL",
+        "Matchs": 3,
+        "Buts": 11,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Auxence",
+        "Nom": "Castano",
+        "Club": "EYSINES HANDBALL CLUB",
+        "Matchs": 3,
+        "Buts": 17,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Quentin",
+        "Nom": "Vincent",
+        "Club": "SA GAZINET CESTAS",
+        "Matchs": 3,
+        "Buts": 15,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Mathis",
+        "Nom": "Vincent",
+        "Club": "SA GAZINET CESTAS",
+        "Matchs": 4,
+        "Buts": 49,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Thomas",
+        "Nom": "Brode",
+        "Club": "EYSINES HANDBALL CLUB",
+        "Matchs": 4,
+        "Buts": 15,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Thomas",
+        "Nom": "Favroul",
+        "Club": "LORMONT HB HAUTS DE GARONNE 2",
+        "Matchs": 4,
+        "Buts": 20,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Iban",
+        "Nom": "Onchalo",
+        "Club": "AS URRUNARRAK",
+        "Matchs": 4,
+        "Buts": 21,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Lilian",
+        "Nom": "Bey-Feugas",
+        "Club": "LORMONT HB HAUTS DE GARONNE 2",
+        "Matchs": 2,
+        "Buts": 10,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Julien",
+        "Nom": "Carrere",
+        "Club": "LASSEUBE HANDBALL",
+        "Matchs": 3,
+        "Buts": 7,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Matthieu",
+        "Nom": "Monso",
+        "Club": "HANDBALL BRAX",
+        "Matchs": 4,
+        "Buts": 15,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Peio",
+        "Nom": "Etcheverry",
+        "Club": "AS URRUNARRAK",
+        "Matchs": 4,
+        "Buts": 10,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Sofiane",
+        "Nom": "El Aachouri",
+        "Club": "HANDBALL BRAX",
+        "Matchs": 3,
+        "Buts": 0,
+        "Arrets": 25
+      },
+      {
+        "Prenom": "Mathys",
+        "Nom": "Ez-Zaatouti",
+        "Club": "ORTHEZ HANDBALL 2",
+        "Matchs": 1,
+        "Buts": 1,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Maxime",
+        "Nom": "Soule",
+        "Club": "BUROS HB",
+        "Matchs": 3,
+        "Buts": 5,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Thomas",
+        "Nom": "Tealdi",
+        "Club": "GIRONDINS DE BORDEAUX BASTIDE HBC 2",
+        "Matchs": 3,
+        "Buts": 0,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Bryan",
+        "Nom": "Ponnelle",
+        "Club": "BUROS HB",
+        "Matchs": 4,
+        "Buts": 0,
+        "Arrets": 53
+      },
+      {
+        "Prenom": "Clement",
+        "Nom": "Herry",
+        "Club": "IRISARTARRAK HB 2",
+        "Matchs": 1,
+        "Buts": 3,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Maellick",
+        "Nom": "Durand",
+        "Club": "PAU NOUSTY SPORTS 2",
+        "Matchs": 3,
+        "Buts": 25,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Aubin",
+        "Nom": "Laffitte Allaix",
+        "Club": "BUROS HB",
+        "Matchs": 3,
+        "Buts": 13,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Batiste",
+        "Nom": "Gelly",
+        "Club": "HANDBALL BRAX",
+        "Matchs": 3,
+        "Buts": 22,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Clement",
+        "Nom": "Lamazere",
+        "Club": "ORTHEZ HANDBALL 2",
+        "Matchs": 3,
+        "Buts": 13,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Aymeric",
+        "Nom": "Laval",
+        "Club": "GIRONDINS DE BORDEAUX BASTIDE HBC 2",
+        "Matchs": 3,
+        "Buts": 12,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Guillaume",
+        "Nom": "Martinelli",
+        "Club": "HANDBALL BRAX",
+        "Matchs": 4,
+        "Buts": 8,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Baptiste",
+        "Nom": "Riva",
+        "Club": "HANDBALL BRAX",
+        "Matchs": 4,
+        "Buts": 17,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Pierre",
+        "Nom": "Bernier",
+        "Club": "LORMONT HB HAUTS DE GARONNE 2",
+        "Matchs": 3,
+        "Buts": 0,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Pierre-Guy",
+        "Nom": "Racine",
+        "Club": "EYSINES HANDBALL CLUB",
+        "Matchs": 4,
+        "Buts": 0,
+        "Arrets": 10
+      },
+      {
+        "Prenom": "Jon",
+        "Nom": "Muruaga-Hiriart",
+        "Club": "AS URRUNARRAK",
+        "Matchs": 4,
+        "Buts": 1,
+        "Arrets": 28
+      },
+      {
+        "Prenom": "Iban",
+        "Nom": "Castano",
+        "Club": "EYSINES HANDBALL CLUB",
+        "Matchs": 4,
+        "Buts": 25,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Nolan",
+        "Nom": "Bacques",
+        "Club": "BUROS HB",
+        "Matchs": 4,
+        "Buts": 30,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Jean",
+        "Nom": "Bourdet-Pees",
+        "Club": "LASSEUBE HANDBALL",
+        "Matchs": 4,
+        "Buts": 34,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Gaspard",
+        "Nom": "Perez",
+        "Club": "GIRONDINS DE BORDEAUX BASTIDE HBC 2",
+        "Matchs": 2,
+        "Buts": 6,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Thomas",
+        "Nom": "Fournes",
+        "Club": "PAU NOUSTY SPORTS 2",
+        "Matchs": 3,
+        "Buts": 11,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Alexandre",
+        "Nom": "Giraud",
+        "Club": "SA GAZINET CESTAS",
+        "Matchs": 4,
+        "Buts": 16,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Thibaut",
+        "Nom": "Pazat",
+        "Club": "VILLENAVE HBC",
+        "Matchs": 1,
+        "Buts": 0,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Andde",
+        "Nom": "Brust",
+        "Club": "IRISARTARRAK HB 2",
+        "Matchs": 4,
+        "Buts": 5,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Melwin",
+        "Nom": "Ayisso-Kauffmann",
+        "Club": "LORMONT HB HAUTS DE GARONNE 2",
+        "Matchs": 3,
+        "Buts": 6,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Nino",
+        "Nom": "De Saint Quentin",
+        "Club": "ORTHEZ HANDBALL 2",
+        "Matchs": 2,
+        "Buts": 0,
+        "Arrets": 23
+      },
+      {
+        "Prenom": "Arthur",
+        "Nom": "Mouran",
+        "Club": "SA GAZINET CESTAS",
+        "Matchs": 3,
+        "Buts": 6,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Benjamin",
+        "Nom": "Gaspard",
+        "Club": "VILLENAVE HBC",
+        "Matchs": 4,
+        "Buts": 8,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Tom",
+        "Nom": "Harribey",
+        "Club": "LORMONT HB HAUTS DE GARONNE 2",
+        "Matchs": 1,
+        "Buts": 3,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Remi",
+        "Nom": "Charbonier",
+        "Club": "HANDBALL BRAX",
+        "Matchs": 4,
+        "Buts": 14,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Eneko",
+        "Nom": "Irastorza",
+        "Club": "IRISARTARRAK HB 2",
+        "Matchs": 1,
+        "Buts": 6,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Mathieu",
+        "Nom": "Aubert",
+        "Club": "PAU NOUSTY SPORTS 2",
+        "Matchs": 4,
+        "Buts": 4,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Ruben",
+        "Nom": "Laprun",
+        "Club": "LASSEUBE HANDBALL",
+        "Matchs": 4,
+        "Buts": 4,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Hicham",
+        "Nom": "Aloui",
+        "Club": "ORTHEZ HANDBALL 2",
+        "Matchs": 1,
+        "Buts": 0,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Noah",
+        "Nom": "Bergero",
+        "Club": "LORMONT HB HAUTS DE GARONNE 2",
+        "Matchs": 3,
+        "Buts": 0,
+        "Arrets": 23
+      },
+      {
+        "Prenom": "Benoit",
+        "Nom": "Bereau",
+        "Club": "IRISARTARRAK HB 2",
+        "Matchs": 1,
+        "Buts": 1,
+        "Arrets": 10
+      },
+      {
+        "Prenom": "Julen",
+        "Nom": "Etchecaharreta",
+        "Club": "AS URRUNARRAK",
+        "Matchs": 1,
+        "Buts": 2,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Maxime",
+        "Nom": "Prentignac",
+        "Club": "ORTHEZ HANDBALL 2",
+        "Matchs": 4,
+        "Buts": 0,
+        "Arrets": 23
+      },
+      {
+        "Prenom": "Theo",
+        "Nom": "Lamouret",
+        "Club": "ORTHEZ HANDBALL 2",
+        "Matchs": 4,
+        "Buts": 11,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Killian",
+        "Nom": "Gullion",
+        "Club": "SA GAZINET CESTAS",
+        "Matchs": 2,
+        "Buts": 1,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Samuel",
+        "Nom": "Sarthou",
+        "Club": "ORTHEZ HANDBALL 2",
+        "Matchs": 4,
+        "Buts": 12,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Frederic",
+        "Nom": "Peyre",
+        "Club": "VILLENAVE HBC",
+        "Matchs": 3,
+        "Buts": 0,
+        "Arrets": 11
+      },
+      {
+        "Prenom": "Corentin",
+        "Nom": "Esposito",
+        "Club": "EYSINES HANDBALL CLUB",
+        "Matchs": 4,
+        "Buts": 14,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Yanis",
+        "Nom": "Isseini",
+        "Club": "BUROS HB",
+        "Matchs": 4,
+        "Buts": 13,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Melvyn",
+        "Nom": "Labbe",
+        "Club": "LORMONT HB HAUTS DE GARONNE 2",
+        "Matchs": 1,
+        "Buts": 0,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Dimitri",
+        "Nom": "Judas",
+        "Club": "VILLENAVE HBC",
+        "Matchs": 4,
+        "Buts": 10,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Teo",
+        "Nom": "Izaguirre",
+        "Club": "AS URRUNARRAK",
+        "Matchs": 4,
+        "Buts": 13,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Evan",
+        "Nom": "Vincent",
+        "Club": "SA GAZINET CESTAS",
+        "Matchs": 3,
+        "Buts": 15,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Titouan",
+        "Nom": "Parachoux",
+        "Club": "LORMONT HB HAUTS DE GARONNE 2",
+        "Matchs": 4,
+        "Buts": 0,
+        "Arrets": 27
+      },
+      {
+        "Prenom": "Antoine",
+        "Nom": "Dampure",
+        "Club": "SA GAZINET CESTAS",
+        "Matchs": 1,
+        "Buts": 1,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Enzo",
+        "Nom": "Bled",
+        "Club": "PAU NOUSTY SPORTS 2",
+        "Matchs": 3,
+        "Buts": 5,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Timothe",
+        "Nom": "Lanot",
+        "Club": "PAU NOUSTY SPORTS 2",
+        "Matchs": 4,
+        "Buts": 8,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Dorian",
+        "Nom": "Vinazza",
+        "Club": "PAU NOUSTY SPORTS 2",
+        "Matchs": 4,
+        "Buts": 21,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Edgar",
+        "Nom": "Ciubucciu",
+        "Club": "EYSINES HANDBALL CLUB",
+        "Matchs": 3,
+        "Buts": 10,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Yvan",
+        "Nom": "Bernet Urieta",
+        "Club": "IRISARTARRAK HB 2",
+        "Matchs": 3,
+        "Buts": 0,
+        "Arrets": 23
+      },
+      {
+        "Prenom": "Anthony",
+        "Nom": "Salgueiro",
+        "Club": "BUROS HB",
+        "Matchs": 2,
+        "Buts": 2,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Enzo",
+        "Nom": "Techeney-Molbert",
+        "Club": "LORMONT HB HAUTS DE GARONNE 2",
+        "Matchs": 2,
+        "Buts": 10,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Romain",
+        "Nom": "Knockaert-Marchina",
+        "Club": "BUROS HB",
+        "Matchs": 2,
+        "Buts": 2,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Damien",
+        "Nom": "Larretche",
+        "Club": "AS URRUNARRAK",
+        "Matchs": 3,
+        "Buts": 6,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Adrien",
+        "Nom": "Vincent",
+        "Club": "VILLENAVE HBC",
+        "Matchs": 4,
+        "Buts": 8,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Nathan",
+        "Nom": "Neyen",
+        "Club": "SA GAZINET CESTAS",
+        "Matchs": 4,
+        "Buts": 1,
+        "Arrets": 26
+      },
+      {
+        "Prenom": "Tymeo",
+        "Nom": "Monclin",
+        "Club": "LORMONT HB HAUTS DE GARONNE 2",
+        "Matchs": 2,
+        "Buts": 8,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Lucas",
+        "Nom": "Paparemborde",
+        "Club": "LASSEUBE HANDBALL",
+        "Matchs": 1,
+        "Buts": 0,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Olentz",
+        "Nom": "Garay Hartxubehere",
+        "Club": "IRISARTARRAK HB 2",
+        "Matchs": 1,
+        "Buts": 0,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Clement",
+        "Nom": "Lamaison",
+        "Club": "BUROS HB",
+        "Matchs": 2,
+        "Buts": 7,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Clement",
+        "Nom": "Andrac",
+        "Club": "HANDBALL BRAX",
+        "Matchs": 4,
+        "Buts": 17,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Jan",
+        "Nom": "Oustalet",
+        "Club": "BUROS HB",
+        "Matchs": 1,
+        "Buts": 1,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Iban",
+        "Nom": "Testemale",
+        "Club": "AS URRUNARRAK",
+        "Matchs": 1,
+        "Buts": 4,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Thibaut",
+        "Nom": "Castandet",
+        "Club": "SA GAZINET CESTAS",
+        "Matchs": 3,
+        "Buts": 9,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Mateo",
+        "Nom": "Riva",
+        "Club": "HANDBALL BRAX",
+        "Matchs": 3,
+        "Buts": 2,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Amaury",
+        "Nom": "Tarricq",
+        "Club": "PAU NOUSTY SPORTS 2",
+        "Matchs": 2,
+        "Buts": 0,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Stefan",
+        "Nom": "Laussel",
+        "Club": "BUROS HB",
+        "Matchs": 4,
+        "Buts": 0,
+        "Arrets": 8
+      },
+      {
+        "Prenom": "Thibault",
+        "Nom": "Trobat",
+        "Club": "EYSINES HANDBALL CLUB",
+        "Matchs": 1,
+        "Buts": 0,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Thomas",
+        "Nom": "Permenas",
+        "Club": "GIRONDINS DE BORDEAUX BASTIDE HBC 2",
+        "Matchs": 3,
+        "Buts": 12,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Vivian",
+        "Nom": "Richard",
+        "Club": "HANDBALL BRAX",
+        "Matchs": 1,
+        "Buts": 0,
+        "Arrets": 7
+      },
+      {
+        "Prenom": "Jules",
+        "Nom": "Laffargue",
+        "Club": "VILLENAVE HBC",
+        "Matchs": 4,
+        "Buts": 0,
+        "Arrets": 41
+      },
+      {
+        "Prenom": "Nils",
+        "Nom": "Descheemaker",
+        "Club": "PAU NOUSTY SPORTS 2",
+        "Matchs": 1,
+        "Buts": 4,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Etienne",
+        "Nom": "Toutain",
+        "Club": "PAU NOUSTY SPORTS 2",
+        "Matchs": 4,
+        "Buts": 0,
+        "Arrets": 25
+      },
+      {
+        "Prenom": "Gael",
+        "Nom": "Bouthe",
+        "Club": "GIRONDINS DE BORDEAUX BASTIDE HBC 2",
+        "Matchs": 2,
+        "Buts": 10,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Eneko",
+        "Nom": "Hebras Lavalade",
+        "Club": "PAU NOUSTY SPORTS 2",
+        "Matchs": 2,
+        "Buts": 6,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Inaki",
+        "Nom": "Choutchourrou",
+        "Club": "IRISARTARRAK HB 2",
+        "Matchs": 3,
+        "Buts": 9,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Mael",
+        "Nom": "De Vergara",
+        "Club": "AS URRUNARRAK",
+        "Matchs": 1,
+        "Buts": 0,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Romeo",
+        "Nom": "Buclet",
+        "Club": "VILLENAVE HBC",
+        "Matchs": 2,
+        "Buts": 6,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Evan",
+        "Nom": "Ducluzeau",
+        "Club": "IRISARTARRAK HB 2",
+        "Matchs": 1,
+        "Buts": 1,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Chahin",
+        "Nom": "Hammachi",
+        "Club": "LORMONT HB HAUTS DE GARONNE 2",
+        "Matchs": 2,
+        "Buts": 2,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Renzo",
+        "Nom": "Huertas",
+        "Club": "LORMONT HB HAUTS DE GARONNE 2",
+        "Matchs": 1,
+        "Buts": 0,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Kepa",
+        "Nom": "Oxandabarats",
+        "Club": "IRISARTARRAK HB 2",
+        "Matchs": 1,
+        "Buts": 0,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Hugo",
+        "Nom": "Tambourin",
+        "Club": "IRISARTARRAK HB 2",
+        "Matchs": 4,
+        "Buts": 10,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Inaki",
+        "Nom": "Larrechea",
+        "Club": "IRISARTARRAK HB 2",
+        "Matchs": 2,
+        "Buts": 12,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Iker",
+        "Nom": "Leiza",
+        "Club": "IRISARTARRAK HB 2",
+        "Matchs": 2,
+        "Buts": 5,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Matheis",
+        "Nom": "Moga-Ardin",
+        "Club": "LORMONT HB HAUTS DE GARONNE 2",
+        "Matchs": 1,
+        "Buts": 9,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Teo",
+        "Nom": "Usarralde",
+        "Club": "AS URRUNARRAK",
+        "Matchs": 4,
+        "Buts": 7,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Adrien",
+        "Nom": "Cazenave",
+        "Club": "ORTHEZ HANDBALL 2",
+        "Matchs": 4,
+        "Buts": 18,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Lucien",
+        "Nom": "Ortega",
+        "Club": "LASSEUBE HANDBALL",
+        "Matchs": 3,
+        "Buts": 4,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Loic",
+        "Nom": "Lubet",
+        "Club": "ORTHEZ HANDBALL 2",
+        "Matchs": 3,
+        "Buts": 3,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Mathis",
+        "Nom": "Legrand",
+        "Club": "GIRONDINS DE BORDEAUX BASTIDE HBC 2",
+        "Matchs": 3,
+        "Buts": 18,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Leo",
+        "Nom": "Bedrine",
+        "Club": "PAU NOUSTY SPORTS 2",
+        "Matchs": 2,
+        "Buts": 7,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Matheo",
+        "Nom": "Malquet",
+        "Club": "PAU NOUSTY SPORTS 2",
+        "Matchs": 4,
+        "Buts": 0,
+        "Arrets": 20
+      },
+      {
+        "Prenom": "Martin",
+        "Nom": "Verrat",
+        "Club": "BUROS HB",
+        "Matchs": 3,
+        "Buts": 8,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Tim",
+        "Nom": "Bridenne",
+        "Club": "GIRONDINS DE BORDEAUX BASTIDE HBC 2",
+        "Matchs": 3,
+        "Buts": 4,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Andry",
+        "Nom": "Rabemanantsoa",
+        "Club": "VILLENAVE HBC",
+        "Matchs": 4,
+        "Buts": 10,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Illan",
+        "Nom": "Bonnet",
+        "Club": "GIRONDINS DE BORDEAUX BASTIDE HBC 2",
+        "Matchs": 1,
+        "Buts": 0,
+        "Arrets": 11
+      },
+      {
+        "Prenom": "Remy",
+        "Nom": "Soret",
+        "Club": "GIRONDINS DE BORDEAUX BASTIDE HBC 2",
+        "Matchs": 2,
+        "Buts": 9,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Noa",
+        "Nom": "Gonzalez",
+        "Club": "VILLENAVE HBC",
+        "Matchs": 4,
+        "Buts": 8,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Emmanuel",
+        "Nom": "Marcelino",
+        "Club": "HANDBALL BRAX",
+        "Matchs": 1,
+        "Buts": 1,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Leo",
+        "Nom": "Cazeau",
+        "Club": "HANDBALL BRAX",
+        "Matchs": 4,
+        "Buts": 5,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Ellande",
+        "Nom": "Ibarbide-Dorratcague",
+        "Club": "AS URRUNARRAK",
+        "Matchs": 4,
+        "Buts": 0,
+        "Arrets": 23
+      },
+      {
+        "Prenom": "Esteban",
+        "Nom": "Ollivier",
+        "Club": "EYSINES HANDBALL CLUB",
+        "Matchs": 3,
+        "Buts": 12,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Julien",
+        "Nom": "Frachou",
+        "Club": "IRISARTARRAK HB 2",
+        "Matchs": 3,
+        "Buts": 5,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Baptiste",
+        "Nom": "Tisseyre",
+        "Club": "EYSINES HANDBALL CLUB",
+        "Matchs": 2,
+        "Buts": 3,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Tom",
+        "Nom": "Soulard",
+        "Club": "GIRONDINS DE BORDEAUX BASTIDE HBC 2",
+        "Matchs": 1,
+        "Buts": 0,
+        "Arrets": 9
+      },
+      {
+        "Prenom": "Florian",
+        "Nom": "Torlet",
+        "Club": "GIRONDINS DE BORDEAUX BASTIDE HBC 2",
+        "Matchs": 2,
+        "Buts": 3,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Corentin",
+        "Nom": "Casenave-Nadol",
+        "Club": "LORMONT HB HAUTS DE GARONNE 2",
+        "Matchs": 4,
+        "Buts": 6,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Noah",
+        "Nom": "Mendiburu",
+        "Club": "IRISARTARRAK HB 2",
+        "Matchs": 1,
+        "Buts": 2,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Winston",
+        "Nom": "Tanneau",
+        "Club": "PAU NOUSTY SPORTS 2",
+        "Matchs": 4,
+        "Buts": 14,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Noah",
+        "Nom": "Arribot-Gutierrez",
+        "Club": "ORTHEZ HANDBALL 2",
+        "Matchs": 4,
+        "Buts": 11,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Theo",
+        "Nom": "Melle",
+        "Club": "EYSINES HANDBALL CLUB",
+        "Matchs": 2,
+        "Buts": 1,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Xan",
+        "Nom": "Miura",
+        "Club": "AS URRUNARRAK",
+        "Matchs": 4,
+        "Buts": 21,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Tao",
+        "Nom": "Teilleria-Hardoy",
+        "Club": "AS URRUNARRAK",
+        "Matchs": 4,
+        "Buts": 14,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Lilian",
+        "Nom": "Discazaux",
+        "Club": "ORTHEZ HANDBALL 2",
+        "Matchs": 1,
+        "Buts": 0,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Yanis",
+        "Nom": "Ben Sammoud",
+        "Club": "VILLENAVE HBC",
+        "Matchs": 4,
+        "Buts": 12,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Imanol",
+        "Nom": "Arrayet",
+        "Club": "IRISARTARRAK HB 2",
+        "Matchs": 4,
+        "Buts": 9,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Nicolas",
+        "Nom": "Lacassie-Cazadoumecq-Coges",
+        "Club": "LASSEUBE HANDBALL",
+        "Matchs": 4,
+        "Buts": 13,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Mael",
+        "Nom": "Maysounave",
+        "Club": "ORTHEZ HANDBALL 2",
+        "Matchs": 4,
+        "Buts": 17,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Kevin",
+        "Nom": "Kapumbu",
+        "Club": "EYSINES HANDBALL CLUB",
+        "Matchs": 4,
+        "Buts": 8,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Raphael",
+        "Nom": "Rother",
+        "Club": "VILLENAVE HBC",
+        "Matchs": 1,
+        "Buts": 2,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Abed",
+        "Nom": "Ladrani",
+        "Club": "GIRONDINS DE BORDEAUX BASTIDE HBC 2",
+        "Matchs": 1,
+        "Buts": 8,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Lucas",
+        "Nom": "Laffargue",
+        "Club": "ORTHEZ HANDBALL 2",
+        "Matchs": 3,
+        "Buts": 4,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Mateo",
+        "Nom": "Cenecorta",
+        "Club": "AS URRUNARRAK",
+        "Matchs": 2,
+        "Buts": 2,
+        "Arrets": 0
+      },
+      {
+        "Prenom": "Isaac",
+        "Nom": "Aguilera Cano",
+        "Club": "LORMONT HB HAUTS DE GARONNE 2",
+        "Matchs": 3,
+        "Buts": 17,
+        "Arrets": 0
+      }
+    ]
+  },
+  "Classements": {
+    "Honneur R\u00E9gionale Masculine": [
+      {
+        "Place": 1,
+        "Club": "ASPOM BEGLES HB 3",
+        "Points": 12,
+        "Joues": 4,
+        "Gagnes": 4,
+        "Nuls": 0,
+        "Perdus": 0,
+        "ButsPour": 147,
+        "ButsContre": 105
+      },
+      {
+        "Place": 2,
+        "Club": "PE2M HB",
+        "Points": 11,
+        "Joues": 4,
+        "Gagnes": 3,
+        "Nuls": 1,
+        "Perdus": 0,
+        "ButsPour": 147,
+        "ButsContre": 111
+      },
+      {
+        "Place": 3,
+        "Club": "HBC IZONNAIS",
+        "Points": 9,
+        "Joues": 4,
+        "Gagnes": 2,
+        "Nuls": 1,
+        "Perdus": 1,
+        "ButsPour": 132,
+        "ButsContre": 127
+      },
+      {
+        "Place": 4,
+        "Club": "ENTENTE GRAND PERIGUEUX HANDBALL (HNR M)",
+        "Points": 8,
+        "Joues": 4,
+        "Gagnes": 2,
+        "Nuls": 0,
+        "Perdus": 2,
+        "ButsPour": 115,
+        "ButsContre": 127
+      },
+      {
+        "Place": 5,
+        "Club": "CARBON BLANC HB",
+        "Points": 7,
+        "Joues": 3,
+        "Gagnes": 2,
+        "Nuls": 0,
+        "Perdus": 1,
+        "ButsPour": 93,
+        "ButsContre": 87
+      },
+      {
+        "Place": 6,
+        "Club": "MERIGNAC GIRONDE HANDBALL",
+        "Points": 7,
+        "Joues": 3,
+        "Gagnes": 2,
+        "Nuls": 0,
+        "Perdus": 1,
+        "ButsPour": 102,
+        "ButsContre": 100
+      },
+      {
+        "Place": 7,
+        "Club": "GOND PONTOUVRE HB 2",
+        "Points": 6,
+        "Joues": 4,
+        "Gagnes": 1,
+        "Nuls": 0,
+        "Perdus": 3,
+        "ButsPour": 105,
+        "ButsContre": 119
+      },
+      {
+        "Place": 8,
+        "Club": "ATLANTIQUE SEUDRE HANDBALL",
+        "Points": 6,
+        "Joues": 4,
+        "Gagnes": 1,
+        "Nuls": 0,
+        "Perdus": 3,
+        "ButsPour": 115,
+        "ButsContre": 119
+      },
+      {
+        "Place": 9,
+        "Club": "VILLEBOIS",
+        "Points": 6,
+        "Joues": 4,
+        "Gagnes": 1,
+        "Nuls": 0,
+        "Perdus": 3,
+        "ButsPour": 121,
+        "ButsContre": 160
+      },
+      {
+        "Place": 10,
+        "Club": "ENTENTE ROYAN ST-GEORGES HB",
+        "Points": 3,
+        "Joues": 3,
+        "Gagnes": 0,
+        "Nuls": 0,
+        "Perdus": 3,
+        "ButsPour": 86,
+        "ButsContre": 106
+      },
+      {
+        "Place": 11,
+        "Club": "CLUB ATHLETIQUE BRIVE CORREZE HANDBALL",
+        "Points": 2,
+        "Joues": 3,
+        "Gagnes": 1,
+        "Nuls": 0,
+        "Perdus": 2,
+        "ButsPour": 108,
+        "ButsContre": 110
+      }
+    ],
+    "Excellence R\u00E9gionale Masculine": [
+      {
+        "Place": 1,
+        "Club": "EYSINES HANDBALL CLUB",
+        "Points": 12,
+        "Joues": 4,
+        "Gagnes": 4,
+        "Nuls": 0,
+        "Perdus": 0,
+        "ButsPour": 130,
+        "ButsContre": 116
+      },
+      {
+        "Place": 2,
+        "Club": "PAU NOUSTY SPORTS 2",
+        "Points": 10,
+        "Joues": 4,
+        "Gagnes": 3,
+        "Nuls": 0,
+        "Perdus": 1,
+        "ButsPour": 130,
+        "ButsContre": 113
+      },
+      {
+        "Place": 3,
+        "Club": "AS URRUNARRAK",
+        "Points": 10,
+        "Joues": 4,
+        "Gagnes": 3,
+        "Nuls": 0,
+        "Perdus": 1,
+        "ButsPour": 132,
+        "ButsContre": 121
+      },
+      {
+        "Place": 4,
+        "Club": "HANDBALL BRAX",
+        "Points": 9,
+        "Joues": 4,
+        "Gagnes": 2,
+        "Nuls": 1,
+        "Perdus": 1,
+        "ButsPour": 130,
+        "ButsContre": 120
+      },
+      {
+        "Place": 5,
+        "Club": "SA GAZINET CESTAS",
+        "Points": 9,
+        "Joues": 4,
+        "Gagnes": 2,
+        "Nuls": 1,
+        "Perdus": 1,
+        "ButsPour": 151,
+        "ButsContre": 142
+      },
+      {
+        "Place": 6,
+        "Club": "ORTHEZ HANDBALL 2",
+        "Points": 8,
+        "Joues": 4,
+        "Gagnes": 2,
+        "Nuls": 0,
+        "Perdus": 2,
+        "ButsPour": 121,
+        "ButsContre": 119
+      },
+      {
+        "Place": 7,
+        "Club": "GIRONDINS DE BORDEAUX BASTIDE HBC 2",
+        "Points": 8,
+        "Joues": 4,
+        "Gagnes": 2,
+        "Nuls": 0,
+        "Perdus": 2,
+        "ButsPour": 118,
+        "ButsContre": 128
+      },
+      {
+        "Place": 8,
+        "Club": "LORMONT HB HAUTS DE GARONNE 2",
+        "Points": 8,
+        "Joues": 4,
+        "Gagnes": 2,
+        "Nuls": 0,
+        "Perdus": 2,
+        "ButsPour": 115,
+        "ButsContre": 123
+      },
+      {
+        "Place": 9,
+        "Club": "LASSEUBE HANDBALL",
+        "Points": 5,
+        "Joues": 4,
+        "Gagnes": 0,
+        "Nuls": 1,
+        "Perdus": 3,
+        "ButsPour": 127,
+        "ButsContre": 138
+      },
+      {
+        "Place": 10,
+        "Club": "BUROS HB",
+        "Points": 5,
+        "Joues": 4,
+        "Gagnes": 0,
+        "Nuls": 1,
+        "Perdus": 3,
+        "ButsPour": 125,
+        "ButsContre": 136
+      },
+      {
+        "Place": 11,
+        "Club": "IRISARTARRAK HB 2",
+        "Points": 5,
+        "Joues": 4,
+        "Gagnes": 0,
+        "Nuls": 1,
+        "Perdus": 3,
+        "ButsPour": 96,
+        "ButsContre": 114
+      },
+      {
+        "Place": 12,
+        "Club": "VILLENAVE HBC",
+        "Points": 4,
+        "Joues": 4,
+        "Gagnes": 1,
+        "Nuls": 1,
+        "Perdus": 2,
+        "ButsPour": 115,
+        "ButsContre": 120
+      }
+    ]
+  }
+}
