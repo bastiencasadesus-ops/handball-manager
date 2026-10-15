@@ -33,11 +33,11 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-SjMQkqpe4rHVqXBYkAlt0bRCtiQFM868GRMwUr075sM=",
+      "hash": "sha256-ZfjabGfE2mDcqMW7hru9LyK+GN3po\/uG3q6PPDJxgyQ=",
       "url": "_framework\/blazor.boot.json"
     },
     {
-      "hash": "sha256-zx04gS4G8Us7M4aWE9R4XCOqLkOsz5MiVnJM4m3h\/lQ=",
+      "hash": "sha256-7Hn6pduw8XueMRSFEqkVEl44CGcn4a9NZVqCbk8QnVk=",
       "url": "_framework\/HandballManagerWeb.wasm"
     },
     {
@@ -101,7 +101,7 @@
       "url": "_framework\/System.Collections.Concurrent.wasm"
     },
     {
-      "hash": "sha256-XHJc1QkUJAAHcw0qIVWTA5Rxkk0\/glijvklz7bwrdkA=",
+      "hash": "sha256-81iUf19gefX\/iHZmQ4KgLNaYu\/aluY+Il+83CCylTq8=",
       "url": "_framework\/System.Collections.wasm"
     },
     {
@@ -117,7 +117,7 @@
       "url": "_framework\/System.Diagnostics.DiagnosticSource.wasm"
     },
     {
-      "hash": "sha256-9rnCE6j3YDqPd70+CPDcsB1I1DIbhSn+bjNq6izoKl0=",
+      "hash": "sha256-vt8dg1r61UFgV5KhR89omNyGqHWR1JyyF5v4SK2o7ds=",
       "url": "_framework\/System.Linq.wasm"
     },
     {
@@ -133,7 +133,7 @@
       "url": "_framework\/System.Net.Primitives.wasm"
     },
     {
-      "hash": "sha256-B\/mbV808ThalObfKNeYBnBLzUcpUrSJ26Bh0quTFvG4=",
+      "hash": "sha256-XQc0Uq9cEkvJRg37xIsGd3l3WNSvc20EcZF62bOSuhM=",
       "url": "_framework\/System.Private.CoreLib.wasm"
     },
     {
@@ -157,7 +157,7 @@
       "url": "_framework\/System.Text.Json.wasm"
     },
     {
-      "hash": "sha256-74k8ZwTR99k\/XZJdvAPyJyowdFrgv+9lvttG0Kd7n18=",
+      "hash": "sha256-wJvHd9UbK6uun3h7oQ2zinPWQc1SzZHI3b1QcnTKAbc=",
       "url": "_framework\/System.Text.RegularExpressions.wasm"
     },
     {
@@ -167,6 +167,10 @@
     {
       "hash": "sha256-GIqcs7FZMDEUPDTrLVd3AkZIUfyxNtHP+db7LYyrCnE=",
       "url": "HandballManagerWeb.styles.css"
+    },
+    {
+      "hash": "sha256-KnnSZCI5f4nQwtDEOwYmCWdl0G0Hpke9K\/LF1gMtEZk=",
+      "url": "css\/gestes.css"
     },
     {
       "hash": "sha256-KG9Xa\/YsX7n+Nic5ICDz3NN2KlVf+7hRzhgiGFmKtok=",
@@ -189,11 +193,11 @@
       "url": "icon-512.png"
     },
     {
-      "hash": "sha256-FUmEXxAkfcHWPj36Bn2zS0c8yVzomRmpIf2xrbTfMpQ=",
+      "hash": "sha256-XR7IMzxne9pNgNpxrQ\/A0PweWrsBynzode2aqaF4yhU=",
       "url": "index.html"
     },
     {
-      "hash": "sha256-uHe4dxg9aUzDtX8QUb5DyyUYOIiUj7an650fp1M54Sc=",
+      "hash": "sha256-ZImy0HuCJw1gYRPRE0bQQuyyr0K8tLGtPfGi6\/k+bNo=",
       "url": "js\/hbm.js"
     },
     {
@@ -293,5 +297,5 @@
       "url": "manifest.webmanifest"
     }
   ],
-  "version": "f6L+YZLu"
+  "version": "CYmx8JSd"
 };

@@ -15,6 +15,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/jeu.css" />
+    <link rel="stylesheet" href="css/jeu-v2.css" />
+    <link rel="stylesheet" href="css/gestes.css" />
     <link rel="icon" type="image/png" href="icon-192.png" />
     <link href="HandballManagerWeb.styles.css" rel="stylesheet" />
     <link href="manifest.webmanifest" rel="manifest" />
@@ -31,12 +33,31 @@
 
     <div id="blazor-error-ui">
         Une erreur est survenue.
-        <a href="" class="reload">Recharger</a>
+        <a href="" class="reload">🔧 Réparer</a>
         <a class="dismiss">✕</a>
     </div>
     <script src="js/hbm.js"></script>
     <script src="_framework/blazor.webassembly.js"></script>
-    <script>navigator.serviceWorker.register('service-worker.js');</script>
+    <script>
+        // Hors ligne : le service worker garde l'appli. Une nouvelle version s'installe et la page se recharge toute seule.
+        if ('serviceWorker' in navigator) {
+            const avaitUneVersion = !!navigator.serviceWorker.controller;
+            navigator.serviceWorker.register('service-worker.js', { updateViaCache: 'none' });
+            let recharge = false;
+            navigator.serviceWorker.addEventListener('controllerchange', () => {
+                if (avaitUneVersion && !recharge) { recharge = true; location.reload(); }
+            });
+        }
+        // En cas d'erreur : « Réparer » vide les fichiers en cache (la partie, elle, est gardée) et recharge
+        document.querySelector('#blazor-error-ui .reload').addEventListener('click', async e => {
+            e.preventDefault();
+            try {
+                for (const r of await navigator.serviceWorker.getRegistrations()) await r.unregister();
+                for (const k of await caches.keys()) await caches.delete(k);
+            } catch (x) { }
+            location.reload();
+        });
+    </script>
 </body>
 
 </html>

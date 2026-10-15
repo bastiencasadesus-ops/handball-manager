@@ -1,0 +1,106 @@
+/* =====================================================================
+   Gestes au doigt, boîte mail, rappel du mercato, fiche détaillée,
+   bilan du mercato, statistiques de mi-temps (mise à jour du 15/10)
+   ===================================================================== */
+
+/* ---------- Glisser-déposer ---------- */
+[data-prendre] { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+.fantome { position: fixed !important; left: 0 !important; top: 0 !important; margin: 0 !important; z-index: 9999; pointer-events: none;
+           opacity: .95; filter: drop-shadow(0 14px 22px rgba(0,0,0,.55)); transition: none !important; }
+.pris { opacity: .3 !important; }
+.cible-depot { outline: 3px solid var(--or); outline-offset: 2px; border-radius: 10px; transform: scale(1.06); transition: transform .12s; }
+body.glisse-en-cours { overflow: hidden; touch-action: none; }
+.zone-banc { border: 2px dashed rgba(255,255,255,.22); border-radius: 14px; padding: 6px; min-height: 70px; transition: border-color .15s, background .15s; }
+.zone-banc.cible-depot { outline: none; transform: none; border-color: var(--or); background: rgba(255,212,92,.10); }
+.aide-geste { color: var(--doux); font-size: 12px; text-align: center; margin: 4px 0 8px; }
+
+/* ---------- Lignes qu'on fait glisser ---------- */
+[data-glisse] { position: relative; touch-action: pan-y; will-change: transform; }
+[data-glisse].vers-droite { box-shadow: inset 6px 0 0 #1B9E4B, 0 0 0 2px #1B9E4B; }
+[data-glisse].vers-gauche { box-shadow: inset -6px 0 0 var(--rouge), 0 0 0 2px var(--rouge); }
+
+/* ---------- Changement d'onglet en balayant ---------- */
+.entree-droite { animation: entreeDroite .24s ease-out; }
+.entree-gauche { animation: entreeGauche .24s ease-out; }
+@keyframes entreeDroite { from { transform: translateX(38px); opacity: .2; } to { transform: none; opacity: 1; } }
+@keyframes entreeGauche { from { transform: translateX(-38px); opacity: .2; } to { transform: none; opacity: 1; } }
+.points-onglets { display: flex; justify-content: center; gap: 5px; margin: -4px 0 6px; }
+.points-onglets span { width: 6px; height: 6px; border-radius: 3px; background: rgba(255,255,255,.25); transition: width .2s; }
+.points-onglets span.actif { width: 18px; background: var(--or); }
+
+/* ---------- Bouton mail du bandeau ---------- */
+.bouton-mail { position: relative; padding: 6px 11px !important; font-size: 17px !important; }
+.bouton-mail .badge { top: -6px; right: -6px; }
+
+/* ---------- Bandeau du mercato ---------- */
+.bandeau-mercato { display: flex; align-items: center; gap: 10px; width: 100%; margin-top: 9px; padding: 8px 12px; border-radius: 12px; color: #fff;
+                   background: linear-gradient(90deg, #B80022, #E4002B 55%, #FF6A00); border: 1.5px solid var(--or); text-align: left;
+                   font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 17px; animation: pulsMercato 1.6s ease-in-out infinite; }
+.bandeau-mercato small { display: block; font-family: Inter, sans-serif; font-weight: 600; font-size: 11.5px; color: #FFE9C2; }
+.bandeau-mercato .tourne { display: inline-block; animation: tourne 2.4s linear infinite; font-size: 20px; }
+@keyframes pulsMercato { 0%,100% { box-shadow: 0 0 0 0 rgba(255,212,92,.0); } 50% { box-shadow: 0 0 14px 2px rgba(255,212,92,.55); } }
+@keyframes tourne { to { transform: rotate(360deg); } }
+
+/* ---------- Grand rappel du mercato ---------- */
+.rappel-mercato { background: linear-gradient(160deg, #B80022, #0A2358 75%); border: 3px solid var(--or); color: #fff; text-align: center; }
+.rappel-mercato .icone { font-size: 58px; display: inline-block; animation: tourne 2s linear infinite; }
+.rappel-mercato h2 { font-size: 38px; line-height: 1; margin: 6px 0; color: #fff; animation: battement 1.3s ease-in-out infinite; }
+.rappel-mercato .sous { color: var(--or); font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 16px; }
+.rappel-mercato ol { text-align: left; padding-left: 20px; font-size: 14px; line-height: 1.45; }
+@keyframes battement { 50% { transform: scale(1.06); } }
+
+/* ---------- Écran plein (boîte mail, fiche, bilan) ---------- */
+.plein { position: fixed; inset: 0; z-index: 60; background: var(--nuit); display: flex; flex-direction: column; padding-top: var(--haut); }
+.plein .tete { display: flex; align-items: center; gap: 10px; padding: 12px 14px; background: linear-gradient(135deg, #0A2358, #1B4DB1); border-bottom: 1px solid var(--bord); }
+.plein .tete h2 { flex: 1; margin: 0; font-size: 24px; }
+.plein .corps { flex: 1; overflow-y: auto; padding: 12px 14px calc(24px + var(--bas)); -webkit-overflow-scrolling: touch; }
+
+/* ---------- Boîte mail ---------- */
+.mail { display: flex; gap: 10px; align-items: flex-start; background: #fff; color: var(--encre); border-radius: 12px; padding: 10px 12px; margin-bottom: 8px; }
+.mail .avatar { width: 38px; height: 38px; border-radius: 19px; background: var(--bleu); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 18px; flex: none; }
+.mail .texte { flex: 1; min-width: 0; }
+.mail .de { font-size: 13.5px; display: flex; gap: 6px; }
+.mail .de span { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mail .de small { color: var(--gris); flex: none; }
+.mail .sujet { font-size: 12.5px; color: var(--gris); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mail.non-lu { border-left: 5px solid #3D7CFF; }
+.mail.non-lu .de span, .mail.non-lu .sujet { font-weight: 700; color: var(--encre); }
+.lecture-mail { background: #fff; color: var(--encre); border-radius: 14px; padding: 16px; }
+.lecture-mail h3 { margin: 0 0 8px; font-size: 22px; color: var(--bleu-nuit); }
+.lecture-mail .meta { color: var(--gris); font-size: 12.5px; border-bottom: 1px solid #E5E1D6; padding-bottom: 10px; margin-bottom: 12px; }
+.lecture-mail p { font-size: 15px; line-height: 1.5; }
+
+/* ---------- Fiche détaillée ---------- */
+.courbe { width: 100%; height: auto; background: #fff; border-radius: 12px; }
+.liste-fiche { background: #fff; color: var(--encre); border-radius: 12px; padding: 10px 12px; }
+.liste-fiche .el { padding: 6px 0; border-bottom: 1px solid #EEE9DC; font-size: 13.5px; }
+.liste-fiche .el:last-child { border-bottom: none; }
+.liste-fiche .el small { display: block; color: var(--gris); font-size: 12px; }
+.liste-fiche .el.actuel b { color: var(--bleu); }
+.boutons-fiche { display: flex; gap: 8px; margin-top: 10px; }
+.boutons-fiche .bouton { flex: 1; padding: 11px 8px; font-size: 16px; }
+
+/* ---------- Bilan du mercato ---------- */
+.tuiles-bilan { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.tuiles-bilan .tuile { background: #fff; color: var(--encre); border-radius: 12px; padding: 8px 10px; }
+.tuiles-bilan .tuile small { display: block; color: var(--gris); font-size: 11px; font-weight: 700; }
+.tuiles-bilan .tuile b { font-family: "Barlow Condensed", sans-serif; font-size: 24px; }
+.tuiles-bilan .tuile span { display: block; color: var(--gris); font-size: 11.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.transfert { background: #fff; color: var(--encre); border-radius: 12px; padding: 8px 12px; margin-bottom: 6px; font-size: 13.5px; }
+.transfert.moi { background: #E3ECFB; }
+.transfert .haut { display: flex; justify-content: space-between; gap: 8px; }
+.transfert .montant { font-weight: 700; white-space: nowrap; }
+.transfert small { color: var(--gris); }
+
+/* ---------- Statistiques de mi-temps ---------- */
+.stats-mi-temps { background: #F4F1EA; color: var(--encre); border-radius: 12px; padding: 10px 12px; margin: 8px 0; text-align: left; }
+.stats-mi-temps .comp { margin: 4px 0 8px; }
+.stats-mi-temps .comp .valeurs { display: flex; justify-content: space-between; font-size: 13px; }
+.stats-mi-temps .comp .valeurs b:first-child { color: #1B4DB1; } .stats-mi-temps .comp .valeurs b:last-child { color: #E4002B; }
+.stats-mi-temps .comp .valeurs span { color: var(--gris); font-size: 12px; }
+.stats-mi-temps .barre2 { display: flex; height: 6px; gap: 2px; margin-top: 2px; }
+.stats-mi-temps .barre2 span:first-child { background: #1B4DB1; border-radius: 3px 0 0 3px; }
+.stats-mi-temps .barre2 span:last-child { background: #E4002B; border-radius: 0 3px 3px 0; }
+.stats-mi-temps .puces { display: flex; flex-wrap: wrap; gap: 5px; margin: 4px 0; }
+.stats-mi-temps .puce { border: 1.5px solid; border-radius: 12px; padding: 2px 9px; font-size: 12px; font-weight: 700; background: #fff; }
+.stats-mi-temps .conseil { font-size: 13px; font-weight: 600; margin-top: 6px; }

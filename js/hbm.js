@@ -91,3 +91,163 @@ window.hbm = (function () {
         }
     };
 })();
+
+// =====================================================================================
+//  Les gestes au doigt (téléphone)
+//   - BALAYER l'écran à gauche / à droite : onglet suivant / précédent ;
+//   - GLISSER une ligne [data-glisse="cle"] : à droite (accepter, lu…) ou à gauche (refuser, supprimer…) ;
+//   - APPUI LONG sur une carte [data-prendre="source"] puis la faire glisser sur une cible [data-deposer="cible"]
+//     (échanger deux joueurs, faire entrer un remplaçant, envoyer un titulaire sur le banc).
+//  Le C# reçoit Balayer(sens), Glisser(cle, sens) et Deposer(source, cible).
+// =====================================================================================
+window.hbmGestes = (function () {
+    let ref = null;
+    const SEUIL = 70;
+    let depart = null, ligne = null, prise = null, sansClic = false, cibleSurvolee = null;
+
+    function invoquer(methode, ...args) {
+        if (ref) ref.invokeMethodAsync(methode, ...args).catch(() => { });
+    }
+    function vibrer(ms) { try { if (navigator.vibrate) navigator.vibrate(ms); } catch (e) { } }
+    function voileOuvert() { return !!document.querySelector('.voile, .voile-menu, .ouverture-pack'); }
+
+    // ----- Glisser-déposer après un appui long -----
+    function commencerPrise(x, y) {
+        if (!prise) return;
+        prise.actif = true;
+        vibrer(18);
+        const r = prise.el.getBoundingClientRect();
+        const f = prise.el.cloneNode(true);
+        f.classList.add('fantome');
+        f.style.width = r.width + 'px';
+        f.style.height = r.height + 'px';
+        document.body.appendChild(f);
+        prise.fantome = f;
+        prise.dx = x - r.left;
+        prise.dy = y - r.top;
+        prise.el.classList.add('pris');
+        document.body.classList.add('glisse-en-cours');
+        deplacer(x, y);
+    }
+    function deplacer(x, y) {
+        if (!prise || !prise.fantome) return;
+        prise.fantome.style.transform = `translate(${x - prise.dx}px, ${y - prise.dy}px) scale(1.08) rotate(-3deg)`;
+        const c = cibleSous(x, y);
+        if (c !== cibleSurvolee) {
+            if (cibleSurvolee) cibleSurvolee.classList.remove('cible-depot');
+            cibleSurvolee = c;
+            if (c && c !== prise.el) { c.classList.add('cible-depot'); vibrer(6); }
+        }
+        // Défilement de la page quand le doigt approche du bord
+        if (y < 90) window.scrollBy(0, -10);
+        else if (y > window.innerHeight - 110) window.scrollBy(0, 10);
+    }
+    function cibleSous(x, y) {
+        const el = document.elementFromPoint(x, y);
+        return el ? el.closest('[data-deposer]') : null;
+    }
+    function finirPrise(x, y) {
+        const p = prise;
+        prise = null;
+        if (!p) return;
+        clearTimeout(p.minuteur);
+        if (!p.actif) return;
+        const c = cibleSous(x, y);
+        if (cibleSurvolee) cibleSurvolee.classList.remove('cible-depot');
+        cibleSurvolee = null;
+        if (p.fantome) p.fantome.remove();
+        p.el.classList.remove('pris');
+        document.body.classList.remove('glisse-en-cours');
+        sansClic = true;
+        setTimeout(() => sansClic = false, 450);
+        if (c && c !== p.el) invoquer('Deposer', p.source, c.dataset.deposer);
+    }
+
+    // ----- Une ligne qu'on fait glisser -----
+    function relacherLigne(dx, dy) {
+        const el = ligne;
+        ligne = null;
+        if (!el) return false;
+        el.style.transition = 'transform .22s ease, opacity .22s ease';
+        el.classList.remove('vers-droite', 'vers-gauche');
+        if (Math.abs(dx) > SEUIL * 1.4 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+            el.style.transform = `translateX(${dx > 0 ? 110 : -110}%)`;
+            el.style.opacity = '0';
+            vibrer(12);
+            invoquer('Glisser', el.dataset.glisse, dx > 0 ? 1 : -1);
+            setTimeout(() => { el.style.transition = 'none'; el.style.transform = ''; el.style.opacity = ''; }, 260);
+            return true;
+        }
+        el.style.transform = '';
+        return dx !== 0;
+    }
+
+    document.addEventListener('touchstart', e => {
+        if (e.touches.length !== 1) { depart = null; return; }
+        const t = e.touches[0];
+        depart = { x: t.clientX, y: t.clientY, t: Date.now(), el: e.target, horizontal: null };
+        const source = e.target.closest('[data-prendre]');
+        if (source && !voileOuvert()) {
+            prise = { source: source.dataset.prendre, el: source, actif: false };
+            prise.minuteur = setTimeout(() => commencerPrise(depart ? depart.x : t.clientX, depart ? depart.y : t.clientY), 280);
+        }
+        ligne = e.target.closest('[data-glisse]');
+    }, { passive: true });
+
+    document.addEventListener('touchmove', e => {
+        if (!depart) return;
+        const t = e.touches[0];
+        const dx = t.clientX - depart.x, dy = t.clientY - depart.y;
+        if (prise) {
+            if (prise.actif) { e.preventDefault(); deplacer(t.clientX, t.clientY); return; }
+            if (Math.abs(dx) > 10 || Math.abs(dy) > 10) { clearTimeout(prise.minuteur); prise = null; }
+        }
+        if (depart.horizontal === null && (Math.abs(dx) > 8 || Math.abs(dy) > 8))
+            depart.horizontal = Math.abs(dx) > Math.abs(dy);
+        if (ligne && depart.horizontal) {
+            e.preventDefault();
+            ligne.style.transition = 'none';
+            ligne.style.transform = `translateX(${dx}px)`;
+            ligne.classList.toggle('vers-droite', dx > SEUIL);
+            ligne.classList.toggle('vers-gauche', dx < -SEUIL);
+        }
+    }, { passive: false });
+
+    document.addEventListener('touchend', e => {
+        if (!depart) return;
+        const t = e.changedTouches[0];
+        const dx = t.clientX - depart.x, dy = t.clientY - depart.y, duree = Date.now() - depart.t;
+        const el = depart.el;
+        depart = null;
+        if (prise) {
+            const actif = prise.actif;
+            finirPrise(t.clientX, t.clientY);
+            if (actif) return;
+        }
+        if (ligne) { if (relacherLigne(dx, dy)) return; }
+        // Balayage entre les onglets
+        if (duree < 700 && Math.abs(dx) > SEUIL && Math.abs(dx) > Math.abs(dy) * 2 && !voileOuvert()
+            && el.closest && el.closest('.ecran')
+            && !el.closest('[data-pas-de-balayage], input, select, textarea, .selecteur, .defile-x'))
+            invoquer('Balayer', dx < 0 ? 1 : -1);
+    });
+
+    document.addEventListener('touchcancel', () => {
+        if (prise) finirPrise(-1, -1);
+        if (ligne) { ligne.style.transform = ''; ligne = null; }
+        depart = null;
+    });
+
+    // Après un glisser-déposer, le « clic » qui suit est ignoré
+    document.addEventListener('click', e => {
+        if (sansClic) { e.stopPropagation(); e.preventDefault(); sansClic = false; }
+    }, true);
+
+    // Pas de menu « copier / enregistrer l'image » sur un appui long
+    document.addEventListener('contextmenu', e => { if (e.target.closest && e.target.closest('[data-prendre]')) e.preventDefault(); });
+
+    return {
+        init: r => { ref = r; },
+        liberer: () => { ref = null; }
+    };
+})();
