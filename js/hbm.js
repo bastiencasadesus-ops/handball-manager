@@ -109,7 +109,7 @@ window.hbmGestes = (function () {
         if (ref) ref.invokeMethodAsync(methode, ...args).catch(() => { });
     }
     function vibrer(ms) { try { if (navigator.vibrate) navigator.vibrate(ms); } catch (e) { } }
-    function voileOuvert() { return !!document.querySelector('.voile, .voile-menu, .ouverture-pack'); }
+    function voileOuvert() { return !!document.querySelector('.voile, .voile-menu, .ouverture-pack, .ecran-plein, .plein'); }
 
     // ----- Glisser-déposer après un appui long -----
     function commencerPrise(x, y) {
