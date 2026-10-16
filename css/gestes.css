@@ -108,3 +108,8 @@ body.glisse-en-cours { overflow: hidden; touch-action: none; }
 /* ---------- Écran du match : on ne défile que de haut en bas ---------- */
 .match-page { overflow-x: hidden; touch-action: pan-y; overscroll-behavior-x: none; }
 .match-page > * { max-width: 100%; }
+
+/* ---------- Brassard du capitaine sur sa carte ---------- */
+.brassard { position: absolute; left: -2%; top: 2%; width: 26px; height: 26px; border-radius: 13px; border: 2.5px solid #fff;
+            background: linear-gradient(#FFE07A, #E9A800); color: #0A2358; font-weight: 900; font-size: 14px; line-height: 21px;
+            text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,.5); pointer-events: none; }
