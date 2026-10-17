@@ -358,3 +358,4 @@ body.pc .duel-arene .choix { grid-template-columns: repeat(auto-fit, minmax(200p
 @keyframes lustre { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
 .carte3d-scene[data-incline-actif] .reflet { animation-play-state: paused; }
 .ligne-recap.consigne b { color: #9CC3FF; }
+.bilan-boite { max-height: 88vh; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }

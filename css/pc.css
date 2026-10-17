@@ -35,3 +35,20 @@ body.pc .bouton:hover { filter: brightness(1.12); }
 body.pc .carte-sombre, body.pc .carte-blanche { transition: transform .15s; }
 body.pc ::-webkit-scrollbar { width: 10px; }
 body.pc ::-webkit-scrollbar-thumb { background: rgba(255,255,255,.18); border-radius: 5px; }
+
+/* ----- Harmonisation grand écran (point 9) ----- */
+/* Accueil : le choix du club et la carrière au centre */
+body.pc .accueil > * { max-width: 820px; margin-left: auto; margin-right: auto; }
+body.pc .accueil { padding-left: 24px; padding-right: 24px; }
+/* Équipe : le terrain à une taille raisonnable, le banc en plus de colonnes */
+body.pc .terrain-compo { max-width: 620px; margin: 0 auto; }
+body.pc .banc-cartes { grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); }
+body.pc .consigne { text-align: center; }
+/* Mercato et listes : deux colonnes */
+body.pc .ligne-mercato { display: inline-flex; width: calc(50% - 6px); vertical-align: top; margin-right: 6px; }
+body.pc .section + .ligne-mercato, body.pc .ligne-mercato + .ligne-mercato { margin-top: 0; }
+/* Classement, entraînement : largeur de lecture */
+body.pc .tableau-classement, body.pc .seance { max-width: 980px; margin-left: auto; margin-right: auto; }
+/* Fenêtres (bilan, messages) : plus larges */
+body.pc .boite { max-width: 640px; }
+body.pc .boite.plan { max-width: 760px; }

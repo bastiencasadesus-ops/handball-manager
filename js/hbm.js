@@ -251,3 +251,12 @@ window.hbmGestes = (function () {
         liberer: () => { ref = null; }
     };
 })();
+
+// Le geste « retour » du téléphone (balayage depuis le bord) ne quitte pas le jeu ni le match :
+// une entrée d'historique en double est posée sur ces pages, et reposée à chaque retour.
+window.hbmRetour = (() => {
+    const pages = /\/(jeu|match)\/?$/;
+    const poser = () => { if (pages.test(location.pathname)) history.pushState({ hbmGarde: true }, '', location.href); };
+    window.addEventListener('popstate', () => { if (pages.test(location.pathname)) setTimeout(poser, 0); });
+    return { garder: () => { if (!(history.state && history.state.hbmGarde)) poser(); } };
+})();
