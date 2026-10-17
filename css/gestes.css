@@ -147,7 +147,15 @@ body.glisse-en-cours { overflow: hidden; touch-action: none; }
 .sachet { position: relative; margin-top: 8px; width: 172px; height: 250px; border-radius: 12px; overflow: hidden; color: #fff;
     border: 2px solid rgba(255,255,255,.55); box-shadow: 0 14px 30px rgba(0,0,0,.35); text-align: center;
     animation: flotte-boutique 2.2s ease-in-out infinite alternate; animation-delay: calc(var(--rang) * -0.7s); will-change: transform; }
-@keyframes flotte-boutique { from { transform: translateY(-5px); } to { transform: translateY(5px); } }
+@keyframes flotte-boutique {
+    0%   { transform: translateY(-5px) rotateY(-22deg) rotateX(6deg); }
+    50%  { transform: translateY(5px) rotateY(0deg) rotateX(-4deg); }
+    100% { transform: translateY(-5px) rotateY(22deg) rotateX(6deg); }
+}
+.scene-boutique { perspective: 700px; }
+.sachet { transform-style: preserve-3d; animation-duration: 4.4s !important; }
+.sachet::before { background-size: 220% 220% !important; animation: holo-boutique 4.4s ease-in-out infinite alternate; animation-delay: calc(var(--rang) * -0.7s); }
+@keyframes holo-boutique { from { background-position: 0% 0%; } to { background-position: 100% 100%; } }
 .scene-boutique:active .sachet { transform: scale(1.05); transition: transform .15s; }
 .sachet-bronze { background: linear-gradient(160deg, #E0A672, #7A4A26); }
 .sachet-argent { background: linear-gradient(160deg, #EEF1F6, #6B7588); }
