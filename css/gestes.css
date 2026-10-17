@@ -214,3 +214,12 @@ body.glisse-en-cours { overflow: hidden; touch-action: none; }
 .pack3d-ok .scene-boutique .sachet { display: none; }
 .pack3d-ok .scene-boutique.sans3d .sachet { display: block; }
 .pack3d-ok .scene-boutique.sans3d .pack3d { display: none; }
+
+/* Ouverture du pack en vraie 3D (WebGL) */
+.pack3d-ouverture { display: none; position: absolute; left: -75px; top: -160px; width: 390px; height: 670px; pointer-events: none; }
+.pack3d-ok .pack-scelle:not(.sans3d) .pack3d-ouverture { display: block; }
+.pack3d-ok .pack-scelle:not(.sans3d) { animation: none; }
+.pack3d-ok .pack-scelle:not(.sans3d) .pack-languette,
+.pack3d-ok .pack-scelle:not(.sans3d) .pack-corps,
+.pack3d-ok .pack-scelle:not(.sans3d) .pointilles { visibility: hidden; }
+.pack3d-ok .pack-scelle:not(.sans3d) .dechirure { z-index: 2; }

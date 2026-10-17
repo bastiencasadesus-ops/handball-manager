@@ -3,7 +3,7 @@
 // Chaque <canvas data-pack3d> de la page est monté tout seul ; s'il disparaît, il est libéré.
 // Sans WebGL, rien ne change : le sachet en CSS reste affiché.
 window.hbmPack3D = (() => {
-    const L = 300, H = 440, SERTI = 18, GONFLE = 24, COL = 30, LIG = 44;
+    const L = 300, H = 440, SERTI = 18, GONFLE = 24, COL = 30, LANGUETTE = 84;
     const COULEURS = {
         bronze: ['#E0A672', '#7A4A26', 0.35],
         argent: ['#EEF1F6', '#6B7588', 0.7],
@@ -76,11 +76,12 @@ void main() {
         if (v <= s || v >= 1 - s) return 0;
         return GONFLE * Math.pow(Math.sin(Math.PI * u), 0.35) * Math.pow(Math.sin(Math.PI * (v - s) / (1 - 2 * s)), 0.3);
     }
-    function coussin(verso) {
+    function coussin(verso, v0 = 0, v1 = 1) {
         const pos = [], uvs = [], idx = [];
+        const LIG = Math.max(4, Math.round(44 * (v1 - v0)));
         for (let j = 0; j <= LIG; j++)
             for (let i = 0; i <= COL; i++) {
-                const u = i / COL, v = j / LIG, z = epaisseur(u, v) + 0.5;
+                const u = i / COL, v = v0 + (v1 - v0) * j / LIG, z = epaisseur(u, v) + 0.5;
                 pos.push((u - 0.5) * L, (v - 0.5) * H, verso ? -z : z);
                 uvs.push(verso ? 1 - u : u, 1 - v);
             }
@@ -152,12 +153,12 @@ void main() {
         texteEnRelief(ctx, 'MANAGER', L / 2, 298, 32);
         // Le niveau et le nombre de joueurs
         ctx.font = '700 18px "Barlow Condensed", sans-serif';
-        const w1 = ctx.measureText(d.niveau).width + 28;
+        const w1 = d.niveau ? ctx.measureText(d.niveau).width + 28 + 8 : 0;
         ctx.font = '700 14px "Barlow Condensed", sans-serif';
         const w2 = ctx.measureText(d.joueurs).width + 28;
-        const x0 = L / 2 - (w1 + 8 + w2) / 2;
-        pastille(ctx, d.niveau, x0 + w1 / 2, 334, '#E4002B', true, 18);
-        pastille(ctx, d.joueurs, x0 + w1 + 8 + w2 / 2, 334, 'rgba(0,0,0,.27)', false, 14);
+        const x0 = L / 2 - (w1 + w2) / 2;
+        if (d.niveau) pastille(ctx, d.niveau, x0 + (w1 - 8) / 2, 334, '#E4002B', true, 18);
+        pastille(ctx, d.joueurs, x0 + w1 + w2 / 2, 334, 'rgba(0,0,0,.27)', false, 14);
         if (d.verrou) {
             ctx.fillStyle = 'rgba(5,15,42,.5)'; ctx.fillRect(0, 0, L, H);
             ctx.fillStyle = 'rgba(5,15,42,.75)'; ctx.beginPath(); ctx.arc(L - 49, 137, 33, 0, 7); ctx.fill();
@@ -186,25 +187,31 @@ void main() {
         gl.bindTexture(gl.TEXTURE_2D, tex);
         gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
     }
-    function maillage(gl, prog, geo, image) {
-        const tampon = (cible, donnees) => { const b = gl.createBuffer(); gl.bindBuffer(cible, b); gl.bufferData(cible, donnees, gl.STATIC_DRAW); return b; };
+    function texture(gl, image) {
         const tex = gl.createTexture();
-        gl.bindTexture(gl.TEXTURE_2D, tex);
-        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+        peindre(gl, tex, image);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+        return tex;
+    }
+    function tampons(gl, geo) {
+        const tampon = (cible, donnees) => { const b = gl.createBuffer(); gl.bindBuffer(cible, b); gl.bufferData(cible, donnees, gl.STATIC_DRAW); return b; };
         return { pos: tampon(gl.ARRAY_BUFFER, geo.pos), nor: tampon(gl.ARRAY_BUFFER, geo.nor), uv: tampon(gl.ARRAY_BUFFER, geo.uvs),
-                 idx: tampon(gl.ELEMENT_ARRAY_BUFFER, geo.idx), n: geo.idx.length, tex };
+                 idx: tampon(gl.ELEMENT_ARRAY_BUFFER, geo.idx), n: geo.idx.length };
     }
 
+    // Deux modes : « vitrine » (la boutique : le pack entier, qui suit le doigt)
+    // et « ouverture » (le pack qu'on déchire : la languette et le corps sont deux morceaux, qui s'envolent à l'ouverture)
     function monter(canvas) {
         canvas.dataset.pack3dMonte = '1';
-        const d = { type: canvas.dataset.type, libelle: canvas.dataset.libelle, niveau: canvas.dataset.niveau,
-                    joueurs: canvas.dataset.joueurs, verrou: canvas.dataset.verrou === '1', rang: +canvas.dataset.rang || 0 };
+        const d = { type: canvas.dataset.type, libelle: canvas.dataset.libelle, niveau: canvas.dataset.niveau || '',
+                    joueurs: canvas.dataset.joueurs, verrou: canvas.dataset.verrou === '1', rang: +canvas.dataset.rang || 0,
+                    ouverture: canvas.dataset.mode === 'ouverture' };
         const gl = canvas.getContext('webgl', { alpha: true, antialias: true, premultipliedAlpha: true });
-        const repli = () => canvas.closest('.scene-boutique')?.classList.add('sans3d');   // le sachet 2D revient
+        const conteneur = canvas.closest('.scene-boutique, .pack-scelle');
+        const repli = () => conteneur?.classList.add('sans3d');   // le sachet 2D revient
         if (!gl || !COULEURS[d.type]) { repli(); return; }
         try {
             const prog = gl.createProgram();
@@ -212,41 +219,60 @@ void main() {
             gl.attachShader(prog, compiler(gl, gl.FRAGMENT_SHADER, FS));
             gl.linkProgram(prog);
             if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
-            gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
-            const faces = [maillage(gl, prog, coussin(false), recto(d)), maillage(gl, prog, coussin(true), verso(d))];
+            const vP = 1 - LANGUETTE / H;
+            const morceaux = d.ouverture ? [['corps', 0, vP], ['languette', vP, 1]] : [['entier', 0, 1]];
             const inst = {
-                canvas, gl, prog, faces, d, x: 0, y: 0, cx: 0, cy: 0, doigt: false, debut: performance.now() / 1000 + d.rang * 1.7,
+                canvas, gl, prog, d, x: 0, y: 0, cx: 0, cy: 0, doigt: false, debut: performance.now() / 1000 + d.rang * 1.7,
+                tex: [texture(gl, recto(d)), texture(gl, verso(d))],
+                pieces: morceaux.map(([role, v0, v1]) => ({ role, faces: [tampons(gl, coussin(false, v0, v1)), tampons(gl, coussin(true, v0, v1))] })),
+                ouvertureDebut: null, aplat: 0,
                 attr: { p: gl.getAttribLocation(prog, 'p'), n: gl.getAttribLocation(prog, 'n'), uv: gl.getAttribLocation(prog, 'uv') },
                 uni: Object.fromEntries(['proj', 'model', 'tex', 'holo', 'tilt', 'cam'].map(u => [u, gl.getUniformLocation(prog, u)]))
             };
-            const suivre = e => {
-                const r = canvas.getBoundingClientRect();
-                inst.cx = Math.max(-1, Math.min(1, (e.clientX - r.left - r.width / 2) / (r.width / 2)));
-                inst.cy = Math.max(-1, Math.min(1, (e.clientY - r.top - r.height / 2) / (r.height / 2)));
-                inst.doigt = true;
-            };
-            canvas.addEventListener('pointermove', suivre);
-            canvas.addEventListener('pointerdown', suivre);
-            canvas.addEventListener('pointerleave', () => inst.doigt = false);
-            canvas.addEventListener('pointerup', () => setTimeout(() => inst.doigt = false, 600));
-            canvas.addEventListener('pointercancel', () => inst.doigt = false);
+            if (!d.ouverture) {
+                const suivre = e => {
+                    const r = canvas.getBoundingClientRect();
+                    inst.cx = Math.max(-1, Math.min(1, (e.clientX - r.left - r.width / 2) / (r.width / 2)));
+                    inst.cy = Math.max(-1, Math.min(1, (e.clientY - r.top - r.height / 2) / (r.height / 2)));
+                    inst.doigt = true;
+                };
+                canvas.addEventListener('pointermove', suivre);
+                canvas.addEventListener('pointerdown', suivre);
+                canvas.addEventListener('pointerleave', () => inst.doigt = false);
+                canvas.addEventListener('pointerup', () => setTimeout(() => inst.doigt = false, 600));
+                canvas.addEventListener('pointercancel', () => inst.doigt = false);
+            }
             instances.push(inst);
+            conteneur?.classList.add('avec3d');
         } catch (err) {
             console.warn('Pack 3D indisponible', err);
             repli();
         }
     }
 
+    const rotZ = a => { const c = Math.cos(a), s = Math.sin(a); return new Float32Array([c, s, 0, 0, -s, c, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]); };
+    const lisse = x => x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x);
+
     function dessiner(inst, t) {
-        const { gl, canvas, prog, faces, attr, uni } = inst;
+        const { gl, canvas, prog, attr, uni, d } = inst;
         const dpr = Math.min(window.devicePixelRatio || 1, 2);
         const w = Math.round(canvas.clientWidth * dpr), h = Math.round(canvas.clientHeight * dpr);
         if (w === 0 || h === 0) return;
         if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
-        // Il se balance tout seul, ou suit le doigt (la souris)
+
         const tt = t - inst.debut;
-        const cibleX = inst.doigt ? inst.cx : Math.sin(tt * 0.7) * 0.5;
-        const cibleY = inst.doigt ? inst.cy : Math.sin(tt * 0.5) * 0.25;
+        let cibleX, cibleY;
+        if (d.ouverture) {
+            // Pendant la déchirure, le pack se met à plat pour que les pointillés restent sous le doigt
+            const dechire = +(canvas.dataset.avancee || 0) > 0;
+            inst.aplat += ((dechire ? 1 : 0) - inst.aplat) * 0.15;
+            cibleX = Math.sin(tt * 0.7) * 0.4 * (1 - inst.aplat);
+            cibleY = Math.sin(tt * 0.5) * 0.2 * (1 - inst.aplat);
+            if (canvas.dataset.ouvert === '1' && inst.ouvertureDebut === null) inst.ouvertureDebut = t;
+        } else {
+            cibleX = inst.doigt ? inst.cx : Math.sin(tt * 0.7) * 0.5;
+            cibleY = inst.doigt ? inst.cy : Math.sin(tt * 0.5) * 0.25;
+        }
         inst.x += (cibleX - inst.x) * 0.1;
         inst.y += (cibleY - inst.y) * 0.1;
 
@@ -255,22 +281,41 @@ void main() {
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
         gl.enable(gl.DEPTH_TEST);
         gl.useProgram(prog);
+        // Hauteur visible : en vitrine, le pack et une marge ; à l'ouverture, le pack fait data-hauteur-pack pixels
         const fov = 30 * Math.PI / 180, aspect = w / h;
-        const distance = (H * 1.12 / 2) / Math.tan(fov / 2);
-        gl.uniformMatrix4fv(uni.proj, false, mul(perspective(fov, aspect, 10, distance * 3), translation(0, 0, -distance)));
-        gl.uniformMatrix4fv(uni.model, false, mul(rotY(inst.x * 30 * Math.PI / 180), rotX(inst.y * 18 * Math.PI / 180)));
+        const hauteurPx = +(canvas.dataset.hauteurPack || 0);
+        const visible = hauteurPx > 0 ? H * canvas.clientHeight / hauteurPx : H * 1.12;
+        const distance = (visible / 2) / Math.tan(fov / 2);
+        gl.uniformMatrix4fv(uni.proj, false, mul(perspective(fov, aspect, 10, distance * 4), translation(0, 0, -distance)));
         gl.uniform3f(uni.cam, 0, 0, distance);
         gl.uniform2f(uni.tilt, inst.x, inst.y);
         gl.uniform1i(uni.tex, 0);
-        faces.forEach((f, i) => {
-            gl.uniform1f(uni.holo, i === 0 ? COULEURS[inst.d.type][2] : 0);
-            gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, f.tex);
-            for (const [a, b, n] of [[attr.p, f.pos, 3], [attr.n, f.nor, 3], [attr.uv, f.uv, 2]]) {
-                gl.bindBuffer(gl.ARRAY_BUFFER, b); gl.enableVertexAttribArray(a); gl.vertexAttribPointer(a, n, gl.FLOAT, false, 0, 0);
+        const flotte = d.ouverture ? translation(0, Math.sin(tt * 1.9) * 6 * (1 - inst.aplat), 0) : translation(0, 0, 0);
+        const incline = mul(flotte, mul(rotY(inst.x * 30 * Math.PI / 180), rotX(inst.y * 18 * Math.PI / 180)));
+        const o = inst.ouvertureDebut === null ? 0 : t - inst.ouvertureDebut;
+
+        for (const piece of inst.pieces) {
+            let model = incline;
+            if (piece.role === 'languette' && o > 0) {
+                // La languette pivote au bout des pointillés puis s'envole en haut à droite
+                const k = lisse(o / 0.65), py = H / 2 - LANGUETTE;
+                const pivot = mul(translation(L / 2, py, 0), mul(rotZ(-k * 55 * Math.PI / 180), translation(-L / 2, -py, 0)));
+                model = mul(incline, mul(translation(k * 330, k * 420, k * 40), pivot));
+            } else if (piece.role === 'corps' && o > 0) {
+                const k = lisse((o - 0.12) / 0.7);   // le corps tombe, juste après
+                model = mul(translation(0, -k * 900, 0), incline);
             }
-            gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, f.idx);
-            gl.drawElements(gl.TRIANGLES, f.n, gl.UNSIGNED_SHORT, 0);
-        });
+            gl.uniformMatrix4fv(uni.model, false, model);
+            piece.faces.forEach((f, i) => {
+                gl.uniform1f(uni.holo, i === 0 ? COULEURS[d.type][2] : 0);
+                gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, inst.tex[i]);
+                for (const [a, b, n] of [[attr.p, f.pos, 3], [attr.n, f.nor, 3], [attr.uv, f.uv, 2]]) {
+                    gl.bindBuffer(gl.ARRAY_BUFFER, b); gl.enableVertexAttribArray(a); gl.vertexAttribPointer(a, n, gl.FLOAT, false, 0, 0);
+                }
+                gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, f.idx);
+                gl.drawElements(gl.TRIANGLES, f.n, gl.UNSIGNED_SHORT, 0);
+            });
+        }
     }
 
     // Les nouveaux canvas sont montés dès qu'ils apparaissent dans la page
@@ -279,8 +324,8 @@ void main() {
     // Police chargée après coup : on redessine les images avec la bonne police
     document.fonts?.load('700 40px "Barlow Condensed"').then(() => {
         for (const inst of instances) {
-            peindre(inst.gl, inst.faces[0].tex, recto(inst.d));
-            peindre(inst.gl, inst.faces[1].tex, verso(inst.d));
+            peindre(inst.gl, inst.tex[0], recto(inst.d));
+            peindre(inst.gl, inst.tex[1], verso(inst.d));
         }
     });
     let derniereRecherche = 0;
