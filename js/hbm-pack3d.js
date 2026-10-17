@@ -11,6 +11,16 @@ window.hbmPack3D = (() => {
     };
     const instances = [];
 
+    // WebGL disponible ? On le sait tout de suite : le sachet 2D ne s'affiche alors jamais (pas de flash avant la 3D)
+    const webgl = (() => {
+        try {
+            const gl = document.createElement('canvas').getContext('webgl');
+            gl?.getExtension('WEBGL_lose_context')?.loseContext();
+            return !!gl;
+        } catch { return false; }
+    })();
+    if (webgl) document.documentElement.classList.add('pack3d-ok');
+
     const VS = `
 attribute vec3 p; attribute vec3 n; attribute vec2 uv;
 uniform mat4 proj; uniform mat4 model;
@@ -172,6 +182,10 @@ void main() {
         if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s));
         return s;
     }
+    function peindre(gl, tex, image) {
+        gl.bindTexture(gl.TEXTURE_2D, tex);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+    }
     function maillage(gl, prog, geo, image) {
         const tampon = (cible, donnees) => { const b = gl.createBuffer(); gl.bindBuffer(cible, b); gl.bufferData(cible, donnees, gl.STATIC_DRAW); return b; };
         const tex = gl.createTexture();
@@ -190,7 +204,8 @@ void main() {
         const d = { type: canvas.dataset.type, libelle: canvas.dataset.libelle, niveau: canvas.dataset.niveau,
                     joueurs: canvas.dataset.joueurs, verrou: canvas.dataset.verrou === '1', rang: +canvas.dataset.rang || 0 };
         const gl = canvas.getContext('webgl', { alpha: true, antialias: true, premultipliedAlpha: true });
-        if (!gl || !COULEURS[d.type]) return;
+        const repli = () => canvas.closest('.scene-boutique')?.classList.add('sans3d');   // le sachet 2D revient
+        if (!gl || !COULEURS[d.type]) { repli(); return; }
         try {
             const prog = gl.createProgram();
             gl.attachShader(prog, compiler(gl, gl.VERTEX_SHADER, VS));
@@ -216,9 +231,9 @@ void main() {
             canvas.addEventListener('pointerup', () => setTimeout(() => inst.doigt = false, 600));
             canvas.addEventListener('pointercancel', () => inst.doigt = false);
             instances.push(inst);
-            canvas.closest('.scene-boutique')?.classList.add('webgl');
         } catch (err) {
             console.warn('Pack 3D indisponible', err);
+            repli();
         }
     }
 
@@ -258,15 +273,20 @@ void main() {
         });
     }
 
-    let derniereRecherche = 0, policesPretes = false;
-    (document.fonts ? document.fonts.load('700 40px "Barlow Condensed"') : Promise.resolve()).finally(() => policesPretes = true);
+    // Les nouveaux canvas sont montés dès qu'ils apparaissent dans la page
+    const chercher = () => { if (webgl) document.querySelectorAll('canvas[data-pack3d]:not([data-pack3d-monte])').forEach(monter); };
+    new MutationObserver(chercher).observe(document.documentElement, { childList: true, subtree: true });
+    // Police chargée après coup : on redessine les images avec la bonne police
+    document.fonts?.load('700 40px "Barlow Condensed"').then(() => {
+        for (const inst of instances) {
+            peindre(inst.gl, inst.faces[0].tex, recto(inst.d));
+            peindre(inst.gl, inst.faces[1].tex, verso(inst.d));
+        }
+    });
+    let derniereRecherche = 0;
     function boucle(ms) {
         const t = ms / 1000;
-        // Les nouveaux canvas (après le chargement des polices, pour que le dessin soit juste)
-        if (policesPretes && ms - derniereRecherche > 250) {
-            derniereRecherche = ms;
-            document.querySelectorAll('canvas[data-pack3d]:not([data-pack3d-monte])').forEach(monter);
-        }
+        if (ms - derniereRecherche > 500) { derniereRecherche = ms; chercher(); }
         for (let i = instances.length - 1; i >= 0; i--) {
             const inst = instances[i];
             if (!inst.canvas.isConnected) {   // le pack a quitté la page : on libère WebGL

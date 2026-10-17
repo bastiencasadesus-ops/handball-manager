@@ -210,5 +210,7 @@ body.glisse-en-cours { overflow: hidden; touch-action: none; }
 
 /* Packs de la boutique en vraie 3D (WebGL) */
 .pack3d { display: none; position: absolute; left: 50%; top: 0; width: 210px; height: 280px; transform: translateX(-50%); touch-action: pan-x pan-y; }
-.scene-boutique.webgl .pack3d { display: block; }
-.scene-boutique.webgl .sachet { display: none; }
+.pack3d-ok .pack3d { display: block; }
+.pack3d-ok .scene-boutique .sachet { display: none; }
+.pack3d-ok .scene-boutique.sans3d .sachet { display: block; }
+.pack3d-ok .scene-boutique.sans3d .pack3d { display: none; }
