@@ -357,3 +357,4 @@ body.pc .duel-arene .choix { grid-template-columns: repeat(auto-fit, minmax(200p
     background-image: linear-gradient(115deg, rgba(255,77,109,.6) 10%, rgba(255,225,77,.6) 28%, rgba(61,220,132,.6) 46%, rgba(46,196,241,.6) 64%, rgba(224,86,253,.6) 82%); }
 @keyframes lustre { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
 .carte3d-scene[data-incline-actif] .reflet { animation-play-state: paused; }
+.ligne-recap.consigne b { color: #9CC3FF; }
