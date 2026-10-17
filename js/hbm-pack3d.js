@@ -346,3 +346,29 @@ void main() {
     requestAnimationFrame(boucle);
     return { instances };
 })();
+
+// Inclinaison au doigt (ou à la souris) pour les éléments [data-incline] : les cartes du pack qui se retournent.
+// Variables CSS : --rx, --ry (angles) et --px (position du reflet).
+(() => {
+    const incliner = e => {
+        const el = e.target.closest && e.target.closest('[data-incline]');
+        if (!el) return;
+        const r = el.getBoundingClientRect();
+        const x = Math.max(-0.5, Math.min(0.5, (e.clientX - r.left) / r.width - 0.5));
+        const y = Math.max(-0.5, Math.min(0.5, (e.clientY - r.top) / r.height - 0.5));
+        el.style.setProperty('--ry', (x * 34).toFixed(1) + 'deg');
+        el.style.setProperty('--rx', (-y * 22).toFixed(1) + 'deg');
+        el.style.setProperty('--px', ((x + 0.5) * 100).toFixed(0) + '%');
+        el.setAttribute('data-incline-actif', '');
+    };
+    const relacher = e => {
+        const el = e.target.closest && e.target.closest('[data-incline]');
+        if (!el || (e.relatedTarget && el.contains(e.relatedTarget))) return;
+        el.style.removeProperty('--ry'); el.style.removeProperty('--rx'); el.style.removeProperty('--px');
+        el.removeAttribute('data-incline-actif');
+    };
+    document.addEventListener('pointermove', incliner, { passive: true });
+    document.addEventListener('pointerdown', incliner, { passive: true });
+    document.addEventListener('pointerout', relacher, { passive: true });
+    document.addEventListener('pointerup', e => { if (e.pointerType !== 'mouse') relacher(e); }, { passive: true });
+})();
