@@ -223,3 +223,15 @@ body.glisse-en-cours { overflow: hidden; touch-action: none; }
 .pack3d-ok .pack-scelle:not(.sans3d) .pack-corps,
 .pack3d-ok .pack-scelle:not(.sans3d) .pointilles { visibility: hidden; }
 .pack3d-ok .pack-scelle:not(.sans3d) .dechirure { z-index: 2; }
+
+/* Objectifs du jour et de la semaine */
+.objectifs-titre { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 15px; margin: 6px 0 6px; }
+.objectifs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 10px; }
+.objectif { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); border-radius: 10px; padding: 8px; font-size: 12px; display: flex; flex-direction: column; gap: 4px; }
+.objectif .icone { font-size: 16px; margin-right: 5px; }
+.objectif .texte { font-weight: 600; line-height: 1.15; }
+.objectif .jauge-or { height: 6px; margin-top: 2px; }
+.objectif b { color: #FFD45C; }
+.objectif.paye { background: rgba(27,158,85,.25); border-color: rgba(61,220,132,.6); }
+.objectif.paye .texte { text-decoration: line-through; opacity: .75; }
+.objectif.paye b { color: #3DDC84; }

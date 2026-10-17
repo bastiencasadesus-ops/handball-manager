@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "HandballManagerWeb",
   "resources": {
-    "hash": "sha256-E2XzGcm+ruCOWTvBQeSPBxychstUu9G6PVWcdeynU4w=",
+    "hash": "sha256-pEbfHcRvZbKdp0eKsP+VD+oJvbcoMx+jE8PLaMmlHq0=",
     "jsModuleNative": {
       "dotnet.native.8.0.31.vvfg8ycvym.js": "sha256-9NoXeVUo4WNrEqrjAp/y3Yc8NmDcymQkzMGOIbIpGio="
     },
@@ -17,7 +17,7 @@
       "icudt_no_CJK.dat": "sha256-L7sV7NEYP37/Qr2FPCePo5cJqRgTXRwGHuwF5Q+0Nfs="
     },
     "assembly": {
-      "HandballManagerWeb.wasm": "sha256-SqnolPhACHz4+NGMzqYCY/PKU57NH5541w03KlEhZbE=",
+      "HandballManagerWeb.wasm": "sha256-oq4UaB6R6ztk9I7fxsmIS8OUTtameSszDodBawkpLqQ=",
       "Microsoft.AspNetCore.Components.wasm": "sha256-Q8cdnJQAHCfWtRRTCy/bnewhA4DCF0ctrp64tAjpQCU=",
       "Microsoft.AspNetCore.Components.Web.wasm": "sha256-MeydKu6ik8JHySC3hZDh3caZhjUfW9M4A1C58nFXC9Q=",
       "Microsoft.AspNetCore.Components.WebAssembly.wasm": "sha256-uEjVChVmZMqGVa386UJ1wR3GYBq+mlYgsge2gn1VISI=",
@@ -41,10 +41,10 @@
       "System.Memory.wasm": "sha256-DLbONZM+NH330qflWG/X9LRa9AS8XDX5Ghm04ycPQnY=",
       "System.Net.Http.wasm": "sha256-JpnHWJUnc9AlwMrOFy0evPJEJbXLjVEYWaswupDcHRM=",
       "System.Net.Primitives.wasm": "sha256-A0uCB4jVbkDyqtoT2hyTcR4q76+a04U2TP0kwb6G3RE=",
-      "System.Private.CoreLib.wasm": "sha256-XQc0Uq9cEkvJRg37xIsGd3l3WNSvc20EcZF62bOSuhM=",
+      "System.Private.CoreLib.wasm": "sha256-byLMcW/S3ex3n1Idn2ZjHSMxoHYfpZFHaMO//tx9JSQ=",
       "System.Private.Uri.wasm": "sha256-VC3nx85aw3PaR8KSL9ElUk7iYhf5IhcMNc7YYpseJPg=",
       "System.Runtime.InteropServices.JavaScript.wasm": "sha256-VDPidHau//Ux//+R6WoFgLPTD83UOX3G/npYaZDIVh8=",
-      "System.Runtime.wasm": "sha256-veeJ5pgl206wSQdDLcYQDsaf0Bks5Hv48JSt7uI4l34=",
+      "System.Runtime.wasm": "sha256-PXVSsqQDA6hx+6Xc2iqI1h0wwbibueGpPRl6axZYP6g=",
       "System.Text.Encodings.Web.wasm": "sha256-RGeCa5y9iaXHiNveeprwpSjJw+g4qQJrD7xGvcjHp8s=",
       "System.Text.Json.wasm": "sha256-S8VbryY1ZlIA2TS+/rwLilW8vl472KUEBuu5WzjfzmE=",
       "System.Text.RegularExpressions.wasm": "sha256-wJvHd9UbK6uun3h7oQ2zinPWQc1SzZHI3b1QcnTKAbc=",
