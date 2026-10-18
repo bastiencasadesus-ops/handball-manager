@@ -634,3 +634,14 @@ body.pc .duel-arene .choix { grid-template-columns: repeat(auto-fit, minmax(200p
 .points-marches .sommet { font-size: 11.5px; font-weight: 700; color: var(--or); }
 .ascension-epure .marches { margin-top: 4px; }
 .detail-dernier { margin-top: 2px; }
+
+/* Le mini-classement de l'onglet Match (affiché seulement sur grand écran, pc.css) */
+.mini-classement { display: none; }
+.mini-classement .carte-blanche { padding: 4px 10px; }
+.ligne-mini { display: flex; align-items: center; gap: 8px; padding: 6px 2px; border-bottom: 1px solid #EEF1F7; font-size: 13px; color: var(--encre); }
+.ligne-mini:last-child { border-bottom: 0; }
+.ligne-mini .rg { width: 20px; text-align: right; color: var(--gris); font-weight: 700; }
+.ligne-mini .eq { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ligne-mini .j { color: var(--gris); font-size: 11.5px; }
+.ligne-mini b { width: 26px; text-align: right; color: var(--bleu-nuit); }
+.ligne-mini.moi { background: #FFE8EC; border-radius: 6px; font-weight: 700; }

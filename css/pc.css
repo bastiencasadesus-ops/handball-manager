@@ -1,54 +1,130 @@
-/* Handball Manager — version Windows (grand écran). Chargé uniquement par PC\wwwroot\index.html, après les styles
-   du téléphone : les onglets deviennent une barre latérale, le contenu s'élargit, les grilles passent sur plusieurs colonnes. */
-body.pc { font-size: 15.5px; }
-body.pc .appli { padding-left: 104px; }
+/* Handball Manager — version Windows (grand écran). Chargé uniquement par la version PC, après les styles du téléphone.
+   Une vraie mise en page d'ordinateur : barre latérale avec tous les onglets, bandeau en une ligne,
+   écrans en colonnes qui occupent toute la largeur (pas de colonne de téléphone au milieu du vide). */
+body.pc { font-size: 15px; }
+body.pc .appli { padding-left: 0; }
 
-/* Barre d'onglets : à gauche, verticale */
-body.pc .onglets { top: 0; bottom: 0; right: auto; width: 96px; flex-direction: column; justify-content: center; gap: 4px;
-                   padding: 10px 6px; border-top: none; border-right: 1px solid var(--bord); }
-body.pc .onglets button { flex: none; padding: 12px 0; border-radius: 12px; font-size: 11.5px; transition: background .2s; }
-body.pc .onglets button:hover { background: rgba(255,255,255,.08); color: #fff; }
-body.pc .onglets button.actif { background: linear-gradient(135deg, rgba(228,0,43,.9), rgba(158,0,30,.9)); color: #fff; }
-body.pc .onglets button .ico { font-size: 24px; }
+/* ===================== Barre latérale ===================== */
+.onglets-pc { display: none; }
+body.pc .onglets { display: none; }
+body.pc .onglets-pc { display: flex; flex-direction: column; gap: 2px; position: fixed; left: 0; top: 0; bottom: 0; width: 216px; z-index: 30;
+                      padding: 18px 12px; background: linear-gradient(180deg, #071533, #050F2A); border-right: 1px solid var(--bord); overflow-y: auto; }
+body.pc .marque-pc { display: flex; align-items: center; gap: 8px; padding: 2px 8px 18px; font-family: "Barlow Condensed", sans-serif; font-weight: 800;
+                     font-size: 19px; line-height: .95; }
+body.pc .marque-pc b { display: block; }
+body.pc .marque-pc .rouge { color: var(--rouge-clair); }
+body.pc .marque-pc .barre { width: 7px; height: 36px; background: var(--rouge); transform: skewX(-18deg); }
+body.pc .onglets-pc button { position: relative; display: flex; align-items: center; gap: 12px; padding: 10px 12px; border: 0; border-radius: 10px;
+                             background: none; color: var(--doux); font: inherit; font-weight: 600; font-size: 14.5px; cursor: pointer; text-align: left; }
+body.pc .onglets-pc button .ico { font-size: 20px; width: 26px; text-align: center; }
+body.pc .onglets-pc button .nom { flex: 1; }
+body.pc .onglets-pc button:hover { background: rgba(255,255,255,.07); color: #fff; }
+body.pc .onglets-pc button.actif { background: linear-gradient(90deg, rgba(228,0,43,.95), rgba(158,0,30,.85)); color: #fff; box-shadow: 0 6px 18px rgba(228,0,43,.3); }
+body.pc .onglets-pc .badge { position: static; font-size: 11px; padding: 1px 7px; }
+body.pc .onglets-pc .espace { flex: 1; }
 
-/* Bandeau du club et écrans : centrés, plus larges */
-body.pc .bandeau, body.pc .ecran { max-width: 1180px; margin-left: auto; margin-right: auto; }
-body.pc .ecran { padding: 18px 24px 40px; }
+/* ===================== Bandeau : une seule ligne ===================== */
+body.pc .bandeau { position: sticky; top: 0; z-index: 20; margin: 0 0 0 216px; max-width: none; padding: 12px 32px; display: flex; align-items: center; gap: 14px;
+                   border-radius: 0; border-bottom: 1px solid var(--bord); }
+body.pc .bandeau .club { display: contents; }
+body.pc .bandeau .club .logo { order: 0; }
+body.pc .bandeau .club .titre-club { order: 1; flex: 1; min-width: 0; }
+body.pc .bandeau.epure .logo { width: 42px; height: 42px; }
+body.pc .bandeau.epure .nom { font-size: 22px; }
+body.pc .bandeau .bandeau-mercato { order: 2; flex: none; width: auto; margin: 0; }
+body.pc .bandeau .jauges { order: 3; margin: 0; flex: none; width: auto; max-width: none; gap: 10px; }
+body.pc .bandeau.epure .energie { width: 240px; flex: none; }
+body.pc .bandeau.epure .credits { flex: none; min-width: 170px; }
+body.pc .bandeau .club .puce-manager { order: 4; padding: 8px 12px; font-size: 14px; }
+body.pc .bandeau .club .bouton-icone { order: 5; width: 42px; height: 42px; }
+body.pc .bandeau .club .bouton-icone:last-child { display: none; }   /* ☰ : l'accueil est dans la barre latérale */
+
+/* ===================== Écrans : toute la largeur ===================== */
+body.pc .ecran { margin-left: 216px; max-width: none; padding: 22px max(32px, calc((100vw - 216px - 1560px) / 2)) 48px; }
 body.pc .points-onglets { display: none; }
-body.pc .bandeau .jauges { max-width: 640px; }
+body.pc .section { font-size: 22px; margin-top: 22px; }
 
-/* Plus de place : les listes et grilles s'étalent */
-body.pc .objectifs { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
-body.pc .trophees { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+/* Onglet Match : le match à gauche, la progression à droite, les résultats sous le match */
+body.pc .onglet-match { display: grid; grid-template-columns: minmax(0, 1fr) 420px; grid-template-areas: "principale laterale" "resultats laterale";
+                        gap: 0 28px; align-items: start; }
+body.pc .onglet-match .col-principale { grid-area: principale; }
+body.pc .onglet-match .col-laterale { grid-area: laterale; position: sticky; top: 90px; }
+body.pc .onglet-match .col-resultats { grid-area: resultats; }
+body.pc .onglet-match .col-laterale .barre-saison { margin-top: 4px; }
+body.pc .prochain-epure { display: grid; grid-template-columns: 1fr auto 1fr; grid-template-areas: "tete tete tete" "affiche affiche affiche" "nom nom nom" "pastilles pastilles pastilles" "jouer jouer jouer";
+                          padding: 26px 30px; background: radial-gradient(ellipse at 50% 0%, #2B63D9, #0A2358 70%); }
+body.pc .prochain-epure .tete-prochain { grid-area: tete; font-size: 14px; }
+body.pc .prochain-epure .affiche { grid-area: affiche; gap: 60px; margin: 14px 0 6px; }
+body.pc .prochain-epure .affiche .equipe img, body.pc .prochain-epure .affiche .equipe .blason { width: 110px; height: 110px; border-radius: 22px; padding: 8px; }
+body.pc .prochain-epure .affiche .equipe b { font-size: 22px; }
+body.pc .prochain-epure .vs { font-size: 56px; }
+body.pc .prochain-epure .nom-adversaire { grid-area: nom; font-size: 22px; font-family: "Barlow Condensed", sans-serif; letter-spacing: .3px; }
+body.pc .prochain-epure .pastilles { grid-area: pastilles; }
+body.pc .prochain-epure .bouton-jouer { grid-area: jouer; max-width: 520px; margin: 18px auto 0; font-size: 26px; padding: 16px 40px; }
+body.pc .resultats-et-classement { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+body.pc .mini-classement { display: block; }
+body.pc .mini-classement .titre-bloc { margin-bottom: 7px; }
+
+/* Onglet Équipe : le terrain à gauche, le banc à droite */
+body.pc .grille-equipe { display: grid; grid-template-columns: minmax(0, 1fr) minmax(360px, 520px); gap: 0 32px; align-items: start; }
+body.pc .grille-equipe .col-banc { position: sticky; top: 90px; }
+body.pc .terrain-compo { max-width: 720px; margin: 0 auto; }
+body.pc .banc-cartes { grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); }
+body.pc .consigne { text-align: center; }
+
+/* Onglet Club : trois cartes côte à côte, les actualités dessous */
+body.pc .grille-club { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 20px; align-items: start; }
+body.pc .grille-club .carte-blanche { min-height: 150px; }
+
+/* Entraînement : les séances côte à côte */
+body.pc .grille-seances { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 16px; }
+body.pc .grille-seances .seance { max-width: none; margin: 0; }
+
+/* Packs, collection, trophées : plus de colonnes */
 body.pc .niveaux-boutique { max-width: 900px; margin: 0 auto; }
-body.pc .vitrine { justify-content: center; overflow: visible; padding: 4px 0 6px; margin: 0; }
-body.pc .vitrine-pack { width: 300px; }
+body.pc .vitrine { justify-content: center; overflow: visible; padding: 4px 0 6px; margin: 0; gap: 40px; }
+body.pc .vitrine-pack { width: 320px; }
 body.pc .vitrine + .doux.petit { display: none; }
 body.pc .bilan-pack { justify-content: center; }
+body.pc .packs-offerts, body.pc .moments-boutique { flex-wrap: wrap; overflow: visible; }
+body.pc .trophees { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+body.pc .objectifs { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+body.pc .fanions { flex-wrap: wrap; }
 
-/* Écrans plein écran (match, pack, bilan) : centrés */
+/* Mercato et listes : deux colonnes */
+body.pc .ligne-mercato { display: inline-flex; width: calc(50% - 5px); vertical-align: top; margin: 0 2px 8px; }
+body.pc .section + .ligne-mercato, body.pc .ligne-mercato + .ligne-mercato { margin-top: 0; }
+body.pc .tableau-classement { max-width: none; }
+
+/* ===================== Accueil : deux colonnes ===================== */
+body.pc .accueil { padding: 34px 6vw 40px; display: flex; flex-direction: column; }
+body.pc .accueil > .marque { font-size: 26px; }
+body.pc .accueil-partie { flex: 1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); grid-template-areas: "carriere prochain" "tuiles prochain" "actions prochain";
+                          gap: 18px 56px; align-items: center; align-content: center; max-width: 1500px; width: 100%; margin: 0 auto; }
+body.pc .accueil-partie .carriere { grid-area: carriere; margin: 0; text-align: left; }
+body.pc .accueil-partie .carriere .medaillon { margin: 0 0 14px; width: 120px; height: 120px; }
+body.pc .accueil-partie .carriere h1 { font-size: clamp(32px, 3vw, 52px); line-height: .95; margin: 6px 0; }
+body.pc .accueil-partie .tuiles { grid-area: tuiles; margin: 0; }
+body.pc .accueil-partie .accueil-actions { grid-area: actions; }
+body.pc .accueil-partie .accueil-actions .bouton { width: 100%; margin-left: 0; margin-right: 0; }
+body.pc .accueil-partie .prochain { grid-area: prochain; margin: 0; padding: 34px; align-self: stretch; display: flex; flex-direction: column; justify-content: center; }
+body.pc .accueil-partie .prochain .vs { margin-top: 26px; }
+body.pc .accueil-partie .prochain .vs img { width: 130px !important; height: 130px !important; }
+body.pc .accueil-partie .prochain .vs .titre { font-size: 54px !important; }
+body.pc .accueil-partie .prochain .equipe { font-size: 20px; margin-top: 10px; }
+/* Le choix d'un club : la liste en plusieurs colonnes */
+body.pc .accueil > .carriere, body.pc .accueil > .section, body.pc .accueil > p, body.pc .accueil > .bouton { max-width: 1500px; width: 100%; margin-left: auto; margin-right: auto; }
+body.pc .accueil > .liste-clubs { max-width: 1500px; width: 100%; margin: 0 auto; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+/* ===================== Écrans plein écran (match, pack, bilan) ===================== */
 body.pc .plein, body.pc .ecran-plein { padding-left: 0; }
-body.pc .match-page { max-width: 1280px; margin: 0 auto; }
+body.pc .match-page { max-width: 1400px; margin: 0 auto; }
+body.pc .boite { max-width: 680px; }
+body.pc .boite.plan { max-width: 820px; }
+body.pc .boite.bilan-boite { max-width: 860px; }
 
 /* La souris : survols */
 body.pc .bouton:hover { filter: brightness(1.12); }
 body.pc .carte-sombre, body.pc .carte-blanche { transition: transform .15s; }
 body.pc ::-webkit-scrollbar { width: 10px; }
 body.pc ::-webkit-scrollbar-thumb { background: rgba(255,255,255,.18); border-radius: 5px; }
-
-/* ----- Harmonisation grand écran (point 9) ----- */
-/* Accueil : le choix du club et la carrière au centre */
-body.pc .accueil > * { max-width: 820px; margin-left: auto; margin-right: auto; }
-body.pc .accueil { padding-left: 24px; padding-right: 24px; }
-/* Équipe : le terrain à une taille raisonnable, le banc en plus de colonnes */
-body.pc .terrain-compo { max-width: 620px; margin: 0 auto; }
-body.pc .banc-cartes { grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); }
-body.pc .consigne { text-align: center; }
-/* Mercato et listes : deux colonnes */
-body.pc .ligne-mercato { display: inline-flex; width: calc(50% - 6px); vertical-align: top; margin-right: 6px; }
-body.pc .section + .ligne-mercato, body.pc .ligne-mercato + .ligne-mercato { margin-top: 0; }
-/* Classement, entraînement : largeur de lecture */
-body.pc .tableau-classement, body.pc .seance { max-width: 980px; margin-left: auto; margin-right: auto; }
-/* Fenêtres (bilan, messages) : plus larges */
-body.pc .boite { max-width: 640px; }
-body.pc .boite.plan { max-width: 760px; }
