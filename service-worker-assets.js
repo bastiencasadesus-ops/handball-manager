@@ -33,15 +33,15 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-33oblAuVIYvAuZdHwY8ycGdOy1MNJDnc8RojS7\/dVbI=",
+      "hash": "sha256-Wi00yYN5pGKCio66aOMF9ESesjA7q4rgcD8+m2AZ3+Y=",
       "url": "_framework\/blazor.boot.json"
     },
     {
-      "hash": "sha256-hqtloNF0Q9BtQAZHvIfn3rHIAngEI5Jn97R0ZDXKZ3M=",
+      "hash": "sha256-Ux+CuDkwmnIkIj0KNvADSNrFBDegInXf6W2U0G0EJyY=",
       "url": "_framework\/HandballManagerInterface.wasm"
     },
     {
-      "hash": "sha256-QLHDVVqihssj5XacLYmuD7GyCQufoI71qPzyNpjpzeY=",
+      "hash": "sha256-CdhN0MxYWRuZMNrte4sxKm+u85ATQAoyxpEQaWKwPHY=",
       "url": "_framework\/HandballManagerWeb.wasm"
     },
     {
@@ -121,7 +121,7 @@
       "url": "_framework\/System.Diagnostics.DiagnosticSource.wasm"
     },
     {
-      "hash": "sha256-jJu+DatqOpe24buc8w2NbBXFD0lV8wnJJoytWdyoLiE=",
+      "hash": "sha256-KL1As6WHs7ws4TfQmxZZgmP6f8JqbEPoD6SZWXTovpA=",
       "url": "_framework\/System.Linq.wasm"
     },
     {
@@ -137,7 +137,7 @@
       "url": "_framework\/System.Net.Primitives.wasm"
     },
     {
-      "hash": "sha256-e2HQWZLqtBc8pU1G71dJlb145Lw8cd5SwVkaxNktRUg=",
+      "hash": "sha256-Ml2ypMzv5njsnacquOV4OwvDrkq6QiyIN2VW9IVHfgU=",
       "url": "_framework\/System.Private.CoreLib.wasm"
     },
     {
@@ -161,7 +161,7 @@
       "url": "_framework\/System.Text.Json.wasm"
     },
     {
-      "hash": "sha256-wJvHd9UbK6uun3h7oQ2zinPWQc1SzZHI3b1QcnTKAbc=",
+      "hash": "sha256-poU373ghiPnZPw\/AkRoVlIFKQH2H5H2ILCjbbuBK0aM=",
       "url": "_framework\/System.Text.RegularExpressions.wasm"
     },
     {
@@ -173,7 +173,7 @@
       "url": "HandballManagerWeb.styles.css"
     },
     {
-      "hash": "sha256-QamH1gUipjfihXSvIjMw4PvBXBO36jLk0Crkt8eBIYc=",
+      "hash": "sha256-aWAGIG9sKNAwQWXp80SAaSkS82HjFni9yd9GgU8fMAU=",
       "url": "css\/gestes.css"
     },
     {
@@ -313,5 +313,5 @@
       "url": "_content\/HandballManagerInterface\/HandballManagerInterface.bundle.scp.css"
     }
   ],
-  "version": "SxmuGl7Y"
+  "version": "J0VAOOz0"
 };
