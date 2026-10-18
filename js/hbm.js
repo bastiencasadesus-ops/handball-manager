@@ -87,9 +87,68 @@ window.hbm = (function () {
                 else if (nom === "arret") foule(0.6, 0.25, 0.1);
                 else if (nom === "clic") { note(880, 880, 0.05, 0.2); setTimeout(() => note(1320, 1320, 0.08, 0.2), 45); }
                 else if (nom === "survol") note(1500, 2400, 0.045, 0.12);
+                else if (nom === "pieces") pieces();
+                else if (nom === "palier") carillon([784, 988, 1175, 1568], 0.11);
+                else if (nom === "legende") legende();
+                else if (nom === "revele") note(300, 1200, 0.22, 0.12);
+                else if (nom === "victoire") carillon([523, 659, 784, 1047, 784, 1047], 0.13);
+            } catch (e) { }
+        },
+        // Vibration : seulement pour les moments clés et les grosses récompenses (jamais à chaque but)
+        vibrer: motif => { try { if (navigator.vibrate) navigator.vibrate(motif); } catch (e) { } },
+        // Pluie de confettis par-dessus l'écran (hors de Blazor : elle se retire toute seule)
+        confettis: force => {
+            try {
+                const n = Math.round(60 * (force || 1));
+                const couches = document.createElement('div');
+                couches.className = 'confettis';
+                const couleurs = ['#FFD23F', '#E4002B', '#2EC4F1', '#3DDC84', '#E056FD', '#FFFFFF', '#FF9F1C'];
+                for (let i = 0; i < n; i++) {
+                    const c = document.createElement('i');
+                    c.style.left = (Math.random() * 100) + 'vw';
+                    c.style.background = couleurs[i % couleurs.length];
+                    c.style.animationDelay = (Math.random() * 0.6) + 's';
+                    c.style.animationDuration = (1.8 + Math.random() * 1.6) + 's';
+                    c.style.setProperty('--derive', ((Math.random() - 0.5) * 160) + 'px');
+                    c.style.setProperty('--tour', (Math.random() * 1080 - 540) + 'deg');
+                    if (Math.random() < 0.4) { c.style.width = '6px'; c.style.height = '14px'; }
+                    couches.appendChild(c);
+                }
+                document.body.appendChild(couches);
+                setTimeout(() => couches.remove(), 4200);
             } catch (e) { }
         }
     };
+
+    // Pièces : une cascade de petits « ting » clairs
+    function pieces() {
+        for (let i = 0; i < 6; i++)
+            setTimeout(() => note(2200 + Math.random() * 900, 2600 + Math.random() * 900, 0.07, 0.07), i * 55);
+    }
+    // Carillon : des notes qui montent
+    function carillon(frequences, pas) {
+        frequences.forEach((f, i) => setTimeout(() => {
+            const a = contexte(); if (!a) return;
+            const t = a.currentTime;
+            [1, 2].forEach(h => {
+                const osc = a.createOscillator(), gain = a.createGain();
+                osc.type = h === 1 ? "triangle" : "sine"; osc.frequency.value = f * h;
+                gain.gain.setValueAtTime(0, t); gain.gain.linearRampToValueAtTime(h === 1 ? 0.16 : 0.05, t + 0.01);
+                gain.gain.exponentialRampToValueAtTime(0.001, t + 0.5);
+                osc.connect(gain); gain.connect(maitre); osc.start(t); osc.stop(t + 0.52);
+            });
+        }, i * pas * 1000));
+    }
+    // Légende : un grondement, puis un arpège scintillant et la foule
+    function legende() {
+        const a = contexte(); if (!a) return;
+        const t = a.currentTime, osc = a.createOscillator(), gain = a.createGain();
+        osc.type = "sawtooth"; osc.frequency.setValueAtTime(55, t); osc.frequency.exponentialRampToValueAtTime(110, t + 0.9);
+        gain.gain.setValueAtTime(0, t); gain.gain.linearRampToValueAtTime(0.12, t + 0.3); gain.gain.exponentialRampToValueAtTime(0.001, t + 1.1);
+        osc.connect(gain); gain.connect(maitre); osc.start(t); osc.stop(t + 1.15);
+        setTimeout(() => carillon([523, 659, 784, 1047, 1319, 1568, 2093], 0.07), 700);
+        setTimeout(() => foule(2.4, 0.4, 0.3), 900);
+    }
 })();
 
 // =====================================================================================

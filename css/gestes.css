@@ -359,3 +359,179 @@ body.pc .duel-arene .choix { grid-template-columns: repeat(auto-fit, minmax(200p
 .carte3d-scene[data-incline-actif] .reflet { animation-play-state: paused; }
 .ligne-recap.consigne b { color: #9CC3FF; }
 .bilan-boite { max-height: 88vh; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
+
+/* =====================================================================================
+   Fidélité, barre de saison, Ascension, rivalités, cartes Moment, révélation des packs, effets
+   ===================================================================================== */
+
+/* Les crédits qui défilent et le gain qui s'envole */
+.credits { position: relative; }
+.credits.gagne .montant { animation: pieces-pulse .5s ease-in-out 2; }
+@keyframes pieces-pulse { 50% { transform: scale(1.12); color: #7A3F00; } }
+.gain-flottant { position: absolute; right: 10px; top: -4px; font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 22px;
+                 color: #FFE14D; text-shadow: 0 2px 0 #7A5200, 0 0 12px rgba(255,210,63,.9); pointer-events: none; animation: gain-monte 1.7s ease-out forwards; z-index: 5; }
+.gain-flottant.perte { color: #FF8FA0; text-shadow: 0 2px 0 #6E0A1C; }
+@keyframes gain-monte { 0% { opacity: 0; transform: translateY(14px) scale(.6); } 15% { opacity: 1; transform: translateY(0) scale(1.15); } 100% { opacity: 0; transform: translateY(-46px) scale(1); } }
+.badge-offerts { position: absolute; left: -6px; top: -9px; background: var(--rouge); color: #fff; border: 2px solid #fff; border-radius: 12px; padding: 1px 7px;
+                 font-size: 11px; font-weight: 800; animation: battement 1.2s ease-in-out infinite; }
+
+/* Confettis (hbm.confettis) */
+.confettis { position: fixed; inset: 0; pointer-events: none; z-index: 200; overflow: hidden; }
+.confettis i { position: absolute; top: -20px; width: 9px; height: 9px; border-radius: 2px; animation: confetti linear forwards; }
+@keyframes confetti { to { transform: translate(var(--derive), 110vh) rotate(var(--tour)); } }
+
+/* Série de connexion */
+.serie-jour { background: linear-gradient(165deg, #3A0A12 0%, #8C1A0E 35%, #0A2358 100%); color: #fff; text-align: center; border: 3px solid var(--or); }
+.serie-jour h2 { color: #fff; justify-content: center; font-size: 28px; }
+.serie-jour h2::before { display: none; }
+.serie-jour .sous { color: var(--or); font-weight: 700; font-size: 13.5px; }
+.flamme-serie { position: relative; width: 110px; height: 110px; margin: 0 auto 4px; }
+.flamme-serie .flamme { font-size: 96px; line-height: 110px; display: block; animation: flamme 1.1s ease-in-out infinite alternate; filter: drop-shadow(0 0 18px rgba(255,120,0,.8)); }
+.flamme-serie .nombre { position: absolute; left: 0; right: 0; bottom: 6px; font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 40px;
+                        color: #fff; text-shadow: 0 3px 0 #6E0A1C, 0 0 10px #000; }
+@keyframes flamme { from { transform: scale(1) rotate(-3deg); } to { transform: scale(1.08) rotate(3deg); } }
+.cycle-serie { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin: 14px 0 10px; }
+.jour-serie { position: relative; background: rgba(255,255,255,.1); border: 1.5px solid rgba(255,255,255,.2); border-radius: 10px; padding: 6px 2px;
+              display: flex; flex-direction: column; align-items: center; gap: 1px; font-size: 10.5px; }
+.jour-serie .j { font-weight: 800; color: #C9D4EE; }
+.jour-serie .ico { font-size: 20px; }
+.jour-serie .v { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 12.5px; }
+.jour-serie.passe { opacity: .55; }
+.jour-serie .coche { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #3DDC84; text-shadow: 0 0 6px #000; }
+.jour-serie.aujourdhui { background: linear-gradient(#FFE07A, #E9A800); color: #3D2600; border-color: #fff; transform: scale(1.12); box-shadow: 0 0 18px rgba(255,210,63,.9); animation: battement 1.2s ease-in-out infinite; }
+.jour-serie.aujourdhui .j { color: #7A3F00; }
+.jour-serie.septieme { border-color: var(--or); }
+.gain-du-jour { display: flex; flex-direction: column; align-items: center; gap: 4px; margin: 6px 0; }
+.gain-du-jour b { font-family: "Barlow Condensed", sans-serif; font-size: 28px; }
+.serie-jour.recuperee .gain-du-jour b { animation: saute .5s; color: var(--or); }
+
+/* Célébrations (paliers, Ascension) */
+.celebration, .ascension-resultat { text-align: center; background: linear-gradient(165deg, #0A2358, #1B4DB1 60%, #6A1B9A); color: #fff; border: 3px solid var(--or); }
+.celebration h2, .ascension-resultat h2 { color: #fff; justify-content: center; font-size: 30px; }
+.celebration h2::before, .ascension-resultat h2::before { display: none; }
+.celebration .sous { color: var(--or); font-weight: 700; margin-bottom: 10px; }
+.etoile-geante { font-size: 76px; animation: jaillit .5s cubic-bezier(.2,1.6,.4,1), battement 1.4s ease-in-out .5s infinite; filter: drop-shadow(0 0 20px rgba(255,210,63,.9)); }
+.ligne-palier { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,.12); border-radius: 10px; padding: 8px 12px; margin: 6px 0; text-align: left;
+                animation: jaillit .4s both; }
+.ligne-palier .num { background: var(--or); color: #3D2600; font-weight: 800; border-radius: 8px; padding: 2px 8px; font-family: "Barlow Condensed", sans-serif; font-size: 18px; }
+.ligne-palier .ico { font-size: 24px; }
+.ascension-resultat.perdu { background: linear-gradient(165deg, #2A0A12, #6E0A1C 55%, #0A2358); border-color: #FF5470; }
+.ascension-resultat .marches { margin: 10px 0; }
+
+/* Barre de saison */
+.barre-saison { width: 100%; display: flex; align-items: center; gap: 10px; text-align: left; margin: 4px 0 6px; padding: 9px 12px; border-radius: 14px; color: #fff;
+                background: linear-gradient(110deg, #3B1A7A, #1B4DB1); border: 1.5px solid rgba(255,212,92,.55); box-shadow: 0 4px 18px rgba(59,26,122,.45); cursor: pointer; font: inherit; }
+.niveau-saison { flex: none; width: 50px; height: 50px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center;
+                 background: radial-gradient(#FFE89A, #E0A800); color: #3D2600; font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 24px; line-height: .9; border: 2px solid #fff; }
+.niveau-saison small { font-size: 8.5px; letter-spacing: .5px; }
+.barre-saison .milieu { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.haut-barre { display: flex; justify-content: space-between; font-size: 12px; }
+.haut-barre span { color: var(--or); font-weight: 700; }
+.bas-barre { font-size: 11px; color: #C9D4EE; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.piste-saison { display: block; height: 10px; border-radius: 6px; background: rgba(0,0,0,.35); overflow: hidden; position: relative; }
+.piste-saison > span { display: block; height: 100%; border-radius: 6px; background: linear-gradient(90deg, #FFE07A, #FF9F1C); box-shadow: 0 0 10px rgba(255,194,26,.8);
+                       transition: width .8s cubic-bezier(.2,.8,.2,1); position: relative; }
+.piste-saison > span::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,.7), transparent);
+                              animation: balaie 2.4s ease-in-out infinite; }
+.piste-saison.remplit > span { transform-origin: left; animation: remplit 1.1s cubic-bezier(.2,.8,.2,1); }
+.cadeau-saison { font-size: 28px; flex: none; animation: battement 1.6s ease-in-out infinite; }
+.barre-detail { max-width: 520px; }
+.barre-detail .sous { color: var(--gris); font-size: 12.5px; margin-bottom: 10px; }
+.grille-paliers { display: grid; grid-template-columns: repeat(6, 1fr); gap: 5px; }
+.case-palier { border-radius: 9px; background: #EEF1F7; border: 1.5px solid #D5DBE7; padding: 5px 2px; display: flex; flex-direction: column; align-items: center; font-size: 10px; color: #475467; }
+.case-palier .n { font-weight: 800; font-size: 11px; }
+.case-palier .ico { font-size: 18px; }
+.case-palier .t { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 12px; }
+.case-palier.gros { background: #FFF6D6; border-color: #F2C230; }
+.case-palier.legende { background: linear-gradient(135deg, #FFD6E0, #FFF6B8, #C9F7DD, #CDEBFF, #F1D6FF); border-color: #E056FD; }
+.case-palier.atteint { background: linear-gradient(#3DDC84, #1B9E4B); color: #fff; border-color: #1B7F3B; }
+.case-palier.suivant { border-color: var(--rouge); box-shadow: 0 0 0 2px rgba(228,0,43,.25); animation: battement 1.4s ease-in-out infinite; }
+.comment-xp { display: flex; flex-direction: column; gap: 2px; font-size: 12.5px; color: #344054; background: #F4F6FA; border-radius: 10px; padding: 10px; margin: 10px 0; }
+
+/* Ascension */
+.ascension-carte { background: linear-gradient(160deg, #0B2A4A, #123C6B 50%, #3B1A7A); }
+.marches { display: flex; flex-direction: column; gap: 4px; }
+.marche { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 10px; background: rgba(255,255,255,.08); border: 1.5px solid rgba(255,255,255,.14);
+          margin-left: calc(var(--i) * 12px); margin-right: calc((4 - var(--i)) * 12px); transition: transform .2s; }
+.marche .num { width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,.18); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; flex: none; }
+.marche .nom { flex: 1; min-width: 0; font-weight: 700; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: flex; flex-direction: column; }
+.marche .nom small { font-weight: 400; color: #C9D4EE; font-size: 10.5px; }
+.marche .recompense { font-size: 11px; font-weight: 700; color: var(--or); text-align: right; flex: none; max-width: 40%; }
+.marche.gagnee { background: rgba(61,220,132,.2); border-color: #3DDC84; }
+.marche.gagnee .num { background: #3DDC84; color: #0A2358; }
+.marche.gagnee .recompense { color: #3DDC84; font-size: 16px; }
+.marche.chute { background: rgba(228,0,43,.22); border-color: #FF5470; }
+.marche.chute .recompense { color: #FF5470; font-size: 16px; }
+.marche.courante { border-color: var(--or); background: rgba(255,212,92,.16); box-shadow: 0 0 14px rgba(255,212,92,.35); animation: pulsMercato 1.6s ease-in-out infinite; }
+.marche.courante .num { background: var(--or); color: #3D2600; }
+.sommet-atteint { margin-top: 10px; text-align: center; font-weight: 800; color: #3DDC84; }
+.sommet-atteint.perdu { color: #FF8FA0; }
+
+/* Rivalités */
+.pastille.rival { background: linear-gradient(90deg, #6E0A1C, #E4002B); color: #fff; animation: pulsMercato 1.5s ease-in-out infinite; }
+.presse-rival { margin-top: 10px; background: rgba(0,0,0,.28); border-left: 4px solid var(--rouge); border-radius: 6px 10px 10px 6px; padding: 8px 10px;
+                font-style: italic; font-size: 13px; line-height: 1.4; color: #fff; }
+.presse-rival small { display: block; font-style: normal; color: var(--or); font-weight: 700; margin-top: 4px; font-size: 11.5px; }
+.boite .presse-rival { color: var(--encre); background: #FFF1F3; }
+
+/* Packs offerts et cartes Moment (boutique) */
+.packs-offerts, .moments-boutique { display: flex; gap: 10px; overflow-x: auto; padding: 4px 2px 10px; scroll-snap-type: x mandatory; }
+.pack-offert { flex: none; width: 138px; scroll-snap-align: start; display: flex; flex-direction: column; align-items: center; gap: 3px; text-align: center; color: #fff; font: inherit;
+               background: var(--carte); border: 1.5px solid var(--or); border-radius: 14px; padding: 10px 8px; cursor: pointer; box-shadow: 0 0 16px rgba(255,212,92,.3); }
+.pack-offert b { font-size: 12.5px; }
+.pack-offert small { font-size: 10.5px; color: #C9D4EE; }
+.mini-sachet { position: relative; width: 62px; height: 84px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 4px;
+               animation: flotte 1.6s ease-in-out infinite alternate; box-shadow: 0 6px 14px rgba(0,0,0,.4); border: 2px solid rgba(255,255,255,.7); }
+.mini-sachet.sachet-bronze { background: linear-gradient(135deg, #D79A6A, #8C5A33); }
+.mini-sachet.sachet-argent { background: linear-gradient(135deg, #E4E8F0, #7D8799); }
+.mini-sachet.sachet-or { background: linear-gradient(135deg, #F5D061, #B8860B); }
+.mini-sachet.sachet-legende { background: linear-gradient(135deg, #FF4D6D, #FFE14D, #3DDC84, #2EC4F1, #E056FD); background-size: 300% 300%; animation: flotte 1.6s ease-in-out infinite alternate, holo-boutique 3s linear infinite alternate; }
+.mini-sachet .ruban { position: absolute; top: -10px; font-size: 20px; }
+.mini-sachet .mini-nom { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 14px; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.6); }
+.mini-sachet .mini-etoile { position: absolute; bottom: 4px; right: 6px; color: #fff; font-size: 16px; text-shadow: 0 0 6px #FFD23F; }
+.ouvrir-gratuit { margin-top: 4px; background: linear-gradient(#3DDC84, #1B9E4B); color: #fff; font-weight: 800; font-size: 11.5px; border-radius: 10px; padding: 5px 9px; }
+.offre-moment { flex: none; scroll-snap-align: start; display: flex; gap: 10px; align-items: center; width: 300px; max-width: 86vw; padding: 10px; border-radius: 14px;
+                background: linear-gradient(140deg, #1A0B2E, #5B1A8C 60%, #8C0E2A); border: 1.5px solid #FFD84D; box-shadow: 0 0 18px rgba(255,46,99,.35); }
+.infos-moment { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.titre-moment { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 18px; line-height: 1.05; color: #FFD84D; }
+.chrono-moment { font-size: 11.5px; color: #FF8FA0; font-weight: 700; animation: clignote 2s ease-in-out infinite; }
+
+/* Ouverture des packs : le suspense */
+.indices-carte { position: absolute; left: 0; right: 0; top: -34px; z-index: 6; display: flex; flex-direction: column; align-items: center; gap: 6px; pointer-events: none; }
+.indice { background: rgba(5,15,42,.88); border: 1.5px solid rgba(255,255,255,.4); color: #fff; border-radius: 20px; padding: 5px 14px; font-weight: 800; letter-spacing: .5px;
+          font-family: "Barlow Condensed", sans-serif; font-size: 19px; display: flex; align-items: center; gap: 8px; animation: jaillit .35s cubic-bezier(.2,1.6,.4,1); }
+.indice img { width: 24px; height: 24px; object-fit: contain; }
+.indice.doublon { background: linear-gradient(90deg, #6A1B9A, #E056FD); border-color: #fff; }
+.indices-carte.rarete-Elite .indice { border-color: #FFD23F; box-shadow: 0 0 14px rgba(255,210,63,.7); }
+.indices-carte.rarete-Legendaire .indice { border-color: #E056FD; box-shadow: 0 0 16px rgba(224,86,253,.9); }
+.aura-revelation { position: absolute; left: 50%; top: 50%; width: 300px; height: 300px; margin: -150px 0 0 -150px; border-radius: 50%; pointer-events: none; z-index: 0;
+                   background: radial-gradient(rgba(201,214,238,.55), transparent 65%); animation: aura 1s ease-in-out infinite alternate; }
+.aura-revelation.aura-Rare { background: radial-gradient(rgba(61,139,255,.7), transparent 65%); }
+.aura-revelation.aura-Elite { background: radial-gradient(rgba(255,200,46,.85), transparent 65%); }
+.aura-revelation.aura-Legendaire { background: conic-gradient(#FF4D6D, #FFE14D, #3DDC84, #2EC4F1, #E056FD, #FF4D6D); filter: blur(28px); }
+.aura-revelation.aura-doublon { background: radial-gradient(rgba(224,86,253,.75), transparent 65%); }
+@keyframes aura { from { transform: scale(.85); opacity: .7; } to { transform: scale(1.12); opacity: 1; } }
+.carte3d-scene.frisson { animation: frisson .12s linear infinite; position: relative; z-index: 1; }
+@keyframes frisson { 25% { transform: translate(1.5px, -1px) rotate(.4deg); } 75% { transform: translate(-1.5px, 1px) rotate(-.4deg); } }
+.plein.tremble { animation: tremble .09s linear 10; }
+@keyframes tremble { 25% { transform: translate(5px, -3px); } 50% { transform: translate(-4px, 4px); } 75% { transform: translate(3px, 2px); } }
+.plein.fond-legende { background: radial-gradient(circle at 50% 40%, rgba(255,255,255,.18), transparent 50%),
+                                  conic-gradient(from 0deg, #4A0E5C, #0E3D5C, #0E5C3A, #5C4A0E, #5C0E1E, #4A0E5C); transition: background 1s; }
+.bandeau-doublon { margin: 12px auto 0; max-width: 300px; text-align: center; background: linear-gradient(90deg, #6A1B9A, #E056FD); color: #fff; font-weight: 800;
+                   border-radius: 12px; padding: 7px 10px; font-size: 13.5px; animation: jaillit .4s cubic-bezier(.2,1.6,.4,1); }
+.titre-legende { text-align: center; margin-top: 10px; font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 34px;
+                 animation: jaillit .5s cubic-bezier(.2,1.6,.4,1), battement 1.2s ease-in-out .5s infinite; }
+
+/* Bilan du match : l'XP et « À suivre » */
+.xp-bilan { margin: 10px auto 0; max-width: 360px; background: rgba(0,0,0,.25); border-radius: 12px; padding: 8px 12px; text-align: left; color: #fff; }
+.xp-bilan b { color: var(--or); font-size: 16px; }
+.xp-bilan small { display: block; color: #C9D4EE; font-size: 11px; margin-top: 4px; }
+.xp-bilan .piste-saison { margin-top: 5px; }
+.palier-bilan { margin-top: 6px; background: linear-gradient(90deg, #FFE07A, #E9A800); color: #3D2600; font-weight: 800; border-radius: 8px; padding: 4px 8px; font-size: 13px;
+                animation: jaillit .4s cubic-bezier(.2,1.6,.4,1) .6s both; }
+.a-suivre { margin-top: 14px; background: #F4F6FA; border-radius: 12px; padding: 10px 12px; }
+.titre-suivre { font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 17px; color: var(--bleu-nuit); margin-bottom: 4px; letter-spacing: .5px; }
+.teaser { display: flex; gap: 8px; align-items: flex-start; font-size: 13px; color: #344054; padding: 4px 0; border-top: 1px dashed #D5DBE7; animation: jaillit .3s both; }
+.teaser:first-of-type { border-top: 0; }
+.teaser .ico { font-size: 16px; width: 22px; text-align: center; flex: none; }
+.titre-legende .degrade { background: linear-gradient(90deg, #FF4D6D, #FFE14D, #3DDC84, #2EC4F1, #E056FD); -webkit-background-clip: text; background-clip: text; color: transparent; }
