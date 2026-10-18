@@ -535,3 +535,34 @@ body.pc .duel-arene .choix { grid-template-columns: repeat(auto-fit, minmax(200p
 .teaser:first-of-type { border-top: 0; }
 .teaser .ico { font-size: 16px; width: 22px; text-align: center; flex: none; }
 .titre-legende .degrade { background: linear-gradient(90deg, #FF4D6D, #FFE14D, #3DDC84, #2EC4F1, #E056FD); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* Moment décisif (MomentDecisif.cs) */
+.voile-decisif { background: radial-gradient(circle at 50% 40%, rgba(80,0,10,.75), rgba(0,0,0,.95)); animation: apparait .4s; }
+.arene-decisive { border: 2px solid #FFD23F !important; box-shadow: 0 0 40px rgba(255,46,99,.55), 0 0 0 4px rgba(255,210,63,.25) !important; animation: arene-entree .5s, ralenti 2.4s ease-in-out .5s infinite alternate; position: relative; }
+@keyframes ralenti { from { transform: scale(1); } to { transform: scale(1.015); } }
+.bandeau-decisif { margin: -6px -6px 10px; padding: 8px; border-radius: 10px; text-align: center; font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 26px;
+                   letter-spacing: 1px; color: #1A0B2E; background: linear-gradient(90deg, #FFD23F, #FF9F1C, #FFD23F); background-size: 200% 100%; animation: holo-boutique 1.5s linear infinite alternate; }
+.bandeau-decisif small { display: block; font-family: Inter, sans-serif; font-size: 11.5px; font-weight: 700; letter-spacing: 0; }
+.decompte { position: absolute; top: 58px; right: 14px; width: 54px; height: 54px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            background: #0A2358; border: 3px solid #FFD23F; font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 30px; color: #FFD23F; animation: jaillit .3s; z-index: 3; }
+.decompte.urgent { border-color: #FF2E63; color: #fff; background: #B3122E; animation: jaillit .3s, battement .5s ease-in-out infinite; }
+.heros-decisif { margin: 6px auto 0; max-width: 360px; text-align: center; background: linear-gradient(90deg, #FFD23F, #FF9F1C); color: #3D2600; border-radius: 10px; padding: 5px 10px;
+                 font-weight: 700; font-size: 13px; animation: jaillit .5s cubic-bezier(.2,1.6,.4,1) .3s both; }
+.ligne-recap.decisif { border-left: 4px solid #FFD23F; }
+
+/* Niveau de manager (Manager.cs) */
+.puce-manager { margin-left: 6px; background: linear-gradient(#FFE07A, #E0A800); color: #3D2600; border: 0; border-radius: 10px; padding: 1px 8px; font-weight: 800; font-size: 11px; cursor: pointer; vertical-align: 1px; }
+.medaille-manager { width: 70px; height: 70px; flex: none; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center;
+                    background: radial-gradient(circle at 35% 30%, #FFF3B8, #E0A800 60%, #9A6400); border: 4px solid #fff; box-shadow: 0 0 22px rgba(255,210,63,.8);
+                    font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 36px; color: #3D2600; }
+.niveau-manager .medaille-manager { width: 96px; height: 96px; font-size: 50px; animation: jaillit .5s cubic-bezier(.2,1.6,.4,1), battement 1.4s ease-in-out .5s infinite; }
+.niveau-manager .sous { font-size: 18px; font-style: italic; }
+.ligne-palier.debloque { background: rgba(61,220,132,.25); border: 1.5px solid #3DDC84; }
+.tete-profil { display: flex; gap: 14px; align-items: center; margin-bottom: 10px; }
+.tete-profil h2 { margin: 0; }
+.tete-profil h2::before { display: none; }
+.liste-avantages { display: flex; flex-direction: column; gap: 4px; }
+.avantage { display: flex; gap: 8px; align-items: center; font-size: 13px; padding: 5px 8px; border-radius: 8px; background: #F4F6FA; color: #98A2B3; }
+.avantage .niv { font-weight: 800; width: 26px; text-align: center; background: #E4E7EC; border-radius: 6px; color: #475467; }
+.avantage.ok { color: #0A2358; background: #E8F8EF; font-weight: 600; }
+.avantage.ok .niv { background: #3DDC84; color: #fff; }
