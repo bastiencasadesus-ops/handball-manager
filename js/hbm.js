@@ -297,6 +297,80 @@ window.hbmGestes = (function () {
         depart = null;
     });
 
+    // ----- À la souris (version PC) : glisser-déposer les cartes, glisser les lignes -----
+    // Pas d'appui long : on attrape une carte en la déplaçant de quelques pixels, bouton enfoncé.
+    let souris = null;
+    document.addEventListener('mousedown', e => {
+        if (e.button !== 0) return;
+        const source = e.target.closest && e.target.closest('[data-prendre]');
+        const lg = e.target.closest && e.target.closest('[data-glisse]');
+        if (!source && !lg) return;
+        if (source && voileOuvert()) return;
+        souris = { x: e.clientX, y: e.clientY, source, ligne: lg, horizontal: null };
+        if (source) e.preventDefault();   // pas de glisser natif de l'image ni de sélection de texte
+    });
+    document.addEventListener('mousemove', e => {
+        if (!souris) return;
+        const dx = e.clientX - souris.x, dy = e.clientY - souris.y;
+        if (souris.source) {
+            if (!prise && (Math.abs(dx) > 6 || Math.abs(dy) > 6)) {
+                prise = { source: souris.source.dataset.prendre, el: souris.source, actif: false };
+                commencerPrise(e.clientX, e.clientY);
+                prise.dx = souris.x - souris.source.getBoundingClientRect().left;
+                prise.dy = souris.y - souris.source.getBoundingClientRect().top;
+            }
+            if (prise && prise.actif) { deplacer(e.clientX, e.clientY); e.preventDefault(); }
+            return;
+        }
+        if (souris.ligne) {
+            if (souris.horizontal === null && (Math.abs(dx) > 8 || Math.abs(dy) > 8)) souris.horizontal = Math.abs(dx) > Math.abs(dy);
+            if (souris.horizontal) {
+                ligne = souris.ligne;
+                ligne.style.transition = 'none';
+                ligne.style.transform = `translateX(${dx}px)`;
+                ligne.classList.toggle('vers-droite', dx > SEUIL);
+                ligne.classList.toggle('vers-gauche', dx < -SEUIL);
+                e.preventDefault();
+            }
+        }
+    });
+    document.addEventListener('mouseup', e => {
+        if (!souris) return;
+        const s = souris;
+        souris = null;
+        if (prise) { finirPrise(e.clientX, e.clientY); return; }
+        if (s.ligne && s.horizontal) {
+            ligne = s.ligne;
+            if (relacherLigne(e.clientX - s.x, e.clientY - s.y)) { sansClic = true; setTimeout(() => sansClic = false, 450); }
+        }
+    });
+
+    // ----- La molette (version PC) : elle fait toujours défiler la zone sous la souris -----
+    // (le navigateur intégré de Windows ne le faisait pas toujours) ; la page entière si rien d'autre ne défile.
+    function defilable(el, dy) {
+        for (; el && el !== document.body && el !== document.documentElement; el = el.parentElement) {
+            const s = getComputedStyle(el);
+            if (!/(auto|scroll)/.test(s.overflowY) || el.scrollHeight <= el.clientHeight + 1) continue;
+            if (dy < 0 ? el.scrollTop > 0 : el.scrollTop + el.clientHeight < el.scrollHeight - 1) return el;
+        }
+        return null;
+    }
+    document.addEventListener('wheel', e => {
+        if (!document.body.classList.contains('pc') || e.ctrlKey) return;
+        if (e.target.closest && e.target.closest('select, input, textarea')) return;
+        const dy = e.deltaMode === 1 ? e.deltaY * 40 : e.deltaMode === 2 ? e.deltaY * window.innerHeight : e.deltaY;
+        const dx = e.deltaMode === 1 ? e.deltaX * 40 : e.deltaX;
+        const zone = defilable(e.target, dy);
+        e.preventDefault();
+        if (zone) zone.scrollBy({ top: dy, left: dx });
+        else {
+            // Une fenêtre plein écran (match, pack, bilan) : c'est elle qui défile
+            const plein = e.target.closest && e.target.closest('.plein, .voile');
+            if (plein && plein.scrollHeight > plein.clientHeight) plein.scrollBy({ top: dy });
+            else (document.scrollingElement || document.documentElement).scrollBy({ top: dy, left: dx });
+        }
+    }, { passive: false });
+
     // Après un glisser-déposer, le « clic » qui suit est ignoré
     document.addEventListener('click', e => {
         if (sansClic) { e.stopPropagation(); e.preventDefault(); sansClic = false; }
