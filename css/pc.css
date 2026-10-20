@@ -128,3 +128,15 @@ body.pc .bouton:hover { filter: brightness(1.12); }
 body.pc .carte-sombre, body.pc .carte-blanche { transition: transform .15s; }
 body.pc ::-webkit-scrollbar { width: 10px; }
 body.pc ::-webkit-scrollbar-thumb { background: rgba(255,255,255,.18); border-radius: 5px; }
+
+/* Nouvelle partie : la carte et la région côte à côte */
+body.pc .choix-region { max-width: 1500px; width: 100%; margin: 0 auto; }
+body.pc .choix-region:not(.etape-club) { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(320px, 1fr); grid-template-areas: "titre titre" "texte texte" "carte na" "carte bientot"; gap: 0 48px; align-items: start; }
+body.pc .choix-region:not(.etape-club) > .section { grid-area: titre; }
+body.pc .choix-region:not(.etape-club) > p { grid-area: texte; }
+body.pc .choix-region .carte-france { grid-area: carte; max-width: 760px; margin: 0; }
+body.pc .choix-region .carte-na { grid-area: na; align-self: end; }
+body.pc .choix-region .bientot { grid-area: bientot; }
+body.pc .grille-region { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 36px; align-items: start; }
+body.pc .grille-region .carte-na-detail { position: sticky; top: 20px; max-width: none; }
+body.pc .barre-choix { left: 0; padding-left: max(32px, calc((100vw - 1500px) / 2)); padding-right: max(32px, calc((100vw - 1500px) / 2)); }
