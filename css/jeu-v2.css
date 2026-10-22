@@ -66,7 +66,7 @@
 
 /* ---------- Équipe : terrain avec les cartes ---------- */
 .terrain-compo { aspect-ratio: 1 / 1.32; }
-.case-carte { position: absolute; width: 27%; transform: translate(-50%, -50%); padding: 0; transition: transform .15s; }
+.case-carte { position: absolute; width: 22%; transform: translate(-50%, -50%); padding: 0; transition: transform .15s, left .4s ease-in-out, top .4s ease-in-out; }
 .case-carte svg { width: 100% !important; height: auto !important; }
 .case-carte.choisie { transform: translate(-50%, -50%) scale(1.08); filter: drop-shadow(0 0 8px #3D7CFF); }
 .case-vide { aspect-ratio: 248 / 348; border: 2px dashed rgba(255,255,255,.8); border-radius: 10px; display: flex; flex-direction: column;
