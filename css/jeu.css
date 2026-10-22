@@ -230,7 +230,7 @@ button { font: inherit; color: inherit; border: none; background: none; cursor: 
 .jm .nt { color: #fff; border-radius: 4px; padding: 1px 6px; font-weight: 700; font-size: 12px; }
 .jm .en { width: 46px; height: 6px; background: #E3E7EF; border-radius: 3px; overflow: hidden; }
 .jm .en span { display: block; height: 100%; }
-.verdict { position: fixed; left: 0; right: 0; top: 40%; z-index: 90; text-align: center; padding: 22px 14px; animation: verdict 2.4s forwards; pointer-events: none; }
+.verdict { position: fixed; left: 0; right: 0; top: 40%; z-index: 90; text-align: center; padding: 22px 14px; animation: verdict 2.4s forwards; pointer-events: none; white-space: pre-line; }
 .verdict .t { font-family: "Barlow Condensed", sans-serif; font-size: 46px; font-weight: 700; }
 @keyframes verdict { 0% { opacity: 0; } 6%, 82% { opacity: 1; } 100% { opacity: 0; } }
 
