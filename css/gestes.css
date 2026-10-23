@@ -739,3 +739,12 @@ body.pc .duel-arene .choix { grid-template-columns: repeat(auto-fit, minmax(200p
 .attente-joueurs .etat.pret { color: #1B7F3B; }
 .attente-info { font-size: 13px; color: var(--gris); display: flex; align-items: center; gap: 8px; }
 .attente-info .rond-attente { width: 14px; height: 14px; border-width: 2px; border-color: rgba(0,0,0,.12); border-top-color: var(--rouge); }
+
+/* Android : le navigateur garde le défilement vertical, les balayages horizontaux vont au jeu (onglets) */
+.ecran { touch-action: pan-y; }
+
+/* Match : sanctions et blessures à côté du nom (MatchEnDirect.Sanctions) */
+.jm .sanction { flex: none; font-size: 14px; line-height: 1; }
+.jm .sanction.deux { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 12px; color: #fff; background: #C27A00; border-radius: 4px; padding: 2px 5px; }
+.jm.hors-jeu { opacity: .55; }
+.legende-sanctions { margin-top: 8px; }

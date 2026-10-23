@@ -241,14 +241,59 @@ window.hbmGestes = (function () {
         return dx !== 0;
     }
 
+    // Un geste resté coincé (doigt levé hors de l'écran, 2e doigt, page redessinée) : on remet tout à zéro,
+    // sinon la page ne défile plus (body.glisse-en-cours) et les balayages ne passent plus
+    function nettoyer() {
+        if (prise) { clearTimeout(prise.minuteur); if (prise.fantome) prise.fantome.remove(); if (prise.el) prise.el.classList.remove('pris'); }
+        prise = null;
+        document.querySelectorAll('.fantome').forEach(f => f.remove());
+        document.querySelectorAll('.cible-depot').forEach(c => c.classList.remove('cible-depot'));
+        cibleSurvolee = null;
+        document.body.classList.remove('glisse-en-cours');
+        if (ligne) { ligne.style.transform = ''; ligne = null; }
+    }
+
+    // La page défile : ce n'est pas un appui long
+    window.addEventListener('scroll', () => {
+        if (prise && !prise.actif) { clearTimeout(prise.minuteur); prise = null; }
+        if (depart) depart.bouge = true;
+    }, { passive: true, capture: true });
+
+    // Seul geste qui bloque le défilement : une carte attrapée ou une ligne glissée de côté.
+    // Ce « touchmove » bloquant n'est branché QUE sur les cartes et les lignes à glisser : partout ailleurs le
+    // téléphone fait défiler la page tout seul, sans attendre le jeu (sinon, pendant les animations, la page
+    // ne défilait plus qu'à deux doigts sur certains Android)
+    const bloquant = e => {
+        if (depart && ((prise && prise.actif) || (ligne && depart.horizontal)) && e.cancelable) e.preventDefault();
+    };
+    const branches = new WeakSet();
+    let rechercheDemandee = false;
+    function brancherBloquants() {
+        rechercheDemandee = false;
+        document.querySelectorAll('[data-prendre], [data-glisse]').forEach(el => {
+            if (branches.has(el)) return;
+            branches.add(el);
+            el.addEventListener('touchmove', bloquant, { passive: false });
+        });
+    }
+    new MutationObserver(() => {
+        if (!rechercheDemandee) { rechercheDemandee = true; requestAnimationFrame(brancherBloquants); }
+    }).observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['data-prendre', 'data-glisse'] });
+
     document.addEventListener('touchstart', e => {
-        if (e.touches.length !== 1) { depart = null; return; }
+        if (e.touches.length !== 1) { if (!(prise && prise.actif)) nettoyer(); depart = null; return; }
+        if (!(prise && prise.actif)) nettoyer();
         const t = e.touches[0];
-        depart = { x: t.clientX, y: t.clientY, t: Date.now(), el: e.target, horizontal: null };
+        depart = { x: t.clientX, y: t.clientY, t: Date.now(), el: e.target, horizontal: null, dernier: { x: t.clientX, y: t.clientY } };
         const source = e.target.closest('[data-prendre]');
         if (source && !voileOuvert()) {
             prise = { source: source.dataset.prendre, el: source, actif: false };
-            prise.minuteur = setTimeout(() => commencerPrise(depart ? depart.x : t.clientX, depart ? depart.y : t.clientY), 280);
+            // Appui long franc (doigt immobile) pour attraper une carte : un défilement qui démarre lentement
+            // ne doit pas l'attraper (sinon la page ne défile plus qu'à deux doigts)
+            prise.minuteur = setTimeout(() => {
+                if (depart && prise && !depart.bouge) commencerPrise(depart.x, depart.y);
+                else if (prise && !prise.actif) prise = null;
+            }, 450);
         }
         ligne = e.target.closest('[data-glisse]');
     }, { passive: true });
@@ -256,24 +301,33 @@ window.hbmGestes = (function () {
     document.addEventListener('touchmove', e => {
         if (!depart) return;
         const t = e.touches[0];
+        depart.dernier = { x: t.clientX, y: t.clientY };
         const dx = t.clientX - depart.x, dy = t.clientY - depart.y;
+        if (Math.abs(dx) > 6 || Math.abs(dy) > 6) depart.bouge = true;
         if (prise) {
-            if (prise.actif) { e.preventDefault(); deplacer(t.clientX, t.clientY); return; }
-            if (Math.abs(dx) > 10 || Math.abs(dy) > 10) { clearTimeout(prise.minuteur); prise = null; }
+            if (prise.actif) { deplacer(t.clientX, t.clientY); return; }
+            if (depart.bouge) { clearTimeout(prise.minuteur); prise = null; }
         }
         if (depart.horizontal === null && (Math.abs(dx) > 8 || Math.abs(dy) > 8))
             depart.horizontal = Math.abs(dx) > Math.abs(dy);
         if (ligne && depart.horizontal) {
-            e.preventDefault();
             ligne.style.transition = 'none';
             ligne.style.transform = `translateX(${dx}px)`;
             ligne.classList.toggle('vers-droite', dx > SEUIL);
             ligne.classList.toggle('vers-gauche', dx < -SEUIL);
         }
-    }, { passive: false });
+    }, { passive: true });
+
+    // Balayage entre les onglets (aussi quand le téléphone annule le geste en cours de route)
+    function balayage(dx, dy, duree, el) {
+        if (duree < 900 && Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5 && !voileOuvert()
+            && el && el.closest && el.closest('.ecran')
+            && !el.closest('[data-pas-de-balayage], input, select, textarea, .selecteur, .defile-x, .vitrine, .packs-offerts, .moments-boutique'))
+            invoquer('Balayer', dx < 0 ? 1 : -1);
+    }
 
     document.addEventListener('touchend', e => {
-        if (!depart) return;
+        if (!depart) { if (prise) finirPrise(-1, -1); return; }
         const t = e.changedTouches[0];
         const dx = t.clientX - depart.x, dy = t.clientY - depart.y, duree = Date.now() - depart.t;
         const el = depart.el;
@@ -284,17 +338,18 @@ window.hbmGestes = (function () {
             if (actif) return;
         }
         if (ligne) { if (relacherLigne(dx, dy)) return; }
-        // Balayage entre les onglets
-        if (duree < 700 && Math.abs(dx) > SEUIL && Math.abs(dx) > Math.abs(dy) * 2 && !voileOuvert()
-            && el.closest && el.closest('.ecran')
-            && !el.closest('[data-pas-de-balayage], input, select, textarea, .selecteur, .defile-x'))
-            invoquer('Balayer', dx < 0 ? 1 : -1);
+        balayage(dx, dy, duree, el);
     });
 
     document.addEventListener('touchcancel', () => {
+        const d = depart;
+        const avaitPrise = prise && prise.actif;
         if (prise) finirPrise(-1, -1);
         if (ligne) { ligne.style.transform = ''; ligne = null; }
         depart = null;
+        document.body.classList.remove('glisse-en-cours');
+        if (d && d.dernier && !avaitPrise)
+            balayage(d.dernier.x - d.x, d.dernier.y - d.y, Date.now() - d.t, d.el);
     });
 
     // ----- À la souris (version PC) : glisser-déposer les cartes, glisser les lignes -----
