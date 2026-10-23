@@ -748,3 +748,11 @@ body.pc .duel-arene .choix { grid-template-columns: repeat(auto-fit, minmax(200p
 .jm .sanction.deux { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 12px; color: #fff; background: #C27A00; border-radius: 4px; padding: 2px 5px; }
 .jm.hors-jeu { opacity: .55; }
 .legende-sanctions { margin-top: 8px; }
+
+/* Match en direct entre amis (Pages/Match.razor, DuelEnLigne.cs) */
+.bandeau-duel { display: flex; align-items: center; gap: 10px; margin: 8px 0 0; padding: 9px 12px; border-radius: 10px;
+                background: rgba(27,77,177,.35); border: 1px solid var(--bord); font-size: 13.5px; font-weight: 600; }
+.decompte.duel { position: absolute; top: 10px; right: 10px; }
+.duel-propose { margin: 10px 0; padding: 12px; border-radius: 12px; background: #FFF1F3; border: 1.5px solid #F5B5C1; }
+.duel-propose .titre { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 18px; color: var(--rouge); }
+.duel-propose p { margin: 6px 0 10px; font-size: 13.5px; }
