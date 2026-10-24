@@ -436,7 +436,8 @@ window.hbmGestes = (function () {
 
     return {
         init: r => { ref = r; },
-        liberer: () => { ref = null; }
+        liberer: () => { ref = null; },
+        retour: () => { if (!voileOuvert()) invoquer('Balayer', -1); }
     };
 })();
 
@@ -445,7 +446,12 @@ window.hbmGestes = (function () {
 window.hbmRetour = (() => {
     const pages = /\/(jeu|match)\/?$/;
     const poser = () => { if (pages.test(location.pathname)) history.pushState({ hbmGarde: true }, '', location.href); };
-    window.addEventListener('popstate', () => { if (pages.test(location.pathname)) setTimeout(poser, 0); });
+    // Sur l'écran du jeu, le geste « retour » mène à l'onglet de gauche (jamais à l'accueil)
+    window.addEventListener('popstate', () => {
+        if (!pages.test(location.pathname)) return;
+        setTimeout(poser, 0);
+        if (/\/jeu\/?$/.test(location.pathname) && window.hbmGestes && window.hbmGestes.retour) window.hbmGestes.retour();
+    });
     return { garder: () => { if (!(history.state && history.state.hbmGarde)) poser(); } };
 })();
 

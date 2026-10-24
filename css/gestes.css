@@ -834,3 +834,6 @@ body.pc .duel-arene .choix { grid-template-columns: repeat(auto-fit, minmax(200p
 .onglet-amis .attente-joueurs { padding: 4px 10px; }
 .onglet-amis .vestiaire-commun, .onglet-amis .palmares-amis { background: #fff; border-radius: 14px; padding: 10px; color: var(--encre); }
 .onglet-amis .ligne-repli { margin-top: 8px; }
+
+/* Chrome Android : un balayage horizontal au bord de la page ne déclenche plus « page précédente » */
+html, body { overscroll-behavior-x: none; overscroll-behavior-y: auto; }
