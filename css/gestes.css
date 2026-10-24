@@ -877,7 +877,7 @@ html, body { background-color: #050F2A; }
 @keyframes defileClubs { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .orbite-clubs { position: absolute; inset: 0; pointer-events: none; }
 /* Une orbite horizontale autour du sachet : devant (au-dessus du pack, en grand), puis derrière (sous le pack, en petit) */
-.logo-orbite { position: absolute; left: 50%; top: 44%; margin: -20px 0 0 -20px; z-index: 1;
+.logo-orbite { position: absolute; left: 50%; top: 70%; margin: -20px 0 0 -20px; z-index: 1;
                animation: orbite 9s linear infinite; animation-delay: calc(var(--i) * -9s / var(--n)); filter: drop-shadow(0 4px 8px rgba(0,0,0,.55)); }
 @keyframes orbite {
     0%    { transform: translateX(0) translateY(26px) scale(1.25); z-index: 8; opacity: 1; }
