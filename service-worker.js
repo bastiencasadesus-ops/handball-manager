@@ -63,4 +63,4 @@ self.addEventListener('notificationclick', event => {
         return clients.openWindow('./jeu');
     }));
 });
-/* Manifest version: EU8k7a68 */
+/* Manifest version: QAec7E/O */
