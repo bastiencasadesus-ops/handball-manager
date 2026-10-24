@@ -913,3 +913,21 @@ html, body { background-color: #050F2A; }
 /* Niveau de jeu d'un joueur (NiveauxJeu.cs) */
 .badge-niveau { flex: none; font-size: 11px; font-weight: 800; padding: 2px 6px; border-radius: 6px; background: #E6EAF2; color: #44506A; }
 .badge-niveau.au-dessus { background: #FFE7C2; color: #9A5B00; }
+
+/* ----- Fiche joueur : barre du joueur choisi, panneau qui monte du bas ----- */
+.barre-choisi { position: fixed; left: 8px; right: 8px; bottom: calc(76px + var(--bas)); z-index: 25; display: flex; align-items: center; gap: 8px;
+                padding: 8px 8px 8px 14px; border-radius: 14px; background: #0E2862; border: 1.5px solid var(--or); box-shadow: 0 8px 24px rgba(0,0,0,.45); }
+.barre-choisi .nom { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.barre-choisi .nom small { font-size: 11.5px; opacity: .75; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.barre-choisi .bouton { padding: 8px 12px; font-size: 14px; }
+.voile-panneau { position: fixed; inset: 0; z-index: 70; background: rgba(2,6,18,.55); animation: fondu .2s; }
+.panneau-bas { position: fixed; left: 0; right: 0; bottom: 0; z-index: 71; max-height: 86vh; overflow-y: auto; -webkit-overflow-scrolling: touch;
+               background: #fff; color: var(--encre); border-radius: 20px 20px 0 0; padding: 4px 12px calc(16px + var(--bas));
+               box-shadow: 0 -10px 30px rgba(0,0,0,.4); animation: monteDuBas .26s ease-out; overscroll-behavior: contain; }
+.panneau-bas .fiche { box-shadow: none; padding: 4px 2px; margin: 0; }
+.poignee-panneau { display: flex; justify-content: center; padding: 8px 0 6px; touch-action: none; }
+.poignee-panneau span { width: 44px; height: 5px; border-radius: 3px; background: #C9D1DE; }
+.fermer-panneau { position: absolute; right: 10px; top: 8px; width: 32px; height: 32px; border-radius: 50%; border: 0; background: #EEF1F6; color: #44506A; font-size: 15px; cursor: pointer; z-index: 2; }
+@keyframes monteDuBas { from { transform: translateY(100%); } to { transform: translateY(0); } }
+@keyframes fondu { from { opacity: 0; } to { opacity: 1; } }
+@media (min-width: 900px) { .panneau-bas { left: 50%; right: auto; width: 560px; transform: translateX(-50%); animation: none; } }

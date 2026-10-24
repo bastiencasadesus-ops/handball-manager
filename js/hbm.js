@@ -168,7 +168,7 @@ window.hbmGestes = (function () {
         if (ref) ref.invokeMethodAsync(methode, ...args).catch(() => { });
     }
     function vibrer(ms) { try { if (navigator.vibrate) navigator.vibrate(ms); } catch (e) { } }
-    function voileOuvert() { return !!document.querySelector('.voile, .voile-menu, .ouverture-pack, .ecran-plein, .plein'); }
+    function voileOuvert() { return !!document.querySelector('.voile, .voile-menu, .ouverture-pack, .ecran-plein, .plein, .panneau-bas'); }
 
     // ----- Glisser-déposer après un appui long -----
     function commencerPrise(x, y) {
@@ -474,3 +474,30 @@ window.hbmNotif = {
         } catch (e) { }
     }
 };
+
+// Le panneau qui monte du bas (fiche joueur) : on le fait glisser vers le bas pour le fermer
+(function () {
+    let p = null, y0 = 0, dy = 0;
+    document.addEventListener('touchstart', e => {
+        const panneau = e.target.closest && e.target.closest('[data-panneau-bas]');
+        if (!panneau) return;
+        // depuis la poignée, ou n'importe où si le panneau est tout en haut de son défilement
+        if (!e.target.closest('.poignee-panneau') && panneau.scrollTop > 0) return;
+        p = panneau; y0 = e.touches[0].clientY; dy = 0;
+        p.style.transition = 'none';
+    }, { passive: true });
+    document.addEventListener('touchmove', e => {
+        if (!p) return;
+        dy = Math.max(0, e.touches[0].clientY - y0);
+        if (dy > 0) p.style.transform = `translateY(${dy}px)`;
+    }, { passive: true });
+    document.addEventListener('touchend', () => {
+        if (!p) return;
+        const panneau = p; p = null;
+        panneau.style.transition = 'transform .2s ease-out';
+        if (dy > 90) {
+            panneau.style.transform = 'translateY(100%)';
+            setTimeout(() => panneau.querySelector('[data-fermer-panneau]')?.click(), 180);
+        } else panneau.style.transform = '';
+    });
+})();
