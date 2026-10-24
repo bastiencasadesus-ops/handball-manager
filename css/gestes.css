@@ -859,3 +859,6 @@ html, body { overscroll-behavior-x: none; overscroll-behavior-y: auto; }
 .ligne-point .txt { flex: 1; min-width: 0; display: flex; flex-direction: column; }
 .ligne-point .txt small { font-size: 12px; opacity: .8; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ligne-point .fl { font-size: 22px; opacity: .6; }
+
+/* La barre latérale de la version PC ne s'affiche jamais sur téléphone (elle apparaissait tout en bas de la page) */
+body:not(.pc) .onglets-pc { display: none !important; }
