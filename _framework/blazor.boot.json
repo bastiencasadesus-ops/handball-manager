@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "HandballManagerWeb",
   "resources": {
-    "hash": "sha256-lwR+35SqZhQIaBepGPhSNTRSTWprk4/s7okxI8h7HC8=",
+    "hash": "sha256-8KTyVKJUNSIQiWIetpYAbtje4j2olz9mtkSDubufIIA=",
     "jsModuleNative": {
       "dotnet.native.8.0.31.vvfg8ycvym.js": "sha256-9NoXeVUo4WNrEqrjAp/y3Yc8NmDcymQkzMGOIbIpGio="
     },
@@ -17,10 +17,10 @@
       "icudt_no_CJK.dat": "sha256-L7sV7NEYP37/Qr2FPCePo5cJqRgTXRwGHuwF5Q+0Nfs="
     },
     "assembly": {
-      "HandballManagerInterface.wasm": "sha256-JorzhBSnXixKwuJER1wn7NexQptclp+Ja+X+K8KO5xY=",
-      "HandballManagerWeb.wasm": "sha256-9k0Mpjd38oFXOQU4+f8+Rl01q9PReCUCOMG682Rdz5I=",
+      "HandballManagerInterface.wasm": "sha256-PUVodiVkW2YFytMMYJqz17eScJCuTWMJK6sOV2qEHtM=",
+      "HandballManagerWeb.wasm": "sha256-Fx9WQw0Ewl0ccpT1p/JKmfiPRGNnPO+brten/gCmxlQ=",
       "Microsoft.AspNetCore.Components.wasm": "sha256-kKm8JiQGEkqJVg4yyv8FXPhWgidLmN3H+qeT1dlPgI0=",
-      "Microsoft.AspNetCore.Components.Web.wasm": "sha256-MeydKu6ik8JHySC3hZDh3caZhjUfW9M4A1C58nFXC9Q=",
+      "Microsoft.AspNetCore.Components.Web.wasm": "sha256-hfpY4qL8908XZo2BrmvUnY6xjtmdgPQLg6DyQYFFI9k=",
       "Microsoft.AspNetCore.Components.WebAssembly.wasm": "sha256-uEjVChVmZMqGVa386UJ1wR3GYBq+mlYgsge2gn1VISI=",
       "Microsoft.Extensions.Configuration.Abstractions.wasm": "sha256-87sn2TYqgdZ95sXmavjKEzoEfMgHnYQ9LOvnMX+aZcI=",
       "Microsoft.Extensions.Configuration.Json.wasm": "sha256-/VUEfhgVp9FCU1rXnSNAI1mtW6EO5DpkV/5UNWDR/es=",
@@ -39,7 +39,7 @@
       "System.Console.wasm": "sha256-ZSqKqZkIAwUFLlUsIjKP3IZDeId40sIcgvxURMTRpHU=",
       "System.Diagnostics.DiagnosticSource.wasm": "sha256-cfEdH1yqeoSRszWxepOlymIUVTxH/Nc1HWT/fXoZL5E=",
       "System.IO.Compression.wasm": "sha256-getAKLhSd7NrEnjQug0nOLA1izY9MYiGn39YmPe1DG0=",
-      "System.Linq.wasm": "sha256-EJqwJNuM0EUuAVl5vz/lUxF6fnnhTleb3zmDmhbk7kM=",
+      "System.Linq.wasm": "sha256-Iqjc9KMW3Ezn9/U2P45ZqYDaWNlTx2KyMKC79dGSCd0=",
       "System.Memory.wasm": "sha256-DLbONZM+NH330qflWG/X9LRa9AS8XDX5Ghm04ycPQnY=",
       "System.Net.Http.Json.wasm": "sha256-vYi6c30GYQgO3goy1wYn7/Yz5FWjOz1V0dJidSnS8gI=",
       "System.Net.Http.wasm": "sha256-DOP39dnCiPpg+BZuXSMqMUoBmzyoFk1xSHk3nH4kyqA=",

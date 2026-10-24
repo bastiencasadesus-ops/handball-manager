@@ -448,3 +448,23 @@ window.hbmRetour = (() => {
     window.addEventListener('popstate', () => { if (pages.test(location.pathname)) setTimeout(poser, 0); });
     return { garder: () => { if (!(history.state && history.state.hbmGarde)) poser(); } };
 })();
+
+// Notifications de la partie en ligne : seulement quand le jeu est en arrière-plan (onglet caché, écran éteint)
+// et que le joueur les a autorisées. Sans serveur d'envoi : le jeu doit être resté ouvert en arrière-plan.
+window.hbmNotif = {
+    etat: () => ('Notification' in window) ? Notification.permission : 'absent',
+    demander: async () => {
+        if (!('Notification' in window)) return 'absent';
+        try { return await Notification.requestPermission(); } catch (e) { return 'denied'; }
+    },
+    envoyer: async (titre, texte, toujours) => {
+        try {
+            if (!toujours && !document.hidden) return;
+            if (!('Notification' in window) || Notification.permission !== 'granted') return;
+            const reg = navigator.serviceWorker ? await navigator.serviceWorker.getRegistration() : null;
+            if (reg) await reg.showNotification(titre, { body: texte, tag: 'hbm-' + titre, renotify: true, icon: 'icon-192.png', badge: 'icon-192.png' });
+            else new Notification(titre, { body: texte });
+            if (navigator.vibrate) navigator.vibrate([120, 60, 120]);
+        } catch (e) { }
+    }
+};

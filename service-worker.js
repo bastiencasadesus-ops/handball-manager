@@ -54,4 +54,13 @@ async function onFetch(event) {
 
     return cachedResponse || fetch(event.request);
 }
-/* Manifest version: 30g4ArxN */
+
+// Une notification touchée (partie en ligne) : on rouvre le jeu
+self.addEventListener('notificationclick', event => {
+    event.notification.close();
+    event.waitUntil(clients.matchAll({ type: 'window', includeUncontrolled: true }).then(fenetres => {
+        for (const f of fenetres) if ('focus' in f) return f.focus();
+        return clients.openWindow('./jeu');
+    }));
+});
+/* Manifest version: RGkkId3F */
