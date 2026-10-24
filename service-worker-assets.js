@@ -33,11 +33,11 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-LZBZHu28VKr8ghfdwqu1inAu9AvLyp+kzp9t6sJsinw=",
+      "hash": "sha256-wSCeB3WcKi6DpptYxa39\/UWJXfJH1hqjrV2g103SeVg=",
       "url": "_framework\/blazor.boot.json"
     },
     {
-      "hash": "sha256-2+MIhSCJHJmwVkcaEjB8\/+yZXBFY8r5OOPBPs+mbyCw=",
+      "hash": "sha256-dyfVA68kWnmBfLpqoEC6ppN8ZznZiALUfdLsem4410M=",
       "url": "_framework\/HandballManagerInterface.wasm"
     },
     {
@@ -705,5 +705,5 @@
       "url": "_content\/HandballManagerInterface\/HandballManagerInterface.bundle.scp.css"
     }
   ],
-  "version": "6fbGgDEN"
+  "version": "sjhTAuPq"
 };
