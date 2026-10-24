@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "HandballManagerWeb",
   "resources": {
-    "hash": "sha256-bgRuz1flEJGS/Ivdaq0/9M0Pt0uEAMIEUqbgqQuU5NI=",
+    "hash": "sha256-4I90G33QGl6F9sy7wv2E+yC4TGKTAEM5lEpHC7GJbio=",
     "jsModuleNative": {
       "dotnet.native.8.0.31.vvfg8ycvym.js": "sha256-9NoXeVUo4WNrEqrjAp/y3Yc8NmDcymQkzMGOIbIpGio="
     },
@@ -17,8 +17,8 @@
       "icudt_no_CJK.dat": "sha256-L7sV7NEYP37/Qr2FPCePo5cJqRgTXRwGHuwF5Q+0Nfs="
     },
     "assembly": {
-      "HandballManagerInterface.wasm": "sha256-fJSM+cqPWAapIXxcPM7gnUqaCE994H/dmMOh3SGvr8Y=",
-      "HandballManagerWeb.wasm": "sha256-KUeRGnBHfkYxVmFXIP/Wm/BZkPIz1xdqY+YkaxWZWzc=",
+      "HandballManagerInterface.wasm": "sha256-lXGZFGMVe/zdjsUaUQ7QqZWiSNsILmLLjwa1NnzMrl4=",
+      "HandballManagerWeb.wasm": "sha256-K05s/2PY3KZYhC/9YpumdAIZ4l7iAqETQrohMcFt6PE=",
       "Microsoft.AspNetCore.Components.wasm": "sha256-kKm8JiQGEkqJVg4yyv8FXPhWgidLmN3H+qeT1dlPgI0=",
       "Microsoft.AspNetCore.Components.Web.wasm": "sha256-hfpY4qL8908XZo2BrmvUnY6xjtmdgPQLg6DyQYFFI9k=",
       "Microsoft.AspNetCore.Components.WebAssembly.wasm": "sha256-uEjVChVmZMqGVa386UJ1wR3GYBq+mlYgsge2gn1VISI=",
@@ -39,7 +39,7 @@
       "System.Console.wasm": "sha256-ZSqKqZkIAwUFLlUsIjKP3IZDeId40sIcgvxURMTRpHU=",
       "System.Diagnostics.DiagnosticSource.wasm": "sha256-cfEdH1yqeoSRszWxepOlymIUVTxH/Nc1HWT/fXoZL5E=",
       "System.IO.Compression.wasm": "sha256-getAKLhSd7NrEnjQug0nOLA1izY9MYiGn39YmPe1DG0=",
-      "System.Linq.wasm": "sha256-Iqjc9KMW3Ezn9/U2P45ZqYDaWNlTx2KyMKC79dGSCd0=",
+      "System.Linq.wasm": "sha256-imvKDESswxgomaCxpMOA51SmzHnAxxnFU2HdITR6q6g=",
       "System.Memory.wasm": "sha256-DLbONZM+NH330qflWG/X9LRa9AS8XDX5Ghm04ycPQnY=",
       "System.Net.Http.Json.wasm": "sha256-vYi6c30GYQgO3goy1wYn7/Yz5FWjOz1V0dJidSnS8gI=",
       "System.Net.Http.wasm": "sha256-DOP39dnCiPpg+BZuXSMqMUoBmzyoFk1xSHk3nH4kyqA=",
