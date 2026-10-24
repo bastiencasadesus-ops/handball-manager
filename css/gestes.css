@@ -867,3 +867,30 @@ body:not(.pc) .onglets-pc { display: none !important; }
    lire une couleur pleine. Le bandeau a donc une vraie couleur de fond (en plus de son dégradé), la page aussi. */
 html, body { background-color: #050F2A; }
 .bandeau { background-color: #0A2358; -webkit-backdrop-filter: none; backdrop-filter: none; }
+
+/* ----- Boutique : toucher le pack l'ouvre, clubs phares à débloquer ----- */
+.toucher-pack { position: absolute; inset: 0; z-index: 6; background: transparent; border: 0; padding: 0; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.toucher-pack:disabled { cursor: default; }
+.defile-clubs { margin: 4px -16px 10px; overflow: hidden; }
+.defile-clubs .titre-clubs { text-align: center; font-family: "Barlow Condensed", sans-serif; font-weight: 700; letter-spacing: 1.5px; font-size: 14px; color: var(--or); margin-bottom: 6px; }
+.piste-clubs { display: flex; gap: 14px; width: max-content; animation: defileClubs var(--duree, 20s) linear infinite; padding: 2px 0; }
+.club-defile { position: relative; flex: none; display: flex; flex-direction: column; align-items: center; }
+.club-defile small { position: absolute; right: -6px; top: -4px; background: var(--rouge); color: #fff; font-size: 10px; font-weight: 800; border-radius: 8px; padding: 0 5px; line-height: 15px; }
+@keyframes defileClubs { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.orbite-clubs { position: absolute; left: 50%; top: 46%; width: 0; height: 0; z-index: 4; pointer-events: none; }
+.logo-orbite { position: absolute; left: -15px; top: -15px; animation: orbite 10s linear infinite; animation-delay: calc(var(--i) * -10s / var(--n)); filter: drop-shadow(0 3px 6px rgba(0,0,0,.5)); }
+@keyframes orbite {
+    0%   { transform: rotate(0deg) translateX(128px) rotate(0deg) scale(.85); opacity: .95; }
+    25%  { transform: rotate(90deg) translateX(128px) rotate(-90deg) scale(1.05); }
+    50%  { transform: rotate(180deg) translateX(128px) rotate(-180deg) scale(.85); }
+    75%  { transform: rotate(270deg) translateX(128px) rotate(-270deg) scale(.65); opacity: .55; }
+    100% { transform: rotate(360deg) translateX(128px) rotate(-360deg) scale(.85); opacity: .95; }
+}
+.club-phare { position: absolute; left: 50%; bottom: -6px; transform: translateX(-50%); z-index: 5; display: flex; align-items: center; gap: 8px; white-space: nowrap;
+              padding: 5px 12px 5px 6px; border-radius: 22px; background: linear-gradient(90deg, #B80022, #E4002B 60%, #FF6A00); border: 2px solid var(--or);
+              box-shadow: 0 6px 18px rgba(228,0,43,.45); color: #fff; animation: pharePulse 2.2s ease-in-out infinite; pointer-events: none; max-width: 96%; }
+.club-phare span { display: flex; flex-direction: column; line-height: 1.1; min-width: 0; }
+.club-phare b { font-family: "Barlow Condensed", sans-serif; letter-spacing: 1.5px; font-size: 13px; color: var(--or); }
+.club-phare small { font-size: 11.5px; overflow: hidden; text-overflow: ellipsis; }
+@keyframes pharePulse { 0%, 100% { transform: translateX(-50%) scale(1); } 50% { transform: translateX(-50%) scale(1.06); } }
+@media (prefers-reduced-motion: reduce) { .piste-clubs, .logo-orbite, .club-phare { animation: none; } }
