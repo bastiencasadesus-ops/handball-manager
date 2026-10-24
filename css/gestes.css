@@ -862,3 +862,8 @@ html, body { overscroll-behavior-x: none; overscroll-behavior-y: auto; }
 
 /* La barre latérale de la version PC ne s'affiche jamais sur téléphone (elle apparaissait tout en bas de la page) */
 body:not(.pc) .onglets-pc { display: none !important; }
+
+/* iPhone (iOS 26) : sous la barre d'état, le système floute ce qui touche le haut de l'écran quand il ne peut pas
+   lire une couleur pleine. Le bandeau a donc une vraie couleur de fond (en plus de son dégradé), la page aussi. */
+html, body { background-color: #050F2A; }
+.bandeau { background-color: #0A2358; -webkit-backdrop-filter: none; backdrop-filter: none; }
