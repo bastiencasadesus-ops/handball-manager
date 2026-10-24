@@ -810,3 +810,27 @@ body.pc .duel-arene .choix { grid-template-columns: repeat(auto-fit, minmax(200p
 .palmares-amis { display: flex; flex-direction: column; gap: 6px; margin: 6px 0; }
 .ligne-palmares { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 8px; background: rgba(0,0,0,.04); }
 .ligne-palmares .petit { flex: 1; min-width: 0; }
+
+/* ----- Onglet Défis (OngletDefis.razor) et onglet Amis ----- */
+.onglets button { position: relative; }
+.onglets button .badge { position: absolute; top: 1px; right: calc(50% - 26px); min-width: 17px; height: 17px; padding: 0 4px; border-radius: 9px;
+                         background: var(--rouge); color: #fff; font-size: 11px; font-weight: 700; line-height: 17px; text-align: center; }
+.lien-defis { width: 100%; display: flex; align-items: center; gap: 12px; text-align: left; color: #fff; cursor: pointer; margin: 10px 0; }
+.lien-defis .ico { font-size: 28px; }
+.lien-defis .texte { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.lien-defis .texte b { font-family: "Barlow Condensed", sans-serif; letter-spacing: 1px; font-size: 17px; }
+.lien-defis .texte small { font-size: 12.5px; opacity: .85; }
+.lien-defis .badge { background: var(--rouge); color: #fff; border-radius: 10px; padding: 1px 8px; font-weight: 700; font-size: 13px; }
+.lien-defis .fleche { font-size: 26px; opacity: .7; }
+.onglet-defis { display: flex; flex-direction: column; gap: 4px; }
+.tete-defis { background: linear-gradient(160deg, #B80022, #0A2358 75%); border: 2px solid var(--or); color: #fff; }
+.tete-defis .ico-defis { font-size: 38px; margin-right: 12px; }
+.tete-defis b { font-family: "Barlow Condensed", sans-serif; font-size: 21px; letter-spacing: .5px; }
+.compteurs-defis { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.compteurs-defis span { background: rgba(255,255,255,.12); border-radius: 12px; padding: 3px 10px; font-size: 12.5px; }
+.compteurs-defis b { color: var(--or); }
+.section-defis { margin: 16px 2px 0; font-family: "Barlow Condensed", sans-serif; font-weight: 700; letter-spacing: 2px; font-size: 14px; color: var(--or); }
+.lien-succes { width: 100%; text-align: left; margin-top: 12px; cursor: pointer; font-size: 14.5px; }
+.onglet-amis .attente-joueurs { padding: 4px 10px; }
+.onglet-amis .vestiaire-commun, .onglet-amis .palmares-amis { background: #fff; border-radius: 14px; padding: 10px; color: var(--encre); }
+.onglet-amis .ligne-repli { margin-top: 8px; }
