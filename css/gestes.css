@@ -850,7 +850,7 @@ html, body { overscroll-behavior-x: none; overscroll-behavior-y: auto; }
 .ligne-effectif .nom small { font-size: 11.5px; color: var(--gris); }
 .ligne-effectif .note { font-family: "Barlow Condensed", sans-serif; font-size: 22px; color: var(--bleu-nuit); }
 .point-du-jour { background: linear-gradient(165deg, #0A2358, #1B4DB1 70%); color: #fff; border: 3px solid var(--or); }
-.point-du-jour h2 { margin: 2px 0 10px; }
+.point-du-jour h2 { margin: 2px 0 10px; color: #fff; }
 .point-du-jour .doux { color: rgba(255,255,255,.7); }
 .ligne-point { width: 100%; display: flex; align-items: center; gap: 10px; text-align: left; margin-top: 7px; padding: 10px 12px; border-radius: 12px;
                border: 1.5px solid rgba(255,255,255,.2); background: rgba(255,255,255,.08); color: #fff; cursor: pointer; }
