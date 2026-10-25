@@ -931,3 +931,6 @@ html, body { background-color: #050F2A; }
 @keyframes monteDuBas { from { transform: translateY(100%); } to { transform: translateY(0); } }
 @keyframes fondu { from { opacity: 0; } to { opacity: 1; } }
 @media (min-width: 900px) { .panneau-bas { left: 50%; right: auto; width: 560px; transform: translateX(-50%); animation: none; } }
+
+/* Équilibrage du prochain match (Equilibrage.cs) */
+.mots-equilibrage { margin: 6px 0 2px; font-size: 12.5px; text-align: center; color: #FFD9A0; line-height: 1.5; }
