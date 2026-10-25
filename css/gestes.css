@@ -934,3 +934,74 @@ html, body { background-color: #050F2A; }
 
 /* Équilibrage du prochain match (Equilibrage.cs) */
 .mots-equilibrage { margin: 6px 0 2px; font-size: 12.5px; text-align: center; color: #FFD9A0; line-height: 1.5; }
+
+/* ===================== Entraînement : programme, tirage, exercices (OngletEntrainement.razor) ===================== */
+.programme-semaine { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.programme-semaine .theme { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 10px 4px; border-radius: 14px;
+    border: 1.5px solid var(--bord); background: rgba(255,255,255,.06); color: #fff; cursor: pointer; transition: transform .15s, background .2s; }
+.programme-semaine .theme .ico { font-size: 24px; }
+.programme-semaine .theme b { font-size: 13px; }
+.programme-semaine .theme.actif { background: linear-gradient(160deg, #E4002B, #8E001B); border-color: var(--or); box-shadow: 0 6px 18px rgba(228,0,43,.35); transform: translateY(-2px); }
+.titre-seance { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 20px; color: var(--bleu-nuit); text-align: center; letter-spacing: .5px; }
+.seance-vide .des { font-size: 54px; text-align: center; animation: desFlotte 2.4s ease-in-out infinite; }
+@keyframes desFlotte { 0%, 100% { transform: rotate(-8deg) translateY(0); } 50% { transform: rotate(8deg) translateY(-6px); } }
+.seance-vide p { text-align: center; margin: 4px 0 8px; }
+.tirage-joueur .defile-carte { display: flex; justify-content: center; margin: 10px 0; animation: secoue .12s linear infinite; }
+@keyframes secoue { 0% { transform: translateX(-2px) rotate(-1deg); } 50% { transform: translateX(2px) rotate(1deg); } 100% { transform: translateX(-2px) rotate(-1deg); } }
+.seance-choix { text-align: center; }
+.seance-choix .atterrit { display: flex; justify-content: center; margin: 8px 0 4px; animation: atterrit .55s cubic-bezier(.2,1.6,.4,1); }
+@keyframes atterrit { from { transform: scale(.4) rotate(-10deg); opacity: 0; } to { transform: none; opacity: 1; } }
+.badge-seance.grand { font-size: 13px; padding: 4px 12px; margin-top: 4px; display: inline-block; }
+.mot-seance { font-size: 12.5px; color: #44506A; margin: 2px 0; }
+.titre-choix { font-family: "Barlow Condensed", sans-serif; font-weight: 700; letter-spacing: 1.5px; color: var(--rouge); margin: 10px 0 6px; }
+.exercices { display: grid; grid-template-columns: repeat(auto-fit, minmax(92px, 1fr)); gap: 6px; margin-bottom: 10px; }
+.exercice { display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 9px 4px; border-radius: 12px; border: 1.5px solid #D6DCE8;
+    background: #F6F8FC; color: var(--bleu-nuit); cursor: pointer; transition: transform .12s; }
+.exercice .ico { font-size: 22px; }
+.exercice b { font-size: 13.5px; }
+.exercice small { font-size: 11px; color: var(--gris); }
+.exercice.actif { border-color: var(--rouge); background: #FFF1F3; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(228,0,43,.18); }
+.seance-choix .bouton small { display: block; font-size: 11px; font-weight: 600; opacity: .85; }
+.verdict-seance { margin: 6px auto 0; padding: 6px 12px; border-radius: 12px; font-weight: 800; display: inline-block; color: #fff; }
+.verdict-seance.v4 { background: linear-gradient(90deg, #E2A920, #FFD45C); color: #3D2600; }
+.verdict-seance.v3 { background: #1B8F52; } .verdict-seance.v2 { background: #1B4DB1; } .verdict-seance.v1 { background: #B3122E; }
+
+/* ===================== Les mini-jeux (wwwroot/js/hbm-entrainement.js) ===================== */
+body.mj-ouvert { overflow: hidden; }
+.mj-fond { position: fixed; inset: 0; z-index: 200; background: radial-gradient(circle at 50% 30%, #13306E, #050F2A 70%);
+    display: flex; align-items: stretch; justify-content: center; padding: calc(8px + var(--haut)) 8px calc(8px + var(--bas)); animation: mjEntree .3s ease-out; }
+@keyframes mjEntree { from { opacity: 0; transform: scale(1.04); } to { opacity: 1; transform: none; } }
+.mj-cadre { width: 100%; max-width: 460px; display: flex; flex-direction: column; gap: 8px; }
+.mj-tete { display: flex; align-items: center; gap: 10px; color: #fff; }
+.mj-ico { font-size: 30px; width: 46px; height: 46px; display: flex; align-items: center; justify-content: center; border-radius: 14px;
+    background: linear-gradient(160deg, #E4002B, #8E001B); box-shadow: 0 6px 16px rgba(228,0,43,.4); }
+.mj-titres { flex: 1; display: flex; flex-direction: column; line-height: 1.05; }
+.mj-titres b { font-family: "Barlow Condensed", sans-serif; font-size: 26px; letter-spacing: 1px; }
+.mj-titres small { font-size: 13px; color: #C9D4EE; }
+.mj-fermer { width: 38px; height: 38px; border-radius: 19px; border: 1px solid rgba(255,255,255,.3); background: rgba(255,255,255,.08); color: #fff; font-size: 16px; cursor: pointer; }
+.mj-chrono { height: 8px; border-radius: 4px; background: rgba(255,255,255,.12); overflow: hidden; }
+.mj-chrono span { display: block; height: 100%; width: 100%; background: linear-gradient(90deg, #3DDC84, #FFD45C); border-radius: 4px; transition: width .1s linear; }
+.mj-chrono span.urgent { background: linear-gradient(90deg, #FF4D6D, #E4002B); animation: mjUrgent .5s ease-in-out infinite; }
+@keyframes mjUrgent { 50% { opacity: .55; } }
+.mj-scene { position: relative; flex: 1; display: flex; align-items: center; justify-content: center; min-height: 0; }
+.mj-scene canvas { border-radius: 20px; box-shadow: 0 18px 50px rgba(0,0,0,.55), 0 0 0 2px rgba(255,255,255,.08); touch-action: none; display: block; }
+.mj-intro { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; pointer-events: none;
+    background: rgba(5,15,42,.55); border-radius: 20px; }
+.mj-consigne { max-width: 80%; text-align: center; color: #fff; font-weight: 700; font-size: 17px; line-height: 1.35; padding: 12px 16px; border-radius: 14px;
+    background: rgba(5,15,42,.75); border: 1px solid rgba(255,212,92,.5); }
+.mj-decompte { font-family: "Barlow Condensed", sans-serif; font-weight: 900; font-size: 110px; color: #FFD45C; text-shadow: 0 6px 0 #8C5A00, 0 12px 30px rgba(0,0,0,.6); }
+.mj-decompte.pop { animation: mjPop .65s cubic-bezier(.2,1.8,.4,1); }
+@keyframes mjPop { from { transform: scale(2.2); opacity: 0; } 60% { opacity: 1; } to { transform: scale(1); opacity: 1; } }
+.mj-fin { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(5,15,42,.6); border-radius: 20px; }
+.mj-carte-fin { width: 82%; max-width: 320px; text-align: center; color: #fff; padding: 22px 18px 18px; border-radius: 22px;
+    background: linear-gradient(165deg, #13306E, #0A1C46); border: 3px solid var(--c); box-shadow: 0 0 40px color-mix(in srgb, var(--c) 45%, transparent); animation: mjPop .5s cubic-bezier(.2,1.6,.4,1); }
+.mj-etoiles { font-size: 44px; letter-spacing: 6px; }
+.mj-etoiles span { color: rgba(255,255,255,.18); display: inline-block; }
+.mj-etoiles span.on { color: #FFD45C; text-shadow: 0 0 18px rgba(255,212,92,.8); animation: mjEtoile .5s cubic-bezier(.2,1.8,.4,1) both; }
+@keyframes mjEtoile { from { transform: scale(0) rotate(-90deg); } to { transform: scale(1) rotate(0); } }
+.mj-verdict { font-family: "Barlow Condensed", sans-serif; font-weight: 900; font-size: 40px; color: var(--c); letter-spacing: 1px; }
+.mj-score b { font-family: "Barlow Condensed", sans-serif; font-size: 58px; line-height: 1; }
+.mj-score small { font-size: 18px; color: #C9D4EE; }
+.mj-mult { margin: 6px 0 14px; color: #C9D4EE; } .mj-mult b { color: #fff; font-size: 22px; }
+.mj-continuer { width: 100%; padding: 14px; border: 0; border-radius: 14px; font-weight: 800; font-size: 17px; color: #fff; cursor: pointer;
+    background: linear-gradient(90deg, #E4002B, #FF4D3D); box-shadow: 0 8px 20px rgba(228,0,43,.4); }
