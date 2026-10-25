@@ -517,7 +517,7 @@ window.hbmEntrainement = (() => {
                     <div class="mj-chrono"><span></span></div>
                     <div class="mj-scene"><canvas></canvas>
                         <div class="mj-intro"><div class="mj-consigne">${consigne}</div><div class="mj-decompte">3</div></div>
-                        <div class="mj-fin" hidden></div></div>
+                        <div class="mj-fin" style="display:none"></div></div>
                 </div>`;
             document.body.appendChild(fond);
             document.body.classList.add('mj-ouvert');
@@ -564,7 +564,7 @@ window.hbmEntrainement = (() => {
                 n--;
                 if (n > 0) { decompte.textContent = n; decompte.classList.remove('pop'); void decompte.offsetWidth; decompte.classList.add('pop'); }
                 else if (n === 0) { decompte.textContent = 'GO !'; decompte.classList.remove('pop'); void decompte.offsetWidth; decompte.classList.add('pop'); }
-                else { clearInterval(tic); intro.hidden = true; etat = 'jeu'; t = 0; avant = performance.now(); }
+                else { clearInterval(tic); intro.style.display = "none"; etat = 'jeu'; t = 0; avant = performance.now(); }
             }, 700);
             decompte.classList.add('pop');
 
@@ -602,7 +602,7 @@ window.hbmEntrainement = (() => {
                         <div class="mj-mult">Gain de la séance <b>${mult}</b></div>
                         <button class="mj-continuer">CONTINUER ▶</button>
                     </div>`;
-                finEl.hidden = false;
+                finEl.style.display = "flex";
                 if (s >= 70) fx.eclat(W / 2, H / 3, undefined, 50);
                 try { navigator.vibrate && navigator.vibrate(s >= 70 ? [40, 50, 40] : [80]); } catch (_) { }
                 finEl.querySelector('.mj-continuer').onclick = () => terminer(s);
