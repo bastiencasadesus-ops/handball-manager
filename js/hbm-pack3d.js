@@ -243,6 +243,12 @@ void main() {
                 canvas.addEventListener('pointercancel', () => inst.doigt = false);
             }
             instances.push(inst);
+            // Dessiné seulement quand il est à l'écran (hors de la vue : rien à calculer)
+            inst.visible = true;
+            if (window.IntersectionObserver) {
+                inst.obs = new IntersectionObserver(e => { inst.visible = e[e.length - 1].isIntersecting; }, { rootMargin: '40px' });
+                inst.obs.observe(canvas);
+            }
             conteneur?.classList.add('avec3d');
         } catch (err) {
             console.warn('Pack 3D indisponible', err);
@@ -336,10 +342,11 @@ void main() {
             const inst = instances[i];
             if (!inst.canvas.isConnected) {   // le pack a quitté la page : on libère WebGL
                 inst.gl.getExtension('WEBGL_lose_context')?.loseContext();
+                inst.obs?.disconnect();
                 instances.splice(i, 1);
                 continue;
             }
-            if (inst.canvas.offsetParent !== null) dessiner(inst, t);
+            if (inst.visible && !document.hidden && inst.canvas.offsetParent !== null) dessiner(inst, t);
         }
         requestAnimationFrame(boucle);
     }

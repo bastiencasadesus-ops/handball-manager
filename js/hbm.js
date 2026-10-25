@@ -75,6 +75,18 @@ window.hbm = (function () {
 
     return {
         lire: cle => { try { return localStorage.getItem(cle); } catch (e) { return null; } },
+        // Un nombre qui défile (les crédits du bandeau), sans repasser par Blazor à chaque image
+        defiler: (el, depuis, vers, duree, sep) => {
+            if (!el) return;
+            const f = n => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, sep);
+            const t0 = performance.now();
+            const pas = t => {
+                const k = Math.min(1, (t - t0) / duree), e = 1 - Math.pow(1 - k, 3);
+                el.textContent = f(depuis + (vers - depuis) * e);
+                if (k < 1) requestAnimationFrame(pas);
+            };
+            requestAnimationFrame(pas);
+        },
         ecrire: (cle, valeur) => { try { localStorage.setItem(cle, valeur); return true; } catch (e) { console.warn('hbm: sauvegarde refusée', e); return false; } },
         // iPhone : le son ne démarre qu'après un geste de l'utilisateur
         debloquerSon: () => { contexte(); },
@@ -440,7 +452,10 @@ window.hbmGestes = (function () {
             if (!window._hbmSauvegardeAuto) {
                 window._hbmSauvegardeAuto = true;
                 // L'appli passe en arrière-plan (autre appli, écran éteint, fermeture) : sauvegarde immédiate
-                const sauver = () => { if (ref) ref.invokeMethodAsync('SauverMaintenant').catch(() => { }); };
+                const sauver = () => {
+                    if (ref) ref.invokeMethodAsync('SauverMaintenant').catch(() => { });
+                    else try { DotNet.invokeMethodAsync('HandballManagerInterface', 'SauverPartie').catch(() => { }); } catch (e) { }
+                };
                 document.addEventListener('visibilitychange', () => { if (document.hidden) sauver(); });
                 window.addEventListener('pagehide', sauver);
             }

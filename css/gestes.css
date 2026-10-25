@@ -1007,3 +1007,53 @@ body.mj-ouvert { overflow: hidden; }
     background: linear-gradient(90deg, #E4002B, #FF4D3D); box-shadow: 0 8px 20px rgba(228,0,43,.4); }
 .mj-intro[hidden], .mj-fin[hidden] { display: none !important; }
 .seance-choix .bouton { flex-direction: column; gap: 0; line-height: 1.15; }
+
+/* =====================================================================
+   Fluidité (60 images/s) : les animations n'utilisent que transform et opacity,
+   que le téléphone anime sur sa puce graphique sans redessiner la page.
+   ===================================================================== */
+/* Le halo doré qui pulse (mercato, marche courante, rival) : une ombre fixe dont seule l'opacité bouge */
+.bandeau-mercato, .marche.courante, .pastille.rival { animation: none !important; position: relative; }
+.bandeau-mercato::after, .marche.courante::after, .pastille.rival::after {
+    content: ""; position: absolute; inset: -1px; border-radius: inherit; pointer-events: none;
+    box-shadow: 0 0 14px 2px rgba(255,212,92,.55); opacity: 0; animation: halo-doux 1.6s ease-in-out infinite; }
+.pastille.rival::after { box-shadow: 0 0 12px 2px rgba(255,80,110,.6); animation-duration: 1.5s; }
+@keyframes halo-doux { 50% { opacity: 1; } }
+
+/* Les logos en orbite : un calque derrière le sachet, un devant ; le passage de l'un à l'autre se fait
+   sur le côté (par l'opacité, sans toucher au z-index qui forçait à tout redessiner) */
+.orbite-clubs.derriere { z-index: 1; }
+.orbite-clubs.devant { z-index: 8; }
+.logo-orbite { z-index: auto; will-change: transform, opacity; }
+.orbite-clubs .logo-orbite { animation: orbite-trajet 9s linear infinite, orbite-devant 9s linear infinite;
+                             animation-delay: calc(var(--i) * -9s / var(--n)); }
+.orbite-clubs.derriere .logo-orbite { animation-name: orbite-trajet, orbite-derriere; }
+@keyframes orbite-trajet {
+    0%    { transform: translateX(0) translateY(26px) scale(1.25); }
+    12.5% { transform: translateX(96px) translateY(18px) scale(1.1); }
+    25%   { transform: translateX(136px) translateY(0) scale(.9); }
+    37.5% { transform: translateX(96px) translateY(-18px) scale(.7); }
+    50%   { transform: translateX(0) translateY(-26px) scale(.6); }
+    62.5% { transform: translateX(-96px) translateY(-18px) scale(.7); }
+    75%   { transform: translateX(-136px) translateY(0) scale(.9); }
+    87.5% { transform: translateX(-96px) translateY(18px) scale(1.1); }
+    100%  { transform: translateX(0) translateY(26px) scale(1.25); }
+}
+@keyframes orbite-devant { 0%, 25% { opacity: 1; } 25.01%, 74.99% { opacity: 0; } 75%, 100% { opacity: 1; } }
+@keyframes orbite-derriere { 0%, 24.99% { opacity: 0; } 25% { opacity: .9; } 50% { opacity: .6; } 75% { opacity: .9; } 75.01%, 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .orbite-clubs .logo-orbite { animation: none; } .orbite-clubs.derriere { display: none; } }
+
+/* Le reflet qui balaie le pack à ouvrir : déplacé (transform), plus de « left » recalculé à chaque image */
+.pack-corps::after { left: -120px !important; animation: reflet-glisse 2.2s infinite !important; }
+@keyframes reflet-glisse { from { transform: translateX(0) rotate(20deg); } to { transform: translateX(440px) rotate(20deg); } }
+
+/* L'irisé du sachet (sans WebGL) : un calque plus grand qui glisse, au lieu de déplacer le fond */
+.sachet::before { inset: -60%; background-size: 100% 100% !important; animation: holo-glisse 4.4s ease-in-out infinite alternate !important;
+                  animation-delay: calc(var(--rang) * -0.7s) !important; }
+@keyframes holo-glisse { from { transform: translate(-18%, -18%); } to { transform: translate(18%, 18%); } }
+
+/* La région jouable de la carte : halo fixe (l'animation du filtre redessinait toute la carte) */
+.carte-france path.jouable { animation: none; }
+
+/* La barre d'onglets est déjà opaque : le flou derrière elle coûtait à chaque défilement */
+.onglets { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgb(6, 21, 53); }
