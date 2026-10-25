@@ -75,7 +75,7 @@ window.hbm = (function () {
 
     return {
         lire: cle => { try { return localStorage.getItem(cle); } catch (e) { return null; } },
-        ecrire: (cle, valeur) => { try { localStorage.setItem(cle, valeur); } catch (e) { } },
+        ecrire: (cle, valeur) => { try { localStorage.setItem(cle, valeur); return true; } catch (e) { console.warn('hbm: sauvegarde refusée', e); return false; } },
         // iPhone : le son ne démarre qu'après un geste de l'utilisateur
         debloquerSon: () => { contexte(); },
         son: (nom, v) => {
