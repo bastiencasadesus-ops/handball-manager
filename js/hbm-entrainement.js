@@ -31,8 +31,9 @@ window.hbmEntrainement = (() => {
         ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
     }
     function ballon(ctx, x, y, r, rot = 0) {
+        // ombre portée : un disque sombre décalé (le flou « shadowBlur » coûtait cher à chaque image)
+        ctx.fillStyle = 'rgba(0,0,0,.22)'; ctx.beginPath(); ctx.arc(x, y + r * .28, r * 1.04, 0, 7); ctx.fill();
         ctx.save(); ctx.translate(x, y); ctx.rotate(rot);
-        ctx.shadowColor = 'rgba(0,0,0,.35)'; ctx.shadowBlur = r * .6; ctx.shadowOffsetY = r * .25;
         const g = ctx.createRadialGradient(-r * .35, -r * .4, r * .1, 0, 0, r);
         g.addColorStop(0, '#FFF6D8'); g.addColorStop(.45, '#F6B23C'); g.addColorStop(1, '#C8641A');
         ctx.fillStyle = g; ctx.beginPath(); ctx.arc(0, 0, r, 0, 7); ctx.fill();
@@ -188,7 +189,9 @@ window.hbmEntrainement = (() => {
                 // viseur
                 if (!tir) {
                     ctx.save(); ctx.translate(viseur.x, viseur.y);
-                    ctx.strokeStyle = '#FFD45C'; ctx.lineWidth = 3; ctx.shadowColor = '#FFD45C'; ctx.shadowBlur = 12;
+                    ctx.strokeStyle = 'rgba(255,212,92,.3)'; ctx.lineWidth = 9;   // le halo (sans flou coûteux)
+                    ctx.beginPath(); ctx.arc(0, 0, 16 + Math.sin(t * 10) * 2, 0, 7); ctx.stroke();
+                    ctx.strokeStyle = '#FFD45C'; ctx.lineWidth = 3;
                     ctx.beginPath(); ctx.arc(0, 0, 16 + Math.sin(t * 10) * 2, 0, 7); ctx.stroke();
                     ctx.beginPath(); ctx.moveTo(-26, 0); ctx.lineTo(-8, 0); ctx.moveTo(26, 0); ctx.lineTo(8, 0); ctx.moveTo(0, -26); ctx.lineTo(0, -8); ctx.moveTo(0, 26); ctx.lineTo(0, 8); ctx.stroke();
                     ctx.restore();
@@ -270,7 +273,8 @@ window.hbmEntrainement = (() => {
                     const c = centre(plongeon.z), k = Math.min(1, plongeon.t);
                     const x = W / 2 + (c.x - W / 2) * ease(k), y = H - 80 + (c.y - (H - 80)) * ease(k);
                     ctx.save(); ctx.translate(x, y); ctx.rotate((c.x < W / 2 ? -1 : 1) * .4 * k);
-                    ctx.shadowColor = 'rgba(0,0,0,.4)'; ctx.shadowBlur = 10;
+                    ctx.fillStyle = 'rgba(0,0,0,.3)';
+                    for (const dx of [-20, 20]) { rr(ctx, dx - 15, -20, 32, 46, 14); ctx.fill(); }
                     for (const dx of [-20, 20]) { const gg = ctx.createLinearGradient(0, -24, 0, 24); gg.addColorStop(0, '#FFE680'); gg.addColorStop(1, '#E2A920'); ctx.fillStyle = gg; rr(ctx, dx - 16, -24, 32, 46, 14); ctx.fill(); }
                     ctx.restore();
                 } else {
@@ -412,8 +416,10 @@ window.hbmEntrainement = (() => {
                 // le cœur qui bat
                 const pulse = 1 + Math.max(0, Math.sin(coeur)) * .12;
                 ctx.save(); ctx.translate(W / 2, 140); ctx.scale(pulse, pulse);
-                ctx.fillStyle = this.ok ? '#3DDC84' : '#FF4D6D'; ctx.shadowColor = ctx.fillStyle; ctx.shadowBlur = 24;
-                ctx.beginPath(); ctx.moveTo(0, 30); ctx.bezierCurveTo(-60, -10, -30, -55, 0, -25); ctx.bezierCurveTo(30, -55, 60, -10, 0, 30); ctx.fill();
+                const coeurPath = () => { ctx.beginPath(); ctx.moveTo(0, 30); ctx.bezierCurveTo(-60, -10, -30, -55, 0, -25); ctx.bezierCurveTo(30, -55, 60, -10, 0, 30); };
+                ctx.fillStyle = this.ok ? '#3DDC84' : '#FF4D6D';
+                ctx.save(); ctx.globalAlpha = .28; ctx.scale(1.22, 1.22); coeurPath(); ctx.fill(); ctx.restore();   // le halo
+                coeurPath(); ctx.fill();
                 ctx.restore();
                 // électrocardiogramme
                 ctx.strokeStyle = this.ok ? 'rgba(61,220,132,.8)' : 'rgba(255,77,109,.8)'; ctx.lineWidth = 3; ctx.beginPath();
@@ -515,7 +521,7 @@ window.hbmEntrainement = (() => {
                     <div class="mj-tete"><span class="mj-ico">${icone}</span><div class="mj-titres"><b>${titre}</b><small>${nom}</small></div>
                         <button class="mj-fermer" aria-label="Fermer">✕</button></div>
                     <div class="mj-chrono"><span></span></div>
-                    <div class="mj-scene"><canvas></canvas>
+                    <div class="mj-scene"><div class="mj-toile"><canvas></canvas><div class="mj-vignette"></div></div>
                         <div class="mj-intro"><div class="mj-consigne">${consigne}</div><div class="mj-decompte">3</div></div>
                         <div class="mj-fin" style="display:none"></div></div>
                 </div>`;
@@ -532,7 +538,7 @@ window.hbmEntrainement = (() => {
                 const scene = fond.querySelector('.mj-scene');
                 const dispoW = scene.clientWidth, dispoH = scene.clientHeight;
                 echelle = Math.min(dispoW / W, dispoH / H);
-                const dpr = Math.min(2.5, window.devicePixelRatio || 1);
+                const dpr = Math.min(2, window.devicePixelRatio || 1);   // (au-delà, l'œil ne voit plus la différence)
                 canvas.style.width = `${W * echelle}px`; canvas.style.height = `${H * echelle}px`;
                 canvas.width = Math.round(W * echelle * dpr); canvas.height = Math.round(H * echelle * dpr);
                 ctx.setTransform(echelle * dpr, 0, 0, echelle * dpr, 0, 0);
@@ -581,10 +587,7 @@ window.hbmEntrainement = (() => {
                 jeu.dessiner(ctx, t);
                 fx.dessiner(ctx, dt);
                 ctx.restore();
-                // vignette
-                const v = ctx.createRadialGradient(W / 2, H / 2, H * .35, W / 2, H / 2, H * .75);
-                v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(0,0,0,.35)');
-                ctx.fillStyle = v; ctx.fillRect(0, 0, W, H);
+                // (la vignette sombre des bords est un calque CSS fixe : .mj-vignette)
                 raf = requestAnimationFrame(boucle);
             }
             raf = requestAnimationFrame(boucle);
