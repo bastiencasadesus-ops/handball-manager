@@ -77,12 +77,15 @@ window.hbm = (function () {
         lire: cle => { try { return localStorage.getItem(cle); } catch (e) { return null; } },
         // Un nombre qui défile (les crédits du bandeau), sans repasser par Blazor à chaque image
         defiler: (el, depuis, vers, duree, sep) => {
-            if (!el) return;
+            // (on modifie le nœud texte de Blazor lui-même : le remplacer le détacherait de Blazor,
+            //  et le bandeau ne suivrait plus les crédits)
+            const noeud = el && el.firstChild && el.firstChild.nodeType === 3 ? el.firstChild : null;
+            if (!noeud) return;
             const f = n => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, sep);
             const t0 = performance.now();
             const pas = t => {
                 const k = Math.min(1, (t - t0) / duree), e = 1 - Math.pow(1 - k, 3);
-                el.textContent = f(depuis + (vers - depuis) * e);
+                if (noeud.isConnected) noeud.nodeValue = f(depuis + (vers - depuis) * e);
                 if (k < 1) requestAnimationFrame(pas);
             };
             requestAnimationFrame(pas);
