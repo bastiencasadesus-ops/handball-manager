@@ -435,7 +435,16 @@ window.hbmGestes = (function () {
     document.addEventListener('contextmenu', e => { if (e.target.closest && e.target.closest('[data-prendre]')) e.preventDefault(); });
 
     return {
-        init: r => { ref = r; },
+        init: r => {
+            ref = r;
+            if (!window._hbmSauvegardeAuto) {
+                window._hbmSauvegardeAuto = true;
+                // L'appli passe en arrière-plan (autre appli, écran éteint, fermeture) : sauvegarde immédiate
+                const sauver = () => { if (ref) ref.invokeMethodAsync('SauverMaintenant').catch(() => { }); };
+                document.addEventListener('visibilitychange', () => { if (document.hidden) sauver(); });
+                window.addEventListener('pagehide', sauver);
+            }
+        },
         liberer: () => { ref = null; },
         retour: () => { if (!voileOuvert()) invoquer('Balayer', -1); }
     };

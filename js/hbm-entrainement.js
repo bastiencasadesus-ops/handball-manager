@@ -127,16 +127,16 @@ window.hbmEntrainement = (() => {
         return {
             maj(dt, t) {
                 phase += dt;
-                viseur.x = W / 2 + Math.sin(phase * 2.3) * 128 + Math.sin(phase * 5.1) * 12;
-                viseur.y = but.y + but.h / 2 + Math.sin(phase * 3.1 + 1) * 74;
+                viseur.x = W / 2 + Math.sin(phase * 2.9) * 128 + Math.sin(phase * 6.3) * 16;
+                viseur.y = but.y + but.h / 2 + Math.sin(phase * 3.8 + 1) * 74;
                 if (Math.abs(gk.x - gk.cible) < 6) gk.cible = rnd(but.x + 50, but.x + but.w - 50);
-                gk.x += Math.sign(gk.cible - gk.x) * Math.min(Math.abs(gk.cible - gk.x), (130 + t * 5) * dt);
+                gk.x += Math.sign(gk.cible - gk.x) * Math.min(Math.abs(gk.cible - gk.x), (175 + t * 9) * dt);
                 recharge -= dt; filet = Math.max(0, filet - dt * 2);
                 if (tir) {
                     tir.t += dt / .38;
                     if (tir.t >= 1 && !tir.fini) {
                         tir.fini = true;
-                        const pare = Math.abs(tir.x - gk.x) < 46 && tir.y > but.y + 30;
+                        const pare = Math.abs(tir.x - gk.x) < 56 && tir.y > but.y + 22;
                         if (pare) { fx.texte(tir.x, tir.y - 10, 'ARRÊT !', '#FF8FA3'); fx.secouer(6); tir.pare = true; }
                         else {
                             const coin = (tir.x < but.x + 60 || tir.x > but.x + but.w - 60) && tir.y < but.y + 70;
@@ -221,10 +221,10 @@ window.hbmEntrainement = (() => {
         return {
             maj(dt, t) {
                 prochain -= dt;
-                if (prochain <= 0 && total < 11) {
+                if (prochain <= 0 && total < 13) {
                     total++;
-                    tirs.push({ z: Math.floor(rnd(0, 4)), t: 0, duree: clamp(1.25 - t * .045, .6, 1.25), fini: false });
-                    prochain = clamp(1.45 - t * .05, .75, 1.45);
+                    tirs.push({ z: Math.floor(rnd(0, 4)), t: 0, duree: clamp(1.0 - t * .05, .5, 1.0), fini: false });
+                    prochain = clamp(1.2 - t * .05, .6, 1.2);
                 }
                 for (const b of tirs) {
                     b.t += dt / b.duree;
@@ -285,13 +285,13 @@ window.hbmEntrainement = (() => {
                 const z = (x > W / 2 ? 1 : 0) + (y > but.y + but.h / 2 ? 2 : 0);
                 plongeon = { z, t: 0 };
             },
-            score: () => clamp(Math.round(arrets * 10.5), 0, 100)
+            score: () => clamp(Math.round(arrets * 8.3), 0, 100)
         };
     }
 
     function jeuVitesse(fx, couleur) {
         let distance = 0, vitesse = 0, dernier = null, faux = 0, pas = 0, flash = { g: 0, d: 0 };
-        const cible = 44;
+        const cible = 52;
         return {
             maj(dt) { vitesse *= Math.pow(.25, dt); distance += vitesse * dt; flash.g = Math.max(0, flash.g - dt * 5); flash.d = Math.max(0, flash.d - dt * 5); },
             dessiner(ctx, t) {
@@ -345,7 +345,7 @@ window.hbmEntrainement = (() => {
             maj(dt, t) {
                 if (!arme) {
                     attente -= dt;
-                    if (attente <= 0 && actions < 13) { actions++; arme = { i: Math.floor(rnd(0, pos.length)), t: 0, duree: clamp(1.0 - t * .03, .55, 1) }; }
+                    if (attente <= 0 && actions < 14) { actions++; arme = { i: Math.floor(rnd(0, pos.length)), t: 0, duree: clamp(.85 - t * .03, .45, .85) }; }
                 } else {
                     arme.t += dt / arme.duree;
                     if (arme.t >= 1) {
@@ -385,9 +385,9 @@ window.hbmEntrainement = (() => {
                 if (arme && arme.i === i) {
                     contres++; fx.texte(p.x, p.y - 40, arme.t < .5 ? 'INTERCEPTÉ !' : 'CONTRÉ !', '#3DDC84', 30); fx.eclat(p.x, p.y, ['#3DDC84', '#fff', '#2EC4F1'], 16);
                     arme = null; attente = rnd(.3, .65);
-                } else { fx.texte(p.x, p.y - 40, 'PAS LUI !', '#FF8FA3', 22); pertes += .5; }
+                } else { fx.texte(p.x, p.y - 40, 'PAS LUI !', '#FF8FA3', 22); pertes += 1; }
             },
-            score: () => clamp(Math.round((contres - pertes * .3) / 12 * 100), 0, 100)
+            score: () => clamp(Math.round((contres - pertes * .4) / 13 * 100), 0, 100)
         };
     }
 
@@ -396,9 +396,9 @@ window.hbmEntrainement = (() => {
         return {
             largeur: 120, ok: false,
             maj(dt, t) {
-                vZone += rnd(-260, 260) * dt; vZone *= .985; vZone = clamp(vZone, -120 - t * 6, 120 + t * 6);
+                vZone += rnd(-360, 360) * dt; vZone *= .985; vZone = clamp(vZone, -150 - t * 8, 150 + t * 8);
                 zone += vZone * dt;
-                const largeur = 120 - t * 4.2;
+                const largeur = 104 - t * 4.4;
                 if (zone < 30 + largeur / 2 || zone > W - 30 - largeur / 2) { vZone = -vZone; zone = clamp(zone, 30 + largeur / 2, W - 30 - largeur / 2); }
                 total += dt;
                 const ok = doigt && Math.abs(curseur - zone) < largeur / 2;
@@ -436,7 +436,7 @@ window.hbmEntrainement = (() => {
                 if (type === 'haut') { doigt = false; return; }
                 if (y > 340) { doigt = true; curseur = clamp(x, 40, W - 40); }
             },
-            score: () => clamp(Math.round((total ? dedans / total : 0) / .85 * 100), 0, 100)
+            score: () => clamp(Math.round((total ? dedans / total : 0) / .9 * 100), 0, 100)
         };
     }
 
@@ -448,7 +448,7 @@ window.hbmEntrainement = (() => {
             maj(dt, t) {
                 if (libre < 0) {
                     attente -= dt;
-                    if (attente <= 0 && passes < 12) { libre = Math.floor(rnd(0, places.length)); fenetre = clamp(1.3 - t * .05, .6, 1.3); passes++; }
+                    if (attente <= 0 && passes < 13) { libre = Math.floor(rnd(0, places.length)); fenetre = clamp(1.05 - t * .05, .5, 1.05); passes++; }
                 } else {
                     fenetre -= dt;
                     if (fenetre <= 0) { const p = places[libre]; fx.texte(p.x, p.y - 34, 'TROP TARD', '#FF8FA3', 22); ratees++; libre = -1; attente = rnd(.3, .6); }
@@ -493,7 +493,7 @@ window.hbmEntrainement = (() => {
                     libre = -1; attente = rnd(.3, .6);
                 } else { ratees++; fx.texte(p.x, p.y - 36, 'INTERCEPTÉ', '#FF8FA3', 24); fx.secouer(6); }
             },
-            score: () => clamp(Math.round((bonnes - ratees * .4) / 11 * 100), 0, 100)
+            score: () => clamp(Math.round((bonnes - ratees * .6) / 12 * 100), 0, 100)
         };
     }
 
@@ -592,8 +592,8 @@ window.hbmEntrainement = (() => {
             function montrerFin() {
                 etat = 'fin';
                 const s = jeu.score();
-                const [verdict, mult, coul] = s >= 90 ? ['PARFAIT !', '×2', '#FFD45C'] : s >= 70 ? ['TRÈS BIEN', '×1,5', '#3DDC84'] : s >= 40 ? ['CORRECT', '×1', '#2EC4F1'] : ['RATÉ…', '×0,5', '#FF8FA3'];
-                const etoiles = s >= 90 ? 3 : s >= 70 ? 2 : s >= 40 ? 1 : 0;
+                const [verdict, mult, coul] = s >= 92 ? ['PARFAIT !', '×2', '#FFD45C'] : s >= 75 ? ['TRÈS BIEN', '×1,5', '#3DDC84'] : s >= 45 ? ['CORRECT', '×1', '#2EC4F1'] : ['RATÉ…', '×0,5', '#FF8FA3'];
+                const etoiles = s >= 92 ? 3 : s >= 75 ? 2 : s >= 45 ? 1 : 0;
                 finEl.innerHTML = `
                     <div class="mj-carte-fin" style="--c:${coul}">
                         <div class="mj-etoiles">${[0, 1, 2].map(i => `<span class="${i < etoiles ? 'on' : ''}" style="animation-delay:${.15 + i * .18}s">★</span>`).join('')}</div>
