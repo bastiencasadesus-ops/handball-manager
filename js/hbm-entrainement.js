@@ -63,6 +63,11 @@ window.hbmEntrainement = (() => {
         }
         ctx.restore();
     }
+    // Une couleur d'adversaire bien distincte de celle de ton club
+    function adversaireDe(hex) {
+        const n = parseInt(hex.replace('#', ''), 16), r = n >> 16, g = (n >> 8) & 255, b = n & 255;
+        return r > b + 30 ? '#1E5BD6' : '#D0342C';
+    }
     function eclaircir(hex, k) {
         const n = parseInt(hex.replace('#', ''), 16);
         let r = n >> 16, g = (n >> 8) & 255, b = n & 255;
@@ -239,7 +244,7 @@ window.hbmEntrainement = (() => {
                 g.addColorStop(0, '#0B1E4A'); g.addColorStop(.42, '#1A3E86'); g.addColorStop(.43, '#2B63C8'); g.addColorStop(1, '#173C8A');
                 ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
                 // le tireur au loin
-                joueur(ctx, W / 2, 96, 20, '#C0392B', '7');
+                joueur(ctx, W / 2, 96, 20, adversaireDe(couleur), '7');
                 ctx.fillStyle = 'rgba(255,255,255,.7)'; ctx.font = '600 12px Inter, sans-serif'; ctx.textAlign = 'center'; ctx.fillText('le tireur', W / 2, 132);
                 // le but vu de l'intérieur : 4 zones
                 ctx.strokeStyle = 'rgba(255,255,255,.9)'; ctx.lineWidth = 5; ctx.strokeRect(but.x, but.y, but.w, but.h);
@@ -362,7 +367,7 @@ window.hbmEntrainement = (() => {
                 // les attaquants
                 pos.forEach((p, i) => {
                     const a = arme && arme.i === i;
-                    joueur(ctx, p.x + p.ox, p.y + p.oy, 20, '#C0392B', i + 3, a ? { halo: '#FFD45C', haloPart: arme.t } : {});
+                    joueur(ctx, p.x + p.ox, p.y + p.oy, 20, adversaireDe(couleur), i + 3, a ? { halo: '#FFD45C', haloPart: arme.t } : {});
                     if (a) {
                         ctx.save(); ctx.translate(p.x + p.ox + 18, p.y + p.oy - 22); ctx.rotate(-.5 - arme.t * .9);
                         ballon(ctx, 10, 0, 9, 0); ctx.restore();
@@ -371,7 +376,7 @@ window.hbmEntrainement = (() => {
                 });
                 ctx.fillStyle = 'rgba(5,15,42,.6)'; rr(ctx, 12, 14, 150, 30, 15); ctx.fill();
                 ctx.fillStyle = '#fff'; ctx.font = '700 15px Inter, sans-serif'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
-                ctx.fillText(`🛡 ${contres} contrés · ❌ ${pertes}`, 24, 29);
+                ctx.fillText(`🛡 ${contres} contrés · ❌ ${Math.floor(pertes)}`, 24, 29);
             },
             toucher(x, y) {
                 const i = pos.findIndex(p => Math.hypot(p.x + (p.ox || 0) - x, p.y + (p.oy || 0) - y) < 38);
@@ -464,7 +469,7 @@ window.hbmEntrainement = (() => {
                 joueur(ctx, porteur.x, porteur.y, 24, couleur, 'C');
                 if (!passe) ballon(ctx, porteur.x + 22, porteur.y - 18, 10, t * 3);
                 // défenseurs et coéquipiers
-                defs.forEach(d => joueur(ctx, d.x, d.y, 16, '#C0392B'));
+                defs.forEach(d => joueur(ctx, d.x, d.y, 15, adversaireDe(couleur)));
                 places.forEach((p, i) => {
                     const l = i === libre;
                     joueur(ctx, p.x, p.y, 20, couleur, i + 2, l ? { halo: '#3DDC84', haloPart: 1, haloAlpha: .5 + .5 * Math.sin(t * 14) } : {});

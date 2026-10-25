@@ -1005,3 +1005,5 @@ body.mj-ouvert { overflow: hidden; }
 .mj-mult { margin: 6px 0 14px; color: #C9D4EE; } .mj-mult b { color: #fff; font-size: 22px; }
 .mj-continuer { width: 100%; padding: 14px; border: 0; border-radius: 14px; font-weight: 800; font-size: 17px; color: #fff; cursor: pointer;
     background: linear-gradient(90deg, #E4002B, #FF4D3D); box-shadow: 0 8px 20px rgba(228,0,43,.4); }
+.mj-intro[hidden], .mj-fin[hidden] { display: none !important; }
+.seance-choix .bouton { flex-direction: column; gap: 0; line-height: 1.15; }
