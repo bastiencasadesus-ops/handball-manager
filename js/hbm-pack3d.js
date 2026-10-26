@@ -243,6 +243,7 @@ void main() {
                 canvas.addEventListener('pointercancel', () => inst.doigt = false);
             }
             instances.push(inst);
+            lancerBoucle();
             // Dessiné seulement quand il est à l'écran (hors de la vue : rien à calculer)
             inst.visible = true;
             if (window.IntersectionObserver) {
@@ -326,7 +327,10 @@ void main() {
 
     // Les nouveaux canvas sont montés dès qu'ils apparaissent dans la page
     const chercher = () => { if (webgl) document.querySelectorAll('canvas[data-pack3d]:not([data-pack3d-monte])').forEach(monter); };
-    new MutationObserver(chercher).observe(document.documentElement, { childList: true, subtree: true });
+    // (au plus une recherche par image, même si la page change beaucoup, pendant un match par exemple)
+    let rechercheProgrammee = false;
+    const chercherBientot = () => { if (rechercheProgrammee) return; rechercheProgrammee = true; requestAnimationFrame(() => { rechercheProgrammee = false; chercher(); }); };
+    new MutationObserver(chercherBientot).observe(document.documentElement, { childList: true, subtree: true });
     // Police chargée après coup : on redessine les images avec la bonne police
     document.fonts?.load('700 40px "Barlow Condensed"').then(() => {
         for (const inst of instances) {
@@ -334,8 +338,11 @@ void main() {
             peindre(inst.gl, inst.tex[1], verso(inst.d));
         }
     });
-    let derniereRecherche = 0;
+    // La boucle ne tourne que tant qu'un pack est affiché (sinon elle occupait le téléphone pendant les matchs)
+    let derniereRecherche = 0, bouclePrevue = false;
+    function lancerBoucle() { if (!bouclePrevue) { bouclePrevue = true; requestAnimationFrame(boucle); } }
     function boucle(ms) {
+        bouclePrevue = false;
         const t = ms / 1000;
         if (ms - derniereRecherche > 500) { derniereRecherche = ms; chercher(); }
         for (let i = instances.length - 1; i >= 0; i--) {
@@ -348,9 +355,9 @@ void main() {
             }
             if (inst.visible && !document.hidden && inst.canvas.offsetParent !== null) dessiner(inst, t);
         }
-        requestAnimationFrame(boucle);
+        if (instances.length) lancerBoucle();
     }
-    requestAnimationFrame(boucle);
+    lancerBoucle();
     return { instances };
 })();
 

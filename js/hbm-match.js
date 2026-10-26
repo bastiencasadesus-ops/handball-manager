@@ -2,7 +2,13 @@
 // Le moteur du jeu (MatchEnDirect) décide de tout ; ce fichier rejoue chaque action reçue :
 // placement de l'attaque, quelques passes, puis le tir du vrai tireur avec le vrai résultat
 // (but, arrêt du gardien, tir raté, perte de balle). Ton équipe attaque toujours vers le haut.
-window.hbmMatch = (() => {
+//
+// FLUIDITÉ : quand le téléphone le permet (OffscreenCanvas, iOS 16.4+), l'animation tourne dans un
+// « worker », à côté du jeu : le moteur C# peut calculer une action sans jamais faire sauter une image.
+// Ce même fichier sert aux deux côtés : la page (window.hbmMatch) et le worker (le dessin).
+(() => {
+    const DANS_WORKER = typeof window === 'undefined';
+    const SRC = DANS_WORKER ? '' : (document.currentScript && document.currentScript.src) || 'js/hbm-match.js';
     const L = 20, LONG = 40, MARGE = .5;
     const POSTES = ['GB', 'AG', 'AD', 'ARG', 'ARD', 'DC', 'PIV'];   // l'ordre des cases (Equipe.PostesDesCases)
     // Positions d'attaque, en mètres depuis la ligne de but attaquée
@@ -15,7 +21,7 @@ window.hbmMatch = (() => {
     };
     const COULEURS = { moi: ['#E4002B', '#FFB020'], eux: ['#2E7BF0', '#2FCF7A'] };
 
-    let toile = null, ctx = null, raf = 0, echelle = 1, larg = 0, haut = 0, ox = 0, choisi = null, infoMinuteur = 0;
+    let toile = null, ctx = null, raf = 0, echelle = 1, larg = 0, haut = 0, ox = 0, dpr = 1, choisi = null, infoMinuteur = 0, visible = true;
     let fond = null;   // le terrain dessiné une fois (caméra fixe : il ne bouge jamais)
     let equipes = { moi: [], eux: [] }, defenses = { moi: '6-0', eux: '6-0' };
     const ballon = { x: 10, y: 20, z: 0, trace: [], porteur: null, vol: null };
@@ -161,14 +167,18 @@ window.hbmMatch = (() => {
         if (filet) filet.t = Math.max(0, filet.t - dt * .6);
     }
 
+
     const px = x => ox + (x + MARGE) * echelle;
     const py = y => (y + MARGE) * echelle;
+    const toileVide = (w, h) => {
+        if (typeof OffscreenCanvas !== 'undefined') return new OffscreenCanvas(w, h);
+        const c = document.createElement('canvas'); c.width = w; c.height = h; return c;
+    };
+    const rayon = gb => Math.max(7.5, .7 * echelle) * (gb ? 1.08 : 1);
 
     // Le terrain, dessiné une seule fois dans une image (redessiné seulement si la taille change)
     function preparerFond() {
-        const dpr = Math.min(2, window.devicePixelRatio || 1);
-        fond = document.createElement('canvas');
-        fond.width = Math.round(larg * dpr); fond.height = Math.round(haut * dpr);
+        fond = toileVide(Math.max(1, Math.round(larg * dpr)), Math.max(1, Math.round(haut * dpr)));
         const c = fond.getContext('2d'); c.setTransform(dpr, 0, 0, dpr, 0, 0);
         const garde = ctx; ctx = c; terrain(); ctx = garde;
     }
@@ -201,18 +211,55 @@ window.hbmMatch = (() => {
         ctx.beginPath(); ctx.arc(px(10), py(20), 1.4 * echelle, 0, 7); ctx.stroke();
     }
 
+    // Les petites images (pastille + numéro de chaque joueur, légende du bas) : dessinées une fois par la page
+    // (qui a les polices), puis simplement copiées à chaque image du match.
+    let sprites = new Map();
+    const cleSprite = (cote, gb, num, ch) => cote + (gb ? 'G' : '') + '|' + num + (ch ? '*' : '');
+    function fabriquerSprite(cote, gb, num, ch) {
+        const r = rayon(gb), m = r * 1.45, cote2 = Math.ceil(m * 2 + 4);
+        const c = toileVide(Math.ceil(cote2 * dpr), Math.ceil(cote2 * dpr)), g = c.getContext('2d');
+        g.setTransform(dpr, 0, 0, dpr, 0, 0);
+        const x = cote2 / 2, y = cote2 / 2;
+        g.fillStyle = 'rgba(0,0,0,.28)'; g.beginPath(); g.ellipse(x + r * .18, y + r * .55, r * 1.05, r * .55, 0, 0, 7); g.fill();
+        g.fillStyle = COULEURS[cote][gb ? 1 : 0]; g.beginPath(); g.arc(x, y, r, 0, 7); g.fill();
+        g.lineWidth = ch ? 3.5 : 2; g.strokeStyle = ch ? '#FFD45C' : 'rgba(255,255,255,.95)'; g.stroke();
+        g.fillStyle = 'rgba(255,255,255,.22)'; g.beginPath(); g.arc(x - r * .3, y - r * .32, r * .38, 0, 7); g.fill();
+        g.fillStyle = '#fff'; g.font = `800 ${Math.round(r * 1.05)}px "Barlow Condensed", sans-serif`; g.textAlign = 'center'; g.textBaseline = 'middle';
+        g.fillText(num, x, y + r * .06);
+        return { c: c.transferToImageBitmap ? c.transferToImageBitmap() : c, cote: cote2 };
+    }
+    function fabriquerLegende(texte) {
+        const c = toileVide(Math.ceil(140 * dpr), Math.ceil(16 * dpr)), g = c.getContext('2d');
+        g.setTransform(dpr, 0, 0, dpr, 0, 0);
+        g.fillStyle = 'rgba(255,255,255,.7)'; g.font = '700 11px "Barlow Condensed", sans-serif'; g.textAlign = 'left'; g.textBaseline = 'alphabetic';
+        g.fillText(texte, 0, 12);
+        return { c: c.transferToImageBitmap ? c.transferToImageBitmap() : c, cote: 0 };
+    }
+    // (côté page) toutes les images des joueurs actuels, aux dimensions actuelles
+    function fabriquerSprites(cfgMoi, cfgEux) {
+        const m = new Map();
+        for (const [cote, liste] of [['moi', cfgMoi], ['eux', cfgEux]])
+            (liste || []).forEach((j, i) => {
+                for (const ch of [false, true]) m.set(cleSprite(cote, i === 0, j.num, ch), fabriquerSprite(cote, i === 0, j.num, ch));
+            });
+        m.set('lab|moi', fabriquerLegende('▲ TON ATTAQUE'));
+        m.set('lab|eux', fabriquerLegende('▼ ATTAQUE ADVERSE'));
+        return m;
+    }
+    function remplacerSprites(m) {
+        for (const s of sprites.values()) if (s.c.close) s.c.close();
+        sprites = m;
+    }
+
     function dessinerJoueur(j) {
-        const x = px(j.x), y = py(j.y), r = Math.max(7.5, .7 * echelle) * (j.poste === 'GB' ? 1.08 : 1);
-        const couleur = COULEURS[j.cote][j.poste === 'GB' ? 1 : 0];
-        ctx.fillStyle = 'rgba(0,0,0,.28)'; ctx.beginPath(); ctx.ellipse(x + r * .18, y + r * .55, r * 1.05, r * .55, 0, 0, 7); ctx.fill();
+        const x = px(j.x), y = py(j.y), gb = j.poste === 'GB';
+        const s = sprites.get(cleSprite(j.cote, gb, j.num, choisi === j));
         if (j.plonge > 0) { ctx.save(); ctx.translate(x, y); ctx.scale(1 + j.plonge * .5, 1 - j.plonge * .2); ctx.translate(-x, -y); }
-        ctx.fillStyle = couleur; ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill();
-        ctx.lineWidth = choisi === j ? 3.5 : 2; ctx.strokeStyle = choisi === j ? '#FFD45C' : 'rgba(255,255,255,.95)'; ctx.stroke();
-        ctx.fillStyle = 'rgba(255,255,255,.22)'; ctx.beginPath(); ctx.arc(x - r * .3, y - r * .32, r * .38, 0, 7); ctx.fill();
-        ctx.fillStyle = '#fff'; ctx.font = `800 ${Math.round(r * 1.05)}px "Barlow Condensed", sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-        ctx.fillText(j.num, x, y + r * .06);
+        if (s) ctx.drawImage(s.c, x - s.cote / 2, y - s.cote / 2, s.cote, s.cote);
+        else { const r = rayon(gb); ctx.fillStyle = COULEURS[j.cote][gb ? 1 : 0]; ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill(); }
         if (j.plonge > 0) ctx.restore();
         if (j.cote === 'moi' && j.forme < 65) {
+            const r = rayon(gb);
             ctx.fillStyle = 'rgba(0,0,0,.45)'; ctx.fillRect(x - r, y - r - 7, r * 2, 3.5);
             ctx.fillStyle = j.forme < 40 ? '#FF4D6D' : '#FFD45C'; ctx.fillRect(x - r, y - r - 7, r * 2 * j.forme / 100, 3.5);
         }
@@ -231,6 +278,7 @@ window.hbmMatch = (() => {
         ctx.beginPath(); ctx.moveTo(x - r, y); ctx.quadraticCurveTo(x, y + r * .5, x + r, y); ctx.stroke();
     }
 
+    const tous = [];
     function dessiner() {
         ctx.drawImage(fond, 0, 0, larg, haut);
         // le filet qui s'allume sur un but
@@ -239,82 +287,199 @@ window.hbmMatch = (() => {
             ctx.fillStyle = `rgba(255,212,92,${.35 + filet.t * .6})`;
             ctx.fillRect(px(8.5), py(gy) - (s > 0 ? .9 * echelle : 0), 3 * echelle, .9 * echelle);
         }
-        for (const j of equipes.moi.concat(equipes.eux).sort((a, b) => a.y - b.y)) dessinerJoueur(j);
+        tous.length = 0;
+        for (const j of equipes.moi) tous.push(j);
+        for (const j of equipes.eux) tous.push(j);
+        tous.sort((a, b) => a.y - b.y);
+        for (const j of tous) dessinerJoueur(j);
         dessinerBallon();
-        ctx.fillStyle = 'rgba(255,255,255,.7)'; ctx.font = '700 11px "Barlow Condensed", sans-serif'; ctx.textAlign = 'left';
-        ctx.fillText(possession === 'moi' ? '▲ TON ATTAQUE' : '▼ ATTAQUE ADVERSE', 10, haut - 10);
+        const lab = sprites.get(possession === 'moi' ? 'lab|moi' : 'lab|eux');
+        if (lab) ctx.drawImage(lab.c, px(0) + 6, py(20) + 4, 140, 16);   // le long de la ligne médiane
     }
 
-    let avant = 0;
+    const prochaineImage = typeof requestAnimationFrame !== 'undefined' ? requestAnimationFrame : f => setTimeout(() => f(performance.now()), 16);
+    const annulerImage = typeof cancelAnimationFrame !== 'undefined' ? cancelAnimationFrame : clearTimeout;
+    let avant = 0, tourne = false, stats = { images: 0, lentes: 0, pire: 0 };
     function boucle(t) {
-        if (!toile) return;
-        const dt = Math.min(.05, (t - avant) / 1000); avant = t;
-        if (!document.hidden && toile.isConnected) { maj(dt); dessiner(); }
-        raf = requestAnimationFrame(boucle);
+        if (!tourne || !ctx) return;
+        const brut = t - avant; stats.images++; if (brut > 25) stats.lentes++; if (brut > stats.pire) stats.pire = brut;
+        const dt = Math.min(.05, Math.max(0, brut / 1000)); avant = t;
+        if (visible) { maj(dt); dessiner(); }
+        raf = prochaineImage(boucle);
     }
+    function demarrer() { if (tourne) return; tourne = true; avant = performance.now(); raf = prochaineImage(boucle); }
+    function arreter() { tourne = false; annulerImage(raf); }
 
-    // Tout le terrain, sur toute la largeur de l'écran (pas de bandes sur les côtés)
-    function taille() {
-        if (!toile) return;
-        const w = toile.parentElement.clientWidth, dpr = Math.min(2, window.devicePixelRatio || 1);
-        echelle = w / (L + 2 * MARGE);
-        larg = w; haut = Math.round((LONG + 2 * MARGE) * echelle);
-        ox = (w - (L + 2 * MARGE) * echelle) / 2;
-        toile.style.height = haut + 'px';
-        toile.width = Math.round(w * dpr); toile.height = Math.round(haut * dpr);
+    function appliquerTaille(t) {
+        larg = t.larg; haut = t.haut; echelle = t.echelle; ox = t.ox; dpr = t.dpr;
+        toile.width = Math.round(larg * dpr); toile.height = Math.round(haut * dpr);
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         preparerFond();
     }
 
-    function toucher(e) {
-        const r = toile.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+    function monterScene(cfg) {
+        equipes = { moi: [], eux: [] };
+        equipesDe(cfg);
+        for (const c of ['moi', 'eux']) for (const j of equipes[c]) {
+            const [x, y] = versTerrain(c, ATT[j.poste][0], j.poste === 'GB' ? 38.8 : 22 + (POSTES.indexOf(j.poste) % 3));
+            j.x = j.cx = x; j.y = j.cy = y;
+        }
+        ballon.x = 10; ballon.y = 20; ballon.porteur = joueur(cfg.possession || 'moi', 5); ballon.vol = null; ballon.trace = [];
+        possession = cfg.possession || 'moi'; timeline = [];
+    }
+    function equipesDe(cfg) {
+        if (cfg.moi) equipes.moi = creerJoueurs('moi', cfg.moi);
+        if (cfg.eux) equipes.eux = creerJoueurs('eux', cfg.eux);
+        if (cfg.defenses) defenses = cfg.defenses;
+        if (ballon.porteur && !equipes[ballon.porteur.cote].includes(ballon.porteur)) ballon.porteur = equipes[ballon.porteur.cote][5] || null;
+    }
+    function placerScene(c) { possession = c; timeline = []; if (equipes[c].length) donner(joueur(c, 5)); }
+    function joueurSous(x, y) {
         let mieux = null, dm = 28;
         for (const j of equipes.moi.concat(equipes.eux)) { const d = Math.hypot(px(j.x) - x, py(j.y) - y); if (d < dm) { dm = d; mieux = j; } }
-        choisi = mieux;
-        const info = toile.parentElement.querySelector('.info-joueur-match');
-        if (!info) return;
-        if (!mieux) { info.hidden = true; return; }
-        info.hidden = false;
-        info.textContent = `${mieux.num} · ${mieux.nom} · ${mieux.poste}` + (mieux.cote === 'moi' ? ` · forme ${Math.round(mieux.forme)} %` : '');
-        clearTimeout(infoMinuteur); infoMinuteur = setTimeout(() => { info.hidden = true; choisi = null; }, 2600);
+        return mieux;
+    }
+    const infoDe = j => j ? `${j.num} · ${j.nom} · ${j.poste}` + (j.cote === 'moi' ? ` · forme ${Math.round(j.forme)} %` : '') : null;
+
+    // ======================= Côté worker : le dessin =======================
+    if (DANS_WORKER) {
+        self.onmessage = e => {
+            const m = e.data;
+            switch (m.t) {
+                case 'init':
+                    if (m.toile) { toile = m.toile; ctx = toile.getContext('2d'); }
+                    appliquerTaille(m.taille); monterScene(m.cfg); demarrer(); break;
+                case 'taille': appliquerTaille(m.taille); break;
+                case 'sprites': remplacerSprites(m.sprites); break;
+                case 'equipes': equipesDe(m.cfg); break;
+                case 'action': if (equipes.moi.length) action(m.a); break;
+                case 'placer': placerScene(m.c); break;
+                case 'toucher': choisi = joueurSous(m.x, m.y); self.postMessage({ t: 'info', texte: infoDe(choisi) }); break;
+                case 'oublier': choisi = null; break;
+                case 'visible': visible = m.v; break;
+                case 'stop': arreter(); break;
+                case 'stats': self.postMessage({ t: 'stats', stats }); stats = { images: 0, lentes: 0, pire: 0 }; break;
+            }
+        };
+        return;
     }
 
-    return {
+    // ======================= Côté page =======================
+    const AVEC_WORKER = typeof OffscreenCanvas !== 'undefined' && typeof Worker !== 'undefined'
+        && 'transferControlToOffscreen' in HTMLCanvasElement.prototype && 'transferToImageBitmap' in OffscreenCanvas.prototype;
+    let attenteStats = null, worker = null, cfgActuel = { moi: [], eux: [] };
+    const workers = new WeakMap();   // une toile confiée à un worker le reste
+
+    function envoyerSprites() {
+        const m = fabriquerSprites(cfgActuel.moi, cfgActuel.eux);
+        if (worker) worker.postMessage({ t: 'sprites', sprites: m }, [...m.values()].map(s => s.c));
+        else remplacerSprites(m);
+    }
+
+    // Tout le terrain visible d'un coup en arrivant sur le match : le plus large possible,
+    // sans dépasser le bas de l'écran (sous le score).
+    function mesurer() {
+        const w = toile.parentElement.clientWidth, d = Math.min(2, window.devicePixelRatio || 1);
+        const defile = toile.closest('.plein'), r = toile.getBoundingClientRect();
+        const haut0 = r.top + (defile ? defile.scrollTop : 0);
+        const dispo = (window.visualViewport ? window.visualViewport.height : window.innerHeight) - haut0 - 8;
+        const e = Math.max(8, Math.min(w / (L + 2 * MARGE), dispo / (LONG + 2 * MARGE)));
+        const h = Math.round((LONG + 2 * MARGE) * e);
+        return { larg: w, haut: h, echelle: e, ox: (w - (L + 2 * MARGE) * e) / 2, dpr: d };
+    }
+    function taille() {
+        if (!toile) return;
+        const t = mesurer();
+        toile.style.height = t.haut + 'px';
+        larg = t.larg; haut = t.haut; echelle = t.echelle; ox = t.ox; dpr = t.dpr;
+        if (worker) worker.postMessage({ t: 'taille', taille: t });
+        else appliquerTaille(t);
+        envoyerSprites();
+    }
+    function visibilite() { visible = !document.hidden; if (worker) worker.postMessage({ t: 'visible', v: visible }); }
+
+    function montrerInfo(texte) {
+        const info = toile && toile.parentElement.querySelector('.info-joueur-match');
+        if (!info) return;
+        if (!texte) { info.hidden = true; return; }
+        info.hidden = false; info.textContent = texte;
+        clearTimeout(infoMinuteur);
+        infoMinuteur = setTimeout(() => { info.hidden = true; choisi = null; if (worker) worker.postMessage({ t: 'oublier' }); }, 2600);
+    }
+    function toucher(e) {
+        const r = toile.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+        if (worker) { worker.postMessage({ t: 'toucher', x, y }); return; }
+        choisi = joueurSous(x, y);
+        montrerInfo(infoDe(choisi));
+    }
+
+    window.hbmMatch = {
         // cfg : { moi: [{num, nom, cle, forme}] x7 (ordre des cases), eux: [...], defenses: {moi, eux}, possession }
         monter(el, cfg) {
             if (toile === el) { this.equipes(cfg); return; }
             this.liberer();
-            toile = el; ctx = el.getContext('2d');
-            equipes = { moi: [], eux: [] };
-            this.equipes(cfg);
-            for (const c of ['moi', 'eux']) for (const j of equipes[c]) {
-                const [x, y] = versTerrain(c, ATT[j.poste][0], j.poste === 'GB' ? 38.8 : 22 + (POSTES.indexOf(j.poste) % 3));
-                j.x = j.cx = x; j.y = j.cy = y;
+            toile = el;
+            cfgActuel = { moi: cfg.moi || [], eux: cfg.eux || [] };
+            worker = workers.get(el) || null;
+            if (!worker && AVEC_WORKER) {
+                try {
+                    worker = new Worker(SRC);
+                    const off = el.transferControlToOffscreen();
+                    workers.set(el, worker);
+                    worker.onmessage = e => { if (e.data.t === 'info') montrerInfo(e.data.texte); else if (e.data.t === 'stats' && attenteStats) { attenteStats(e.data.stats); attenteStats = null; } };
+                    const t = mesurer(); el.style.height = t.haut + 'px';
+                    larg = t.larg; haut = t.haut; echelle = t.echelle; ox = t.ox; dpr = t.dpr;
+                    worker.postMessage({ t: 'init', toile: off, taille: t, cfg }, [off]);
+                } catch (_) { worker = null; }
+            } else if (worker) {
+                const t = mesurer(); el.style.height = t.haut + 'px';
+                larg = t.larg; haut = t.haut; echelle = t.echelle; ox = t.ox; dpr = t.dpr;
+                worker.postMessage({ t: 'init', taille: t, cfg });
             }
-            ballon.x = 10; ballon.y = 20; ballon.porteur = joueur(cfg.possession || 'moi', 5); ballon.vol = null; ballon.trace = [];
-            possession = cfg.possession || 'moi'; timeline = [];
-            taille();
+            if (!worker) {
+                ctx = el.getContext('2d');
+                monterScene(cfg);
+                taille();
+                demarrer();
+            } else envoyerSprites();
+            if (document.fonts) document.fonts.ready.then(() => { if (toile === el) envoyerSprites(); });
             window.addEventListener('resize', taille);
+            document.addEventListener('visibilitychange', visibilite);
             el.addEventListener('pointerdown', toucher);
-            avant = performance.now();
-            raf = requestAnimationFrame(boucle);
         },
         equipes(cfg) {
-            if (cfg.moi) equipes.moi = creerJoueurs('moi', cfg.moi);
-            if (cfg.eux) equipes.eux = creerJoueurs('eux', cfg.eux);
-            if (cfg.defenses) defenses = cfg.defenses;
-            if (ballon.porteur && !equipes[ballon.porteur.cote].includes(ballon.porteur)) ballon.porteur = equipes[ballon.porteur.cote][5] || null;
+            const avantNums = JSON.stringify([cfgActuel.moi.map(j => j.num), cfgActuel.eux.map(j => j.num)]);
+            if (cfg.moi) cfgActuel.moi = cfg.moi;
+            if (cfg.eux) cfgActuel.eux = cfg.eux;
+            if (worker) worker.postMessage({ t: 'equipes', cfg });
+            else equipesDe(cfg);
+            if (JSON.stringify([cfgActuel.moi.map(j => j.num), cfgActuel.eux.map(j => j.num)]) !== avantNums) envoyerSprites();
         },
         // a : { attaque: 'moi'|'eux', type: 'but'|'arret'|'rate'|'perte', tireur: index 0-6 (-1 inconnu), septMetres, duree (ms) }
-        action(a) { if (toile && equipes.moi.length) action(a); },
+        action(a) {
+            if (!toile) return;
+            if (worker) worker.postMessage({ t: 'action', a });
+            else if (equipes.moi.length) action(a);
+        },
         // Possession sans animation (plusieurs actions d'un coup) : l'équipe se met en place
-        placer(c) { possession = c; timeline = []; if (equipes[c].length) donner(joueur(c, 5)); },
+        placer(c) { if (worker) worker.postMessage({ t: 'placer', c }); else placerScene(c); },
         liberer() {
             if (!toile) return;
-            cancelAnimationFrame(raf);
+            if (worker) {
+                worker.postMessage({ t: 'stop' });
+                const el = toile, w = worker;   // toile retirée de la page : on libère aussi son worker
+                setTimeout(() => { if (!el.isConnected && workers.get(el) === w) { w.terminate(); workers.delete(el); } }, 1500);
+            } else arreter();
             window.removeEventListener('resize', taille);
+            document.removeEventListener('visibilitychange', visibilite);
             toile.removeEventListener('pointerdown', toucher);
-            toile = null; ctx = null;
+            toile = null; ctx = null; worker = null;
+        },
+        avecWorker: () => !!worker,
+        // (mesure de fluidité) les images dessinées depuis la dernière demande
+        stats() {
+            if (!worker) { const r = stats; stats = { images: 0, lentes: 0, pire: 0 }; return Promise.resolve(r); }
+            return new Promise(ok => { attenteStats = ok; worker.postMessage({ t: 'stats' }); });
         }
     };
 })();

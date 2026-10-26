@@ -209,7 +209,7 @@
       "url": "icon-512.png"
     },
     {
-      "hash": "sha256-fCcL6GuXd++rASj2T26cIfhuCa6VMmpDEKHmPFd+zD8=",
+      "hash": "sha256-MREIhbKmf0iZ4zQv0aOOmfiu1PT8rQxiAwAjKmyKMrU=",
       "url": "index.html"
     },
     {
@@ -217,11 +217,11 @@
       "url": "js\/hbm-entrainement.js"
     },
     {
-      "hash": "sha256-zj6Yksv+EyjYfClddeBQMH1ti68pXWZe3FcHdNwyj60=",
+      "hash": "sha256-hjofqpG2fCWYmbcyAOGzc5IkfCyuMyaVeRfb9B+FCkk=",
       "url": "js\/hbm-match.js"
     },
     {
-      "hash": "sha256-xE1QIcZQieRl\/afU2ueh\/86WlYptfDqYCWAXSIf73wk=",
+      "hash": "sha256-rWAWs6X8e15FzSNGodRMCmT4dvlgYjZnjgZwa3C1aaw=",
       "url": "js\/hbm-pack3d.js"
     },
     {
@@ -713,5 +713,5 @@
       "url": "_content\/HandballManagerInterface\/HandballManagerInterface.bundle.scp.css"
     }
   ],
-  "version": "APWEq9Yf"
+  "version": "T3+ZdI0Z"
 };
