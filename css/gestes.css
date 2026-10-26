@@ -1038,3 +1038,30 @@ body.mj-ouvert { overflow: hidden; }
 .mj-toile { position: relative; display: block; line-height: 0; }
 .mj-vignette { position: absolute; inset: 0; border-radius: 20px; pointer-events: none;
                background: radial-gradient(ellipse 75% 60% at 50% 50%, rgba(0,0,0,0) 55%, rgba(0,0,0,.35) 100%); }
+
+/* Logos en orbite autour du pack (iPhone) : deux calques au lieu d'un z-index animé.
+   - derrière : dans la scène, sous le sachet ;
+   - devant : posé APRÈS la scène, par-dessus (hors de la perspective, où Safari mettait le pack 3D au-dessus de tout).
+   Chaque logo n'est visible que dans le calque de son côté de l'orbite. */
+.vitrine-pack { position: relative; }
+.pack3d-ok .scene-boutique:not(.sans3d) { perspective: none; }
+.orbite-clubs.derriere { z-index: 1; }
+.orbite-clubs.devant { inset: 0 0 auto 0; height: 280px; z-index: 20; -webkit-transform: translateZ(0); transform: translateZ(0); }
+.orbite-clubs.derriere .logo-orbite, .orbite-clubs.devant .logo-orbite { z-index: auto;
+    animation: orbite-trajet 9s linear infinite, orbite-cote-devant 9s linear infinite;
+    animation-delay: calc(var(--i) * -9s / var(--n)), calc(var(--i) * -9s / var(--n)); }
+.orbite-clubs.derriere .logo-orbite { animation-name: orbite-trajet, orbite-cote-derriere; }
+@keyframes orbite-trajet {
+    0%    { transform: translateX(0) translateY(26px) scale(1.25); }
+    12.5% { transform: translateX(96px) translateY(18px) scale(1.1); }
+    25%   { transform: translateX(136px) translateY(0) scale(.9); }
+    37.5% { transform: translateX(96px) translateY(-18px) scale(.7); }
+    50%   { transform: translateX(0) translateY(-26px) scale(.6); }
+    62.5% { transform: translateX(-96px) translateY(-18px) scale(.7); }
+    75%   { transform: translateX(-136px) translateY(0) scale(.9); }
+    87.5% { transform: translateX(-96px) translateY(18px) scale(1.1); }
+    100%  { transform: translateX(0) translateY(26px) scale(1.25); }
+}
+@keyframes orbite-cote-devant { 0%, 25% { opacity: 1; } 25.01%, 74.99% { opacity: 0; } 75%, 100% { opacity: 1; } }
+@keyframes orbite-cote-derriere { 0%, 24.99% { opacity: 0; } 25% { opacity: .9; } 50% { opacity: .6; } 75% { opacity: .9; } 75.01%, 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .orbite-clubs .logo-orbite { animation: none !important; } .orbite-clubs.derriere { display: none; } }
