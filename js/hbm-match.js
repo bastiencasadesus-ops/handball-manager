@@ -1,9 +1,9 @@
-// Le match vivant (Pages/Match.razor) : le terrain vu de dessus, la caméra qui suit l'action.
+// Le match vivant (Pages/Match.razor) : tout le terrain vu de dessus, caméra fixe.
 // Le moteur du jeu (MatchEnDirect) décide de tout ; ce fichier rejoue chaque action reçue :
 // placement de l'attaque, quelques passes, puis le tir du vrai tireur avec le vrai résultat
 // (but, arrêt du gardien, tir raté, perte de balle). Ton équipe attaque toujours vers le haut.
 window.hbmMatch = (() => {
-    const L = 20, LONG = 40, VUE = 22;
+    const L = 20, LONG = 40, MARGE = .8;
     const POSTES = ['GB', 'AG', 'AD', 'ARG', 'ARD', 'DC', 'PIV'];   // l'ordre des cases (Equipe.PostesDesCases)
     // Positions d'attaque, en mètres depuis la ligne de but attaquée
     const ATT = { GB: [10, 38.8], AG: [1.6, 4.2], ARG: [5.2, 10.2], DC: [10, 11.2], ARD: [14.8, 10.2], AD: [18.4, 4.2], PIV: [10, 6.6] };
@@ -15,7 +15,8 @@ window.hbmMatch = (() => {
     };
     const COULEURS = { moi: ['#E4002B', '#FFB020'], eux: ['#2E7BF0', '#2FCF7A'] };
 
-    let toile = null, ctx = null, raf = 0, echelle = 1, larg = 0, haut = 0, camY = 20, choisi = null, infoMinuteur = 0;
+    let toile = null, ctx = null, raf = 0, echelle = 1, larg = 0, haut = 0, ox = 0, choisi = null, infoMinuteur = 0;
+    let fond = null;   // le terrain dessiné une fois (caméra fixe : il ne bouge jamais)
     let equipes = { moi: [], eux: [] }, defenses = { moi: '6-0', eux: '6-0' };
     const ballon = { x: 10, y: 20, z: 0, trace: [], porteur: null, vol: null };
     let possession = 'moi', filet = null, timeline = [], tempsScene = 0;
@@ -160,8 +161,17 @@ window.hbmMatch = (() => {
         if (filet) filet.t = Math.max(0, filet.t - dt * .6);
     }
 
-    const px = x => (x + .8) * echelle;
-    const py = y => (y - (camY - VUE / 2)) * echelle;
+    const px = x => ox + (x + MARGE) * echelle;
+    const py = y => (y + MARGE) * echelle;
+
+    // Le terrain, dessiné une seule fois dans une image (redessiné seulement si la taille change)
+    function preparerFond() {
+        const dpr = Math.min(2, window.devicePixelRatio || 1);
+        fond = document.createElement('canvas');
+        fond.width = Math.round(larg * dpr); fond.height = Math.round(haut * dpr);
+        const c = fond.getContext('2d'); c.setTransform(dpr, 0, 0, dpr, 0, 0);
+        const garde = ctx; ctx = c; terrain(); ctx = garde;
+    }
 
     function terrain() {
         ctx.fillStyle = '#1D4592'; ctx.fillRect(0, 0, larg, haut);
@@ -181,8 +191,7 @@ window.hbmMatch = (() => {
             ctx.arc(px(11.5), py(gy), 9 * echelle, a ? Math.PI / 2 : Math.PI * 1.5, 0, a);
             ctx.stroke(); ctx.setLineDash([]);
             ctx.beginPath(); ctx.moveTo(px(9.5), py(gy + s * 7)); ctx.lineTo(px(10.5), py(gy + s * 7)); ctx.stroke();
-            const allume = filet && filet.cote === sens && filet.t > 0;
-            ctx.fillStyle = allume ? `rgba(255,212,92,${.35 + filet.t * .6})` : 'rgba(255,255,255,.18)';
+            ctx.fillStyle = 'rgba(255,255,255,.18)';
             ctx.fillRect(px(8.5), py(gy) - (s > 0 ? .9 * echelle : 0), 3 * echelle, .9 * echelle);
             ctx.strokeStyle = '#fff'; ctx.lineWidth = 3; ctx.beginPath();
             ctx.moveTo(px(8.5), py(gy)); ctx.lineTo(px(8.5), py(gy - s * .9)); ctx.lineTo(px(11.5), py(gy - s * .9)); ctx.lineTo(px(11.5), py(gy)); ctx.stroke();
@@ -193,8 +202,7 @@ window.hbmMatch = (() => {
     }
 
     function dessinerJoueur(j) {
-        const x = px(j.x), y = py(j.y), r = .62 * echelle * (j.poste === 'GB' ? 1.08 : 1);
-        if (y < -30 || y > haut + 30) return;
+        const x = px(j.x), y = py(j.y), r = Math.max(7.5, .78 * echelle) * (j.poste === 'GB' ? 1.08 : 1);
         const couleur = COULEURS[j.cote][j.poste === 'GB' ? 1 : 0];
         ctx.fillStyle = 'rgba(0,0,0,.28)'; ctx.beginPath(); ctx.ellipse(x + r * .18, y + r * .55, r * 1.05, r * .55, 0, 0, 7); ctx.fill();
         if (j.plonge > 0) { ctx.save(); ctx.translate(x, y); ctx.scale(1 + j.plonge * .5, 1 - j.plonge * .2); ctx.translate(-x, -y); }
@@ -216,7 +224,7 @@ window.hbmMatch = (() => {
         for (let i = 1; i < b.trace.length; i++) {
             ctx.lineWidth = i * .9; ctx.beginPath(); ctx.moveTo(px(b.trace[i - 1].x), py(b.trace[i - 1].y)); ctx.lineTo(px(b.trace[i].x), py(b.trace[i].y)); ctx.stroke();
         }
-        const x = px(b.x), y = py(b.y) - b.z * echelle * .9, r = .3 * echelle * (1 + b.z * .25);
+        const x = px(b.x), y = py(b.y) - b.z * echelle * .9, r = Math.max(3.6, .36 * echelle) * (1 + b.z * .25);
         ctx.fillStyle = 'rgba(0,0,0,.3)'; ctx.beginPath(); ctx.ellipse(px(b.x), py(b.y) + 2, r * .9, r * .45, 0, 0, 7); ctx.fill();
         ctx.fillStyle = '#FFE9A8'; ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill();
         ctx.strokeStyle = '#B5651D'; ctx.lineWidth = 1.5; ctx.stroke();
@@ -224,9 +232,13 @@ window.hbmMatch = (() => {
     }
 
     function dessiner() {
-        const cible = Math.max(VUE / 2 - 1.2, Math.min(LONG - VUE / 2 + 1.2, ballon.y));
-        camY += (cible - camY) * .06;
-        terrain();
+        ctx.drawImage(fond, 0, 0, larg, haut);
+        // le filet qui s'allume sur un but
+        if (filet && filet.t > 0) {
+            const gy = filet.cote === 0 ? 0 : LONG, s = filet.cote === 0 ? 1 : -1;
+            ctx.fillStyle = `rgba(255,212,92,${.35 + filet.t * .6})`;
+            ctx.fillRect(px(8.5), py(gy) - (s > 0 ? .9 * echelle : 0), 3 * echelle, .9 * echelle);
+        }
         for (const j of equipes.moi.concat(equipes.eux).sort((a, b) => a.y - b.y)) dessinerJoueur(j);
         dessinerBallon();
         ctx.fillStyle = 'rgba(255,255,255,.7)'; ctx.font = '700 11px "Barlow Condensed", sans-serif'; ctx.textAlign = 'left';
@@ -241,13 +253,18 @@ window.hbmMatch = (() => {
         raf = requestAnimationFrame(boucle);
     }
 
+    // Tout le terrain dans l'écran : la largeur disponible, sans dépasser 60 % de la hauteur de l'écran
     function taille() {
         if (!toile) return;
         const w = toile.parentElement.clientWidth, dpr = Math.min(2, window.devicePixelRatio || 1);
-        echelle = w / (L + 1.6); larg = w; haut = Math.round(VUE * echelle);
+        const hMax = Math.min(window.innerHeight * .6, 640);
+        echelle = Math.min(w / (L + 2 * MARGE), hMax / (LONG + 2 * MARGE));
+        larg = w; haut = Math.round((LONG + 2 * MARGE) * echelle);
+        ox = (w - (L + 2 * MARGE) * echelle) / 2;
         toile.style.height = haut + 'px';
         toile.width = Math.round(w * dpr); toile.height = Math.round(haut * dpr);
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        preparerFond();
     }
 
     function toucher(e) {
@@ -276,7 +293,7 @@ window.hbmMatch = (() => {
                 j.x = j.cx = x; j.y = j.cy = y;
             }
             ballon.x = 10; ballon.y = 20; ballon.porteur = joueur(cfg.possession || 'moi', 5); ballon.vol = null; ballon.trace = [];
-            possession = cfg.possession || 'moi'; camY = 20; timeline = [];
+            possession = cfg.possession || 'moi'; timeline = [];
             taille();
             window.addEventListener('resize', taille);
             el.addEventListener('pointerdown', toucher);
