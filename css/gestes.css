@@ -1219,3 +1219,11 @@ body.mj-ouvert { overflow: hidden; }
 .consigne-match.actif { border-color: #FFD45C; background: rgba(255,212,92,.16); }
 .consigne-match.actif small { color: #FFD45C; }
 .consigne-match:disabled { opacity: .45; }
+
+/* Match : le score toujours visible en haut, le bouton pause bien gros */
+.match-page .score-tv { position: sticky; top: 0; z-index: 20; box-shadow: 0 8px 20px rgba(0,0,0,.45); }
+.match-page .score-tv { margin-top: 0; }
+/* téléphone : le score reste collé en haut sur toute la page (la colonne ne borne plus le « sticky ») */
+body:not(.pc) .match-page > .colonne-match { display: contents; }
+.commandes .bouton-pause { flex: 2.2; font-size: 20px; padding: 14px 10px; letter-spacing: 1px; }
+.terrain-match { border-radius: 12px; }

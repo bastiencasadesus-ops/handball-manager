@@ -3,7 +3,7 @@
 // placement de l'attaque, quelques passes, puis le tir du vrai tireur avec le vrai résultat
 // (but, arrêt du gardien, tir raté, perte de balle). Ton équipe attaque toujours vers le haut.
 window.hbmMatch = (() => {
-    const L = 20, LONG = 40, MARGE = .8;
+    const L = 20, LONG = 40, MARGE = .5;
     const POSTES = ['GB', 'AG', 'AD', 'ARG', 'ARD', 'DC', 'PIV'];   // l'ordre des cases (Equipe.PostesDesCases)
     // Positions d'attaque, en mètres depuis la ligne de but attaquée
     const ATT = { GB: [10, 38.8], AG: [1.6, 4.2], ARG: [5.2, 10.2], DC: [10, 11.2], ARD: [14.8, 10.2], AD: [18.4, 4.2], PIV: [10, 6.6] };
@@ -202,7 +202,7 @@ window.hbmMatch = (() => {
     }
 
     function dessinerJoueur(j) {
-        const x = px(j.x), y = py(j.y), r = Math.max(7.5, .78 * echelle) * (j.poste === 'GB' ? 1.08 : 1);
+        const x = px(j.x), y = py(j.y), r = Math.max(7.5, .7 * echelle) * (j.poste === 'GB' ? 1.08 : 1);
         const couleur = COULEURS[j.cote][j.poste === 'GB' ? 1 : 0];
         ctx.fillStyle = 'rgba(0,0,0,.28)'; ctx.beginPath(); ctx.ellipse(x + r * .18, y + r * .55, r * 1.05, r * .55, 0, 0, 7); ctx.fill();
         if (j.plonge > 0) { ctx.save(); ctx.translate(x, y); ctx.scale(1 + j.plonge * .5, 1 - j.plonge * .2); ctx.translate(-x, -y); }
@@ -224,7 +224,7 @@ window.hbmMatch = (() => {
         for (let i = 1; i < b.trace.length; i++) {
             ctx.lineWidth = i * .9; ctx.beginPath(); ctx.moveTo(px(b.trace[i - 1].x), py(b.trace[i - 1].y)); ctx.lineTo(px(b.trace[i].x), py(b.trace[i].y)); ctx.stroke();
         }
-        const x = px(b.x), y = py(b.y) - b.z * echelle * .9, r = Math.max(3.6, .36 * echelle) * (1 + b.z * .25);
+        const x = px(b.x), y = py(b.y) - b.z * echelle * .9, r = Math.max(3.6, .32 * echelle) * (1 + b.z * .25);
         ctx.fillStyle = 'rgba(0,0,0,.3)'; ctx.beginPath(); ctx.ellipse(px(b.x), py(b.y) + 2, r * .9, r * .45, 0, 0, 7); ctx.fill();
         ctx.fillStyle = '#FFE9A8'; ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill();
         ctx.strokeStyle = '#B5651D'; ctx.lineWidth = 1.5; ctx.stroke();
@@ -253,12 +253,11 @@ window.hbmMatch = (() => {
         raf = requestAnimationFrame(boucle);
     }
 
-    // Tout le terrain dans l'écran : la largeur disponible, sans dépasser 60 % de la hauteur de l'écran
+    // Tout le terrain, sur toute la largeur de l'écran (pas de bandes sur les côtés)
     function taille() {
         if (!toile) return;
         const w = toile.parentElement.clientWidth, dpr = Math.min(2, window.devicePixelRatio || 1);
-        const hMax = Math.min(window.innerHeight * .6, 640);
-        echelle = Math.min(w / (L + 2 * MARGE), hMax / (LONG + 2 * MARGE));
+        echelle = w / (L + 2 * MARGE);
         larg = w; haut = Math.round((LONG + 2 * MARGE) * echelle);
         ox = (w - (L + 2 * MARGE) * echelle) / 2;
         toile.style.height = haut + 'px';
