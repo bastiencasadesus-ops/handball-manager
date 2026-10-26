@@ -1065,3 +1065,142 @@ body.mj-ouvert { overflow: hidden; }
 @keyframes orbite-cote-devant { 0%, 25% { opacity: 1; } 25.01%, 74.99% { opacity: 0; } 75%, 100% { opacity: 1; } }
 @keyframes orbite-cote-derriere { 0%, 24.99% { opacity: 0; } 25% { opacity: .9; } 50% { opacity: .6; } 75% { opacity: .9; } 75.01%, 100% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .orbite-clubs .logo-orbite { animation: none !important; } .orbite-clubs.derriere { display: none; } }
+
+/* Transferts entre amis (onglet Amis et Mercato) */
+.offres-amis { margin-bottom: 10px; }
+.ligne-offre-ami { display: flex; align-items: center; gap: 8px; padding: 8px 10px; margin: 6px 0; border-radius: 12px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,212,92,.35); }
+.ligne-offre-ami .infos { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.ligne-offre-ami .infos small { color: #C9D4EE; font-size: 11.5px; }
+.ligne-offre-ami .prix, .saisie-offre-ami .prix { color: var(--or); font-weight: 700; }
+.effectif-ami { margin: 4px 0 10px; padding: 8px 10px; border-radius: 12px; background: rgba(0,0,0,.18); }
+.ligne-effectif-ami { display: flex; align-items: center; gap: 8px; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,.07); }
+.ligne-effectif-ami .poste { font: 700 12px "Barlow Condensed", sans-serif; color: #9CC3FF; width: 30px; flex: none; }
+.ligne-effectif-ami .nom { flex: 1; min-width: 0; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ligne-effectif-ami .note { font: 800 16px "Barlow Condensed", sans-serif; }
+.saisie-offre-ami { display: flex; flex-direction: column; gap: 6px; padding: 8px 4px 10px; }
+.saisie-offre-ami label { font-size: 12px; color: #C9D4EE; }
+.saisie-offre-ami input[type=range] { width: 100%; accent-color: #FFD45C; }
+.carte-blanche .effectif-ami { background: #EEF2FA; color: #0B1636; }
+.carte-blanche .ligne-effectif-ami { border-bottom-color: rgba(11,22,54,.08); }
+.carte-blanche .ligne-effectif-ami .poste { color: #1B4DB1; }
+.carte-blanche .saisie-offre-ami label, .carte-blanche .effectif-ami .doux { color: #4A5878; }
+.carte-blanche .saisie-offre-ami .prix { color: #9A6400; }
+
+/* Onglet Amis : la saison des amis et la coupe */
+.saison-amis, .coupe-amis { background: #fff; color: #0B1636; border-radius: 14px; padding: 8px 10px; margin: 6px 0 12px; }
+.ligne-saison-ami { display: grid; grid-template-columns: 26px 1fr auto auto 16px; align-items: center; gap: 8px; padding: 6px 2px; border-bottom: 1px solid rgba(11,22,54,.08); }
+.ligne-saison-ami:last-child { border-bottom: 0; }
+.ligne-saison-ami.moi { background: rgba(228,0,43,.07); border-radius: 8px; }
+.ligne-saison-ami .qui { min-width: 0; display: flex; flex-direction: column; }
+.ligne-saison-ami .qui small { color: #5A6A8A; font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ligne-saison-ami .div { font: 700 13px "Barlow Condensed", sans-serif; color: #fff; background: #0A2358; border-radius: 6px; padding: 1px 7px; }
+.ligne-saison-ami .rang { font: 800 17px "Barlow Condensed", sans-serif; font-variant-numeric: tabular-nums; }
+.ligne-saison-ami .rang small { font-size: 11px; color: #5A6A8A; }
+.ligne-saison-ami .zone { font-size: 13px; text-align: center; }
+.ligne-saison-ami .zone.monte { color: #1B9E52; } .ligne-saison-ami .zone.descend { color: #E4002B; }
+.coupe-amis .tour-coupe { font: 700 12px "Barlow Condensed", sans-serif; letter-spacing: 1.2px; color: #5A6A8A; margin: 8px 0 4px; }
+.match-coupe { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: center; padding: 6px 8px; border-radius: 9px; background: #F4F6FA; margin-bottom: 4px; }
+.match-coupe.moi { outline: 2px solid #FFD45C; }
+.match-coupe .equipe { font-weight: 600; font-size: 13px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #5A6A8A; }
+.match-coupe .equipe.droite { text-align: right; }
+.match-coupe .equipe.gagne { color: #0B1636; font-weight: 800; }
+.match-coupe .score { font: 800 15px "Barlow Condensed", sans-serif; font-variant-numeric: tabular-nums; }
+.vainqueur-coupe { padding: 8px 10px; border-radius: 10px; background: linear-gradient(90deg, #FFD45C, #FFB020); color: #3D2600; font-size: 14px; margin-bottom: 4px; }
+.ligne-palmares { flex-wrap: wrap; }
+.ligne-palmares .face-a-face { flex-basis: 100%; order: 5; color: #1B4DB1; }
+
+/* ----- Fin de saison : le journal et la cérémonie des trophées (CeremonieSaison.razor) ----- */
+.voile.ceremonie { z-index: 200; align-items: flex-start; overflow-y: auto; padding: calc(14px + var(--haut, 0px)) 12px 24px; background: rgba(3,10,28,.92); }
+.journal { max-width: 460px; margin: 0 auto; background: #F5F4EF; color: #121418; border-radius: 6px; padding: 14px 16px 16px; box-shadow: 0 20px 60px rgba(0,0,0,.6);
+           font-family: Georgia, "Times New Roman", serif; animation: journal-arrive .7s cubic-bezier(.2,1.2,.4,1); }
+@keyframes journal-arrive { from { transform: rotate(-8deg) scale(.6); opacity: 0; } to { transform: none; opacity: 1; } }
+.journal-tete { display: flex; flex-direction: column; align-items: center; border-bottom: 3px double #121418; padding-bottom: 6px; }
+.journal-tete .titre-journal { font: 800 26px "Barlow Condensed", sans-serif; letter-spacing: 2px; color: #B3122E; }
+.journal-tete .edition { font-size: 11.5px; font-style: italic; color: #4A4A4A; }
+.journal-rubrique { margin-top: 8px; font: 700 11px "Barlow Condensed", sans-serif; letter-spacing: 1.5px; text-transform: uppercase; color: #4A4A4A; }
+.journal-une { margin: 4px 0 6px; font: 800 34px/1.02 "Barlow Condensed", sans-serif; text-transform: uppercase; letter-spacing: .5px; text-wrap: balance; }
+.journal.titre .journal-une, .journal.montee .journal-une { color: #0A2358; }
+.journal.descente .journal-une, .journal.mal .journal-une { color: #8A1020; }
+.journal-chapeau { margin: 0 0 10px; font-size: 15px; line-height: 1.35; font-style: italic; }
+.journal-chiffres { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid #121418; border-bottom: 1px solid #121418; margin-bottom: 10px; }
+.journal-chiffres div { display: flex; flex-direction: column; align-items: center; padding: 6px 2px; border-right: 1px solid rgba(0,0,0,.15); }
+.journal-chiffres div:last-child { border-right: 0; }
+.journal-chiffres b { font: 800 22px "Barlow Condensed", sans-serif; font-variant-numeric: tabular-nums; }
+.journal-chiffres small { font: 600 10.5px Inter, sans-serif; color: #4A4A4A; text-align: center; }
+.journal-colonnes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+.journal .encadre { border: 1px solid rgba(0,0,0,.25); padding: 7px 8px; display: flex; flex-direction: column; min-width: 0; }
+.journal .encadre .rubrique { font: 700 11px "Barlow Condensed", sans-serif; letter-spacing: 1px; text-transform: uppercase; color: #B3122E; margin-bottom: 2px; }
+.journal .encadre b { font-size: 15px; overflow-wrap: anywhere; }
+.journal .encadre small { font: 500 11.5px Inter, sans-serif; color: #4A4A4A; }
+.scene-trophee { max-width: 440px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 14px; color: #fff; padding-top: 10px; }
+.scene-trophee .petit-titre { font: 700 13px "Barlow Condensed", sans-serif; letter-spacing: 2px; color: var(--or); text-align: center; }
+.trophee-revele { width: 100%; padding: 22px 18px; border-radius: 22px; text-align: center; background: radial-gradient(circle at 50% 0%, #2B4E9A, #0A2358 70%); border: 2px solid rgba(255,212,92,.5);
+                  box-shadow: 0 0 50px rgba(255,212,92,.25); animation: trophee-arrive .8s cubic-bezier(.2,1.3,.4,1); }
+.trophee-revele.mien { border-color: var(--or); box-shadow: 0 0 70px rgba(255,212,92,.55); }
+@keyframes trophee-arrive { from { transform: scale(.4) rotateY(80deg); opacity: 0; } to { transform: none; opacity: 1; } }
+.trophee-revele .coupe { font-size: 64px; line-height: 1; animation: coupe-brille 2s ease-in-out infinite; }
+@keyframes coupe-brille { 50% { transform: scale(1.08) rotate(-4deg); } }
+.trophee-revele .nom-trophee { margin-top: 8px; font: 800 24px "Barlow Condensed", sans-serif; letter-spacing: 1px; color: var(--or); }
+.trophee-revele .laureat { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 14px; text-align: left; }
+.trophee-revele .laureat b { display: block; font: 800 24px "Barlow Condensed", sans-serif; }
+.trophee-revele .laureat small { color: #C9D4EE; font-size: 12.5px; }
+.trophee-revele .stat-trophee { margin-top: 10px; font-size: 13.5px; color: #E8EEFF; }
+.trophee-revele .bandeau-mien { margin-top: 12px; display: inline-block; padding: 5px 12px; border-radius: 10px; background: var(--or); color: #3D2600; font: 800 14px "Barlow Condensed", sans-serif; letter-spacing: 1px; }
+.points-trophees { display: flex; gap: 6px; }
+.points-trophees span { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.25); }
+.points-trophees span.actif { background: var(--or); }
+.terrain-type { position: relative; width: 100%; aspect-ratio: 1 / 1.05; max-width: 100%; border-radius: 16px; background: #2459B5; border: 2px solid rgba(255,255,255,.7); overflow: hidden; }
+.terrain-type .zone6 { position: absolute; left: 18%; right: 18%; top: -26%; height: 46%; border-radius: 0 0 50% 50%; background: #E8913A; border: 2px solid #fff; }
+.terrain-type .but { position: absolute; left: 42%; right: 42%; top: 0; height: 3%; background: #fff; }
+.place-type { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; width: 31%; text-align: center; animation: monte-boutique .5s both; }
+.place-type b { font: 800 15px "Barlow Condensed", sans-serif; text-transform: uppercase; margin-top: 2px; text-shadow: 0 1px 2px rgba(0,0,0,.5); max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.place-type small { font-size: 10px; color: #E8EEFF; text-shadow: 0 1px 2px rgba(0,0,0,.6); }
+.place-type.mien b { color: var(--or); }
+.place-type.mien .blason-img, .place-type.mien .blason { outline: 3px solid var(--or); border-radius: 8px; }
+@media (prefers-reduced-motion: reduce) { .journal, .trophee-revele, .trophee-revele .coupe, .place-type { animation: none; } }
+
+/* Fiche joueur : en un coup d'œil (LectureJoueur.cs) */
+.lecture-joueur { margin: 8px 0 10px; padding: 10px; border-radius: 12px; background: #F2F5FB; color: #0B1636; display: flex; flex-direction: column; gap: 8px; }
+.lecture-joueur .etiquette { display: block; font: 700 10.5px "Barlow Condensed", sans-serif; letter-spacing: 1.3px; color: #5A6A8A; }
+.role-ideal b { display: block; font: 800 19px "Barlow Condensed", sans-serif; color: #0A2358; text-transform: uppercase; letter-spacing: .4px; }
+.role-ideal small { font-size: 12px; color: #44506A; }
+.atouts { display: flex; flex-wrap: wrap; gap: 6px; }
+.atout { font-size: 12.5px; padding: 4px 9px; border-radius: 999px; font-weight: 600; }
+.atout b { font-family: "Barlow Condensed", sans-serif; font-size: 15px; margin-left: 2px; }
+.atout.fort { background: rgba(27,127,59,.13); color: #145E2C; }
+.atout.faible { background: rgba(228,0,43,.1); color: #A3001F; }
+.comparaison .duel-poste { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px; margin-top: 4px; }
+.comparaison .qui { display: flex; flex-direction: column; font-weight: 700; font-size: 14px; min-width: 0; overflow: hidden; text-overflow: ellipsis; color: #5A6A8A; }
+.comparaison .qui.droite { text-align: right; }
+.comparaison .qui.devant { color: #0B1636; }
+.comparaison .qui small { font-weight: 500; font-size: 11px; color: #7A86A0; }
+.comparaison .notes { font-family: "Barlow Condensed", sans-serif; font-size: 20px; }
+.comparaison .ecarts { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.comparaison .ecart { font-size: 11.5px; padding: 2px 7px; border-radius: 7px; background: #E4E9F3; color: #44506A; font-variant-numeric: tabular-nums; }
+.comparaison .ecart.plus { background: rgba(27,127,59,.13); color: #145E2C; }
+.comparaison .ecart.moins { background: rgba(228,0,43,.1); color: #A3001F; }
+.comparaison .conseil { margin: 6px 0 0; font-size: 12.5px; color: #0A2358; }
+
+/* Le tutoriel court (TutorielTelephone.razor) */
+.tuto { position: fixed; inset: 0; z-index: 300; }
+.tuto-fond { position: fixed; inset: 0; background: rgba(3,10,28,.78); }
+.tuto-trou { position: fixed; border-radius: 14px; box-shadow: 0 0 0 9999px rgba(3,10,28,.78); outline: 2.5px solid var(--or); transition: all .35s cubic-bezier(.3,1.2,.4,1); pointer-events: none; }
+.tuto-bulle { position: fixed; left: max(16px, env(safe-area-inset-left, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); max-width: 460px; margin: 0 auto;
+              background: #fff; color: #0B1636; border-radius: 16px; padding: 14px 16px; box-shadow: 0 16px 40px rgba(0,0,0,.45); animation: apparait .3s; }
+.tuto-bulle.bas { bottom: calc(96px + env(safe-area-inset-bottom, 0px)); }
+.tuto-bulle.haut { top: calc(20px + env(safe-area-inset-top, 0px)); }
+.tuto-etape { font: 700 11px "Barlow Condensed", sans-serif; letter-spacing: 1.5px; color: #E4002B; }
+.tuto-bulle h3 { margin: 2px 0 6px; font: 800 22px "Barlow Condensed", sans-serif; text-transform: uppercase; }
+.tuto-bulle p { margin: 0 0 12px; font-size: 14px; line-height: 1.4; color: #2A3550; }
+.tuto-boutons { display: flex; justify-content: space-between; gap: 10px; }
+.tuto-boutons .petit-bouton { color: #0A2358; border-color: #0A2358; }
+
+/* Alertes de la partie en ligne (bandeau) */
+.bandeau-alerte { display: flex; align-items: center; gap: 10px; width: 100%; margin-top: 8px; padding: 8px 12px; border-radius: 12px; color: #fff; text-align: left; font-size: 13.5px; border: 1.5px solid var(--or); }
+.bandeau-alerte span:nth-child(1) { flex: 1; }
+.bandeau-alerte.attente { background: linear-gradient(90deg, #0F7A45, #18A35C); }
+.bandeau-alerte.offre { background: linear-gradient(90deg, #6A1B9A, #8E3BC4); }
+.voile.ceremonie { position: fixed; inset: 0; height: 100%; display: block; }
+.place-type { width: 24%; }
+.place-type b { font-size: 13.5px; }
+.place-type small { font-size: 10.5px; white-space: nowrap; }

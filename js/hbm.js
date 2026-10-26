@@ -75,6 +75,22 @@ window.hbm = (function () {
 
     return {
         lire: cle => { try { return localStorage.getItem(cle); } catch (e) { return null; } },
+        // La pastille sur l'icône de l'appli (écran d'accueil) : ce qui t'attend dans la partie en ligne
+        pastille: n => {
+            try {
+                if (n > 0 && navigator.setAppBadge) navigator.setAppBadge(n).catch(() => { });
+                else if (navigator.clearAppBadge) navigator.clearAppBadge().catch(() => { });
+            } catch (e) { }
+        },
+        // La place d'un élément à l'écran (le tutoriel braque son projecteur dessus)
+        cible: sel => {
+            const el = document.querySelector(sel);
+            if (!el) return null;
+            el.scrollIntoView({ block: 'nearest' });
+            const r = el.getBoundingClientRect();
+            if (r.width === 0 || r.height === 0) return null;
+            return { x: r.left, y: r.top, l: r.width, h: r.height, hauteur: window.innerHeight };
+        },
         // Un nombre qui défile (les crédits du bandeau), sans repasser par Blazor à chaque image
         defiler: (el, depuis, vers, duree, sep) => {
             // (on modifie le nœud texte de Blazor lui-même : le remplacer le détacherait de Blazor,
