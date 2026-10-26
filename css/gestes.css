@@ -1204,3 +1204,18 @@ body.mj-ouvert { overflow: hidden; }
 .place-type { width: 24%; }
 .place-type b { font-size: 13.5px; }
 .place-type small { font-size: 10.5px; white-space: nowrap; }
+
+/* Le match vivant (hbm-match.js) */
+.terrain-match { aspect-ratio: auto; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,.12); background: #1D4592; }
+.terrain-match canvas.toile-match { display: block; width: 100%; touch-action: manipulation; }
+.info-joueur-match { position: absolute; left: 8px; top: 8px; padding: 5px 10px; border-radius: 10px; background: rgba(6,21,53,.88); color: #fff;
+                     font: 600 12.5px Inter, sans-serif; pointer-events: none; z-index: 3; }
+.consignes-match { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 8px; }
+.consigne-match { display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 7px 4px; border-radius: 12px; border: 1.5px solid rgba(255,255,255,.14);
+                  background: rgba(14,36,86,.9); color: #fff; font: inherit; }
+.consigne-match .ico { font-size: 18px; line-height: 1.1; }
+.consigne-match b { font: 700 14px "Barlow Condensed", sans-serif; text-transform: uppercase; letter-spacing: .4px; }
+.consigne-match small { font-size: 10.5px; color: #A9B8DD; }
+.consigne-match.actif { border-color: #FFD45C; background: rgba(255,212,92,.16); }
+.consigne-match.actif small { color: #FFD45C; }
+.consigne-match:disabled { opacity: .45; }
