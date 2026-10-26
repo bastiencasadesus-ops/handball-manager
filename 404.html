@@ -44,8 +44,24 @@
         // Hors ligne : le service worker garde l'appli. Une nouvelle version s'installe et la page se recharge toute seule.
         if ('serviceWorker' in navigator) {
             const avaitUneVersion = !!navigator.serviceWorker.controller;
-            navigator.serviceWorker.register('service-worker.js', { updateViaCache: 'none' });
             let recharge = false;
+            // Un bandeau pendant le téléchargement d'une nouvelle version (sinon on croit avoir encore l'ancienne)
+            const bandeau = () => {
+                if (document.getElementById('maj-jeu')) return;
+                const b = document.createElement('div');
+                b.id = 'maj-jeu';
+                b.textContent = '⬇ Nouvelle version en cours de téléchargement… garde le jeu ouvert, il redémarre tout seul.';
+                b.style.cssText = 'position:fixed;left:12px;right:12px;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:9999;padding:10px 14px;border-radius:12px;' +
+                    'background:#FFD45C;color:#3D2600;font:600 13.5px Inter,system-ui,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.4);text-align:center';
+                document.body.appendChild(b);
+            };
+            navigator.serviceWorker.register('service-worker.js', { updateViaCache: 'none' }).then(reg => {
+                const suivre = w => { if (w && avaitUneVersion) bandeau(); };
+                suivre(reg.installing);
+                reg.addEventListener('updatefound', () => suivre(reg.installing));
+                // à chaque retour dans l'appli : y a-t-il une nouvelle version ?
+                document.addEventListener('visibilitychange', () => { if (!document.hidden) reg.update().catch(() => { }); });
+            }).catch(() => { });
             navigator.serviceWorker.addEventListener('controllerchange', () => {
                 if (avaitUneVersion && !recharge) { recharge = true; location.reload(); }
             });
