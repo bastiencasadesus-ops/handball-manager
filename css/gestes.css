@@ -1397,3 +1397,15 @@ body:not(.pc) .mc-options { margin-top: 10px; }
 body:not(.pc) .duel-arene h2.mc-titre { font-size: 25px; }
 body:not(.pc) .mc-choix .mc-autre { max-width: 72px; padding: 3px 5px; }
 body:not(.pc) .mc-choix .mc-autre b { max-width: 62px; font-size: 12px; letter-spacing: -.01em; }
+/* un seul camp concerné (sortir un joueur, leur joueur en feu…) : pas de diagonale ni de VS */
+.mc-arene.seul { grid-template-columns: minmax(0, 1fr); }
+.mc-arene.seul .mc-camp { clip-path: none; border-radius: 12px; padding: 10px 12px; }
+.mc-arene.seul .mc-camp.eux { align-items: flex-start; }
+.mc-arene.seul .mc-camp.eux .mc-etiquette { text-align: left; }
+.mc-fleche { align-self: center; color: #FFD45C; font-size: 20px; }
+.mc-vedette.touche { filter: grayscale(.5) brightness(.85); }
+.mc-details.seul { margin-top: 10px; padding: 9px 12px; border-radius: 12px; background: #12306F; box-shadow: inset 0 1px 0 rgba(255,255,255,.09); }
+.mc-arene.seul .mc-camp { position: relative; }
+.mc-arene.seul .mc-energie { position: absolute; right: 12px; bottom: 10px; }
+body .boite.duel-arene .decompte { top: 6px; right: 6px; width: 40px; height: 40px; font-size: 20px; }
+body:not(.pc) .bandeau-decisif { padding-right: 46px; }
