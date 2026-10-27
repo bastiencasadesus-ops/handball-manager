@@ -25,7 +25,7 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-IzHEiMdTlMZYGj5MQP0ltvuNR9bAHomHVjaRemh3Avg=",
+      "hash": "sha256-suo\/L69isevY9Qp4ISoFaLahvMsfDIvufX2E6mqsp0A=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -33,15 +33,15 @@
       "url": "_framework\/dotnet.native.8.0.32.i569lqnidm.js"
     },
     {
-      "hash": "sha256-ITphub4g+QOCaOriB3bhN9PP9NAWEY5WO5hnuloH4u4=",
+      "hash": "sha256-5RCwDX4k8HKJy4wIiiGd6ttIAw+vf5WzK+FxrlQxEkA=",
       "url": "_framework\/dotnet.native.wasm"
     },
     {
-      "hash": "sha256-AO0tgO6QvNcy4CI2H7HekgoeZlRk3jZrxaX67AcaCDA=",
+      "hash": "sha256-0cwYBs1+Wzk3WD7UE506WAkXp\/0UOYwbhwoLyiFiBTs=",
       "url": "_framework\/HandballManagerInterface.wasm"
     },
     {
-      "hash": "sha256-+RQkYJRwb8fLl5lnqlqhtXNjBvwFGWzrZfekpZHxWfc=",
+      "hash": "sha256-WKTAdfDrt3z3i5HhJIGO9vb2uhbCpIdqaTxylHnJmt8=",
       "url": "_framework\/HandballManagerWeb.wasm"
     },
     {
@@ -145,7 +145,7 @@
       "url": "_framework\/System.Net.Primitives.wasm"
     },
     {
-      "hash": "sha256-y4lXX3wPdvtPAKQ7Dkad14tNK3jhoZMmes8vO+vRPYs=",
+      "hash": "sha256-dcB5RVrVA0h68BMHTEUguGBRRAZ+\/t96+g8t36Z8Y4w=",
       "url": "_framework\/System.Private.CoreLib.wasm"
     },
     {
@@ -157,7 +157,7 @@
       "url": "_framework\/System.Runtime.InteropServices.JavaScript.wasm"
     },
     {
-      "hash": "sha256-UrkEZfbFd1whMCtD1717TXbltjUDWtbpjh+OctRkn1U=",
+      "hash": "sha256-tq0P5yPxrgYSUIHG5ZnZOiLgC0n0y\/wVlVWggsBVEqo=",
       "url": "_framework\/System.Runtime.wasm"
     },
     {
@@ -185,7 +185,7 @@
       "url": "apple-touch-icon.png"
     },
     {
-      "hash": "sha256-HONxDxCdn6QpG1L61UUVD0a\/s9\/yESHb1YZaWbC4+Iw=",
+      "hash": "sha256-gC6xp1aQ4S5EmdprmuMd76nfkS8C6SB6MD4F\/Qew\/8s=",
       "url": "css\/gestes.css"
     },
     {
@@ -213,7 +213,7 @@
       "url": "icon-512.png"
     },
     {
-      "hash": "sha256-R4WCHtSpK35wsQwC5JXyqjld9YVfYD\/KXtvIPqeewKk=",
+      "hash": "sha256-HY0CDwV8zIyNXneghlF4OImzzDR\/FsE9cO0SzoNxcXw=",
       "url": "index.html"
     },
     {
@@ -717,5 +717,5 @@
       "url": "_content\/HandballManagerInterface\/HandballManagerInterface.bundle.scp.css"
     }
   ],
-  "version": "8tHu\/oaI"
+  "version": "7IS0pBl8"
 };
