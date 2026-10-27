@@ -1409,3 +1409,22 @@ body:not(.pc) .mc-choix .mc-autre b { max-width: 62px; font-size: 12px; letter-s
 .mc-arene.seul .mc-energie { position: absolute; right: 12px; bottom: 10px; }
 body .boite.duel-arene .decompte { top: 6px; right: 6px; width: 40px; height: 40px; font-size: 20px; }
 body:not(.pc) .bandeau-decisif { padding-right: 46px; }
+/* moment clé : changer de joueur avec les flèches ou en glissant la carte */
+.mc-choix { flex-wrap: wrap; }
+.mc-carrousel { display: flex; align-items: center; gap: 4px; }
+.mc-carrousel .mc-vedette { touch-action: pan-y; }
+.mc-fleche-btn { width: 34px; height: 54px; flex: none; border: 1.5px solid rgba(255,255,255,.25); background: rgba(3,10,31,.45); color: #FFD45C; border-radius: 8px;
+    font: 800 30px/1 "Barlow Condensed", sans-serif; display: flex; align-items: center; justify-content: center; padding: 0 0 3px; cursor: pointer; }
+.mc-fleche-btn:active { background: #FFD45C; color: #0B1636; transform: scale(.94); }
+.mc-points { width: 100%; display: flex; gap: 5px; padding-left: 40px; }
+.mc-points i { width: 7px; height: 7px; transform: skewX(-12deg); background: rgba(255,255,255,.25); }
+.mc-points i.actif { background: #FFD45C; width: 16px; }
+.mc-vedette.depuis-droite { animation: mc-droite .25s cubic-bezier(.2,.9,.3,1.1); }
+.mc-vedette.depuis-gauche { animation: mc-gauche .25s cubic-bezier(.2,.9,.3,1.1); }
+@keyframes mc-droite { from { opacity: 0; transform: translateX(36px) rotate(4deg); } to { opacity: 1; transform: none; } }
+@keyframes mc-gauche { from { opacity: 0; transform: translateX(-36px) rotate(-4deg); } to { opacity: 1; transform: none; } }
+.mc-arene:not(.seul) .mc-camp.moi .mc-points { padding-left: 38px; }
+.mc-fleche-btn { width: 26px; font-size: 26px; }
+.mc-points { padding-left: 30px; }
+.mc-arene:not(.seul) .mc-camp.moi .mc-points { padding-left: 30px; }
+body:not(.pc) .mc-arene:not(.compact) .mc-vs { top: 20%; }
