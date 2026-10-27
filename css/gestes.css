@@ -1281,3 +1281,5 @@ body:not(.pc) .duel-arene .logos-option { margin-bottom: 3px; gap: 4px; }
 body:not(.pc) .duel-arene .logo-capa { font-size: 9.5px; padding: 1px 7px 1px 1px; }
 body:not(.pc) .duel-arene .logo-capa i { width: 16px; height: 16px; font-size: 10px; }
 body:not(.pc) .duel-arene .choix { margin: 4px 0 0; }
+.cible-decision { margin-left: auto; }   /* l'adversaire, toujours à droite */
+.cible-decision.a-moi { order: -1; margin-left: 0; }   /* (ton joueur touché : à gauche, avec les tiens) */
