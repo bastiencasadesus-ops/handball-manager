@@ -1475,3 +1475,18 @@ nav.onglets .badge.cadenas { background: #0A2358; font-size: 10px; }
 .cq-bloques span { font: 700 13px "Barlow Condensed", sans-serif; letter-spacing: .06em; background: #FFE2B8; color: #8A4B00; border-radius: 4px; padding: 4px 8px; }
 .confirme-quitter .cq-rester { background: #fff; color: #0A2358; border: 2px solid #0A2358; box-shadow: none; }
 nav.onglets .badge.cadenas { background: none; border: none; box-shadow: none; padding: 0; min-width: 0; font-size: 12px; top: 2px; }
+
+/* ===== Onglet Équipe : capacité à choisir (badge éphémère) et cartes non qualifiées du vestiaire ===== */
+.case-carte, .carte-banc { position: relative; }
+.badge-capa { position: absolute; top: -6px; right: -4px; z-index: 3; width: 26px; height: 26px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #FFF3B0, #FFC21A 60%, #E09A00); border: 2px solid #fff;
+    display: flex; align-items: center; justify-content: center; pointer-events: none;
+    box-shadow: 0 0 0 0 rgba(255,194,26,.7), 0 3px 8px rgba(0,0,0,.4); animation: badge-capa 1.6s ease-in-out infinite; }
+.badge-capa svg { width: 15px; height: 15px; animation: badge-capa-fleche 1.6s ease-in-out infinite; }
+@keyframes badge-capa { 0% { box-shadow: 0 0 0 0 rgba(255,194,26,.75), 0 3px 8px rgba(0,0,0,.4); transform: scale(1); }
+    50% { box-shadow: 0 0 0 9px rgba(255,194,26,0), 0 3px 8px rgba(0,0,0,.4); transform: scale(1.12); }
+    100% { box-shadow: 0 0 0 0 rgba(255,194,26,0), 0 3px 8px rgba(0,0,0,.4); transform: scale(1); } }
+@keyframes badge-capa-fleche { 0%, 100% { transform: translateY(1px); } 50% { transform: translateY(-2px); } }
+.case-carte .badge-capa { top: -4px; right: 2px; }
+.carte-nq > svg { filter: grayscale(.55) brightness(.85); }
+.raison-nq { display: block; max-width: 104px; text-align: center; font-size: 10px; line-height: 1.2; color: #FF8A8A; font-weight: 600; margin-top: 2px; }
