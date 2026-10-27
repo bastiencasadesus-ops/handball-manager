@@ -1428,3 +1428,27 @@ body:not(.pc) .bandeau-decisif { padding-right: 46px; }
 .mc-points { padding-left: 30px; }
 .mc-arene:not(.seul) .mc-camp.moi .mc-points { padding-left: 30px; }
 body:not(.pc) .mc-arene:not(.compact) .mc-vs { top: 20%; }
+
+/* ===== Changements : le poste joué, le poste de formation, et le joueur qui sort bien visible ===== */
+.jm .postes { width: 50px; flex: none; display: flex; flex-direction: column; align-items: flex-start; line-height: 1; gap: 2px; }
+.jm .postes b { font: 800 15px "Barlow Condensed", sans-serif; color: #0A2358; background: #E3ECFB; border-radius: 4px; padding: 2px 5px; }
+.jm .postes small { font-size: 9.5px; font-weight: 600; color: #0F7040; white-space: nowrap; }
+.jm .postes.hors-poste b { background: #FFE2B8; color: #8A4B00; }
+.jm .postes.hors-poste small { color: #B85C00; }
+.jm .postes small:only-child { color: inherit; }
+.jm.choisi { border-color: #FFC21A; background: #FFF6D9; box-shadow: 0 0 0 3px rgba(255,194,26,.45), 0 6px 16px rgba(0,0,0,.25); transform: scale(1.015); }
+.jm .tag-sort { flex: none; font: 800 11px "Barlow Condensed", sans-serif; letter-spacing: .08em; color: #fff; background: #E4002B; padding: 2px 6px; transform: skewX(-12deg); }
+.jm.candidat { border-color: rgba(27,77,177,.35); }
+.jm.candidat:has(.postes:not(.hors-poste)) { border-color: #2E8B57; background: #EAF7EF; }
+.bandeau-changement { position: sticky; top: 104px; z-index: 15; margin: 12px 0 2px; background: #0A2358; color: #fff; border-radius: 12px; padding: 9px 10px;
+    box-shadow: 0 0 0 2px #FFC21A, 0 10px 24px rgba(0,0,0,.45); animation: jaillit .25s; }
+.bc-qui { display: flex; align-items: center; gap: 10px; }
+.bc-poste { flex: none; font: 800 22px/1 "Barlow Condensed", sans-serif; background: #E4002B; padding: 6px 9px; transform: skewX(-12deg); box-shadow: 0 3px 0 #7A0016; }
+.bc-nom { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.bc-nom b { font: 800 17px/1.05 "Barlow Condensed", sans-serif; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bc-nom small { font-size: 11.5px; color: #C9D4EE; }
+.bc-annuler { flex: none; width: 34px; height: 34px; border-radius: 8px; border: 1.5px solid rgba(255,255,255,.3); background: transparent; color: #fff; font-size: 16px; }
+.bc-aide { margin-top: 6px; font-size: 12px; color: #FFD45C; }
+.bc-aide b { color: #fff; }
+.jm .postes { width: 62px; }
+.jm .postes b { white-space: nowrap; font-size: 14.5px; }
