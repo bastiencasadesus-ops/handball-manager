@@ -1458,3 +1458,20 @@ body:not(.pc) .mc-arene:not(.compact) .mc-vs { top: 20%; }
 .jm.choisi { transform: none; }
 .jm .en { flex: none; }
 @media (max-width: 360px) { .jm { gap: 6px; padding: 6px 8px; } .jm .postes { width: 54px; } .jm .en { width: 36px; } }
+
+/* ===== Match quitté en cours : menus bloqués, et l'avertissement avant de quitter ===== */
+.verrou-match { margin: 18px 4px; padding: 22px 18px; border-radius: 14px; background: #0A2358; color: #fff; text-align: center;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.09), 0 4px 0 #030A1F, 0 16px 32px rgba(0,0,0,.4); display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.verrou-match .vm-cadenas { font-size: 40px; line-height: 1; }
+.verrou-match h2 { margin: 0; font: 800 26px/1 "Barlow Condensed", sans-serif; color: #fff; justify-content: center; }
+.verrou-match p { margin: 0; font-size: 14px; color: #C9D4EE; }
+.verrou-match p.doux { font-size: 12.5px; color: #8FA4D6; }
+.verrou-match .bouton-jouer { margin-top: 8px; }
+nav.onglets .badge.cadenas { background: #0A2358; font-size: 10px; }
+.confirme-quitter { text-align: center; }
+.cq-titre { font: 800 24px "Barlow Condensed", sans-serif; letter-spacing: .02em; margin-bottom: 6px; }
+.confirme-quitter p { margin: 6px 0; font-size: 14px; }
+.cq-bloques { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin: 10px 0 4px; }
+.cq-bloques span { font: 700 13px "Barlow Condensed", sans-serif; letter-spacing: .06em; background: #FFE2B8; color: #8A4B00; border-radius: 4px; padding: 4px 8px; }
+.confirme-quitter .cq-rester { background: #fff; color: #0A2358; border: 2px solid #0A2358; box-shadow: none; }
+nav.onglets .badge.cadenas { background: none; border: none; box-shadow: none; padding: 0; min-width: 0; font-size: 12px; top: 2px; }
