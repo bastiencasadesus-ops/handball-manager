@@ -1477,7 +1477,7 @@ nav.onglets .badge.cadenas { background: #0A2358; font-size: 10px; }
 nav.onglets .badge.cadenas { background: none; border: none; box-shadow: none; padding: 0; min-width: 0; font-size: 12px; top: 2px; }
 
 /* ===== Onglet Équipe : capacité à choisir (badge éphémère) et cartes non qualifiées du vestiaire ===== */
-.case-carte, .carte-banc { position: relative; }
+.carte-banc { position: relative; }   /* (.case-carte est déjà placée en absolu sur le terrain) */
 .badge-capa { position: absolute; top: -6px; right: -4px; z-index: 3; width: 26px; height: 26px; border-radius: 50%;
     background: radial-gradient(circle at 35% 30%, #FFF3B0, #FFC21A 60%, #E09A00); border: 2px solid #fff;
     display: flex; align-items: center; justify-content: center; pointer-events: none;
@@ -1490,3 +1490,5 @@ nav.onglets .badge.cadenas { background: none; border: none; box-shadow: none; p
 .case-carte .badge-capa { top: -4px; right: 2px; }
 .carte-nq > svg { filter: grayscale(.55) brightness(.85); }
 .raison-nq { display: block; max-width: 104px; text-align: center; font-size: 10px; line-height: 1.2; color: #FF8A8A; font-weight: 600; margin-top: 2px; }
+
+.choix-capacite .proposition.a-remplacer { border-color: #E4002B; }
