@@ -1283,3 +1283,117 @@ body:not(.pc) .duel-arene .logo-capa i { width: 16px; height: 16px; font-size: 1
 body:not(.pc) .duel-arene .choix { margin: 4px 0 0; }
 .cible-decision { margin-left: auto; }   /* l'adversaire, toujours à droite */
 .cible-decision.a-moi { order: -1; margin-left: 0; }   /* (ton joueur touché : à gauche, avec les tiens) */
+
+/* ===== Moment clé, design « face-à-face » (proposition A) ===== */
+.boite.duel-arene { background: radial-gradient(120% 55% at 50% 0%, #16397F 0%, #050F2A 62%); border-color: rgba(255,255,255,.12); }
+.mc-tableau { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px; padding: 7px 10px; background: #030A1F; border-radius: 10px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.09), 0 4px 0 #020817; }
+.mc-club { display: flex; align-items: center; gap: 7px; min-width: 0; font: 700 13px "Barlow Condensed", sans-serif; letter-spacing: .08em; color: #C9D4EE; }
+.mc-club span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mc-club.eux { justify-content: flex-end; }
+.mc-club .blason-img, .mc-club .blason { width: 30px; height: 30px; flex: none; border-radius: 7px; background: #fff; padding: 2px; object-fit: contain; font-size: 12px; }
+.mc-club.moi .blason-img, .mc-club.moi .blason { box-shadow: 0 0 0 2px #3D7CFF; }
+.mc-club.eux .blason-img, .mc-club.eux .blason { box-shadow: 0 0 0 2px #E4002B; }
+.mc-score { display: flex; flex-direction: column; align-items: center; line-height: 1; }
+.mc-score b { font: 700 32px/1 "Barlow Semi Condensed", "Barlow Condensed", sans-serif; color: #FFD45C; text-shadow: 0 0 12px rgba(255,212,92,.55); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.mc-score small { font: 700 11px "Barlow Condensed", sans-serif; letter-spacing: .14em; color: #8FA4D6; margin-top: 2px; }
+
+.mc-entete { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; margin: 12px 2px 0; }
+.mc-biseau { transform: skewX(-12deg); background: #E4002B; padding: 3px 12px; box-shadow: 0 3px 0 #7A0016; }
+.mc-biseau span { display: block; transform: skewX(12deg); font: 700 13px "Barlow Condensed", sans-serif; letter-spacing: .14em; color: #fff; }
+.mc-biseau.decisif { background: #FFC21A; box-shadow: 0 3px 0 #7A5200; }
+.mc-biseau.decisif span { color: #0B1636; }
+.mc-titre { margin: 0; font: 800 30px/.95 "Barlow Condensed", sans-serif; letter-spacing: -.01em; color: #fff; text-transform: uppercase; text-align: left; }
+.duel-arene p.mc-contexte { margin: 0; font-size: 13.5px; line-height: 1.35; color: #C9D4EE; }
+.mc-entete .indice { margin: 2px 0 0; font-size: 12px; padding: 5px 8px; }
+
+.mc-arene { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); margin-top: 12px; min-height: 200px; }
+.mc-camp { padding: 10px 9px 10px; display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+.mc-camp.moi { background: linear-gradient(160deg, #1B4DB1 0%, #12306F 70%); clip-path: polygon(0 0, 100% 0, 86% 100%, 0 100%); border-radius: 12px 0 0 12px; padding-right: 22px; }
+.mc-camp.eux { background: linear-gradient(200deg, #B80022 0%, #4A0A26 75%); clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%); border-radius: 0 12px 12px 0; align-items: flex-end; padding-left: 22px; }
+.mc-etiquette { font: 700 12px "Barlow Condensed", sans-serif; letter-spacing: .14em; color: #C9D4EE; text-transform: uppercase; line-height: 1.1; }
+.mc-camp.eux .mc-etiquette { color: #FFD0D8; text-align: right; }
+.mc-vedette { animation: jaillit .3s; }
+.mc-camp.moi .mc-vedette { filter: drop-shadow(0 0 12px rgba(255,212,92,.5)); }
+.mc-autres { display: flex; flex-wrap: wrap; gap: 5px; }
+.mc-autre { border: 1.5px solid rgba(255,255,255,.2); background: rgba(3,10,31,.4); color: #fff; border-radius: 8px; padding: 4px 7px; display: flex; flex-direction: column; align-items: flex-start; gap: 1px; min-height: 40px; justify-content: center; }
+.mc-autre:active { border-color: #FFD45C; }
+.mc-autre b { font: 700 13px/1 "Barlow Condensed", sans-serif; max-width: 88px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mc-autre small { font: 600 11px "Barlow Semi Condensed", "Barlow Condensed", sans-serif; color: #8FA4D6; }
+.mc-energie { display: flex; align-items: center; gap: 3px; margin-top: auto; }
+.mc-energie .eclair { font-style: normal; color: #FFD45C; font-size: 12px; }
+.mc-energie span { width: 11px; height: 7px; transform: skewX(-12deg); background: rgba(255,255,255,.15); }
+.mc-energie span.pleine { background: #3D7CFF; }
+.mc-energie small { font: 600 11px "Barlow Semi Condensed", sans-serif; color: #C9D4EE; margin-left: 4px; }
+.mc-details { font-size: 12px; line-height: 1.35; color: #E3ECFB; display: flex; flex-direction: column; gap: 4px; }
+.mc-logo-geant { flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; }
+.mc-logo-geant .blason-img, .mc-logo-geant .blason { width: 76px; height: 76px; border-radius: 16px; background: #fff; padding: 6px; object-fit: contain; font-size: 24px; box-shadow: 0 8px 20px rgba(0,0,0,.4); }
+.mc-vs { position: absolute; left: 50%; top: 46%; width: 50px; height: 50px; margin: -25px 0 0 -25px; transform: rotate(45deg); background: #030A1F; border: 2px solid #fff; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; box-shadow: 0 0 22px rgba(0,0,0,.6); pointer-events: none; }
+.mc-vs span { transform: rotate(-45deg); font: 800 21px "Barlow Condensed", sans-serif; color: #FFD45C; }
+
+.mc-ta { display: block; margin: 12px 2px 6px; color: #8FA4D6; }
+.mc-options { display: flex; flex-direction: column; gap: 9px; padding: 0 6px 4px; }
+.mc-option { border: none; padding: 0; background: transparent; filter: drop-shadow(0 4px 0 #020817); text-align: left; cursor: pointer; animation: jaillit .3s both; }
+.mc-option:nth-child(2) { animation-delay: .05s; } .mc-option:nth-child(3) { animation-delay: .1s; } .mc-option:nth-child(4) { animation-delay: .15s; }
+.mc-option-int { display: flex; align-items: center; gap: 10px; transform: skewX(-10deg); background: #12306F; padding: 9px 14px; box-shadow: inset 0 1px 0 rgba(255,255,255,.09), inset 4px 0 0 #E4002B; transition: transform .08s, background .15s; }
+.mc-option:hover .mc-option-int, .mc-option:focus-visible .mc-option-int { background: #E4002B; box-shadow: none; }
+.mc-option:active .mc-option-int { transform: skewX(-10deg) translateY(3px); }
+.mc-option:active { filter: drop-shadow(0 1px 0 #020817); }
+.mc-texte { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; transform: skewX(10deg); }
+.mc-texte b { font: 800 18px/1 "Barlow Condensed", sans-serif; color: #fff; text-transform: uppercase; }
+.mc-texte small { font-size: 12px; line-height: 1.3; color: #C9D4EE; }
+.mc-option:hover .mc-texte small { color: #fff; }
+.mc-capas { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 2px; }
+.mc-capas .logo-capa { font-size: 9.5px; padding: 1px 7px 1px 1px; }
+.mc-capas .logo-capa i { width: 16px; height: 16px; font-size: 10px; }
+.mc-risque { flex: none; transform: skewX(10deg); font: 700 11px "Barlow Condensed", sans-serif; letter-spacing: .08em; background: #030A1F; color: #fff; padding: 3px 7px; box-shadow: inset 0 -3px 0 var(--r); white-space: nowrap; }
+body:not(.pc) .boite.moment.duel-arene { padding: 10px 10px 12px; }
+body.pc .mc-titre { font-size: 40px; }
+body.pc .mc-arene { min-height: 260px; }
+/* (retouches) */
+.duel-arene h2.mc-titre { color: #fff; font-size: 30px; margin: 0; justify-content: flex-start; }
+body.pc .duel-arene h2.mc-titre { font-size: 40px; }
+.mc-arene.compact { min-height: 0; }
+.mc-arene.compact .mc-camp { padding-top: 8px; padding-bottom: 8px; flex-direction: row; align-items: center; justify-content: space-between; gap: 8px; }
+.mc-arene.compact .mc-camp.eux { flex-direction: row-reverse; }
+.mc-arene.compact .mc-logo-geant { flex: none; width: auto; }
+.mc-arene.compact .mc-logo-geant .blason-img, .mc-arene.compact .mc-logo-geant .blason { width: 50px; height: 50px; border-radius: 12px; padding: 4px; }
+.mc-arene.compact .mc-vs { width: 40px; height: 40px; margin: -20px 0 0 -20px; top: 50%; }
+.mc-arene.compact .mc-vs span { font-size: 17px; }
+.mc-arene.compact .mc-details { font-size: 11.5px; }
+.mc-options { padding: 0 12px 4px; gap: 8px; }
+.mc-option-int { padding: 8px 14px; }
+.mc-haut { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; margin-bottom: 2px; }
+.mc-haut .mc-risque { transform: none; font-size: 10px; padding: 2px 6px; }
+.mc-haut .logo-capa { font-size: 9.5px; padding: 1px 7px 1px 1px; }
+.mc-haut .logo-capa i { width: 15px; height: 15px; font-size: 9.5px; }
+.mc-texte b { font-size: 17px; }
+.mc-texte small { font-size: 11.5px; line-height: 1.25; }
+body:not(.pc) .mc-entete { margin-top: 9px; gap: 4px; }
+body:not(.pc) .mc-arene { margin-top: 9px; }
+body:not(.pc) .mc-ta { margin: 9px 2px 5px; }
+@media (hover: none) { .mc-option:hover .mc-option-int { background: #12306F; box-shadow: inset 0 1px 0 rgba(255,255,255,.09), inset 4px 0 0 #E4002B; } .mc-option:active .mc-option-int { background: #E4002B; } }
+body:not(.pc) .mc-tableau { padding: 5px 9px; }
+body:not(.pc) .mc-score b { font-size: 28px; }
+body:not(.pc) .duel-arene h2.mc-titre { font-size: 27px; }
+body:not(.pc) .mc-arene.compact .mc-logo-geant .blason-img, body:not(.pc) .mc-arene.compact .mc-logo-geant .blason { width: 44px; height: 44px; }
+/* le joueur choisi et les autres côte à côte ; indice plus discret */
+.mc-choix { display: flex; align-items: flex-start; gap: 6px; }
+.mc-choix .mc-autres { flex-direction: column; flex-wrap: nowrap; gap: 4px; min-width: 0; }
+.mc-choix .mc-autre { min-height: 32px; padding: 3px 6px; }
+.mc-choix .mc-autre b { font-size: 12.5px; max-width: 70px; }
+.mc-choix .mc-autre small { font-size: 10.5px; }
+.duel-arene .mc-entete .indice { font-weight: 500; letter-spacing: 0; font-size: 11.5px; line-height: 1.3; border-radius: 8px; padding: 4px 8px; }
+.mc-etiquette { font-size: 11.5px; letter-spacing: .1em; }
+.mc-camp { gap: 6px; }
+.mc-arene { min-height: 0; }
+.mc-energie { margin-top: 2px; }
+body:not(.pc) .mc-vs { width: 40px; height: 40px; margin: -20px 0 0 -20px; }
+body:not(.pc) .mc-vs span { font-size: 17px; }
+body:not(.pc) .mc-choix .mc-autre b { max-width: 56px; }
+body:not(.pc) .mc-ta { display: none; }
+body:not(.pc) .mc-options { margin-top: 10px; }
+body:not(.pc) .duel-arene h2.mc-titre { font-size: 25px; }
+body:not(.pc) .mc-choix .mc-autre { max-width: 72px; padding: 3px 5px; }
+body:not(.pc) .mc-choix .mc-autre b { max-width: 62px; font-size: 12px; letter-spacing: -.01em; }
