@@ -1492,3 +1492,4 @@ nav.onglets .badge.cadenas { background: none; border: none; box-shadow: none; p
 .raison-nq { display: block; max-width: 104px; text-align: center; font-size: 10px; line-height: 1.2; color: #FF8A8A; font-weight: 600; margin-top: 2px; }
 
 .choix-capacite .proposition.a-remplacer { border-color: #E4002B; }
+.lien-en-ligne { display: inline-block; margin: 0 0 10px; padding: 6px 12px; border-radius: 999px; border: 1.5px solid rgba(255,255,255,.25); background: rgba(255,255,255,.06); color: #C9D4EE; font-size: 13px; font-weight: 600; }
