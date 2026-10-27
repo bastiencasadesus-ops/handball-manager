@@ -181,6 +181,10 @@
       "url": "HandballManagerWeb.styles.css"
     },
     {
+      "hash": "sha256-322Z5ZCNmnME3wNoPSns5OpXkZd5Igekt8QpcsKNk0k=",
+      "url": "apple-touch-icon.png"
+    },
+    {
       "hash": "sha256-nkcVpYcRUWVHoKwlT+OnKYvdbZpKEaXCCaI2OVxP1eQ=",
       "url": "css\/gestes.css"
     },
@@ -201,15 +205,15 @@
       "url": "donnees\/ffhb.json"
     },
     {
-      "hash": "sha256-9JN16zrkEeRORvxWttptdiA2HDa9P0f\/MyOxhpYSSbo=",
+      "hash": "sha256-zUtbY3q0WwyrqIIXBX7Cy8o244nXhFjSvP5bCXqu8l4=",
       "url": "icon-192.png"
     },
     {
-      "hash": "sha256-GDOiLYNfGyu6J+LDLDpGF3OSt7VO5yw6sPW9uNu0F9E=",
+      "hash": "sha256-DllxZlWB0yLjk2wIKMlec9s2D0bIPeTdIgMtC09DQmc=",
       "url": "icon-512.png"
     },
     {
-      "hash": "sha256-pFBnGL5\/keNetcCOTrqfxMKhU7jKhTl3CKiu2YbXu9k=",
+      "hash": "sha256-Ekm21y9yMEf2N0G8mB4rCzRtiM7AZV6lPfGq5hPw9l4=",
       "url": "index.html"
     },
     {
@@ -705,7 +709,7 @@
       "url": "logos\/villenave.png"
     },
     {
-      "hash": "sha256-oq63c+foe1tuwwS0AzqA32e2eewPIT5YLTiBYcWENd4=",
+      "hash": "sha256-zBgEASNTOazr2fG1ppJPSw71qM8ck3ZcqXErHb50m3w=",
       "url": "manifest.webmanifest"
     },
     {
@@ -713,5 +717,5 @@
       "url": "_content\/HandballManagerInterface\/HandballManagerInterface.bundle.scp.css"
     }
   ],
-  "version": "EXDb6GML"
+  "version": "3rPMbDE7"
 };
