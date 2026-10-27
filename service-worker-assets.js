@@ -25,7 +25,7 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-AZ+Zf2hK7LcCA8Y7gDzV16UNMJSINYYNIguhgLAHp+U=",
+      "hash": "sha256-oR7OdfqG58OaKY27I0fZb+wp5S0cc8N1eRUS45K75m8=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -37,15 +37,15 @@
       "url": "_framework\/dotnet.native.wasm"
     },
     {
-      "hash": "sha256-MgGEO2EHy6SbHrzO\/SoiTEsVjMsWSO02hqmryFj3Ynk=",
+      "hash": "sha256-y0\/UIa2BPtzTUfO9saL\/jJtCBVQD+L\/oHJtzbqjRTII=",
       "url": "_framework\/HandballManagerInterface.wasm"
     },
     {
-      "hash": "sha256-sX4mpa71si3MT08mVitJOVZC94nR9EwscIK7w1aSiDM=",
+      "hash": "sha256-oV2\/kYcusoIj53RUN\/zhAAZPUYbdpQjWIP5jFqKnShM=",
       "url": "_framework\/HandballManagerWeb.wasm"
     },
     {
-      "hash": "sha256-kKm8JiQGEkqJVg4yyv8FXPhWgidLmN3H+qeT1dlPgI0=",
+      "hash": "sha256-vtKW6bv3XAc52t7TKSH+VRLCYow7nvnpv6s0RxxWu2Q=",
       "url": "_framework\/Microsoft.AspNetCore.Components.wasm"
     },
     {
@@ -185,7 +185,7 @@
       "url": "apple-touch-icon.png"
     },
     {
-      "hash": "sha256-KpodATUNfodnXrGR0NCNroxV8N8GpZUPsdhn4RBm\/sU=",
+      "hash": "sha256-hrMsYZQDbIz9HJDuCZfrNO2l90Utt2zdk7oZ2710ZPw=",
       "url": "css\/gestes.css"
     },
     {
@@ -213,7 +213,7 @@
       "url": "icon-512.png"
     },
     {
-      "hash": "sha256-vq4KlPV9XV5HV9TSYHYIh7PgG7nsb7\/CE6pXVNKLsUs=",
+      "hash": "sha256-R4WCHtSpK35wsQwC5JXyqjld9YVfYD\/KXtvIPqeewKk=",
       "url": "index.html"
     },
     {
@@ -221,7 +221,7 @@
       "url": "js\/hbm-entrainement.js"
     },
     {
-      "hash": "sha256-RRIcX8Juhuy9TbR+sZHoCO4shamVdo\/0bplIHlNkfbo=",
+      "hash": "sha256-K\/9FQjr4tvPW8Mhbk\/lZMBecBUXC7nz+BVVH89DoK+E=",
       "url": "js\/hbm-match.js"
     },
     {
@@ -717,5 +717,5 @@
       "url": "_content\/HandballManagerInterface\/HandballManagerInterface.bundle.scp.css"
     }
   ],
-  "version": "IFpeYVvb"
+  "version": "ETHBxCVz"
 };

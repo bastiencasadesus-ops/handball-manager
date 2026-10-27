@@ -328,12 +328,38 @@
 
     const prochaineImage = typeof requestAnimationFrame !== 'undefined' ? requestAnimationFrame : f => setTimeout(() => f(performance.now()), 16);
     const annulerImage = typeof cancelAnimationFrame !== 'undefined' ? cancelAnimationFrame : clearTimeout;
+    // ----- Le ralenti : la dernière action rejouée au ralenti (but décisif, arrêt clé) -----
+    let derniere = null, lent = 1, finRalenti = 0, signalFin = () => { };
+    function photo() {
+        const p = c => equipes[c].map(j => ({ x: j.x, y: j.y, cx: j.cx, cy: j.cy, plonge: j.plonge, fige: j.fige }));
+        const po = ballon.porteur;
+        return { moi: p('moi'), eux: p('eux'), possession, defenses,
+                 ballon: { x: ballon.x, y: ballon.y, porteur: po ? [po.cote, equipes[po.cote].indexOf(po)] : null } };
+    }
+    function restaurer(ph) {
+        for (const c of ['moi', 'eux']) equipes[c].forEach((j, i) => { if (ph[c][i]) Object.assign(j, ph[c][i]); });
+        possession = ph.possession; defenses = ph.defenses;
+        ballon.x = ph.ballon.x; ballon.y = ph.ballon.y; ballon.z = 0; ballon.vol = null; ballon.trace = [];
+        ballon.porteur = ph.ballon.porteur ? equipes[ph.ballon.porteur[0]][ph.ballon.porteur[1]] || null : null;
+        filet = null;
+    }
+    function jouerAction(a) { if (!equipes.moi.length) return; derniere = { a, ph: photo() }; lent = 1; action(a); }
+    function lancerRalenti(f) {
+        if (!derniere) { signalFin(); return; }
+        restaurer(derniere.ph);
+        lent = Math.max(.15, Math.min(1, f || .35));
+        action(derniere.a);
+        finRalenti = performance.now() + Math.max(200, derniere.a.duree) / lent + 250;
+    }
+    function finirRalenti() { if (lent < 1) { lent = 1; signalFin(); } }
+
     let avant = 0, tourne = false, stats = { images: 0, lentes: 0, pire: 0 };
     function boucle(t) {
         if (!tourne || !ctx) return;
         const brut = t - avant; stats.images++; if (brut > 25) stats.lentes++; if (brut > stats.pire) stats.pire = brut;
         const dt = Math.min(.05, Math.max(0, brut / 1000)); avant = t;
-        if (visible) { maj(dt); dessiner(); }
+        if (lent < 1 && performance.now() >= finRalenti) finirRalenti();
+        if (visible) { maj(dt * lent); dessiner(); }
         raf = prochaineImage(boucle);
     }
     function demarrer() { if (tourne) return; tourne = true; avant = performance.now(); raf = prochaineImage(boucle); }
@@ -372,6 +398,7 @@
 
     // ======================= Côté worker : le dessin =======================
     if (DANS_WORKER) {
+        signalFin = () => self.postMessage({ t: 'ralentiFini' });
         self.onmessage = e => {
             const m = e.data;
             switch (m.t) {
@@ -381,7 +408,9 @@
                 case 'taille': appliquerTaille(m.taille); break;
                 case 'sprites': remplacerSprites(m.sprites); break;
                 case 'equipes': equipesDe(m.cfg); break;
-                case 'action': if (equipes.moi.length) action(m.a); break;
+                case 'action': jouerAction(m.a); break;
+                case 'ralenti': lancerRalenti(m.f); break;
+                case 'passerRalenti': finirRalenti(); break;
                 case 'placer': placerScene(m.c); break;
                 case 'toucher': choisi = joueurSous(m.x, m.y); self.postMessage({ t: 'info', texte: infoDe(choisi) }); break;
                 case 'oublier': choisi = null; break;
@@ -397,6 +426,7 @@
     const AVEC_WORKER = typeof OffscreenCanvas !== 'undefined' && typeof Worker !== 'undefined'
         && 'transferControlToOffscreen' in HTMLCanvasElement.prototype && 'transferToImageBitmap' in OffscreenCanvas.prototype;
     let logosCharges = {}, cleLogos = '';
+    let attenteRalenti = null;
     let attenteStats = null, worker = null, cfgActuel = { moi: [], eux: [] };
     const workers = new WeakMap();   // une toile confiée à un worker le reste
 
@@ -466,6 +496,8 @@
         }
     }
 
+    signalFin = () => { if (attenteRalenti) { attenteRalenti(true); attenteRalenti = null; } };
+
     window.hbmMatch = {
         // cfg : { moi: [{num, nom, cle, forme}] x7 (ordre des cases), eux: [...], defenses: {moi, eux}, possession }
         monter(el, cfg) {
@@ -480,7 +512,7 @@
                     worker = new Worker(SRC);
                     const off = el.transferControlToOffscreen();
                     workers.set(el, worker);
-                    worker.onmessage = e => { if (e.data.t === 'info') montrerInfo(e.data.texte); else if (e.data.t === 'stats' && attenteStats) { attenteStats(e.data.stats); attenteStats = null; } };
+                    worker.onmessage = e => { if (e.data.t === 'ralentiFini') { if (attenteRalenti) { attenteRalenti(true); attenteRalenti = null; } } else if (e.data.t === 'info') montrerInfo(e.data.texte); else if (e.data.t === 'stats' && attenteStats) { attenteStats(e.data.stats); attenteStats = null; } };
                     const t = mesurer(); el.style.height = t.haut + 'px';
                     larg = t.larg; haut = t.haut; echelle = t.echelle; ox = t.ox; dpr = t.dpr;
                     worker.postMessage({ t: 'init', toile: off, taille: t, cfg }, [off]);
@@ -514,8 +546,18 @@
         action(a) {
             if (!toile) return;
             if (worker) worker.postMessage({ t: 'action', a });
-            else if (equipes.moi.length) action(a);
+            else jouerAction(a);
         },
+        // Le ralenti de la dernière action (f : vitesse, 0.35 = presque 3 fois plus lent). Résolu à la fin.
+        ralenti(f) {
+            if (!toile) return Promise.resolve(false);
+            return new Promise(ok => {
+                attenteRalenti = ok;
+                setTimeout(() => { if (attenteRalenti === ok) { attenteRalenti = null; ok(false); } }, 9000);
+                if (worker) worker.postMessage({ t: 'ralenti', f }); else lancerRalenti(f);
+            });
+        },
+        passerRalenti() { if (worker) worker.postMessage({ t: 'passerRalenti' }); else finirRalenti(); },
         // Possession sans animation (plusieurs actions d'un coup) : l'équipe se met en place
         placer(c) { if (worker) worker.postMessage({ t: 'placer', c }); else placerScene(c); },
         liberer() {
