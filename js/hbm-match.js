@@ -382,7 +382,15 @@
         const w = toile.parentElement.clientWidth, d = Math.min(2, window.devicePixelRatio || 1);
         const defile = toile.closest('.plein'), r = toile.getBoundingClientRect();
         const haut0 = r.top + (defile ? defile.scrollTop : 0);
-        const dispo = (window.visualViewport ? window.visualViewport.height : window.innerHeight) - haut0 - 8;
+        // la place prise sous le terrain par les consignes et les commandes (pause, vitesses…) : elles restent visibles
+        const page = toile.closest('.match-page'), cadre = toile.parentElement;
+        let dessous = 0;
+        if (page) for (const q of ['.consignes-match', '.bandeau-duel', '.commandes']) {
+            const e = page.querySelector(q);
+            if (e) dessous = Math.max(dessous, e.getBoundingClientRect().bottom - cadre.getBoundingClientRect().bottom);
+        }
+        const bord = cadre.offsetHeight - cadre.clientHeight;
+        const dispo = (window.visualViewport ? window.visualViewport.height : window.innerHeight) - haut0 - dessous - bord - 10;
         const e = Math.max(8, Math.min(w / (L + 2 * MARGE), dispo / (LONG + 2 * MARGE)));
         const h = Math.round((LONG + 2 * MARGE) * e);
         return { larg: w, haut: h, echelle: e, ox: (w - (L + 2 * MARGE) * e) / 2, dpr: d };
