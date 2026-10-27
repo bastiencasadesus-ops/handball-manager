@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "HandballManagerWeb",
   "resources": {
-    "hash": "sha256-83Nn+5Pjh4PAh0Dmm1WvoNSKA0YMdkqRXkNZbuutwbI=",
+    "hash": "sha256-YpnQ9Et1SCSWnfnRhCaHDPOTcen31rBM3hnogeFjrP0=",
     "jsModuleNative": {
       "dotnet.native.8.0.32.i569lqnidm.js": "sha256-O3qB2ofdJXmjKFMwVEQ4hpUyHmIX0TZMmYco9TdYWHU="
     },
@@ -17,7 +17,7 @@
       "icudt_no_CJK.dat": "sha256-L7sV7NEYP37/Qr2FPCePo5cJqRgTXRwGHuwF5Q+0Nfs="
     },
     "assembly": {
-      "HandballManagerInterface.wasm": "sha256-scvGUZUd3RoWtIYJkLFlotayPvXF6iDHaofBbzdygZU=",
+      "HandballManagerInterface.wasm": "sha256-xTi9B3KHUEtt3tqWZFY6sC7fSTaGU+5x2YfqNoesBug=",
       "HandballManagerWeb.wasm": "sha256-vk/grWtD3WM84uW2RRWZP3skCefKwhzQe8W6z1Uu1H8=",
       "Microsoft.AspNetCore.Components.wasm": "sha256-kKm8JiQGEkqJVg4yyv8FXPhWgidLmN3H+qeT1dlPgI0=",
       "Microsoft.AspNetCore.Components.Web.wasm": "sha256-hfpY4qL8908XZo2BrmvUnY6xjtmdgPQLg6DyQYFFI9k=",

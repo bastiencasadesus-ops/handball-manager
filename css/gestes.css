@@ -1244,3 +1244,40 @@ body:not(.pc) .match-page .commandes { margin-top: 6px; }
 body:not(.pc) .match-page .commandes .bouton-pause { padding: 11px 8px; font-size: 19px; }
 .commandes .bouton-pause { flex: 2.2; font-size: 20px; padding: 14px 10px; letter-spacing: 1px; }
 .terrain-match { border-radius: 12px; }
+
+/* ----- Moment clé : tout le choix (technique + joueur) tient à l'écran du téléphone, sans défiler ----- */
+.rangee-decision { display: flex; align-items: flex-start; gap: 10px; margin-top: 6px; }
+.cible-decision { text-align: center; flex: none; }
+.joueurs-decision { flex: 1; min-width: 0; }
+.etiquette-decision { color: var(--gris); font-size: 14px; margin: 0 0 2px; }
+.ta-decision { margin-top: 8px; }
+body:not(.pc) .boite.moment.duel-arene { padding: 10px 12px 12px; max-height: calc(100vh - 16px); max-height: calc(100dvh - 16px); }
+body:not(.pc) .voile-duel { padding: 8px; }
+body:not(.pc) .duel-tete { margin: 0 0 4px; gap: 6px; }
+body:not(.pc) .duel-tete .blason-img, body:not(.pc) .duel-tete .blason { width: 38px; height: 38px; border-radius: 9px; padding: 3px; }
+body:not(.pc) .duel-tete .cote { gap: 7px; }
+body:not(.pc) .duel-tete .cote b { font-size: 28px; }
+body:not(.pc) .duel-tete .vs { width: 34px; height: 34px; }
+body:not(.pc) .duel-tete .vs span { font-size: 15px; }
+body:not(.pc) .duel-arene .pastilles.centre { margin: 0; }
+body:not(.pc) .duel-arene .duel-titre { font-size: 21px; margin: 3px 0 1px; line-height: 1.05; }
+body:not(.pc) .duel-arene p { font-size: 12.5px !important; line-height: 1.3; margin: 3px 0; }
+body:not(.pc) .duel-arene .indice { padding: 5px 8px; font-size: 12px; }
+body:not(.pc) .bandeau-decisif { font-size: 19px; padding: 5px; margin: -4px -4px 6px; }
+body:not(.pc) .bandeau-decisif small { font-size: 10.5px; }
+body:not(.pc) .decompte { top: 44px; width: 42px; height: 42px; }
+body:not(.pc) .duel-arene .etiquette-decision { font-size: 12.5px; }
+body:not(.pc) .duel-arene .choix-joueurs { gap: 5px; padding: 2px 0 2px; }
+body:not(.pc) .duel-arene .choix-joueur { padding: 3px; }
+body:not(.pc) .duel-arene .choix-joueur small { font-size: 10.5px; }
+body:not(.pc) .duel-arene .details { font-size: 12px; }
+body:not(.pc) .duel-arene .ta-decision { margin-top: 5px; }
+body:not(.pc) .duel-arene .choix { gap: 6px; }
+body:not(.pc) .duel-arene .choix .option { padding: 7px 10px; }
+body:not(.pc) .duel-arene .choix .option .t { font-size: 15px; }
+body:not(.pc) .duel-arene .choix .option > div[style] { font-size: 11.5px !important; line-height: 1.25; }
+body:not(.pc) .duel-arene .choix .option .risque { margin-top: 3px; font-size: 10px; padding: 1px 7px; }
+body:not(.pc) .duel-arene .logos-option { margin-bottom: 3px; gap: 4px; }
+body:not(.pc) .duel-arene .logo-capa { font-size: 9.5px; padding: 1px 7px 1px 1px; }
+body:not(.pc) .duel-arene .logo-capa i { width: 16px; height: 16px; font-size: 10px; }
+body:not(.pc) .duel-arene .choix { margin: 4px 0 0; }

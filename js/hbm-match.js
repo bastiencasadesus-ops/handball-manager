@@ -206,6 +206,13 @@
             ctx.strokeStyle = '#fff'; ctx.lineWidth = 3; ctx.beginPath();
             ctx.moveTo(px(8.5), py(gy)); ctx.lineTo(px(8.5), py(gy - s * .9)); ctx.lineTo(px(11.5), py(gy - s * .9)); ctx.lineTo(px(11.5), py(gy)); ctx.stroke();
         }
+        // le logo de chaque club, peint dans son camp (le tien en bas : tu attaques vers le haut)
+        for (const [cle, cy] of [['logo|eux', 14.6], ['logo|moi', 25.4]]) {
+            const lg = sprites.get(cle);
+            if (!lg) continue;
+            const t = 8 * echelle;
+            ctx.globalAlpha = .3; ctx.drawImage(lg.c, px(10) - t / 2, py(cy) - t / 2, t, t); ctx.globalAlpha = 1;
+        }
         ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.strokeRect(px(0), py(0), L * echelle, LONG * echelle);
         ctx.beginPath(); ctx.moveTo(px(0), py(20)); ctx.lineTo(px(L), py(20)); ctx.stroke();
         ctx.beginPath(); ctx.arc(px(10), py(20), 1.4 * echelle, 0, 7); ctx.stroke();
@@ -242,13 +249,35 @@
             (liste || []).forEach((j, i) => {
                 for (const ch of [false, true]) m.set(cleSprite(cote, i === 0, j.num, ch), fabriquerSprite(cote, i === 0, j.num, ch));
             });
+        for (const c of ['moi', 'eux']) {
+            const img = logosCharges[c];
+            if (img && img.complete && img.naturalWidth) { const lg = fabriquerLogo(img); if (lg) m.set('logo|' + c, lg); }
+        }
         m.set('lab|moi', fabriquerLegende('▲ TON ATTAQUE'));
         m.set('lab|eux', fabriquerLegende('▼ ATTAQUE ADVERSE'));
         return m;
     }
     function remplacerSprites(m) {
-        for (const s of sprites.values()) if (s.c.close) s.c.close();
+        const avant = sprites;
         sprites = m;
+        if (ctx && larg > 0) preparerFond();   // (les logos des camps sont peints dans le fond)
+        for (const s of avant.values()) if (s.c.close) s.c.close();
+    }
+    // (côté page) un logo de club, mis à la taille du terrain (marche aussi pour les SVG)
+    function fabriquerLogo(img) {
+        const t = Math.max(8, Math.round(8 * echelle * dpr)), c = toileVide(t, t), g = c.getContext('2d');
+        const k = Math.min(t / img.naturalWidth, t / img.naturalHeight) || 1, w = img.naturalWidth * k, h = img.naturalHeight * k;
+        try { g.drawImage(img, (t - w) / 2, (t - h) / 2, w, h); } catch (_) { return null; }
+        // le fond blanc de certains logos devient transparent (sinon un carré clair apparaît sur le parquet)
+        try {
+            const d = g.getImageData(0, 0, t, t), p = d.data;
+            for (let i = 0; i < p.length; i += 4) {
+                const m = Math.min(p[i], p[i + 1], p[i + 2]);
+                if (m > 232) p[i + 3] = 0; else if (m > 205) p[i + 3] = Math.round(p[i + 3] * (232 - m) / 27);
+            }
+            g.putImageData(d, 0, 0);
+        } catch (_) { }
+        return { c: c.transferToImageBitmap ? c.transferToImageBitmap() : c, cote: 0 };
     }
 
     function dessinerJoueur(j) {
@@ -367,6 +396,7 @@
     // ======================= Côté page =======================
     const AVEC_WORKER = typeof OffscreenCanvas !== 'undefined' && typeof Worker !== 'undefined'
         && 'transferControlToOffscreen' in HTMLCanvasElement.prototype && 'transferToImageBitmap' in OffscreenCanvas.prototype;
+    let logosCharges = {}, cleLogos = '';
     let attenteStats = null, worker = null, cfgActuel = { moi: [], eux: [] };
     const workers = new WeakMap();   // une toile confiée à un worker le reste
 
@@ -421,6 +451,21 @@
         montrerInfo(infoDe(choisi));
     }
 
+    // Les logos des deux clubs : chargés une fois, puis peints dans le fond du terrain
+    function chargerLogos(logos) {
+        if (!logos) return;
+        const cle = (logos.moi || '') + '|' + (logos.eux || '');
+        if (cle === cleLogos) return;
+        cleLogos = cle; logosCharges = {};
+        for (const c of ['moi', 'eux']) {
+            if (!logos[c]) continue;
+            const img = new Image();
+            img.onload = () => { if (cleLogos === cle && toile) envoyerSprites(); };
+            img.src = logos[c];
+            logosCharges[c] = img;
+        }
+    }
+
     window.hbmMatch = {
         // cfg : { moi: [{num, nom, cle, forme}] x7 (ordre des cases), eux: [...], defenses: {moi, eux}, possession }
         monter(el, cfg) {
@@ -428,6 +473,7 @@
             this.liberer();
             toile = el;
             cfgActuel = { moi: cfg.moi || [], eux: cfg.eux || [] };
+            cleLogos = ''; chargerLogos(cfg.logos);
             worker = workers.get(el) || null;
             if (!worker && AVEC_WORKER) {
                 try {
@@ -459,6 +505,7 @@
             const avantNums = JSON.stringify([cfgActuel.moi.map(j => j.num), cfgActuel.eux.map(j => j.num)]);
             if (cfg.moi) cfgActuel.moi = cfg.moi;
             if (cfg.eux) cfgActuel.eux = cfg.eux;
+            chargerLogos(cfg.logos);
             if (worker) worker.postMessage({ t: 'equipes', cfg });
             else equipesDe(cfg);
             if (JSON.stringify([cfgActuel.moi.map(j => j.num), cfgActuel.eux.map(j => j.num)]) !== avantNums) envoyerSprites();
