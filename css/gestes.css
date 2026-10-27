@@ -1452,3 +1452,9 @@ body:not(.pc) .mc-arene:not(.compact) .mc-vs { top: 20%; }
 .bc-aide b { color: #fff; }
 .jm .postes { width: 62px; }
 .jm .postes b { white-space: nowrap; font-size: 14.5px; }
+/* les lignes de joueurs ne dépassent jamais de l'écran (petits iPhone) */
+.joueurs-match { grid-template-columns: minmax(0, 1fr); }
+.joueurs-match .jm { min-width: 0; max-width: 100%; box-sizing: border-box; }
+.jm.choisi { transform: none; }
+.jm .en { flex: none; }
+@media (max-width: 360px) { .jm { gap: 6px; padding: 6px 8px; } .jm .postes { width: 54px; } .jm .en { width: 36px; } }
