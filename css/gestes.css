@@ -1515,3 +1515,12 @@ nav.onglets .badge.cadenas { background: none; border: none; box-shadow: none; p
 .bandeau-ralenti small { font: 500 11px Inter, sans-serif; letter-spacing: 0; opacity: .8; margin-top: 4px; }
 .bandeau-ralenti .rec { width: 10px; height: 10px; border-radius: 50%; background: #E4002B; margin-top: 5px; animation: clignote 1s steps(2) infinite; }
 .bandeau-ralenti { align-items: flex-end; }
+
+/* ===== Fiche joueur : axe de travail ===== */
+.axe-travail { margin: 10px 0 4px; padding: 9px 10px; border-radius: 10px; background: #F4F1EA; border: 1px solid #D8D1C0; }
+.axe-travail .etiquette { display: block; font: 700 12px "Barlow Condensed", sans-serif; letter-spacing: .12em; color: #5A6275; margin-bottom: 6px; }
+.axe-puces { display: flex; flex-wrap: wrap; gap: 6px; }
+.axe-puce { border: 1.5px solid #D8D1C0; background: #fff; color: #0B1636; border-radius: 8px; padding: 6px 9px; font-size: 13px; font-weight: 600; }
+.axe-puce b { margin-left: 3px; color: #1B4DB1; }
+.axe-puce.actif { border-color: #E4002B; background: #FFE8EC; }
+.axe-travail small { display: block; margin-top: 6px; font-size: 11.5px; color: #5A6275; }
