@@ -201,7 +201,7 @@
       "url": "css\/pc.css"
     },
     {
-      "hash": "sha256-CgdpU3OXynBDmYt6+GuLettaoyoN8jvuc8W07YWI4D0=",
+      "hash": "sha256-rtgG3lF7IO2vDbsb+S1H4c4oUFJZTMSbYvz84blCZFg=",
       "url": "css\/refonte.css"
     },
     {
@@ -217,7 +217,7 @@
       "url": "icon-512.png"
     },
     {
-      "hash": "sha256-4GjLSOcrS5UKCrjyv5sUkKwwkilJe622spTskjdPits=",
+      "hash": "sha256-dvg1298W2CVMTbls9yMIbCYuAnO6e4NW4G5OUbtwj3k=",
       "url": "index.html"
     },
     {
@@ -721,5 +721,5 @@
       "url": "_content\/HandballManagerInterface\/HandballManagerInterface.bundle.scp.css"
     }
   ],
-  "version": "PDzrYSmg"
+  "version": "RgYgnZxu"
 };

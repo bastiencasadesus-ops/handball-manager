@@ -33,8 +33,7 @@ body { background: radial-gradient(120% 50% at 50% 0%, #16397F 0%, #050F2A 62%) 
 
 /* ----- Le bandeau du club ----- */
 .bandeau.epure { background: linear-gradient(180deg, var(--nuit-800) 0%, rgba(10,35,88,.82) 100%); box-shadow: 0 4px 0 #020817; border-radius: 0; }
-.bandeau.epure .logo { width: 40px; height: 46px; padding: 4px 4px 10px; border-radius: 0; background: #fff;
-    clip-path: polygon(0 0, 100% 0, 100% 64%, 50% 100%, 0 64%); object-fit: contain; }
+
 .bandeau.epure .nom { font: 800 21px/1 var(--affiche); letter-spacing: .01em; }
 .bandeau.epure .info { font: 600 12.5px Inter, sans-serif; color: var(--r-bleu-300); margin-top: 3px; }
 .bandeau.epure .bouton-icone { width: 40px; height: 40px; border-radius: 2px; border-color: rgba(143,164,214,.4); background: rgba(255,255,255,.06); }
@@ -79,8 +78,7 @@ body { background: radial-gradient(120% 50% at 50% 0%, #16397F 0%, #050F2A 62%) 
 .prochain-epure .lieu-prochain > span { display: block; transform: skewX(12deg); font: 800 12px var(--affiche); letter-spacing: .12em; color: var(--encre); }
 .prochain-epure .affiche { display: grid; grid-template-columns: minmax(0,1fr) 60px minmax(0,1fr); gap: 0; margin: 12px 0 4px; align-items: start; }
 .prochain-epure .affiche .equipe { gap: 6px; }
-.prochain-epure .affiche .equipe img, .prochain-epure .affiche .equipe .blason { width: 72px; height: 84px; border-radius: 0; padding: 6px 6px 16px; box-sizing: border-box;
-    clip-path: polygon(0 0, 100% 0, 100% 64%, 50% 100%, 0 64%); }
+.prochain-epure .affiche .equipe img, .prochain-epure .affiche .equipe .blason { width: 64px; height: 64px; }
 .prochain-epure .nom-equipe { font: 800 15px/1.05 var(--affiche); text-transform: uppercase; text-align: center; color: #fff; max-width: 100%; overflow-wrap: anywhere; }
 .prochain-epure .affiche .equipe b { font: 800 22px var(--chiffres); color: var(--r-or-300); text-shadow: 0 0 12px rgba(255,212,92,.55); }
 .prochain-epure .vs { align-self: center; margin-top: -30px; font: italic 900 44px/1 var(--affiche); color: #fff; text-shadow: 0 4px 0 var(--r-rouge); }
