@@ -25,7 +25,7 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-DR7jxFjw0eUdFY3zebrXHj82wI0t4yPGWH5DMitdDJo=",
+      "hash": "sha256-CaHi673viboRbiL2J52iC9LyG4Sj1tn+fSSWQF+Rtbc=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -37,11 +37,11 @@
       "url": "_framework\/dotnet.native.wasm"
     },
     {
-      "hash": "sha256-q2Tt3W2Eq3KJOQSG0y0TDWOOCrKcXWUZkv8\/DFTXcpI=",
+      "hash": "sha256-ELJnYb+CIVQDh09TGV9ifjTn1SfG2EW0NwS7y2I5BuU=",
       "url": "_framework\/HandballManagerInterface.wasm"
     },
     {
-      "hash": "sha256-\/A5I8x+63mpYxDZQjRNNdoBQK0+bOCdqoEwSMVIz54Q=",
+      "hash": "sha256-Kz6TRg+kv7Und2Pb6YQxbKtzK2l+o21bZOMJPkQgVck=",
       "url": "_framework\/HandballManagerWeb.wasm"
     },
     {
@@ -721,5 +721,5 @@
       "url": "_content\/HandballManagerInterface\/HandballManagerInterface.bundle.scp.css"
     }
   ],
-  "version": "Le6MiQSC"
+  "version": "gpL3DKur"
 };
