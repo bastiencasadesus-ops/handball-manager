@@ -125,16 +125,16 @@ window.hbmEntrainement = (() => {
         // Où va la balle : la direction du geste donne le côté, sa longueur la hauteur (un peu d'imprécision)
         function cibleDe(g) {
             const dx = g.x - g.x0, dy = g.y - g.y0, long = Math.hypot(dx, dy);
-            if (long < 28 || dy > -12) return null;
+            if (long < 20 || dy > -8) return null;
             const hauteurBut = depart.y - (but.y + but.h / 2);
-            const x = depart.x + dx / -dy * hauteurBut * .55;   // (un geste en diagonale franche vise le poteau)
-            const k = clamp((long - 40) / 240, 0, 1.15);          // court : à ras du sol ; long : sous la barre ; trop long : au-dessus
+            const x = depart.x + dx / -dy * hauteurBut * .42;   // (un geste en diagonale franche vise le poteau)
+            const k = clamp((long - 30) / 220, 0, 1.06);          // court : à ras du sol ; long : sous la barre ; trop long : au-dessus
             const y = but.y + but.h - 18 - k * (but.h - 4);
-            return { x: x + (Math.random() - .5) * 14, y: y + (Math.random() - .5) * 10 };
+            return { x: x + (Math.random() - .5) * 8, y: y + (Math.random() - .5) * 6 };
         }
         const but = { x: 40, y: 96, w: 280, h: 186 };
         let gk = { x: W / 2, cible: W / 2, vitesse: 120 }, phase = 0;
-        let tir = null, recharge = 0, buts = 0, lucarnes = 0, tirs = 0, filet = 0;
+        let balles = [], recharge = 0, buts = 0, lucarnes = 0, tirs = 0, filet = 0;   // (plusieurs ballons en l'air : on enchaîne les tirs)
         // Le geste : on glisse le doigt vers le but, la balle part dans cette direction
         const depart = { x: W / 2, y: H - 100 };
         let geste = null;   // { x0, y0, x, y, t0 }
@@ -142,16 +142,16 @@ window.hbmEntrainement = (() => {
             maj(dt, t) {
                 phase += dt;
                 if (Math.abs(gk.x - gk.cible) < 6) gk.cible = rnd(but.x + 50, but.x + but.w - 50);
-                gk.x += Math.sign(gk.cible - gk.x) * Math.min(Math.abs(gk.cible - gk.x), (175 + t * 9) * dt);
+                gk.x += Math.sign(gk.cible - gk.x) * Math.min(Math.abs(gk.cible - gk.x), (130 + t * 6) * dt);
                 recharge -= dt; filet = Math.max(0, filet - dt * 2);
-                if (tir) {
-                    tir.t += dt / .38;
+                for (const tir of balles) {
+                    tir.t += dt / .34;
                     if (tir.t >= 1 && !tir.fini) {
                         tir.fini = true;
                         const dehors = tir.x < but.x || tir.x > but.x + but.w || tir.y < but.y || tir.y > but.y + but.h;
-                        const pare = !dehors && Math.abs(tir.x - gk.x) < 56 && tir.y > but.y + 22;
+                        const pare = !dehors && Math.abs(tir.x - gk.x) < 42 && tir.y > but.y + 30;
                         if (dehors) { fx.texte(Math.min(W - 70, Math.max(70, tir.x)), Math.max(40, tir.y), tir.y < but.y ? 'AU-DESSUS !' : 'À CÔTÉ !', '#FF8FA3'); tir.rate = true; }
-                        else if (pare) { fx.texte(tir.x, tir.y - 10, 'ARRÊT !', '#FF8FA3'); fx.secouer(6); tir.pare = true; }
+                        else if (pare) { fx.texte(tir.x, tir.y - 10, 'ARRÊT !', '#FF8FA3'); fx.secouer(5); tir.pare = true; }
                         else {
                             const coin = (tir.x < but.x + 60 || tir.x > but.x + but.w - 60) && tir.y < but.y + 70;
                             buts++; if (coin) lucarnes++; filet = 1;
@@ -159,8 +159,8 @@ window.hbmEntrainement = (() => {
                             fx.eclat(tir.x, tir.y, undefined, coin ? 30 : 16);
                         }
                     }
-                    if (tir.t > 1.6) tir = null;
                 }
+                balles = balles.filter(b => b.t <= 1.5);
             },
             dessiner(ctx, t) {
                 // tribune et parquet
@@ -200,7 +200,7 @@ window.hbmEntrainement = (() => {
                 ctx.fillStyle = '#FFD45C'; ctx.beginPath(); ctx.arc(-44, -20 + bras, 8, 0, 7); ctx.arc(44, -20 - bras, 8, 0, 7); ctx.fill();
                 ctx.restore();
                 // le geste en cours : une traînée dorée, et la cible visée
-                if (geste && !tir) {
+                if (geste) {
                     const c = cibleDe(geste);
                     ctx.save();
                     ctx.strokeStyle = 'rgba(255,212,92,.85)'; ctx.lineWidth = 6; ctx.lineCap = 'round';
@@ -211,33 +211,34 @@ window.hbmEntrainement = (() => {
                         ctx.strokeStyle = '#FFD45C'; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(c.x, c.y, 14, 0, 7); ctx.stroke();
                     }
                     ctx.restore();
-                } else if (!tir && tirs === 0) {
+                } else if (tirs === 0) {
                     ctx.fillStyle = 'rgba(255,255,255,' + (.55 + Math.sin(t * 5) * .3) + ')'; ctx.font = '800 17px Inter, sans-serif'; ctx.textAlign = 'center';
                     ctx.fillText('↑  GLISSE VERS LE BUT  ↑', W / 2, H - 150);
                 }
                 // le tireur (de dos) et le ballon
                 joueur(ctx, W / 2, H - 70, 26, couleur, '9');
-                if (tir) {
+                for (const tir of balles) {
                     const k = ease(Math.min(1, tir.t));
                     const x = W / 2 + (tir.x - W / 2) * k, y = (H - 100) + (tir.y - (H - 100)) * k - Math.sin(k * Math.PI) * 60;
                     if (!tir.fini || tir.t < 1.15) ballon(ctx, tir.pare && tir.t > 1 ? x + (tir.t - 1) * 200 : x, y, 16 - k * 7, tir.t * 14);
-                } else if (recharge <= 0) ballon(ctx, W / 2 + 22, H - 96, 11, 0);
+                }
+                if (recharge <= 0) ballon(ctx, W / 2 + 22, H - 96, 11, 0);
                 // compteurs
                 ctx.fillStyle = 'rgba(5,15,42,.6)'; rr(ctx, 12, H - 44, 120, 30, 15); ctx.fill();
                 ctx.fillStyle = '#fff'; ctx.font = '700 15px Inter, sans-serif'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
                 ctx.fillText(`⚽ ${buts} / ${tirs}  ★ ${lucarnes}`, 24, H - 29);
             },
             toucher(x, y, type) {
-                if (type === 'bas') { if (!tir && recharge <= 0) geste = { x0: x, y0: y, x, y, t0: performance.now() }; return; }
+                if (type === 'bas') { geste = { x0: x, y0: y, x, y, t0: performance.now() }; return; }
                 if (type === 'glisse') { if (geste) { geste.x = x; geste.y = y; } return; }
                 // 'haut' : le doigt se lève, la balle part
                 const g = geste; geste = null;
-                if (!g || tir || recharge > 0) return;
+                if (!g || recharge > 0) return;
                 const c = cibleDe(g);
                 if (!c) return;   // (geste trop court, ou vers le bas)
-                tirs++; recharge = .45; tir = { x: c.x, y: c.y, t: 0 };
+                tirs++; recharge = .18; balles.push({ x: c.x, y: c.y, t: 0 });
             },
-            score: () => clamp(Math.round(buts * 8.5 + lucarnes * 4 - Math.max(0, tirs - buts - 3) * 3), 0, 100)
+            score: () => clamp(Math.round(buts * 7 + lucarnes * 3 - Math.max(0, tirs - buts - 4) * 2), 0, 100)   // (le geste prend un peu plus de temps qu'une touche)
         };
     }
 
