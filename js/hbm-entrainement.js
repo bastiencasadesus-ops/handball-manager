@@ -12,7 +12,7 @@
 window.hbmEntrainement = (() => {
     const W = 360, H = 540;
     const TITRES = {
-        Tir: ['🎯', 'TIR', 'Touche pour tirer : vise les coins, loin du gardien'],
+        Tir: ['🎯', 'TIR', 'Glisse le doigt vers le but pour tirer : la balle part dans ta direction, plus le geste est long, plus elle monte'],
         Arrets: ['🧤', 'ARRÊTS', 'Touche la zone où part le ballon pour plonger'],
         Vitesse: ['⚡', 'VITESSE', 'Alterne GAUCHE et DROITE le plus vite possible'],
         Defense: ['🛡', 'DÉFENSE', "Touche l'attaquant qui arme son tir avant qu'il ne déclenche"],
@@ -122,14 +122,25 @@ window.hbmEntrainement = (() => {
     //  Les jeux. Chacun : { maj(dt, t), dessiner(ctx, t), toucher(x, y, type), score() }
     // =====================================================================================
     function jeuTir(fx, couleur) {
+        // Où va la balle : la direction du geste donne le côté, sa longueur la hauteur (un peu d'imprécision)
+        function cibleDe(g) {
+            const dx = g.x - g.x0, dy = g.y - g.y0, long = Math.hypot(dx, dy);
+            if (long < 28 || dy > -12) return null;
+            const hauteurBut = depart.y - (but.y + but.h / 2);
+            const x = depart.x + dx / -dy * hauteurBut * .55;   // (un geste en diagonale franche vise le poteau)
+            const k = clamp((long - 40) / 240, 0, 1.15);          // court : à ras du sol ; long : sous la barre ; trop long : au-dessus
+            const y = but.y + but.h - 18 - k * (but.h - 4);
+            return { x: x + (Math.random() - .5) * 14, y: y + (Math.random() - .5) * 10 };
+        }
         const but = { x: 40, y: 96, w: 280, h: 186 };
-        let gk = { x: W / 2, cible: W / 2, vitesse: 120 }, viseur = { x: W / 2, y: 180 }, phase = 0;
+        let gk = { x: W / 2, cible: W / 2, vitesse: 120 }, phase = 0;
         let tir = null, recharge = 0, buts = 0, lucarnes = 0, tirs = 0, filet = 0;
+        // Le geste : on glisse le doigt vers le but, la balle part dans cette direction
+        const depart = { x: W / 2, y: H - 100 };
+        let geste = null;   // { x0, y0, x, y, t0 }
         return {
             maj(dt, t) {
                 phase += dt;
-                viseur.x = W / 2 + Math.sin(phase * 2.9) * 128 + Math.sin(phase * 6.3) * 16;
-                viseur.y = but.y + but.h / 2 + Math.sin(phase * 3.8 + 1) * 74;
                 if (Math.abs(gk.x - gk.cible) < 6) gk.cible = rnd(but.x + 50, but.x + but.w - 50);
                 gk.x += Math.sign(gk.cible - gk.x) * Math.min(Math.abs(gk.cible - gk.x), (175 + t * 9) * dt);
                 recharge -= dt; filet = Math.max(0, filet - dt * 2);
@@ -137,8 +148,10 @@ window.hbmEntrainement = (() => {
                     tir.t += dt / .38;
                     if (tir.t >= 1 && !tir.fini) {
                         tir.fini = true;
-                        const pare = Math.abs(tir.x - gk.x) < 56 && tir.y > but.y + 22;
-                        if (pare) { fx.texte(tir.x, tir.y - 10, 'ARRÊT !', '#FF8FA3'); fx.secouer(6); tir.pare = true; }
+                        const dehors = tir.x < but.x || tir.x > but.x + but.w || tir.y < but.y || tir.y > but.y + but.h;
+                        const pare = !dehors && Math.abs(tir.x - gk.x) < 56 && tir.y > but.y + 22;
+                        if (dehors) { fx.texte(Math.min(W - 70, Math.max(70, tir.x)), Math.max(40, tir.y), tir.y < but.y ? 'AU-DESSUS !' : 'À CÔTÉ !', '#FF8FA3'); tir.rate = true; }
+                        else if (pare) { fx.texte(tir.x, tir.y - 10, 'ARRÊT !', '#FF8FA3'); fx.secouer(6); tir.pare = true; }
                         else {
                             const coin = (tir.x < but.x + 60 || tir.x > but.x + but.w - 60) && tir.y < but.y + 70;
                             buts++; if (coin) lucarnes++; filet = 1;
@@ -186,15 +199,21 @@ window.hbmEntrainement = (() => {
                 ctx.fillStyle = '#F2C9A0'; ctx.beginPath(); ctx.arc(0, -20, 13, 0, 7); ctx.fill();
                 ctx.fillStyle = '#FFD45C'; ctx.beginPath(); ctx.arc(-44, -20 + bras, 8, 0, 7); ctx.arc(44, -20 - bras, 8, 0, 7); ctx.fill();
                 ctx.restore();
-                // viseur
-                if (!tir) {
-                    ctx.save(); ctx.translate(viseur.x, viseur.y);
-                    ctx.strokeStyle = 'rgba(255,212,92,.3)'; ctx.lineWidth = 9;   // le halo (sans flou coûteux)
-                    ctx.beginPath(); ctx.arc(0, 0, 16 + Math.sin(t * 10) * 2, 0, 7); ctx.stroke();
-                    ctx.strokeStyle = '#FFD45C'; ctx.lineWidth = 3;
-                    ctx.beginPath(); ctx.arc(0, 0, 16 + Math.sin(t * 10) * 2, 0, 7); ctx.stroke();
-                    ctx.beginPath(); ctx.moveTo(-26, 0); ctx.lineTo(-8, 0); ctx.moveTo(26, 0); ctx.lineTo(8, 0); ctx.moveTo(0, -26); ctx.lineTo(0, -8); ctx.moveTo(0, 26); ctx.lineTo(0, 8); ctx.stroke();
+                // le geste en cours : une traînée dorée, et la cible visée
+                if (geste && !tir) {
+                    const c = cibleDe(geste);
+                    ctx.save();
+                    ctx.strokeStyle = 'rgba(255,212,92,.85)'; ctx.lineWidth = 6; ctx.lineCap = 'round';
+                    ctx.beginPath(); ctx.moveTo(geste.x0, geste.y0); ctx.lineTo(geste.x, geste.y); ctx.stroke();
+                    if (c) {
+                        ctx.setLineDash([6, 8]); ctx.strokeStyle = 'rgba(255,212,92,.45)'; ctx.lineWidth = 3;
+                        ctx.beginPath(); ctx.moveTo(depart.x, depart.y); ctx.lineTo(c.x, c.y); ctx.stroke(); ctx.setLineDash([]);
+                        ctx.strokeStyle = '#FFD45C'; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(c.x, c.y, 14, 0, 7); ctx.stroke();
+                    }
                     ctx.restore();
+                } else if (!tir && tirs === 0) {
+                    ctx.fillStyle = 'rgba(255,255,255,' + (.55 + Math.sin(t * 5) * .3) + ')'; ctx.font = '800 17px Inter, sans-serif'; ctx.textAlign = 'center';
+                    ctx.fillText('↑  GLISSE VERS LE BUT  ↑', W / 2, H - 150);
                 }
                 // le tireur (de dos) et le ballon
                 joueur(ctx, W / 2, H - 70, 26, couleur, '9');
@@ -208,9 +227,15 @@ window.hbmEntrainement = (() => {
                 ctx.fillStyle = '#fff'; ctx.font = '700 15px Inter, sans-serif'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
                 ctx.fillText(`⚽ ${buts} / ${tirs}  ★ ${lucarnes}`, 24, H - 29);
             },
-            toucher() {
-                if (tir || recharge > 0) return;
-                tirs++; recharge = .45; tir = { x: viseur.x, y: viseur.y, t: 0 };
+            toucher(x, y, type) {
+                if (type === 'bas') { if (!tir && recharge <= 0) geste = { x0: x, y0: y, x, y, t0: performance.now() }; return; }
+                if (type === 'glisse') { if (geste) { geste.x = x; geste.y = y; } return; }
+                // 'haut' : le doigt se lève, la balle part
+                const g = geste; geste = null;
+                if (!g || tir || recharge > 0) return;
+                const c = cibleDe(g);
+                if (!c) return;   // (geste trop court, ou vers le bas)
+                tirs++; recharge = .45; tir = { x: c.x, y: c.y, t: 0 };
             },
             score: () => clamp(Math.round(buts * 8.5 + lucarnes * 4 - Math.max(0, tirs - buts - 3) * 3), 0, 100)
         };
@@ -528,6 +553,7 @@ window.hbmEntrainement = (() => {
             document.body.appendChild(fond);
             document.body.classList.add('mj-ouvert');
             const canvas = fond.querySelector('canvas'), ctx = canvas.getContext('2d');
+            canvas.style.touchAction = 'none';   // (le geste de tir ne fait pas défiler la page)
             const chrono = fond.querySelector('.mj-chrono span'), intro = fond.querySelector('.mj-intro'), decompte = fond.querySelector('.mj-decompte');
             const finEl = fond.querySelector('.mj-fin');
             const fx = effets();
