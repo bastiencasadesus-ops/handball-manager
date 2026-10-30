@@ -1,6 +1,15 @@
 // Petits services du navigateur pour Handball Manager : sauvegarde locale et sons de match.
 window.hbm = (function () {
     let audio = null, volume = 0.8, maitre = null;
+    let vibrations = true;
+    // Un léger retour sous le doigt sur les boutons principaux et les onglets (téléphones qui savent vibrer)
+    document.addEventListener('pointerdown', e => {
+        try {
+            if (!vibrations || !navigator.vibrate) return;
+            const b = e.target.closest && e.target.closest('button.bouton:not([disabled]), nav.onglets button, .sous-onglets button');
+            if (b) navigator.vibrate(6);
+        } catch (er) { }
+    }, { passive: true });
 
     function contexte() {
         if (!audio) {
@@ -123,10 +132,12 @@ window.hbm = (function () {
                 else if (nom === "legende") legende();
                 else if (nom === "revele") note(300, 1200, 0.22, 0.12);
                 else if (nom === "victoire") carillon([523, 659, 784, 1047, 784, 1047], 0.13);
+                else if (nom === "erreur") { note(330, 220, 0.12, 0.18); setTimeout(() => note(262, 175, 0.16, 0.18), 110); }
             } catch (e) { }
         },
         // Vibration : seulement pour les moments clés et les grosses récompenses (jamais à chaque but)
-        vibrer: motif => { try { if (navigator.vibrate) navigator.vibrate(motif); } catch (e) { } },
+        vibrer: motif => { try { if (vibrations && navigator.vibrate) navigator.vibrate(motif); } catch (e) { } },
+        reglerVibrations: oui => { vibrations = !!oui; },
         // Pluie de confettis par-dessus l'écran (hors de Blazor : elle se retire toute seule)
         confettis: force => {
             try {

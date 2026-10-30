@@ -285,3 +285,14 @@ body { background: radial-gradient(120% 50% at 50% 0%, #16397F 0%, #050F2A 62%) 
 .ligne-tournoi .rang { width: 26px; text-align: center; font-weight: 800; }
 .ligne-tournoi .qui { flex: 1; }
 .ligne-tournoi .pts { font: 900 18px "Barlow Condensed", sans-serif; color: #0B1636; }
+
+/* ---------- Tutoriel en 3 étapes ---------- */
+.tuto-tete { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+.tuto-icone { font-size: 38px; line-height: 1; }
+.tuto-points { display: flex; gap: 6px; }
+.tuto-points i { width: 22px; height: 6px; border-radius: 3px; background: #D5DCEA; }
+.tuto-points i.fait { background: #8FA4D6; }
+.tuto-points i.actif { background: #E4002B; }
+
+/* ---------- Vitesse : les cartes hors de l'écran ne sont pas dessinées ---------- */
+.carte-banc, .grille-cartes > * { content-visibility: auto; contain-intrinsic-size: 110px 190px; }
