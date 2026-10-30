@@ -245,3 +245,16 @@ body { background: radial-gradient(120% 50% at 50% 0%, #16397F 0%, #050F2A 62%) 
 @keyframes c-holo { to { filter: hue-rotate(360deg); } }
 .c-holo { animation: c-holo 3s linear infinite; }
 @media (prefers-reduced-motion: reduce) { .c-scint, .c-pulse, .c-holo { animation: none; } }
+
+/* ---------- Sauvegarde en ligne : le code secret ---------- */
+.code-sauvegarde { font: 900 30px/1 "Barlow Condensed", sans-serif; letter-spacing: 4px; text-align: center; padding: 12px 8px 8px;
+                   background: #0B1636; color: #FFD45C; border-radius: 10px; cursor: pointer; user-select: all; }
+.code-sauvegarde small { display: block; font: 600 11px Barlow, sans-serif; letter-spacing: .5px; color: #8FA4D6; margin-top: 4px; }
+
+/* ---------- Badges de collection ---------- */
+.badges-collection { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-start; }
+.badge-collection { display: flex; flex-direction: column; align-items: center; gap: 3px; max-width: 70px; }
+.badge-collection .medaille { display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #fff;
+    box-shadow: 0 0 0 3px #E2A920, 0 0 0 5px #7A4A00, 0 2px 8px rgba(255,200,46,.6); }
+.badge-collection .medaille img { object-fit: contain; }
+.badge-collection small { font-size: 10px; font-weight: 700; text-align: center; line-height: 1.1; color: inherit; opacity: .8; }
