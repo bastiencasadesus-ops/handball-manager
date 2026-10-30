@@ -278,3 +278,10 @@ body { background: radial-gradient(120% 50% at 50% 0%, #16397F 0%, #050F2A 62%) 
 .decision-banc .effet { font: 900 18px "Barlow Condensed", sans-serif; min-width: 34px; text-align: right; color: #5A6275; }
 .decision-banc .effet.plus { color: #1B9E4B; }
 .decision-banc .effet.moins { color: #B3122E; }
+
+/* ---------- Tournoi du week-end ---------- */
+.ligne-tournoi { display: flex; align-items: center; gap: 8px; padding: 6px 4px; border-bottom: 1px solid #E3E8F2; }
+.ligne-tournoi.moi { background: #FFF6D6; border-radius: 6px; }
+.ligne-tournoi .rang { width: 26px; text-align: center; font-weight: 800; }
+.ligne-tournoi .qui { flex: 1; }
+.ligne-tournoi .pts { font: 900 18px "Barlow Condensed", sans-serif; color: #0B1636; }
