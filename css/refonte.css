@@ -235,3 +235,13 @@ body { background: radial-gradient(120% 50% at 50% 0%, #16397F 0%, #050F2A 62%) 
 .defi-jour.attente { opacity: .7; }
 .defi-jour:active { transform: translateY(2px); }
 .forme .vide { visibility: hidden; }
+
+/* ---------- Cartes Cristal (doublons) : la glace dépasse de la carte, étincelles, aura irisée ---------- */
+.carte-svg.givre { overflow: visible; }
+@keyframes c-scint { 0%, 100% { opacity: .1; scale: .4; } 50% { opacity: 1; scale: 1; } }
+.c-scint { transform-box: fill-box; transform-origin: center; animation: c-scint 1.8s ease-in-out infinite; }
+@keyframes c-pulse { 0%, 100% { opacity: .25; } 50% { opacity: .7; } }
+.c-pulse { animation: c-pulse 1.6s ease-in-out infinite; }
+@keyframes c-holo { to { filter: hue-rotate(360deg); } }
+.c-holo { animation: c-holo 3s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .c-scint, .c-pulse, .c-holo { animation: none; } }
