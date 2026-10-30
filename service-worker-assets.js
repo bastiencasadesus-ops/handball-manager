@@ -25,7 +25,7 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-Gj\/rjP0OSmdWi22WO+6K7KXYsnIg2RkvXPVXr3xjAt0=",
+      "hash": "sha256-Hffm6sOXLm7vpt6czuDD6\/1zjioX1r8chybWVwpyoV8=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -37,11 +37,11 @@
       "url": "_framework\/dotnet.native.wasm"
     },
     {
-      "hash": "sha256-q6kbGqQ909zfQHWsVaPs+z\/iGemzJ1mtGeZeE46NxXE=",
+      "hash": "sha256-SgF2GhcsunLjiryYsbrXwcjHt3cn02T1ANgmJE2HA7g=",
       "url": "_framework\/HandballManagerInterface.wasm"
     },
     {
-      "hash": "sha256-Vea6EWcgc6\/swgVaoFYamDonXlRpfaIGVIGT9uuNDms=",
+      "hash": "sha256-jEo8HN7nNh5PzBr+NDkFMDGZNjM6qS5gSme5dXS+5RU=",
       "url": "_framework\/HandballManagerWeb.wasm"
     },
     {
@@ -125,7 +125,7 @@
       "url": "_framework\/System.IO.Compression.wasm"
     },
     {
-      "hash": "sha256-ougtFeF51WXmDMR7tv\/MTTL05qJxzq1zHM7+s\/NkP\/U=",
+      "hash": "sha256-wiDrgfgUI7iNslwv5RYlFezkerpomCR\/J0YxyHtfqWk=",
       "url": "_framework\/System.Linq.wasm"
     },
     {
@@ -145,7 +145,7 @@
       "url": "_framework\/System.Net.Primitives.wasm"
     },
     {
-      "hash": "sha256-dcB5RVrVA0h68BMHTEUguGBRRAZ+\/t96+g8t36Z8Y4w=",
+      "hash": "sha256-VIGZp6D+lsREqMurrPTlon9OHFg\/wLzgb803G3TW0gs=",
       "url": "_framework\/System.Private.CoreLib.wasm"
     },
     {
@@ -185,7 +185,7 @@
       "url": "apple-touch-icon.png"
     },
     {
-      "hash": "sha256-gC6xp1aQ4S5EmdprmuMd76nfkS8C6SB6MD4F\/Qew\/8s=",
+      "hash": "sha256-K6KtqVScmfPsTc+dScuCHucSrNXRZdcxxeFNEK3O04s=",
       "url": "css\/gestes.css"
     },
     {
@@ -193,7 +193,7 @@
       "url": "css\/jeu-v2.css"
     },
     {
-      "hash": "sha256-UbCS+kUApvhv9dBPjaLdGJak54HEetYUHEpAlvyxM9g=",
+      "hash": "sha256-47lY6UO2ZGr\/3Hlqc1BXYpK3mYjtV\/DH\/pwBLKXr4VU=",
       "url": "css\/jeu.css"
     },
     {
@@ -217,7 +217,7 @@
       "url": "icon-512.png"
     },
     {
-      "hash": "sha256-vtcugjFTgHcYxq0KoAp2O+zQ56PuCr6VbW0hwo+cXNc=",
+      "hash": "sha256-6E8NKAjppzmkcCQuTNbbP3ZN0\/Xj5p+CfpDQCXx+b3M=",
       "url": "index.html"
     },
     {
@@ -721,5 +721,5 @@
       "url": "_content\/HandballManagerInterface\/HandballManagerInterface.bundle.scp.css"
     }
   ],
-  "version": "gu3tPUVh"
+  "version": "IhOpbm6J"
 };

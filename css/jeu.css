@@ -135,6 +135,8 @@ button { font: inherit; color: inherit; border: none; background: none; cursor: 
 .r-bronze { border-color: #C47E48; box-shadow: 0 0 10px rgba(196,126,72,.45); }
 .r-argent { border-color: #C3CAD6; box-shadow: 0 0 10px rgba(201,214,238,.5); }
 .r-or { border-color: #E2A920; box-shadow: 0 0 16px rgba(255,200,46,.85); }
+.r-elite { border-color: #F2C94C; background: linear-gradient(135deg, #1B3780, #0B1636); color: #FFE08A; box-shadow: 0 0 16px rgba(77,124,255,.85); }
+.r-elite .detail { color: #C9D4EE; }
 
 /* ---------- Effectif : demi-terrain ---------- */
 .terrain-compo { position: relative; aspect-ratio: 1 / 1.05; border-radius: 12px; overflow: hidden; background: #3B78D8; border: 3px solid #fff; }

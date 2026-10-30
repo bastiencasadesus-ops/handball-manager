@@ -350,10 +350,10 @@ body.pc .duel-arene .choix { grid-template-columns: repeat(auto-fit, minmax(200p
     clip-path: polygon(1.6% 8%, 62% 1.1%, 98.4% 10.9%, 98.4% 84.5%, 50% 98.9%, 1.6% 87.4%);
     background: linear-gradient(115deg, transparent 32%, rgba(255,255,255,.65) 47%, transparent 62%);
     background-size: 260% 260%; background-position: var(--px, 50%) 50%; transition: background-position .12s; }
-.carte3d.retournee .rarete-Rare .reflet { opacity: .55; animation: lustre 3s ease-in-out infinite; }
-.carte3d.retournee .rarete-Elite .reflet { opacity: .8; animation: lustre 2.6s ease-in-out infinite;
+.carte3d.retournee .rarete-argent .reflet { opacity: .55; animation: lustre 3s ease-in-out infinite; }
+.carte3d.retournee .rarete-or .reflet, .carte3d.retournee .rarete-elite .reflet { opacity: .8; animation: lustre 2.6s ease-in-out infinite;
     background-image: linear-gradient(115deg, transparent 28%, rgba(255,226,120,.85) 44%, rgba(255,255,255,.9) 50%, rgba(255,226,120,.85) 56%, transparent 70%); }
-.carte3d.retournee .rarete-Legendaire .reflet { opacity: .7; mix-blend-mode: color-dodge; animation: lustre 2.2s ease-in-out infinite;
+.carte3d.retournee .rarete-legende .reflet { opacity: .7; mix-blend-mode: color-dodge; animation: lustre 2.2s ease-in-out infinite;
     background-image: linear-gradient(115deg, rgba(255,77,109,.6) 10%, rgba(255,225,77,.6) 28%, rgba(61,220,132,.6) 46%, rgba(46,196,241,.6) 64%, rgba(224,86,253,.6) 82%); }
 @keyframes lustre { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
 .carte3d-scene[data-incline-actif] .reflet { animation-play-state: paused; }
@@ -502,13 +502,15 @@ body.pc .duel-arene .choix { grid-template-columns: repeat(auto-fit, minmax(200p
           font-family: "Barlow Condensed", sans-serif; font-size: 19px; display: flex; align-items: center; gap: 8px; animation: jaillit .35s cubic-bezier(.2,1.6,.4,1); }
 .indice img { width: 24px; height: 24px; object-fit: contain; }
 .indice.doublon { background: linear-gradient(90deg, #6A1B9A, #E056FD); border-color: #fff; }
-.indices-carte.rarete-Elite .indice { border-color: #FFD23F; box-shadow: 0 0 14px rgba(255,210,63,.7); }
-.indices-carte.rarete-Legendaire .indice { border-color: #E056FD; box-shadow: 0 0 16px rgba(224,86,253,.9); }
+.indices-carte.rarete-or .indice { border-color: #FFD23F; box-shadow: 0 0 14px rgba(255,210,63,.7); }
+.indices-carte.rarete-elite .indice { background: #0F2259; border-color: #F2C94C; box-shadow: 0 0 18px rgba(77,124,255,.9); color: #FFE08A; }
+.indices-carte.rarete-legende .indice { border-color: #E056FD; box-shadow: 0 0 16px rgba(224,86,253,.9); }
 .aura-revelation { position: absolute; left: 50%; top: 50%; width: 300px; height: 300px; margin: -150px 0 0 -150px; border-radius: 50%; pointer-events: none; z-index: 0;
                    background: radial-gradient(rgba(201,214,238,.55), transparent 65%); animation: aura 1s ease-in-out infinite alternate; }
-.aura-revelation.aura-Rare { background: radial-gradient(rgba(61,139,255,.7), transparent 65%); }
-.aura-revelation.aura-Elite { background: radial-gradient(rgba(255,200,46,.85), transparent 65%); }
-.aura-revelation.aura-Legendaire { background: conic-gradient(#FF4D6D, #FFE14D, #3DDC84, #2EC4F1, #E056FD, #FF4D6D); filter: blur(28px); }
+.aura-revelation.aura-argent { background: radial-gradient(rgba(61,139,255,.7), transparent 65%); }
+.aura-revelation.aura-or { background: radial-gradient(rgba(255,200,46,.85), transparent 65%); }
+.aura-revelation.aura-elite { background: radial-gradient(rgba(242,201,76,.9), rgba(77,124,255,.75) 40%, transparent 68%); }
+.aura-revelation.aura-legende { background: conic-gradient(#FF4D6D, #FFE14D, #3DDC84, #2EC4F1, #E056FD, #FF4D6D); filter: blur(28px); }
 .aura-revelation.aura-doublon { background: radial-gradient(rgba(224,86,253,.75), transparent 65%); }
 @keyframes aura { from { transform: scale(.85); opacity: .7; } to { transform: scale(1.12); opacity: 1; } }
 .carte3d-scene.frisson { animation: frisson .12s linear infinite; position: relative; z-index: 1; }
@@ -534,6 +536,7 @@ body.pc .duel-arene .choix { grid-template-columns: repeat(auto-fit, minmax(200p
 .teaser { display: flex; gap: 8px; align-items: flex-start; font-size: 13px; color: #344054; padding: 4px 0; border-top: 1px dashed #D5DBE7; animation: jaillit .3s both; }
 .teaser:first-of-type { border-top: 0; }
 .teaser .ico { font-size: 16px; width: 22px; text-align: center; flex: none; }
+.titre-elite .degrade { background: linear-gradient(90deg, #F2C94C, #FFF3C4, #F2C94C) !important; -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 8px rgba(77,124,255,.9)); }
 .titre-legende .degrade { background: linear-gradient(90deg, #FF4D6D, #FFE14D, #3DDC84, #2EC4F1, #E056FD); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
 /* Moment décisif (MomentDecisif.cs) */
