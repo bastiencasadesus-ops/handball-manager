@@ -258,3 +258,23 @@ body { background: radial-gradient(120% 50% at 50% 0%, #16397F 0%, #050F2A 62%) 
     box-shadow: 0 0 0 3px #E2A920, 0 0 0 5px #7A4A00, 0 2px 8px rgba(255,200,46,.6); }
 .badge-collection .medaille img { object-fit: contain; }
 .badge-collection small { font-size: 10px; font-weight: 700; text-align: center; line-height: 1.1; color: inherit; opacity: .8; }
+
+/* ---------- Fiche d'après-match ---------- */
+.titre-analyse { font-weight: 800; margin: 6px 0; color: var(--bleu-nuit, #0B1636); }
+.analyse-match { margin-bottom: 8px; }
+.stats-duel { background: #F3F6FC; border-radius: 10px; padding: 8px 10px; }
+.stats-duel .tetes { display: flex; justify-content: space-between; font: 800 12px "Barlow Condensed", sans-serif; letter-spacing: .5px; color: #0B1636; text-transform: uppercase; margin-bottom: 4px; }
+.stat-duel { display: grid; grid-template-columns: 44px 1fr 44px; align-items: center; gap: 6px; position: relative; padding: 3px 0 11px; }
+.stat-duel b { font-size: 14px; text-align: center; color: #5A6275; }
+.stat-duel b.gagne { color: #0B1636; font-weight: 900; }
+.stat-duel .barre { display: flex; width: 100%; height: 8px; border-radius: 4px; background: #E3E8F2; overflow: hidden; }
+.stat-duel .barre span { display: block; height: 100%; }
+.stat-duel .barre .moi { background: #1B4DB1; margin-left: auto; border-radius: 4px 0 0 4px; }
+.stat-duel .barre .eux { background: #B3122E; margin-right: auto; border-radius: 0 4px 4px 0; }
+.stat-duel small { position: absolute; left: 0; right: 0; bottom: 0; text-align: center; font-size: 10px; color: #5A6275; font-weight: 600; }
+.fil-score { display: block; background: #F3F6FC; border-radius: 10px; margin-bottom: 6px; }
+.decision-banc, .action-cle { display: flex; gap: 8px; align-items: center; padding: 6px 2px; border-bottom: 1px solid #E3E8F2; }
+.decision-banc .ico, .action-cle .ico { font-size: 20px; width: 26px; text-align: center; }
+.decision-banc .effet { font: 900 18px "Barlow Condensed", sans-serif; min-width: 34px; text-align: right; color: #5A6275; }
+.decision-banc .effet.plus { color: #1B9E4B; }
+.decision-banc .effet.moins { color: #B3122E; }
