@@ -303,3 +303,8 @@ body { background: radial-gradient(120% 50% at 50% 0%, #16397F 0%, #050F2A 62%) 
 .jauge-cohesion .tete b { font: 900 16px "Barlow Condensed", sans-serif; text-transform: uppercase; }
 .jauge-cohesion .piste { height: 12px; border-radius: 6px; background: rgba(255,255,255,.12); overflow: hidden; box-shadow: inset 0 1px 3px rgba(0,0,0,.4); }
 .jauge-cohesion .piste span { display: block; height: 100%; border-radius: 6px; transition: width .6s ease; box-shadow: 0 0 10px rgba(255,255,255,.25); }
+
+/* ---------- Remplaçant : envoi direct au vestiaire ---------- */
+.vers-vestiaire { margin-top: 4px; border: 1.5px solid rgba(255,255,255,.35); background: rgba(10,35,88,.85); color: #E3EAF8; border-radius: 14px;
+                  font: 800 11px "Barlow Condensed", sans-serif; letter-spacing: .6px; padding: 3px 9px; text-transform: uppercase; }
+.vers-vestiaire:active { background: #E4002B; border-color: #E4002B; }
