@@ -296,3 +296,10 @@ body { background: radial-gradient(120% 50% at 50% 0%, #16397F 0%, #050F2A 62%) 
 
 /* ---------- Vitesse : les cartes hors de l'écran ne sont pas dessinées ---------- */
 .carte-banc, .grille-cartes > * { content-visibility: auto; contain-intrinsic-size: 110px 190px; }
+
+/* ---------- Jauge de cohésion (onglet Équipe) ---------- */
+.jauge-cohesion { margin: 2px 0 10px; }
+.jauge-cohesion .tete { display: flex; justify-content: space-between; align-items: baseline; font: 800 13px "Barlow Condensed", sans-serif; letter-spacing: .6px; color: #C9D4EE; margin-bottom: 4px; }
+.jauge-cohesion .tete b { font: 900 16px "Barlow Condensed", sans-serif; text-transform: uppercase; }
+.jauge-cohesion .piste { height: 12px; border-radius: 6px; background: rgba(255,255,255,.12); overflow: hidden; box-shadow: inset 0 1px 3px rgba(0,0,0,.4); }
+.jauge-cohesion .piste span { display: block; height: 100%; border-radius: 6px; transition: width .6s ease; box-shadow: 0 0 10px rgba(255,255,255,.25); }
