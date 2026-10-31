@@ -308,3 +308,31 @@ body { background: radial-gradient(120% 50% at 50% 0%, #16397F 0%, #050F2A 62%) 
 .vers-vestiaire { margin-top: 4px; border: 1.5px solid rgba(255,255,255,.35); background: rgba(10,35,88,.85); color: #E3EAF8; border-radius: 14px;
                   font: 800 11px "Barlow Condensed", sans-serif; letter-spacing: .6px; padding: 3px 9px; text-transform: uppercase; }
 .vers-vestiaire:active { background: #E4002B; border-color: #E4002B; }
+
+/* ---------- Pack exclusif du club ---------- */
+.pack-club { position: relative; display: flex; gap: 14px; align-items: center; padding: 14px; margin-bottom: 18px; border-radius: 16px; overflow: hidden;
+    background: radial-gradient(120% 120% at 0% 0%, color-mix(in srgb, var(--teinte) 70%, #fff 0%) 0%, color-mix(in srgb, var(--teinte) 45%, #050F2A) 55%, #050F2A 100%);
+    border: 2px solid #E2B33C; box-shadow: 0 0 0 1px #6B4A00 inset, 0 8px 24px rgba(0,0,0,.45), 0 0 18px rgba(226,179,60,.35); }
+.pack-club .pc-lumiere { position: absolute; inset: -40%; background: linear-gradient(115deg, transparent 40%, rgba(255,240,190,.28) 50%, transparent 60%);
+    animation: pc-lumiere 4.5s ease-in-out infinite; pointer-events: none; }
+@keyframes pc-lumiere { 0% { transform: translateX(-40%); } 60%, 100% { transform: translateX(40%); } }
+.pack-club .pc-sachet { position: relative; flex: none; width: 112px; height: 160px; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+    padding: 8px 6px 10px; background: linear-gradient(160deg, #1A1A1A, #000 60%, #2B2210); border: 2px solid #E2B33C;
+    box-shadow: 0 0 0 3px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,226,140,.35), 0 6px 14px rgba(0,0,0,.5); transform: rotate(-4deg); }
+.pack-club .pc-bande { font: 800 10px "Barlow Condensed", sans-serif; letter-spacing: 2px; color: #1A1100; background: linear-gradient(90deg, #B8860B, #FFE08A, #B8860B); padding: 2px 8px; border-radius: 3px; }
+.pack-club .pc-medaillon { width: 84px; height: 84px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 0 3px #E2B33C, 0 0 0 5px #6B4A00, 0 0 22px color-mix(in srgb, var(--teinte) 80%, #FFD45C); }
+.pack-club .pc-medaillon img { object-fit: contain; }
+.pack-club .pc-nom { font: 900 12px/1.05 "Barlow Condensed", sans-serif; color: #FFE08A; text-align: center; letter-spacing: .5px; max-width: 100px; }
+.pack-club .pc-un { font: 800 10px "Barlow Condensed", sans-serif; color: #fff; letter-spacing: 1.5px; opacity: .8; }
+.pack-club .pc-infos { position: relative; display: flex; flex-direction: column; gap: 6px; color: #fff; min-width: 0; }
+.pack-club .pc-infos b { font: 900 19px/1.05 "Barlow Condensed", sans-serif; text-transform: uppercase; color: #FFE08A; }
+.pack-club .pc-infos small { font-size: 12.5px; line-height: 1.3; color: #E3EAF8; }
+.pack-club .pc-acheter { align-self: flex-start; background: linear-gradient(180deg, #FFE08A, #D9A11E); color: #1A1100; border: none; }
+.pack-club .pc-acheter:disabled { background: rgba(255,255,255,.18); color: #C9D4EE; }
+.pack-club .bouton.pc-acheter { background: linear-gradient(180deg, #FFE08A, #D9A11E) !important; color: #1A1100 !important; box-shadow: 0 3px 0 #7A5200; }
+.pack-club .bouton.pc-acheter:disabled { background: rgba(255,255,255,.18) !important; color: #C9D4EE !important; box-shadow: none; }
+.pack-club-ouv { border: 2px solid #E2B33C; color: #FFE08A !important; }
+.pack-corps.pack-club-ouv { display: flex; flex-direction: column; align-items: center; }
+.pack-corps .pc-medaillon { width: 116px; height: 116px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 0 4px #E2B33C, 0 0 0 7px #6B4A00, 0 0 30px rgba(255,212,92,.6); }
