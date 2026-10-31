@@ -336,3 +336,6 @@ body { background: radial-gradient(120% 50% at 50% 0%, #16397F 0%, #050F2A 62%) 
 .pack-corps.pack-club-ouv { display: flex; flex-direction: column; align-items: center; }
 .pack-corps .pc-medaillon { width: 116px; height: 116px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center;
     box-shadow: 0 0 0 4px #E2B33C, 0 0 0 7px #6B4A00, 0 0 30px rgba(255,212,92,.6); }
+.pack-club .scene-club { position: relative; flex: none; width: 118px; height: 168px; }
+.pack-club .scene-club .pack3d { width: 150px; height: 200px; top: -16px; z-index: 2; }
+.pack3d-ok .pack-club .scene-club:not(.sans3d) .pc-sachet { visibility: hidden; }

@@ -7,7 +7,8 @@ window.hbmPack3D = (() => {
     const COULEURS = {
         bronze: ['#E0A672', '#7A4A26', 0.35],
         argent: ['#EEF1F6', '#6B7588', 0.7],
-        or: ['#F7D66A', '#A87A08', 1.0]
+        or: ['#F7D66A', '#A87A08', 1.0],
+        club: ['#3A3326', '#050505', 0.9]   // le pack exclusif du club : noir et or, son logo
     };
     const instances = [];
 
@@ -110,11 +111,50 @@ void main() {
             ctx.fillStyle = 'rgba(0,0,0,.27)'; ctx.fillRect(x + 2, y, 3, SERTI);
         }
     }
-    function texteEnRelief(ctx, texte, x, y, taille) {
+    function texteEnRelief(ctx, texte, x, y, taille, couleur) {
         ctx.font = `700 ${taille}px "Barlow Condensed", "Arial Narrow", sans-serif`;
         ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
         ctx.fillStyle = 'rgba(0,0,0,.38)'; ctx.fillText(texte, x, y + 2);
-        ctx.fillStyle = '#fff'; ctx.fillText(texte, x, y);
+        ctx.fillStyle = couleur || '#fff'; ctx.fillText(texte, x, y);
+    }
+    // L'or des packs du club : un dégradé métallique
+    function or(ctx, y0, y1) {
+        const g = ctx.createLinearGradient(0, y0, 0, y1);
+        g.addColorStop(0, '#FFF3C4'); g.addColorStop(0.45, '#F2C94C'); g.addColorStop(1, '#A8780A');
+        return g;
+    }
+    function rectoClub(ctx, d) {
+        fond(ctx, 'club');
+        // un liseré doré tout autour
+        ctx.lineWidth = 4; ctx.strokeStyle = or(ctx, 0, H); ctx.strokeRect(6, SERTI + 4, L - 12, H - 2 * SERTI - 8);
+        // la bande « ÉDITION CLUB »
+        ctx.fillStyle = or(ctx, 36, 66); ctx.fillRect(70, 38, L - 140, 28);
+        ctx.font = '800 18px "Barlow Condensed", sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillStyle = '#1A1100'; ctx.fillText('ÉDITION CLUB', L / 2, 53);
+        ctx.setLineDash([3, 3]); ctx.strokeStyle = 'rgba(255,226,140,.8)'; ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.moveTo(10, 84); ctx.lineTo(L - 10, 84); ctx.stroke(); ctx.setLineDash([]);
+        // le médaillon et le logo
+        const bx = L / 2, by = 176, r = 66;
+        ctx.fillStyle = 'rgba(242,201,76,.25)'; ctx.beginPath(); ctx.arc(bx, by, r + 22, 0, 7); ctx.fill();
+        ctx.fillStyle = '#6B4A00'; ctx.beginPath(); ctx.arc(bx, by + 3, r + 9, 0, 7); ctx.fill();
+        ctx.fillStyle = or(ctx, by - r - 8, by + r + 8); ctx.beginPath(); ctx.arc(bx, by, r + 8, 0, 7); ctx.fill();
+        ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(bx, by, r, 0, 7); ctx.fill();
+        if (d.image) {
+            const k = Math.min((r * 1.5) / d.image.width, (r * 1.5) / d.image.height);
+            const w = d.image.width * k, h = d.image.height * k;
+            ctx.save(); ctx.beginPath(); ctx.arc(bx, by, r - 2, 0, 7); ctx.clip();
+            ctx.drawImage(d.image, bx - w / 2, by - h / 2, w, h); ctx.restore();
+        }
+        // le nom du club, en or, sur une ou deux lignes
+        const nom = (d.nom || '').toUpperCase(), mots = nom.split(' ');
+        let l1 = nom, l2 = '';
+        ctx.font = '700 30px "Barlow Condensed", sans-serif';
+        if (ctx.measureText(nom).width > L - 40 && mots.length > 1) {
+            let i = Math.ceil(mots.length / 2); l1 = mots.slice(0, i).join(' '); l2 = mots.slice(i).join(' ');
+        }
+        texteEnRelief(ctx, l1, L / 2, l2 ? 292 : 300, 30, '#FFE08A');
+        if (l2) texteEnRelief(ctx, l2, L / 2, 322, 30, '#FFE08A');
+        pastille(ctx, d.joueurs || '1 JOUEUR', L / 2, 360, 'rgba(242,201,76,.25)', false, 15);
     }
     function pastille(ctx, texte, cx, cy, fond, bord, taille) {
         ctx.font = `700 ${taille}px "Barlow Condensed", "Arial Narrow", sans-serif`;
@@ -136,6 +176,7 @@ void main() {
     function recto(d) {
         const c = document.createElement('canvas'); c.width = L * 2; c.height = H * 2;
         const ctx = c.getContext('2d'); ctx.scale(2, 2);
+        if (d.type === 'club') { rectoClub(ctx, d); return c; }
         fond(ctx, d.type);
         texteEnRelief(ctx, d.libelle, L / 2, 58, 24);
         ctx.setLineDash([3, 3]); ctx.strokeStyle = 'rgba(255,255,255,.85)'; ctx.lineWidth = 2;
@@ -172,7 +213,7 @@ void main() {
         const c = document.createElement('canvas'); c.width = L; c.height = H;
         const ctx = c.getContext('2d');
         fond(ctx, d.type);
-        texteEnRelief(ctx, 'HANDBALL MANAGER', L / 2, H / 2 + 8, 22);
+        texteEnRelief(ctx, d.type === 'club' ? 'ÉDITION CLUB' : 'HANDBALL MANAGER', L / 2, H / 2 + 8, 22, d.type === 'club' ? '#FFE08A' : null);
         if (d.verrou) { ctx.fillStyle = 'rgba(5,15,42,.5)'; ctx.fillRect(0, 0, L, H); }
         return c;
     }
@@ -208,9 +249,9 @@ void main() {
         canvas.dataset.pack3dMonte = '1';
         const d = { type: canvas.dataset.type, libelle: canvas.dataset.libelle, niveau: canvas.dataset.niveau || '',
                     joueurs: canvas.dataset.joueurs, verrou: canvas.dataset.verrou === '1', rang: +canvas.dataset.rang || 0,
-                    ouverture: canvas.dataset.mode === 'ouverture' };
+                    ouverture: canvas.dataset.mode === 'ouverture', logo: canvas.dataset.logo || '', nom: canvas.dataset.nom || '' };
         const gl = canvas.getContext('webgl', { alpha: true, antialias: true, premultipliedAlpha: true });
-        const conteneur = canvas.closest('.scene-boutique, .pack-scelle');
+        const conteneur = canvas.closest('.scene-boutique, .pack-scelle, .scene-club');
         const repli = () => conteneur?.classList.add('sans3d');   // le sachet 2D revient
         if (!gl || !COULEURS[d.type]) { repli(); return; }
         try {
@@ -244,6 +285,12 @@ void main() {
             }
             instances.push(inst);
             lancerBoucle();
+            // le logo du club : chargé à part, le recto est repeint dès qu'il arrive
+            if (d.logo) {
+                const img = new Image();
+                img.onload = () => { d.image = img; try { peindre(gl, inst.tex[0], recto(d)); } catch (e) { } };
+                img.src = d.logo;
+            }
             // Dessiné seulement quand il est à l'écran (hors de la vue : rien à calculer)
             inst.visible = true;
             if (window.IntersectionObserver) {
