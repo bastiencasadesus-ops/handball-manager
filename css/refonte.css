@@ -432,3 +432,45 @@ body { background: radial-gradient(120% 50% at 50% 0%, #16397F 0%, #050F2A 62%) 
 .joueur .avatar-coach { flex: none; border-radius: 50%; }
 .lien-coach { display: flex; align-items: center; gap: 8px; width: 100%; margin: 8px 0 2px; padding: 6px 8px; border: 1px solid #DDE3F0; border-radius: 10px; background: #F4F6FB; color: var(--encre); font-size: 13.5px; text-align: left; cursor: pointer; }
 .lien-coach .avatar-coach { border-radius: 50%; flex: none; }
+
+/* ----- Accueil (Home.razor) : la carrière en cours, au style du jeu ----- */
+.acc-v2 { margin-top: 18px; }
+.acc-coach { display: flex; align-items: center; gap: 10px; padding: 6px 12px 6px 6px; margin-bottom: 12px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+    clip-path: polygon(0 0, 100% 0, calc(100% - 12px) 100%, 0 100%); }
+.acc-coach .avatar-coach { border-radius: 50%; box-shadow: 0 0 0 2px var(--r-or-500); flex: none; }
+.acc-coach .qui { display: flex; flex-direction: column; line-height: 1.05; min-width: 0; }
+.acc-coach .qui small { font: 700 10.5px var(--affiche); letter-spacing: .14em; color: var(--r-bleu-200); }
+.acc-coach .qui b { font: 900 21px var(--affiche); color: #fff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.acc-coach .titre { margin-left: auto; text-align: right; font: 800 12.5px var(--affiche); color: var(--r-or-300); display: flex; flex-direction: column; padding-right: 10px; }
+.acc-coach .titre small { font: 700 11px var(--affiche); letter-spacing: .1em; color: var(--r-bleu-300); margin-top: 2px; }
+.acc-club { position: relative; overflow: hidden; padding: 14px 14px 12px; clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 0 100%);
+    background: radial-gradient(90% 80% at 20% 30%, #1B4DB1 0%, #0A2358 55%, #050F2A 100%); }
+.acc-club::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(115deg, rgba(255,255,255,0) 30%, rgba(255,255,255,.13) 45%, rgba(255,255,255,0) 60%); }
+.acc-tete { display: flex; justify-content: space-between; align-items: center; font: 700 12px var(--affiche); letter-spacing: .14em; color: var(--r-bleu-200); }
+.acc-tete .lieu-prochain { background: var(--r-or-500); padding: 3px 10px; transform: skewX(-12deg); box-shadow: 0 2px 0 var(--r-or-800); }
+.acc-tete .lieu-prochain > span { display: block; transform: skewX(12deg); font: 800 12px var(--affiche); letter-spacing: .1em; color: var(--encre); }
+.acc-identite { position: relative; z-index: 1; display: flex; align-items: center; gap: 14px; margin: 14px 0 12px; text-align: left; }
+.acc-identite img, .acc-identite .blason { width: 76px; height: 76px; flex: none; filter: drop-shadow(0 4px 10px rgba(0,0,0,.5)); }
+.acc-identite h1 { margin: 0; font: 900 30px/.95 var(--affiche); text-transform: uppercase; color: #fff; overflow-wrap: anywhere; }
+.acc-identite .division { margin-top: 5px; font-size: 12.5px; color: #C9D4EE; }
+.acc-stats { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid rgba(255,255,255,.14); padding-top: 10px; }
+.acc-stats > div { display: flex; flex-direction: column; align-items: center; }
+.acc-stats > div + div { border-left: 1px solid rgba(255,255,255,.12); }
+.acc-stats b { font: 800 22px/1 var(--chiffres); color: #fff; }
+.acc-stats .or b { color: var(--r-or-300); text-shadow: 0 0 10px rgba(255,212,92,.45); }
+.acc-stats small { margin-top: 3px; font: 700 10.5px var(--affiche); letter-spacing: .1em; text-transform: uppercase; color: var(--r-bleu-300); }
+.acc-prochain { display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); align-items: center; gap: 6px; padding: 12px 10px;
+    background: linear-gradient(150deg, #0E2B6B, #081A44); border: 1px solid rgba(255,255,255,.1); clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%); }
+.acc-prochain .eq { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 0; }
+.acc-prochain .eq img, .acc-prochain .eq .blason { width: 48px; height: 48px; }
+.acc-prochain .eq span { font: 800 13px/1.05 var(--affiche); text-transform: uppercase; text-align: center; color: #fff; overflow-wrap: anywhere; }
+.acc-prochain .milieu { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.acc-prochain .vs { font: italic 900 30px/1 var(--affiche); color: #fff; text-shadow: 0 3px 0 var(--r-rouge); }
+.acc-prochain .lieu { font: 700 10.5px var(--affiche); letter-spacing: .1em; color: var(--r-or-300); white-space: nowrap; }
+.acc-v2 .accueil-actions { margin-top: 18px; }
+.acc-v2 .acc-continuer { margin: 0 !important; font: 900 26px var(--affiche) !important; letter-spacing: .06em; padding: 16px 14px 20px !important; filter: drop-shadow(0 0 16px rgba(228,0,43,.45)); }
+.acc-secondaires { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+.acc-secondaires .bouton { margin: 0; font: 800 15px var(--affiche); letter-spacing: .04em; padding: 13px 6px; }
+.acc-secondaires .bouton { white-space: nowrap; }
+.acc-secondaires .bouton.contour { color: #fff; border-color: rgba(255,255,255,.35); background: #0B1D4A; }
+.accueil .bouton.clair { background: rgba(255,255,255,.06) !important; color: #fff !important; border: 1px solid rgba(255,212,92,.5) !important; }
