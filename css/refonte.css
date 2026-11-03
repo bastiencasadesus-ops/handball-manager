@@ -501,3 +501,48 @@ body { background: radial-gradient(120% 50% at 50% 0%, #16397F 0%, #050F2A 62%) 
 @keyframes acc-t-logo { from { opacity: 0; transform: scale(.3) rotate(-12deg); } to { opacity: 1; transform: none; } }
 @keyframes acc-t-monte { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 @keyframes acc-t-charge { from { width: 0; } to { width: 100%; } }
+
+/* ----- Le duel tactique (Match.razor, DuelTactique.razor) ----- */
+.lecture-tactique { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 4px 8px; margin-top: 6px; padding: 4px 8px; border-radius: 8px;
+    background: rgba(106,27,154,.22); border: 1px solid rgba(186,140,255,.3); font-size: 12px; color: #D9CCF5; }
+.lecture-tactique b { color: #fff; }
+.lecture-tactique .en-route { color: #FFD45C; font-weight: 700; }
+.consigne-match.bon { border-color: #3DDC84; background: rgba(61,220,132,.13); }
+.consigne-match.bon small { color: #7DF0B0; }
+.consigne-match.mauvais { border-color: #FF7A90; background: rgba(255,122,144,.13); }
+.consigne-match.mauvais small { color: #FFB3BF; }
+.boite.panneau-tactique { background: linear-gradient(180deg, #0D2560, #050F2A); color: #fff; border: 2px solid rgba(186,140,255,.5); max-width: 460px; }
+.boite.panneau-tactique h2 { color: #fff; }
+.duel-tactique { text-align: left; }
+.dt-lecture { font-size: 13px; color: #D9CCF5; padding: 6px 9px; border-radius: 8px; background: rgba(106,27,154,.25); margin-bottom: 4px; }
+.dt-lecture b { color: #fff; }
+.dt-titre { font: 800 12px var(--affiche); letter-spacing: .12em; color: var(--r-bleu-200); margin: 10px 0 5px; }
+.dt-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.dt-options button { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 7px 4px; border-radius: 10px; border: 2px solid rgba(255,255,255,.14);
+    background: rgba(255,255,255,.05); color: #fff; cursor: pointer; }
+.dt-options button .ico { font-size: 19px; line-height: 1.1; }
+.dt-options button b { font: 800 14px var(--affiche); text-transform: uppercase; }
+.dt-options button small { font-size: 10.5px; line-height: 1.15; text-align: center; color: #A9B8DD; }
+.dt-options button.bon small { color: #7DF0B0; }
+.dt-options button.mauvais small { color: #FFB3BF; }
+.dt-options button.on { border-color: var(--r-or-500); background: rgba(255,212,92,.16); }
+.dt-note { font-size: 12px; color: #A9B8DD; margin: 10px 0 0; }
+.duel-tactique.clair .dt-lecture { background: #F1EAFB; color: #4B2A7A; }
+.duel-tactique.clair .dt-lecture b { color: #2A0F55; }
+.duel-tactique.clair .dt-titre { color: #5B6B8F; }
+.duel-tactique.clair .dt-options button { background: #F4F6FB; border-color: #DDE3F0; color: var(--encre); }
+.duel-tactique.clair .dt-options button small { color: #5B6B8F; }
+.duel-tactique.clair .dt-options button.bon small { color: #1B7F3B; }
+.duel-tactique.clair .dt-options button.mauvais small { color: #B3122E; }
+.duel-tactique.clair .dt-options button.on { border-color: #E0A800; background: #FFF6D6; }
+.titre-groupe-tactique { font: 800 13px var(--affiche); letter-spacing: .1em; color: var(--bleu-nuit, #0A2358); margin: 12px 0 6px; }
+
+/* ----- Équipe : l'infirmerie ----- */
+.infirmerie { margin: 6px 0 8px; padding: 8px 10px; border-radius: 10px; background: rgba(179,18,46,.14); border: 1px solid rgba(255,122,144,.35); }
+.infirmerie .tete { font: 800 13px var(--affiche); letter-spacing: .08em; color: #FFB3BF; margin-bottom: 4px; }
+.infirmerie .ligne-inf { display: flex; align-items: baseline; gap: 6px; padding: 3px 0; font-size: 13px; color: #fff; border-top: 1px solid rgba(255,255,255,.08); }
+.infirmerie .ligne-inf .nom { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 700; }
+.infirmerie .ligne-inf small { color: #C9D4EE; font-size: 11.5px; }
+.infirmerie .ligne-inf b { font-size: 12px; color: #FF9AAA; white-space: nowrap; }
+.infirmerie .ligne-inf.risque b { color: #FFC070; }
+.infirmerie .aide { margin: 4px 0 0; font-size: 11.5px; color: #C9D4EE; }
