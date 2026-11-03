@@ -474,3 +474,30 @@ body { background: radial-gradient(120% 50% at 50% 0%, #16397F 0%, #050F2A 62%) 
 .acc-secondaires .bouton { white-space: nowrap; }
 .acc-secondaires .bouton.contour { color: #fff; border-color: rgba(255,255,255,.35); background: #0B1D4A; }
 .accueil .bouton.clair { background: rgba(255,255,255,.06) !important; color: #fff !important; border: 1px solid rgba(255,212,92,.5) !important; }
+
+/* ----- Accueil : l'écran de transition vers le jeu ----- */
+.acc-transition { position: fixed; inset: 0; z-index: 200; overflow: hidden; display: flex; align-items: center; justify-content: center;
+    background: radial-gradient(80% 60% at 50% 40%, #1B4DB1 0%, #0A2358 50%, #030A1E 100%); animation: acc-t-entre .35s ease-out both; }
+.acc-transition .bandes i { position: absolute; top: -20%; height: 140%; width: 90px; background: var(--r-rouge); transform: skewX(-18deg); opacity: .9;
+    animation: acc-t-bande 1.9s cubic-bezier(.2,.8,.2,1) both; }
+.acc-transition .bandes i:nth-child(1) { left: -30%; animation-delay: 0s; }
+.acc-transition .bandes i:nth-child(2) { left: -45%; width: 22px; opacity: .55; animation-delay: .08s; }
+.acc-transition .bandes i:nth-child(3) { left: -60%; width: 8px; background: var(--r-or-500); opacity: .8; animation-delay: .16s; }
+.acc-transition .contenu { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 24px; }
+.acc-transition .logo { width: 130px; height: 130px; display: flex; align-items: center; justify-content: center; animation: acc-t-logo .7s cubic-bezier(.2,1.5,.4,1) .15s both; }
+.acc-transition .logo img, .acc-transition .logo .blason { width: 120px; height: 120px; filter: drop-shadow(0 0 26px rgba(255,212,92,.55)) drop-shadow(0 8px 16px rgba(0,0,0,.6)); }
+.acc-transition .saison { margin-top: 18px; font: 800 13px var(--affiche); letter-spacing: .22em; color: var(--r-or-300); animation: acc-t-monte .45s ease-out .45s both; }
+.acc-transition .club { margin-top: 6px; font: 900 40px/.95 var(--affiche); text-transform: uppercase; color: #fff; text-shadow: 0 4px 0 var(--r-rouge); animation: acc-t-monte .45s ease-out .55s both; overflow-wrap: anywhere; }
+.acc-transition .adv { margin-top: 10px; font: 700 15px var(--affiche); text-transform: uppercase; color: #C9D4EE; animation: acc-t-monte .45s ease-out .7s both; }
+.acc-transition .adv span { color: var(--r-bleu-300); font-size: 12px; letter-spacing: .12em; margin-right: 4px; }
+.acc-transition .coach { display: flex; align-items: center; gap: 8px; margin-top: 22px; padding: 4px 14px 4px 4px; border-radius: 999px; background: rgba(255,255,255,.08);
+    color: #C9D4EE; font-size: 14px; animation: acc-t-monte .45s ease-out .85s both; }
+.acc-transition .coach .avatar-coach { border-radius: 50%; box-shadow: 0 0 0 2px var(--r-or-500); }
+.acc-transition .coach b { color: #fff; }
+.acc-transition .chargement { width: 180px; height: 4px; margin-top: 28px; background: rgba(255,255,255,.12); border-radius: 2px; overflow: hidden; }
+.acc-transition .chargement i { display: block; height: 100%; background: linear-gradient(90deg, var(--r-or-500), #fff); animation: acc-t-charge 1.6s ease-in-out .2s both; }
+@keyframes acc-t-entre { from { opacity: 0; } to { opacity: 1; } }
+@keyframes acc-t-bande { from { transform: translateX(0) skewX(-18deg); } to { transform: translateX(260vw) skewX(-18deg); } }
+@keyframes acc-t-logo { from { opacity: 0; transform: scale(.3) rotate(-12deg); } to { opacity: 1; transform: none; } }
+@keyframes acc-t-monte { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes acc-t-charge { from { width: 0; } to { width: 100%; } }
