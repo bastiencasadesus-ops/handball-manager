@@ -80,14 +80,20 @@ body { background: radial-gradient(120% 50% at 50% 0%, #16397F 0%, #050F2A 62%) 
 .prochain-epure .tete-prochain { display: flex; justify-content: space-between; align-items: center; font: 700 12px var(--affiche); letter-spacing: .14em; color: var(--r-bleu-200); }
 .prochain-epure .lieu-prochain { background: var(--r-or-500); padding: 3px 10px; transform: skewX(-12deg); box-shadow: 0 2px 0 var(--r-or-800); }
 .prochain-epure .lieu-prochain > span { display: block; transform: skewX(12deg); font: 800 12px var(--affiche); letter-spacing: .12em; color: var(--encre); }
-.prochain-epure .affiche { display: grid; grid-template-columns: minmax(0,1fr) 60px minmax(0,1fr); gap: 0; margin: 12px 0 4px; align-items: start; }
-.prochain-epure .affiche .equipe { gap: 6px; }
-.prochain-epure .affiche .equipe img, .prochain-epure .affiche .equipe .blason { width: 64px; height: 64px; }
-.prochain-epure .nom-equipe { font: 800 15px/1.05 var(--affiche); text-transform: uppercase; text-align: center; color: #fff; max-width: 100%; overflow-wrap: anywhere; }
-.prochain-epure .affiche .equipe b { font: 800 22px var(--chiffres); color: var(--r-or-300); text-shadow: 0 0 12px rgba(255,212,92,.55); }
-.prochain-epure .vs { align-self: center; margin-top: -30px; font: italic 900 44px/1 var(--affiche); color: #fff; text-shadow: 0 4px 0 var(--r-rouge); }
-.forme { display: flex; gap: 3px; min-height: 20px; }
-.forme .fv { width: 20px; height: 20px; border-radius: 4px; font: 800 12px/20px var(--affiche); text-align: center; color: var(--encre); }
+.prochain-epure .affiche { display: grid; grid-template-columns: minmax(0,1fr) 52px minmax(0,1fr); gap: 0; margin: 14px 0 0; align-items: start; }
+.prochain-epure .affiche .equipe { gap: 6px; min-width: 0; }
+.prochain-epure .affiche .equipe img, .prochain-epure .affiche .equipe .blason { width: 62px; height: 62px; filter: drop-shadow(0 4px 10px rgba(0,0,0,.45)); }
+.prochain-epure .nom-equipe { font: 800 14px/1.05 var(--affiche); text-transform: uppercase; text-align: center; color: #fff; max-width: 100%; overflow-wrap: anywhere; }
+.prochain-epure .vs { height: 62px; margin: 0; display: flex; align-items: center; justify-content: center; font: italic 900 34px/1 var(--affiche); color: #fff; text-shadow: 0 3px 0 var(--r-rouge); }
+.prochain-epure .duel-niveaux { position: relative; z-index: 1; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px; margin: 12px 4px 10px; }
+.prochain-epure .duel-niveaux b { font: 800 20px/1 var(--chiffres); color: var(--r-or-300); text-shadow: 0 0 10px rgba(255,212,92,.45); min-width: 40px; text-align: left; }
+.prochain-epure .duel-niveaux b.eux { color: #FFB3BF; text-shadow: 0 0 10px rgba(255,122,144,.4); text-align: right; }
+.prochain-epure .barre-duel { height: 8px; border-radius: 4px; background: linear-gradient(90deg, #FF7A90, #E4002B); overflow: hidden; box-shadow: inset 0 1px 2px rgba(0,0,0,.5); }
+.prochain-epure .barre-duel i { display: block; height: 100%; background: linear-gradient(90deg, #9C6A00, #FFD45C); border-right: 2px solid #fff; }
+.prochain-epure .mots-equilibrage { position: relative; z-index: 1; display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; margin: 8px 0 0; }
+.prochain-epure .mots-equilibrage > div { font-size: 11.5px; line-height: 1.2; color: #FFE3B8; background: rgba(255,170,60,.14); border: 1px solid rgba(255,190,90,.35); border-radius: 999px; padding: 3px 9px; }
+.forme { display: flex; gap: 3px; }
+.forme .fv { width: 16px; height: 16px; border-radius: 3px; font: 800 10px/16px var(--affiche); text-align: center; color: var(--encre); }
 .forme .fv.V { background: #3DDC84; } .forme .fv.N { background: var(--r-bleu-300); } .forme .fv.D { background: #FF7A90; }
 .forme .vide { color: var(--r-bleu-300); font-size: 12px; }
 .prochain-epure .pastilles { position: relative; z-index: 1; }
