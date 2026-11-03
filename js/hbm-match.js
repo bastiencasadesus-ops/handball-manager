@@ -320,10 +320,11 @@
         for (const j of equipes.moi) tous.push(j);
         for (const j of equipes.eux) tous.push(j);
         tous.sort((a, b) => a.y - b.y);
+        // le sens de l'attaque, le long de la ligne médiane : dessiné SOUS les joueurs (il ne les masque plus)
+        const lab = sprites.get(possession === 'moi' ? 'lab|moi' : 'lab|eux');
+        if (lab) { ctx.globalAlpha = .55; ctx.drawImage(lab.c, px(0) + 6, py(20) + 4, 140, 16); ctx.globalAlpha = 1; }
         for (const j of tous) dessinerJoueur(j);
         dessinerBallon();
-        const lab = sprites.get(possession === 'moi' ? 'lab|moi' : 'lab|eux');
-        if (lab) ctx.drawImage(lab.c, px(0) + 6, py(20) + 4, 140, 16);   // le long de la ligne médiane
     }
 
     const prochaineImage = typeof requestAnimationFrame !== 'undefined' ? requestAnimationFrame : f => setTimeout(() => f(performance.now()), 16);
