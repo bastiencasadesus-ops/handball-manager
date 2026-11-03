@@ -364,3 +364,45 @@ body { background: radial-gradient(120% 50% at 50% 0%, #16397F 0%, #050F2A 62%) 
 .resultat .lg { display: flex; width: 22px; height: 22px; align-items: center; justify-content: center; }
 .resultat .lg .blason { display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #EDF0F6; font-weight: 800; }
 .resultat .eq { min-width: 0; }
+
+/* ----- Identité du coach (CreationCoach, ProfilManager) ----- */
+.creation-coach-voile { z-index: 90; }
+.boite.creation-coach { background: linear-gradient(180deg, #0D2560, #050F2A); color: #fff; border: 2px solid var(--r-or-500); max-height: 92vh; overflow-y: auto; padding-bottom: 14px; }
+.ci-titre { font: 900 22px var(--affiche); letter-spacing: .08em; text-align: center; color: var(--r-or-300); margin: 2px 0 10px; }
+.carte-coach { position: relative; display: flex; gap: 14px; align-items: center; padding: 12px; margin-bottom: 12px; border-radius: 4px;
+    background: radial-gradient(120% 140% at 0% 0%, #1B4DB1 0%, #0A2358 55%, #050F2A 100%); border: 2px solid var(--r-or-500); box-shadow: 0 6px 18px rgba(0,0,0,.35); }
+.carte-coach .avatar-coach { flex: none; border-radius: 50%; box-shadow: 0 0 0 3px var(--r-or-500), 0 6px 14px rgba(0,0,0,.5); }
+.ci-infos { min-width: 0; text-align: left; }
+.ci-nom { font: 900 21px/1.05 var(--affiche); color: #fff; text-transform: none; overflow-wrap: anywhere; }
+.ci-tag { font: 800 12px var(--affiche); letter-spacing: .12em; color: var(--r-or-300); margin-top: 3px; }
+.ci-style { display: inline-block; margin-top: 6px; font: 700 12px var(--affiche); letter-spacing: .04em; color: #fff; background: rgba(255,255,255,.12); padding: 2px 9px; border-radius: 999px; }
+.ci-devise { font-style: italic; font-size: 12.5px; color: #C9D4EE; margin-top: 5px; }
+.ci-modifier { position: absolute; top: 8px; right: 8px; width: 32px; height: 32px; border-radius: 50%; border: 0; background: rgba(255,255,255,.14); color: #fff; font-size: 15px; cursor: pointer; }
+.ci-champs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.ci-champs .champ, .creation-coach > .champ { width: 100%; box-sizing: border-box; margin: 0; }
+.ci-section { font: 800 12px var(--affiche); letter-spacing: .12em; color: var(--r-bleu-200); margin: 14px 0 6px; }
+.ci-section b { color: #fff; letter-spacing: .04em; }
+.ci-ligne { display: flex; align-items: flex-start; gap: 10px; margin: 8px 0; }
+.ci-ligne .lib { padding-top: 6px; width: 64px; flex: none; font-size: 12.5px; color: #C9D4EE; text-align: left; }
+.ci-choix { display: flex; flex-wrap: wrap; gap: 6px; }
+.ci-choix button { cursor: pointer; }
+.ci-choix.drapeaux button { width: 38px; height: 32px; font-size: 20px; line-height: 1; border-radius: 6px; border: 2px solid transparent; background: rgba(255,255,255,.08); padding: 0; }
+.ci-choix.drapeaux button.on { border-color: var(--r-or-500); background: rgba(255,212,92,.18); }
+.pastille-couleur { width: 28px; height: 28px; border-radius: 50%; border: 2px solid rgba(255,255,255,.25); padding: 0; }
+.pastille-couleur.on { border-color: var(--r-or-300); box-shadow: 0 0 0 2px var(--r-or-500); transform: scale(1.08); }
+.ci-choix .option { font: 700 12px var(--affiche); letter-spacing: .03em; padding: 6px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.06); color: #fff; }
+.ci-choix .option.on { background: var(--r-or-500); border-color: var(--r-or-500); color: var(--encre); }
+.ci-styles { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.ci-styles button { display: grid; grid-template-columns: auto 1fr; column-gap: 8px; align-items: center; text-align: left; padding: 8px; border-radius: 6px; cursor: pointer;
+    border: 2px solid rgba(255,255,255,.12); background: rgba(255,255,255,.05); color: #fff; }
+.ci-styles button .ico { grid-row: span 2; font-size: 22px; }
+.ci-styles button b { font: 800 13px var(--affiche); }
+.ci-styles button small { font-size: 11px; color: #C9D4EE; line-height: 1.2; }
+.ci-styles button.on { border-color: var(--r-or-500); background: rgba(255,212,92,.14); }
+.ci-actions { display: grid; grid-template-columns: 1fr 1.4fr; gap: 8px; margin-top: 16px; }
+.ci-actions .bouton { margin: 0; }
+.puce-manager.avec-avatar { display: inline-flex; align-items: center; gap: 5px; padding: 2px 9px 2px 2px !important; }
+.puce-manager.avec-avatar .avatar-coach { border-radius: 50%; }
+.joueur .avatar-coach { flex: none; border-radius: 50%; }
+.lien-coach { display: flex; align-items: center; gap: 8px; width: 100%; margin: 8px 0 2px; padding: 6px 8px; border: 1px solid #DDE3F0; border-radius: 10px; background: #F4F6FB; color: var(--encre); font-size: 13.5px; text-align: left; cursor: pointer; }
+.lien-coach .avatar-coach { border-radius: 50%; flex: none; }
