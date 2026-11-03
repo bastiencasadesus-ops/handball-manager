@@ -395,7 +395,7 @@ body { background: radial-gradient(120% 50% at 50% 0%, #16397F 0%, #050F2A 62%) 
 .ci-styles { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
 .ci-styles button { display: grid; grid-template-columns: auto 1fr; column-gap: 8px; align-items: center; text-align: left; padding: 8px; border-radius: 6px; cursor: pointer;
     border: 2px solid rgba(255,255,255,.12); background: rgba(255,255,255,.05); color: #fff; }
-.ci-styles button .ico { grid-row: span 2; font-size: 22px; }
+.ci-styles button .ico { font-size: 20px; }
 .ci-styles button b { font: 800 13px var(--affiche); }
 .ci-styles button small { font-size: 11px; color: #C9D4EE; line-height: 1.2; }
 .ci-styles button.on { border-color: var(--r-or-500); background: rgba(255,212,92,.14); }
