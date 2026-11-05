@@ -571,3 +571,24 @@ body { background: radial-gradient(120% 50% at 50% 0%, #16397F 0%, #050F2A 62%) 
 .boite.plan-v2 .bouton.large { font: 900 22px var(--affiche); letter-spacing: .06em; padding: 14px; }
 .boite.plan-v2 .bouton.large:disabled { opacity: .45; }
 .boite.plan-v2 .stats-mi-temps, .boite.plan-v2 .carte-tirs { background: rgba(255,255,255,.05); color: #fff; border-radius: 6px; }
+
+/* ----- Match : choix rapides de l'attaque et de la défense (un toucher, sans fenêtre) ----- */
+.choix-rapides { display: grid; grid-template-columns: 1fr 74px; gap: 6px; margin-top: 6px; }
+.choix-rapides .rangees { display: grid; gap: 5px; min-width: 0; }
+.choix-rapides .rangee { display: grid; grid-template-columns: 22px repeat(3, 1fr); gap: 4px; align-items: center; }
+.choix-rapides .lib { font-size: 15px; text-align: center; }
+.puce-tac { min-width: 0; padding: 8px 2px; border-radius: 8px; border: 1.5px solid rgba(255,255,255,.16); background: rgba(255,255,255,.06); color: #C9D4EE;
+    font: 800 13px/1 var(--affiche); text-transform: uppercase; letter-spacing: .02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; transition: background .12s, border-color .12s; }
+.puce-tac:active { transform: scale(.96); }
+.puce-tac.bon { border-color: rgba(61,220,132,.55); color: #7DF0B0; }
+.puce-tac.mauvais { border-color: rgba(255,122,144,.5); color: #FFB3BF; }
+.puce-tac.actuel { background: var(--r-or-500); border-color: var(--r-or-500); color: var(--encre); }
+.puce-tac.actuel.bon { box-shadow: 0 0 0 2px #3DDC84; }
+.puce-tac.actuel.mauvais { box-shadow: 0 0 0 2px #FF7A90; }
+.temps-mort-rapide { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; border-radius: 10px; border: 1.5px solid rgba(255,255,255,.2);
+    background: rgba(255,255,255,.07); color: #fff; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+.temps-mort-rapide span { font-size: 16px; }
+.temps-mort-rapide b { font: 800 11px var(--affiche); letter-spacing: .04em; }
+.temps-mort-rapide small { font: 800 14px var(--chiffres); color: var(--r-or-300); }
+.temps-mort-rapide:disabled { opacity: .4; }
