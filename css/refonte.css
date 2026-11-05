@@ -595,3 +595,8 @@ body { background: radial-gradient(120% 50% at 50% 0%, #16397F 0%, #050F2A 62%) 
 .temps-mort-rapide b { font: 800 11px var(--affiche); letter-spacing: .04em; }
 .temps-mort-rapide small { font: 800 14px var(--chiffres); color: var(--r-or-300); }
 .temps-mort-rapide:disabled { opacity: .4; }
+
+/* ----- Match : l'animation en cartes du tir d'un moment clé (js/hbm-moment.js) ----- */
+.anim-tir { position: fixed; inset: 0; z-index: 400; background: #030918; touch-action: none; animation: anim-tir-entree .18s ease-out both; }
+.anim-tir canvas { display: block; width: 100%; height: 100%; }
+@keyframes anim-tir-entree { from { opacity: 0; } to { opacity: 1; } }
