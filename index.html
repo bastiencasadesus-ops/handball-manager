@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="css/jeu.css?v=2" />
     <link rel="stylesheet" href="css/jeu-v2.css" />
     <link rel="stylesheet" href="css/gestes.css?v=83" />
-    <link rel="stylesheet" href="css/refonte.css?v=32" />
+    <link rel="stylesheet" href="css/refonte.css?v=33" />
     <link rel="icon" type="image/png" href="icon-192.png?v=2" />
     <link href="HandballManagerWeb.styles.css" rel="stylesheet" />
     <link href="manifest.webmanifest" rel="manifest" />
@@ -25,6 +25,16 @@
 </head>
 
 <body>
+    <!-- Le jeu se joue en portrait : en paysage sur téléphone, on demande de tourner l'écran -->
+    <div id="tourne-ecran" aria-hidden="true"><div><span>📱</span><b>TOURNE TON TÉLÉPHONE</b><small>Handball Manager se joue à la verticale.</small></div></div>
+    <script>
+        (function () {
+            function verrouiller() { try { screen.orientation && screen.orientation.lock && screen.orientation.lock('portrait').catch(function () { }); } catch (e) { } }
+            verrouiller();
+            document.addEventListener('pointerdown', verrouiller, { once: true });
+            document.addEventListener('fullscreenchange', verrouiller);
+        })();
+    </script>
     <div id="app">
         <div class="chargement">
             <div class="chargement-logo"><span class="barre"></span><div><b>HANDBALL</b><b class="rouge">MANAGER</b></div></div>

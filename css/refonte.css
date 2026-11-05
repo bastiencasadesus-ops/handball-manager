@@ -600,3 +600,15 @@ body { background: radial-gradient(120% 50% at 50% 0%, #16397F 0%, #050F2A 62%) 
 .anim-tir { position: fixed; inset: 0; z-index: 400; background: #030918; touch-action: none; animation: anim-tir-entree .18s ease-out both; }
 .anim-tir canvas { display: block; width: 100%; height: 100%; }
 @keyframes anim-tir-entree { from { opacity: 0; } to { opacity: 1; } }
+
+/* ----- Le jeu se joue en portrait : écran « tourne ton téléphone » en paysage (téléphones seulement) ----- */
+#tourne-ecran { display: none; }
+@media (orientation: landscape) and (max-height: 520px) and (pointer: coarse) {
+    #tourne-ecran { display: flex; position: fixed; inset: 0; z-index: 10000; align-items: center; justify-content: center; text-align: center;
+        background: radial-gradient(80% 80% at 50% 40%, #163E95, #050F2A); color: #fff; }
+    #tourne-ecran div { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    #tourne-ecran span { font-size: 54px; display: inline-block; animation: tourne-tel 1.6s ease-in-out infinite; }
+    #tourne-ecran b { font: 900 30px "Barlow Condensed", sans-serif; letter-spacing: .06em; color: #FFD45C; }
+    #tourne-ecran small { font-size: 15px; color: #C9D4EE; }
+    @keyframes tourne-tel { 0%, 30% { transform: rotate(-90deg); } 60%, 100% { transform: rotate(0deg); } }
+}
