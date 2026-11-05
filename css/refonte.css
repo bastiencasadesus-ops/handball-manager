@@ -301,7 +301,10 @@ body { background: radial-gradient(120% 50% at 50% 0%, #16397F 0%, #050F2A 62%) 
 .tuto-points i.actif { background: #E4002B; }
 
 /* ---------- Vitesse : les cartes hors de l'écran ne sont pas dessinées ---------- */
-.carte-banc, .grille-cartes > * { content-visibility: auto; contain-intrinsic-size: 110px 190px; }
+/* (pas de content-visibility ici : son confinement rognait les cristaux et la pointe des cartes ★★★/★★★★) */
+.banc-cartes { gap: 14px 6px; padding: 6px 2px; overflow: visible; }
+.carte-banc { overflow: visible; padding: 4px 2px 2px; }
+.carte-banc > .bouton.petit-bouton { margin-top: 8px !important; position: relative; z-index: 1; }
 
 /* ---------- Jauge de cohésion (onglet Équipe) ---------- */
 .jauge-cohesion { margin: 2px 0 10px; }
