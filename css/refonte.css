@@ -612,3 +612,35 @@ body { background: radial-gradient(120% 50% at 50% 0%, #16397F 0%, #050F2A 62%) 
     #tourne-ecran small { font-size: 15px; color: #C9D4EE; }
     @keyframes tourne-tel { 0%, 30% { transform: rotate(-90deg); } 60%, 100% { transform: rotate(0deg); } }
 }
+
+/* ----- Onglet Match : la chaîne de la saison (ChaineSaison.razor) ----- */
+.chaine-saison { margin: 0 0 12px; padding: 10px 10px 8px; background: linear-gradient(160deg, #0E2B6B, #081A44); border: 1px solid rgba(255,255,255,.1);
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%); }
+.cs-tete { display: flex; align-items: baseline; gap: 10px; padding: 0 4px; }
+.cs-titre { font: 900 16px var(--affiche); letter-spacing: .12em; color: #fff; }
+.cs-bilan { font: 700 13px var(--affiche); color: #A9B8DD; }
+.cs-bilan .v { color: #3DDC84; } .cs-bilan .n { color: #6FA8FF; } .cs-bilan .d { color: #FF5A78; }
+.cs-journee { margin-left: auto; font: 800 13px var(--affiche); letter-spacing: .08em; color: var(--r-or-300); }
+.cs-carte { display: block; width: 100%; height: auto; margin-top: 4px; overflow: visible; }
+.cs-fait { fill: none; stroke: rgba(255,212,92,.75); stroke-width: 4; stroke-linecap: round; }
+.cs-reste { fill: none; stroke: rgba(255,255,255,.22); stroke-width: 3; stroke-dasharray: 2 7; stroke-linecap: round; }
+.cs-point { cursor: pointer; }
+.cs-point circle { stroke-width: 2.5; }
+.cs-point text { font: 800 11.5px "Barlow Condensed", sans-serif; text-anchor: middle; fill: #fff; pointer-events: none; }
+.cs-point.v circle { fill: #1FA463; stroke: #7DF0B0; }
+.cs-point.d circle { fill: #C8102E; stroke: #FF9AAA; }
+.cs-point.n circle { fill: #2563EB; stroke: #93C5FD; }
+.cs-point.avenir circle { fill: #0A2358; stroke: rgba(255,255,255,.35); }
+.cs-point.avenir text { fill: #A9B8DD; }
+.cs-point.exempt circle { fill: none; stroke: rgba(255,255,255,.3); stroke-dasharray: 3 3; }
+.cs-point.prochain circle:not(.cs-halo) { fill: #FFD45C; stroke: #fff; }
+.cs-point.prochain text { fill: #0A1A40; }
+.cs-halo { fill: none; stroke: #FFD45C !important; stroke-width: 2 !important; transform-box: fill-box; transform-origin: center; animation: cs-pulse 1.6s ease-out infinite; }
+.cs-point.choisi circle:not(.cs-halo) { stroke: #fff; stroke-width: 4; }
+@keyframes cs-pulse { from { opacity: .9; transform: scale(.8); } to { opacity: 0; transform: scale(1.6); } }
+@media (prefers-reduced-motion: reduce) { .cs-halo { animation: none; opacity: .6; } }
+.cs-detail { display: flex; align-items: center; gap: 8px; margin: 2px 4px 0; padding: 6px 8px; border-radius: 8px; background: rgba(255,255,255,.06); font-size: 13.5px; color: #fff; }
+.cs-detail .lg img, .cs-detail .lg .blason { width: 22px; height: 22px; display: block; }
+.cs-detail b { margin-left: auto; font: 800 16px var(--chiffres); }
+.cs-detail b.v { color: #3DDC84; } .cs-detail b.n { color: #6FA8FF; } .cs-detail b.d { color: #FF5A78; } .cs-detail b.prochain { color: var(--r-or-300); font-family: var(--affiche); letter-spacing: .08em; font-size: 13px; }
+.cs-point.exempt text { fill: rgba(255,255,255,.35); font-size: 10px; }

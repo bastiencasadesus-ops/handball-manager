@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "HandballManagerWeb",
   "resources": {
-    "hash": "sha256-gaXTRKoG/0nnsmovVgGbiziLYfGSDHVBPqB0YgohVLo=",
+    "hash": "sha256-J5mhy2kDCbYn1scoH/fy7MapFhzDurRW//HZBoYSoak=",
     "jsModuleNative": {
       "dotnet.native.8.0.32.i569lqnidm.js": "sha256-O3qB2ofdJXmjKFMwVEQ4hpUyHmIX0TZMmYco9TdYWHU="
     },
@@ -9,7 +9,7 @@
       "dotnet.runtime.8.0.32.f6fvaa9ccl.js": "sha256-/ufyjqAhbAZHrYxFtFKyyZx5KOM7Nxnmq4cZrWMYk8I="
     },
     "wasmNative": {
-      "dotnet.native.wasm": "sha256-oRL1AGXXd3XT+5dz2yiI0+JkrhNJpx1BIGxBbAQxB28="
+      "dotnet.native.wasm": "sha256-MUgYtQyXzteTN6tMqDCz5/qHbDmxhpCjICgC9OscHCc="
     },
     "icu": {
       "icudt_CJK.dat": "sha256-SZLtQnRc0JkwqHab0VUVP7T3uBPSeYzxzDnpxPpUnHk=",
@@ -17,8 +17,8 @@
       "icudt_no_CJK.dat": "sha256-L7sV7NEYP37/Qr2FPCePo5cJqRgTXRwGHuwF5Q+0Nfs="
     },
     "assembly": {
-      "HandballManagerInterface.wasm": "sha256-8V0jL6MXwc/OEBhgw+eS0MfO8JrjCSSiRG4LWnbgdTw=",
-      "HandballManagerWeb.wasm": "sha256-vdEi1EAKbzsPq2yP6/RyUNQ0vY3F+PKJufZRpW19Nng=",
+      "HandballManagerInterface.wasm": "sha256-73cqKtrQjNufIGh3REBsQSTsJ4sylqtGQPhIIZR6Q1Y=",
+      "HandballManagerWeb.wasm": "sha256-OrHr7tFUXzg97ZdqgaWrHu/R9izo0lqEclYTUaPanEo=",
       "Microsoft.AspNetCore.Components.wasm": "sha256-vtKW6bv3XAc52t7TKSH+VRLCYow7nvnpv6s0RxxWu2Q=",
       "Microsoft.AspNetCore.Components.Web.wasm": "sha256-z0WngmpdSKnXOneRBI7yJtpUvSEhuR1niKhdnVI6nOA=",
       "Microsoft.AspNetCore.Components.WebAssembly.wasm": "sha256-uEjVChVmZMqGVa386UJ1wR3GYBq+mlYgsge2gn1VISI=",
@@ -44,10 +44,10 @@
       "System.Net.Http.Json.wasm": "sha256-EqwR278rxifGJX+pE1xrpq1l614a2cq3tDrAxPb2uSI=",
       "System.Net.Http.wasm": "sha256-/iAnQ8qUWVU/5+Rcbe5ewWVVgo/ycvsTJBHRBDELw6U=",
       "System.Net.Primitives.wasm": "sha256-vX7noKfsBPttWM2E8ZdI6+GC5KsvyYusmAtkW1rX6lk=",
-      "System.Private.CoreLib.wasm": "sha256-JTVJLjXT7tdHw+5ToU2fmzjUOElmReyprY+0+jFQFpY=",
+      "System.Private.CoreLib.wasm": "sha256-iyVp7Xa9oEFjPjwcpS+B0WTnuWw3+K865g4X9JN22RM=",
       "System.Private.Uri.wasm": "sha256-xQ7YzPXNUl7ED0rSw+fCbcaQSvGMeXrBcybMTzbBwDY=",
       "System.Runtime.InteropServices.JavaScript.wasm": "sha256-w2soxfjzim73mjdwVPlDNUbDxw89PZdhZpMyV1RdhAk=",
-      "System.Runtime.wasm": "sha256-0/BPGc1zjeUEay0z7rStFUvYFap2DcTtK+1k/8pKOEw=",
+      "System.Runtime.wasm": "sha256-oEWoLN0mMFOd/MN+iPym8TL5O0AR+GoFnLRxmwLgvO4=",
       "System.Security.Cryptography.wasm": "sha256-ka+ziyXr11jIEISSirlvRYL0QEosFcMKxlt9qyXGPFU=",
       "System.Text.Encodings.Web.wasm": "sha256-EoOcbRMbeSETzB21/75bqoxgxznYcVKiJ+wP15v3bZc=",
       "System.Text.Json.wasm": "sha256-a5akRl/mNX9sVQr8aeB1m3loaMszeFp8NKF9XHpt/Z4=",
