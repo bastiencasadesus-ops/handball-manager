@@ -92,10 +92,10 @@ window.hbm = (function () {
             } catch (e) { }
         },
         // La place d'un élément à l'écran (le tutoriel braque son projecteur dessus)
-        cible: sel => {
+        cible: (sel, defiler = true) => {
             const el = document.querySelector(sel);
             if (!el) return null;
-            el.scrollIntoView({ block: 'nearest' });
+            if (defiler) el.scrollIntoView({ block: defiler === 'centre' ? 'center' : 'nearest' });
             const r = el.getBoundingClientRect();
             if (r.width === 0 || r.height === 0) return null;
             return { x: r.left, y: r.top, l: r.width, h: r.height, hauteur: window.innerHeight };
