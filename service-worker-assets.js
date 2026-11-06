@@ -221,7 +221,7 @@
       "url": "icon-512.png"
     },
     {
-      "hash": "sha256-pOmSLDHh\/3bYnDYhGlQtmzvsAuMHTRGTzSeE600PoAk=",
+      "hash": "sha256-uwIdmVtzqLSDzC9gm5m4yvnQa1\/0S1v+kfJv2YQPQUA=",
       "url": "index.html"
     },
     {
@@ -729,5 +729,5 @@
       "url": "_content\/HandballManagerInterface\/HandballManagerInterface.bundle.scp.css"
     }
   ],
-  "version": "0AvI6LK0"
+  "version": "QWFs\/4r9"
 };
