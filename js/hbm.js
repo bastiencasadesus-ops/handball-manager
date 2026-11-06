@@ -362,6 +362,7 @@ window.hbmGestes = (function () {
 
     // Balayage entre les onglets (aussi quand le téléphone annule le geste en cours de route)
     function balayage(dx, dy, duree, el) {
+        if (document.querySelector('.projecteur:not(.cache), .tuto2:not(.cache)')) return;   // le didacticiel : rien ne bouge derrière
         if (duree < 900 && Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5 && !voileOuvert()
             && el && el.closest && el.closest('.ecran')
             && !el.closest('[data-pas-de-balayage], input, select, textarea, .selecteur, .defile-x, .vitrine, .packs-offerts, .moments-boutique'))

@@ -755,3 +755,8 @@ body { background: radial-gradient(120% 50% at 50% 0%, #16397F 0%, #050F2A 62%) 
 .pj-bulle.regarde .pj-titres b { font-size: 16px; }
 .pj-bulle.regarde p { font-size: 12.5px; margin: 2px 0 0; }
 .pj-bulle.regarde .pj-boutons { display: none; }
+/* Didacticiel ouvert : l'écran derrière ne défile plus (seul le tutoriel le fait défiler, par programme) */
+html:has(.projecteur:not(.cache)), html:has(.tuto2:not(.cache)),
+html:has(.projecteur:not(.cache)) body, html:has(.tuto2:not(.cache)) body { overflow: hidden !important; overscroll-behavior: none; }
+.projecteur .pj-bloc, .projecteur .pj-fond, .projecteur .pj-bulle, .tuto2 .tuto-fond { touch-action: none; overscroll-behavior: contain; }
+body:has(.projecteur:not(.cache)) .plein.match-page { overflow-y: hidden !important; }
