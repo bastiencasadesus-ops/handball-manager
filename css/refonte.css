@@ -644,3 +644,5 @@ body { background: radial-gradient(120% 50% at 50% 0%, #16397F 0%, #050F2A 62%) 
 .cs-detail b { margin-left: auto; font: 800 16px var(--chiffres); }
 .cs-detail b.v { color: #3DDC84; } .cs-detail b.n { color: #6FA8FF; } .cs-detail b.d { color: #FF5A78; } .cs-detail b.prochain { color: var(--r-or-300); font-family: var(--affiche); letter-spacing: .08em; font-size: 13px; }
 .cs-point.exempt text { fill: rgba(255,255,255,.35); font-size: 10px; }
+.cs-detail .cs-adv { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cs-detail b, .cs-detail .lg { flex: none; white-space: nowrap; }
